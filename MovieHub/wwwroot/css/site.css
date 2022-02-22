@@ -1,5 +1,6 @@
 html {
   font-size: 14px;
+  color: #FFFFFF;
 }
 
 @media (min-width: 768px) {
@@ -16,4 +17,35 @@ html {
 body {
   margin-bottom: 60px;
   background-color: #000000;
+}
+
+h1 {
+  color: #F8A613;
+}
+
+h2{
+  color: #FFFFFF;
+}
+
+h3{
+  color: #FFFFFF;
+}
+
+p {
+  color: #FFFFFF;
+}
+
+.btn-primary {
+  color: #FFFFFF;
+  background-color:#000000;
+  border: 2px solid #F8A613
+}
+
+.form-check-input:checked {
+  background-color: #F8A613;
+  border-color: #F8A613;
+}
+
+.form-floating {
+  margin-bottom: 5px;
 }
