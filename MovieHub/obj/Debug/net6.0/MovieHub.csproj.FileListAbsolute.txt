@@ -1,7 +1,6 @@
 /Users/robvdhorst/IT Projects/MovieHub/MovieHub/bin/Debug/net6.0/appsettings.Development.json
 /Users/robvdhorst/IT Projects/MovieHub/MovieHub/bin/Debug/net6.0/appsettings.json
 /Users/robvdhorst/IT Projects/MovieHub/MovieHub/bin/Debug/net6.0/MovieHub.staticwebassets.runtime.json
-/Users/robvdhorst/IT Projects/MovieHub/MovieHub/bin/Debug/net6.0/app.db
 /Users/robvdhorst/IT Projects/MovieHub/MovieHub/bin/Debug/net6.0/MovieHub
 /Users/robvdhorst/IT Projects/MovieHub/MovieHub/bin/Debug/net6.0/MovieHub.deps.json
 /Users/robvdhorst/IT Projects/MovieHub/MovieHub/bin/Debug/net6.0/MovieHub.runtimeconfig.json
