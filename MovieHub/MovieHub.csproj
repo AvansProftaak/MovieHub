@@ -9,6 +9,8 @@
 
     <ItemGroup>
         <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+        <None Include="wwwroot\img\moviehub_square.jpg" />
+        <None Include="wwwroot\img\moviehub_wide.jpg" />
     </ItemGroup>
 
     <ItemGroup>
@@ -17,6 +19,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
     </ItemGroup>
 
 </Project>

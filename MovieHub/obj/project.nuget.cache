@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7Uxx6Ub9tIc0JaTJ7gNDnbMd9LlbqgQfjSPVpqbnfAYqRJNKfHR/GAPwHsnhoPh2F2GWBK2qMpujYgMKq2kIzA==",
+  "dgSpecHash": "iK5Qj+w+ttyxdAKpJkI60pQxN4RQ0yc/DJFku4FZHPIKoJGX2m9Q9Q+wq5owNC08BMp68ct3sus0wMwWauVPsw==",
   "success": true,
   "projectFilePath": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/MovieHub.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,8 @@
     "/Users/robvdhorst/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "/Users/robvdhorst/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
     "/Users/robvdhorst/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/Users/robvdhorst/.nuget/packages/npgsql/6.0.3/npgsql.6.0.3.nupkg.sha512",
+    "/Users/robvdhorst/.nuget/packages/npgsql.entityframeworkcore.postgresql/6.0.3/npgsql.entityframeworkcore.postgresql.6.0.3.nupkg.sha512",
     "/Users/robvdhorst/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.0.6/sqlitepclraw.bundle_e_sqlite3.2.0.6.nupkg.sha512",
     "/Users/robvdhorst/.nuget/packages/sqlitepclraw.core/2.0.6/sqlitepclraw.core.2.0.6.nupkg.sha512",
     "/Users/robvdhorst/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.0.6/sqlitepclraw.lib.e_sqlite3.2.0.6.nupkg.sha512",
