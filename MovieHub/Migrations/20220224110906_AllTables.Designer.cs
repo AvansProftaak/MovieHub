@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieHub.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MovieHub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220224110906_AllTables")]
+    partial class AllTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -501,6 +503,9 @@ namespace MovieHub.Migrations
                     b.Property<int>("CateringPackageId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("PaidAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -510,16 +515,7 @@ namespace MovieHub.Migrations
                     b.Property<double>("TotalPrice")
                         .HasColumnType("double precision");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CateringPackageId");
-
-                    b.HasIndex("ShowtimeId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Order");
                 });
@@ -545,10 +541,6 @@ namespace MovieHub.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("PaymentMethodId");
 
                     b.ToTable("Payment");
                 });
@@ -617,8 +609,6 @@ namespace MovieHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HallId");
-
                     b.ToTable("Seat");
                 });
 
@@ -640,10 +630,6 @@ namespace MovieHub.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("HallId");
-
-                    b.HasIndex("MovieId");
 
                     b.ToTable("Showtime");
                 });
@@ -672,12 +658,6 @@ namespace MovieHub.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("SeatId");
-
-                    b.HasIndex("TickettypeId");
 
                     b.ToTable("Ticket");
                 });
@@ -839,7 +819,7 @@ namespace MovieHub.Migrations
 
             modelBuilder.Entity("MovieHub.Models.MovieGenre", b =>
                 {
-                    b.HasOne("MovieHub.Models.Genre", "Genre")
+                    b.HasOne("MovieHub.Models.Genre", "Pegi")
                         .WithMany("MovieGenres")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -851,9 +831,9 @@ namespace MovieHub.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Genre");
-
                     b.Navigation("Movie");
+
+                    b.Navigation("Pegi");
                 });
 
             modelBuilder.Entity("MovieHub.Models.MoviePegi", b =>
@@ -873,109 +853,6 @@ namespace MovieHub.Migrations
                     b.Navigation("Movie");
 
                     b.Navigation("Pegi");
-                });
-
-            modelBuilder.Entity("MovieHub.Models.Order", b =>
-                {
-                    b.HasOne("MovieHub.Models.CateringPackage", "CateringPackage")
-                        .WithMany()
-                        .HasForeignKey("CateringPackageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MovieHub.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("ShowtimeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MovieHub.Models.Showtime", "Showtime")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CateringPackage");
-
-                    b.Navigation("Showtime");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("MovieHub.Models.Payment", b =>
-                {
-                    b.HasOne("MovieHub.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MovieHub.Models.PaymentMethod", "PaymentMethod")
-                        .WithMany()
-                        .HasForeignKey("PaymentMethodId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("PaymentMethod");
-                });
-
-            modelBuilder.Entity("MovieHub.Models.Seat", b =>
-                {
-                    b.HasOne("MovieHub.Models.Hall", "Hall")
-                        .WithMany()
-                        .HasForeignKey("HallId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Hall");
-                });
-
-            modelBuilder.Entity("MovieHub.Models.Showtime", b =>
-                {
-                    b.HasOne("MovieHub.Models.Hall", "Hall")
-                        .WithMany()
-                        .HasForeignKey("HallId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MovieHub.Models.Movie", "Movie")
-                        .WithMany()
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Hall");
-
-                    b.Navigation("Movie");
-                });
-
-            modelBuilder.Entity("MovieHub.Models.Ticket", b =>
-                {
-                    b.HasOne("MovieHub.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MovieHub.Models.Seat", "Seat")
-                        .WithMany()
-                        .HasForeignKey("SeatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MovieHub.Models.Tickettype", "Tickettype")
-                        .WithMany()
-                        .HasForeignKey("TickettypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Seat");
-
-                    b.Navigation("Tickettype");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Cinema", b =>
