@@ -11,25 +11,26 @@ public class Order
     public DateTime PaidAt { get; set; }
     public enum Status
     {
-        Open = 1,
-        Pending = 2,
-        Paid = 3
+        Open,
+        Pending,
+        Paid
     }
     
     [DisplayName( "User")] 
     public int ShowtimeId { get; set; }
     [ForeignKey("UserId")]
-    public virtual Showtime Showtime { get; set; }
-    
+    public virtual Showtime Showtime { get; set; } = null!;
+
     [DisplayName( "Showtime")] 
     public int UserId { get; set; }
     [ForeignKey("ShowtimeId")]
-    public virtual User User { get; set; }
-    
+    public virtual User User { get; set; } = null!;
+
     [DisplayName( "CateringPackage")] 
     public int CateringPackageId { get; set; }
     [ForeignKey("CateringPackageId")]
-    public virtual CateringPackage CateringPackage { get; set; }
+    public virtual CateringPackage CateringPackage { get; set; } = null!;
+
     public Order()
     {
         

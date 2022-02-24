@@ -11,13 +11,13 @@ public class Showtime
     [DisplayName( "Hall")] 
     public int HallId { get; set; }
     [ForeignKey("HallId")]
-    public virtual Hall Hall { get; set; }
-    
+    public virtual Hall Hall { get; set; } = null!;
+
     [DisplayName( "Movie")] 
     public int MovieId { get; set; }
     [ForeignKey("MovieId")]
-    public virtual Movie Movie { get; set; }
-    
+    public virtual Movie Movie { get; set; } = null!;
+
     public Showtime()
     {
         

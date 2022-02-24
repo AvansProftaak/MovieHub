@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="PostgreSQL" uuid="4045a812-c4bd-4d0f-93dd-1324ec87622c">
+    <data-source source="LOCAL" name="Online MovieHub DB" uuid="38e70968-4ac7-496e-909d-de5f9869b55a">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/MovieHub</jdbc-url>
+      <jdbc-url>jdbc:postgresql://db-postgresql-ams3-54359-do-user-9452846-0.b.db.ondigitalocean.com:25060/defaultdb</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
