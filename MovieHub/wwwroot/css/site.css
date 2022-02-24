@@ -17,20 +17,16 @@ html {
 body {
   margin-bottom: 60px;
   background-color: #000000;
+  color: #FFFFFF;
 }
 
 h1 {
   color: #F8A613;
 }
 
-h2{
+h2, h3, h4{
   color: #FFFFFF;
 }
-
-h3{
-  color: #FFFFFF;
-}
-
 p {
   color: #FFFFFF;
 }
@@ -46,6 +42,14 @@ p {
   border-color: #F8A613;
 }
 
+.table {
+  color: #FFFFFF;
+}
+
 .form-floating {
+  margin-bottom: 5px;
+}
+
+.form-group {
   margin-bottom: 5px;
 }
