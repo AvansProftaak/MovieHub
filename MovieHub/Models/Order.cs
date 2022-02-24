@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Security.Permissions;
 
 namespace MovieHub.Models;
 
@@ -9,12 +8,7 @@ public class Order
     public int Id { get; set; }
     public double TotalPrice { get; set; }
     public DateTime PaidAt { get; set; }
-    public enum Status
-    {
-        Open,
-        Pending,
-        Paid
-    }
+    public StatusEnum Status { get; set; }
     
     [DisplayName( "User")] 
     public int ShowtimeId { get; set; }

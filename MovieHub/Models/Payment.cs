@@ -8,14 +8,7 @@ public class Payment
     public int Id { get; set; }
     public double Balance { get; set; }
     public DateTime PaidAt { get; set; }
-
     public StatusEnum Status { get; set; }
-    public enum StatusEnum 
-    {
-        Open,
-        Pending,
-        Paid
-    }
     
     [DisplayName( "Order")] 
     public int OrderId { get; set; }

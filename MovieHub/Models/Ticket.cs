@@ -10,12 +10,6 @@ public class Ticket
     public double Price { get; set; }
     public StatusEnum Status { get; set; }
     
-    public enum StatusEnum
-    {
-        Unpaid,
-        Paid
-    }
-
     [DisplayName( "Order")] 
     public int OrderId { get; set; }
     [ForeignKey("OrderId")]
