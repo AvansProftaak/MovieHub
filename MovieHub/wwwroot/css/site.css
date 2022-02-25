@@ -27,6 +27,7 @@ h2, h3, h4{
 
 p {
   color: #FFFFFF;
+  margin-bottom: 0px;
 }
 
 .footer {
@@ -54,4 +55,10 @@ p {
 
 .form-group {
   margin-bottom: 5px;
+}
+
+#index-hall-overview {
+  width: -moz-available; 
+  position: fixed; 
+  padding-right: inherit;
 }
