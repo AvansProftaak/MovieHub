@@ -1,9 +1,33 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>This is the index-page of MovieHub.<br/>Site under construction</p>
-    <img src="img/moviehub_square.jpg" style="width:30%"/>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4">Welcome</h1>
+            <p>This is the index-page of MovieHub.<br/>Site under construction</p>
+        </div>   
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <div class="row text-center" style="height: calc(100vh - 250px)">
+                <div class="col-4">
+                    <img width="80%" src="@Url.Content("~/img/1.jpg")"/>
+                    <p>BLOODSHOT</p>
+                </div>
+                <div class="col-4">
+                    <img width="80%" src="@Url.Content("~/img/2.jpg")"/>
+                    <p>9-9-09</p>
+                </div>
+                <div class="col-4">
+                    <img width="80%" src="@Url.Content("~/img/3.jpg")"/>
+                    <p>THE BEACH</p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="text-center"  style="background-color:#FFFFFF; color: #000000; height: calc(100vh - 250px)">Deel van Rob</div>
+        </div>
+    </div>
 </div>
