@@ -10321,19 +10321,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/robvdhorst/.nuget/packages/": {}
+    "/Users/danieljansen/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/MovieHub.csproj",
+      "projectUniqueName": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/MovieHub.csproj",
       "projectName": "MovieHub",
-      "projectPath": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/MovieHub.csproj",
-      "packagesPath": "/Users/robvdhorst/.nuget/packages/",
-      "outputPath": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/obj/",
+      "projectPath": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/MovieHub.csproj",
+      "packagesPath": "/Users/danieljansen/.nuget/packages/",
+      "outputPath": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/robvdhorst/.nuget/NuGet/NuGet.Config"
+        "/Users/danieljansen/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
