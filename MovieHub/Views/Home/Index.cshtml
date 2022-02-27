@@ -1,9 +1,101 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>This is the index-page of MovieHub.<br/>Site under construction</p>
-    <img src="img/moviehub_square.jpg" style="width:30%"/>
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-12 text-center bg-black position-fixed">
+            <h1 class="display-4">Welcome</h1>
+            <p>This is the index-page of MovieHub.<br/>Site under construction</p>
+        </div>   
+    </div>
+    <div class="row" style="margin-top: 140px">
+        <div class="col-8 overflow-auto" style="min-height: 100%;">
+            <div class="row text-center" style="height: calc(100vh - 250px)">
+                <div class="col-4">
+                    <img width="80%" src="@Url.Content("~/img/1.jpg")"/>
+                    <p>BLOODSHOT</p>
+                </div>
+                <div class="col-4">
+                    <img width="80%" src="@Url.Content("~/img/2.jpg")"/>
+                    <p>9-9-09</p>
+                </div>
+                <div class="col-4">
+                    <img width="80%" src="@Url.Content("~/img/3.jpg")"/>
+                    <p>THE BEACH</p>
+                </div>
+            </div>
+            <div class="row text-center" style="height: calc(100vh - 250px)">
+                <div class="col-4">
+                    <img width="80%" src="@Url.Content("~/img/1.jpg")"/>
+                    <p>BLOODSHOT</p>
+                </div>
+                <div class="col-4">
+                    <img width="80%" src="@Url.Content("~/img/2.jpg")"/>
+                    <p>9-9-09</p>
+                </div>
+                <div class="col-4">
+                    <img width="80%" src="@Url.Content("~/img/3.jpg")"/>
+                    <p>THE BEACH</p>
+                </div>
+            </div>
+            <div class="row text-center" style="height: calc(100vh - 250px)">
+                <div class="col-4">
+                    <img width="80%" src="@Url.Content("~/img/1.jpg")"/>
+                    <p>BLOODSHOT</p>
+                </div>
+                <div class="col-4">
+                    <img width="80%" src="@Url.Content("~/img/2.jpg")"/>
+                    <p>9-9-09</p>
+                </div>
+                <div class="col-4">
+                    <img width="80%" src="@Url.Content("~/img/3.jpg")"/>
+                    <p>THE BEACH</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="text-center index-hall-overview">
+                @* Logo is optional *@
+                @* <div class="row"> *@
+                @*     <img class="index-hall-logo" src="@Url.Content("~/img/moviehub_wide.jpg")" alt="MovieHub Logo"> *@
+                @* </div> *@
+                <div class="row">
+                    <p class="index-hall-title">CINEMA 1</p>
+                    <p class="index-hall-now">Now playing:</p>
+                    <p class="index-hall-next">Next show:</p>
+                </div>
+                <hr class="index-hall-hr"/>
+                <div class="row">
+                    <p class="index-hall-title">CINEMA 2</p>
+                    <p class="index-hall-now">Now playing:</p>
+                    <p class="index-hall-next">Next show:</p>
+                </div>
+                <hr class="index-hall-hr"/>
+                <div class="row">
+                    <p class="index-hall-title">CINEMA 3</p>
+                    <p class="index-hall-now">Now playing:</p>
+                    <p class="index-hall-next">Next show:</p>
+                </div>
+                <hr class="index-hall-hr"/>
+                <div class="row">
+                    <p class="index-hall-title">CINEMA 4</p>
+                    <p class="index-hall-now">Now playing:</p>
+                    <p class="index-hall-next">Next show:</p>
+                </div>
+                <hr class="index-hall-hr"/>
+                <div class="row">
+                    <p class="index-hall-title">CINEMA 5</p>
+                    <p class="index-hall-now">Now playing:</p>
+                    <p class="index-hall-next">Next show:</p>
+                </div>
+                <hr class="index-hall-hr"/>
+                <div class="row">
+                    <p class="index-hall-title">CINEMA 6</p>
+                    <p class="index-hall-now">Now playing:</p>
+                    <p class="index-hall-next">Next show:</p>
+                </div>
+                <hr class="index-hall-hr"/>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,17 +1,14 @@
 html {
   font-size: 14px;
   color: #FFFFFF;
+  position: relative;
+  min-height: 100%;
 }
 
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
 }
 
 body {
@@ -27,8 +24,14 @@ h1 {
 h2, h3, h4{
   color: #FFFFFF;
 }
+
 p {
   color: #FFFFFF;
+  margin: 0px;
+}
+
+.footer {
+  background-color: #000000;
 }
 
 a{
@@ -56,4 +59,37 @@ color: #F8A613;
 
 .form-group {
   margin-bottom: 5px;
+}
+
+.index-hall-overview {
+  width: -moz-available; 
+  position: fixed; 
+  padding-right: inherit;
+}
+
+.index-hall-logo {
+  margin: auto;
+  width: 150px;
+}
+
+.index-hall-hr {
+  color: #F8A613;
+  opacity: .405;
+  width: 70%;
+  margin: auto;
+}
+
+.index-hall-title {
+  font-size: 2.5vh;
+  color: #F8A613;
+  font-family: 'Poiret One', cursive;
+}
+
+.index-hall-now{
+  font-size: 1.8vh;
+}
+
+.index-hall-next{
+  font-size: 1.4vh;
+  margin-bottom: 1vh;
 }
