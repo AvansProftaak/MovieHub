@@ -28,8 +28,6 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<MovieHub.Models.User> User { get; set; } = null!;
     public DbSet<MovieHub.Models.Payment> Payment { get; set; } = null!;
     public DbSet<MovieHub.Models.PaymentMethod> PaymentMethod { get; set; } = null!;
+    public DbSet<MovieHub.Models.MovieRuntime> MovieRuntime { get; set; } = null!;
 
-    
-
-    
 }
