@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "e4loHG1kSjJ5JG5cxuV9MGSEip9mkzbmwjvWpicQka4=",
+  "Hash": "lNJJnOGTInX1u2Pvzs9tuz6wmZVglvmD81IhwEpabU8=",
   "Source": "MovieHub",
   "BasePath": "_content/MovieHub",
   "Mode": "Default",
@@ -1139,6 +1139,40 @@
       "OriginalItemSpec": "wwwroot/img/.DS_Store"
     },
     {
+      "Identity": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/img/3d-movie-white.png",
+      "SourceId": "MovieHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/",
+      "BasePath": "_content/MovieHub",
+      "RelativePath": "img/3d-movie-white.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/img/3d-movie-white.png"
+    },
+    {
+      "Identity": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/img/dolby-surround-2-logo-svg-vector_white.svg",
+      "SourceId": "MovieHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/",
+      "BasePath": "_content/MovieHub",
+      "RelativePath": "img/dolby-surround-2-logo-svg-vector_white.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/img/dolby-surround-2-logo-svg-vector_white.svg"
+    },
+    {
       "Identity": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/img/favicons/android-chrome-192x192.png",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
@@ -1256,6 +1290,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/img/favicons/site.webmanifest"
+    },
+    {
+      "Identity": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/img/IMDB_Logo_2016.svg",
+      "SourceId": "MovieHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/",
+      "BasePath": "_content/MovieHub",
+      "RelativePath": "img/IMDB_Logo_2016.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/img/IMDB_Logo_2016.svg"
     },
     {
       "Identity": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/img/moviehub_square.jpg",

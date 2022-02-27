@@ -10,9 +10,13 @@
 </div>
 <div>
     <dl class="row">
-        <h1>@Html.DisplayFor(model => model.Title)</h1>
-        <h4> IMDB-score @Html.DisplayFor(model => model.ImdbScore)</h4>
-        <h4> Pegi-icons + DOLBY DIGITAL ICON + 3D</h4>
+        <div>
+            <h1><span>@Html.DisplayFor(model => model.Title)</span></h1>
+        <span><img src="@Url.Content("~/img/IMDB_Logo_2016.svg")"style="width:75px" alt="IMDB Logo"><h4> @Html.DisplayFor(model => model.ImdbScore)</span></h4><h5><span>/10</span></h5>
+        </div>
+        <img src="@Url.Content("~/img/dolby-surround-2-logo-svg-vector_white.svg")"style="width:125px" alt="Dolby Logo"><h4> Pegi-icons + DOLBY DIGITAL ICON + 3D</h4>
+        @Html.DisplayFor(model => model.Is3D)
+        <img src="@Url.Content("~/img/3d-movie-white.png")"style="width:100px" alt="3D Logo">
         <hr/>
         @*    </dl> *@
         @*    </div> *@
