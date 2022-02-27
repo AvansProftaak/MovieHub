@@ -11,7 +11,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3" style="border-bottom: 1px solid #F8A613 !important;">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3 fixed-top" style="border-bottom: 1px solid #F8A613 !important;">
         <div class="container-fluid">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> <img src="@Url.Content("~/img/moviehub_wide.jpg")" style="width:125px" alt="MovieHub Logo"> </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -36,14 +36,14 @@
         </div>
     </nav>
 </header>
-<div class="container">
+<div class="container-fluid">
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
 </div>
 
-<footer class="border-top footer text-muted" style="border-top: 1px solid #F8A613 !important;">
-    <div class="container" style="color: #FFFFFF">
+<footer class="border-top footer text-muted fixed-bottom" style="border-top: 1px solid #F8A613 !important;">
+    <div class="container-fluid" style="color: #FFFFFF">
         &copy; 2022 - MovieHub - <a asp-area="" asp-controller="Home" asp-action="Privacy" style="color: #F8A613">Privacy</a>
     </div>
 </footer>
