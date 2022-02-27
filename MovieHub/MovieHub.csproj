@@ -23,4 +23,12 @@
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Showtime\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Showtime\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Showtime\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Showtime\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Showtime\Index.cshtml" />
+    </ItemGroup>
+
 </Project>
