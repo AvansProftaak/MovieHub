@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MovieHub.Models.Showtime>
+﻿@model MovieHub.ViewModel.IndexViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-8 hide-scrollbar" style="min-height: 100%;">
             <div class="row text-center" style="height: calc(100vh - 250px)">
-                @foreach (var item in Model!)
+                @foreach (var item in Model!.showtime)
                 {
                     <div class="col-4">
                         <h4 class="movie-title">@Html.DisplayFor(model => item.Movie.Title)</h4>
@@ -31,7 +31,7 @@
                             <hr/>
                             <dl class="row">
                                 <dt class="col-sm-2 align-start">
-                                    @Html.DisplayNameFor(model => model.Movie)
+                                    @Html.DisplayNameFor(model => model.movie)
                                 </dt>
                                 <dd class="col-sm-10 align-end">
                                     @Html.DisplayFor(model => item.Movie.Title)
@@ -46,7 +46,7 @@
                                     @Html.DisplayFor(model => startTime)
                                 </dd>
                                 <dt class="col-sm-2 align-start">
-                                    @Html.DisplayNameFor(model => model.Hall)
+                                    @Html.DisplayNameFor(model => model.hall)
                                 </dt>
                                 <dd class="col-sm-10 align-end">
                                     @Html.DisplayFor(model => item.Hall.Name)

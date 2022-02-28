@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MovieHub.Data;
 using MovieHub.Models;
+using MovieHub.ViewModel;
 
 namespace MovieHub.Controllers;
 
@@ -14,6 +15,7 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly ApplicationDbContext _context;
+    public IndexViewModel IndexViewModel { get; set; }
 
     public HomeController(ILogger<HomeController> logger,
         ApplicationDbContext context)
@@ -22,7 +24,7 @@ public class HomeController : Controller
         _context = context;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<ActionResult<IndexViewModel>> Index()
     {
         var movieDao = new MovieDao();
 
@@ -53,14 +55,22 @@ public class HomeController : Controller
         if (ViewBag.NowCinema3 == null) { ViewBag.NowCinema3 = "-"; } 
         if (ViewBag.NowCinema4 == null) { ViewBag.NowCinema4 = "-"; } 
         if (ViewBag.NowCinema5 == null) { ViewBag.NowCinema5 = "-"; } 
-        if (ViewBag.NowCinema6 == null) { ViewBag.NowCinema6= "-"; } 
-
+        if (ViewBag.NowCinema6 == null) { ViewBag.NowCinema6= "-"; }
         
-        var applicationDbContext = _context.Showtime.Where(s => 
-            s.StartAt.Date.Equals(DateTime.Today)).Where(s => 
-                s.StartAt.ToLocalTime() > DateTime.Now).Include(s => s.Hall)
-            .Include(s => s.Movie).OrderBy(s => s.StartAt);
-        return View(await applicationDbContext.ToListAsync());
+        
+        IndexViewModel IndexViewModel = new();
+
+        IndexViewModel.showtime = _context.Showtime
+            .Where(s => s.StartAt.Date.Equals(DateTime.Today))
+            .Where(s => s.StartAt.ToLocalTime() > DateTime.Now)
+            .Include(s => s.Hall)
+            .Include(s => s.Movie)
+            .OrderBy(s => s.StartAt);
+        
+        // IndexViewModel.rob = 
+        
+
+        return View(IndexViewModel);
     }
 
     public IActionResult Privacy()
