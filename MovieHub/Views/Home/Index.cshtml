@@ -73,46 +73,44 @@
         </div>
         <div class="col-4">
             <div class="text-center index-hall-overview">
-                @* Logo is optional *@
-                @* <div class="row"> *@
-                @*     <img class="index-hall-logo" src="@Url.Content("~/img/moviehub_wide.jpg")" alt="MovieHub Logo"> *@
-                @* </div> *@
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 1</p>
-                    <p class="index-hall-now">Now playing:</p>
-                    <p class="index-hall-next">Next show:</p>
-                </div>
-                <hr class="index-hall-hr"/>
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 2</p>
-                    <p class="index-hall-now">Now playing:</p>
-                    <p class="index-hall-next">Next show:</p>
-                </div>
-                <hr class="index-hall-hr"/>
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 3</p>
-                    <p class="index-hall-now">Now playing:</p>
-                    <p class="index-hall-next">Next show:</p>
-                </div>
-                <hr class="index-hall-hr"/>
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 4</p>
-                    <p class="index-hall-now">Now playing:</p>
-                    <p class="index-hall-next">Next show:</p>
-                </div>
-                <hr class="index-hall-hr"/>
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 5</p>
-                    <p class="index-hall-now">Now playing:</p>
-                    <p class="index-hall-next">Next show:</p>
-                </div>
-                <hr class="index-hall-hr"/>
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 6</p>
-                    <p class="index-hall-now">Now playing:</p>
-                    <p class="index-hall-next">Next show:</p>
-                </div>
-                <hr class="index-hall-hr"/>
+                @{
+                    <div class="row">
+                        <p class="index-hall-title">CINEMA 1</p>
+                        <p class="index-hall-now">Now playing: @ViewBag.NowCinema1</p>
+                        <p class="index-hall-next">Next movie: @ViewBag.NextCinema1</p>
+                    </div>
+                    <hr class="index-hall-hr"/>
+                    <div class="row">
+                        <p class="index-hall-title">CINEMA 2</p>
+                        <p class="index-hall-now">Now playing: @ViewBag.NowCinema2</p>
+                        <p class="index-hall-next">Next movie: @ViewBag.NextCinema2</p>
+                    </div>
+                    <hr class="index-hall-hr"/>
+                    <div class="row">
+                        <p class="index-hall-title">CINEMA 3</p>
+                        <p class="index-hall-now">Now playing: @ViewBag.NowCinema3</p>
+                        <p class="index-hall-next">Next movie: @ViewBag.NextCinema3</p>
+                    </div>
+                    <hr class="index-hall-hr"/>
+                    <div class="row">
+                        <p class="index-hall-title">CINEMA 4</p>
+                        <p class="index-hall-now">Now playing: @ViewBag.NowCinema4</p>
+                        <p class="index-hall-next">Next movie: @ViewBag.NextCinema4</p>
+                    </div>
+                    <hr class="index-hall-hr"/>
+                    <div class="row">
+                        <p class="index-hall-title">CINEMA 5</p>
+                        <p class="index-hall-now">Now playing: @ViewBag.NowCinema5</p>
+                        <p class="index-hall-next">Next movie: @ViewBag.NextCinema5</p>
+                    </div>
+                    <hr class="index-hall-hr"/>
+                    <div class="row">
+                        <p class="index-hall-title">CINEMA 6</p>
+                        <p class="index-hall-now">Now playing: @ViewBag.NowCinema6</p>
+                        <p class="index-hall-next">Next movie: @ViewBag.NextCinema6</p>
+                    </div>
+                    <hr class="index-hall-hr"/>
+                }
             </div>
         </div>
     </div>
