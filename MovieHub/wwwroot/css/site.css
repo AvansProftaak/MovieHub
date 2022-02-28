@@ -102,3 +102,27 @@ p {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+.details-container {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.align-start {
+  text-align: start;
+}
+
+.align-end {
+  text-align: end;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
+  background-color: #F8A613;
+  border-color: #F8A613;
+  color: black;
+}
+
+.btn-sizing {
+  display: block;
+  width: 100%;
+}
