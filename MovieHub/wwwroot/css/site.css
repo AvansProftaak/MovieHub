@@ -109,13 +109,14 @@ p {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
 .movie-title {
   color: #F8A613;
 }
 
 .hide-scrollbar {
   -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
