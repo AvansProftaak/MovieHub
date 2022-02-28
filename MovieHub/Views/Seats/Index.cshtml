@@ -6,6 +6,7 @@
 }
 
 <div class="container-fluid">
+    <h1>Select your seat</h1>
     @foreach (var row in Model.GroupBy(r => r.RowNumber))
     {
         var rowList = row.ToList();
@@ -23,9 +24,13 @@
                     <img src="@Url.Content("~/img/seat-not-available.png")" width="48">
                 }
                 <div class="text-centered">
-                @Html.DisplayFor(s => rowList[i].SeatNumber)
+                    @Html.DisplayFor(s => rowList[i].SeatNumber)
                 </div>
             </a>
         }
     }
+    <br />
+    <br />
+    <button onclick="location.href='@Url.Action("Index", "Payments")'"
+            class="btn btn-primary">Continue to payment</button>
 </div>
