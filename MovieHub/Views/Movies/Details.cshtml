@@ -4,19 +4,24 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<div class="moviedetails">
 <div style="float: left">
-<img src=@Html.DisplayFor(model => model.ImageUrl) alt="Movieposter" width="500" height="auto">
+<img src="@Html.DisplayFor(model => model.ImageUrl)" alt="Movieposter" style="width:500px" height="auto">
 </div>
 <div>
     <dl class="row">
         <div>
-            <h1><span>@Html.DisplayFor(model => model.Title)</span></h1>
-        <span><img src="@Url.Content("~/img/IMDB_Logo_2016.svg")"style="width:75px" alt="IMDB Logo"><h4> @Html.DisplayFor(model => model.ImdbScore)</span></h4><h5><span>/10</span></h5>
+            <h1 style="display: inline-flex;">@Html.DisplayFor(model => model.Title)</h1>
+            <div style="display: inline-flex; float: right">
+                <img src="@Url.Content("~/img/IMDB_Logo_2016.svg")" style="width:50px"  alt="IMDB Logo">
+                <h4> @Html.DisplayFor(model => model.ImdbScore) / 10</h4>
+            </div>
+            </div>
+        <div style="display: block; float: right">
+            <img src="@Url.Content("~/img/dolby-surround-2-logo-svg-vector_white.svg")" style="width:125px" alt="Dolby Logo">
+            @if(Model.Is3D) {
+                <img src="@Url.Content("~/img/3d-movie-white.png")" style="width:60px" alt="3D Logo">}
         </div>
-        <img src="@Url.Content("~/img/dolby-surround-2-logo-svg-vector_white.svg")"style="width:125px" alt="Dolby Logo"><h4> Pegi-icons + DOLBY DIGITAL ICON + 3D</h4>
-        @Html.DisplayFor(model => model.Is3D)
-        <img src="@Url.Content("~/img/3d-movie-white.png")"style="width:100px" alt="3D Logo">
         <hr/>
         @*    </dl> *@
         @*    </div> *@
@@ -52,12 +57,12 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ReleaseDate)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Is3D)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Is3D)
-        </dd>
+        @* <dt class="col-sm-2"> *@
+        @*     @Html.DisplayNameFor(model => model.Is3D) *@
+        @* </dt> *@
+        @* <dd class="col-sm-10"> *@
+        @*     @Html.DisplayFor(model => model.Is3D) *@
+        @* </dd> *@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Language)
         </dt>
@@ -73,5 +78,6 @@
         <br>
         <a asp-action="Index">Back to List</a>
     </dl>
+</div>
 </div>
 
