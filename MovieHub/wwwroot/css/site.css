@@ -97,3 +97,65 @@ color: #F8A613;
 .moviedetails {
   padding: 100px;
 }
+
+.available {
+  background-color: green;
+}
+
+.not-available {
+  background-color: red;
+}
+
+.img-container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.text-centered {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.movie-title {
+  color: #F8A613;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.details-container {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.align-start {
+  text-align: start;
+}
+
+.align-end {
+  text-align: end;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
+  background-color: #F8A613;
+  border-color: #F8A613;
+  color: black;
+}
+
+.btn-sizing {
+  display: block;
+  width: 100%;
+}
+
+.margin-top {
+  margin-top: 76px;
+>>>>>>> origin/develop
+}
