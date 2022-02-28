@@ -90,13 +90,33 @@ p {
   margin-bottom: 1vh;
 }
 
+.available {
+  background-color: green;
+}
+
+.not-available {
+  background-color: red;
+}
+
+.img-container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.text-centered {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .movie-title {
   color: #F8A613;
 }
 
 .hide-scrollbar {
   -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
@@ -125,4 +145,8 @@ p {
 .btn-sizing {
   display: block;
   width: 100%;
+}
+
+.margin-top {
+  margin-top: 76px;
 }
