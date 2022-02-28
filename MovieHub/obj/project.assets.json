@@ -10321,24 +10321,26 @@
     ]
   },
   "packageFolders": {
-    "/Users/robvdhorst/.nuget/packages/": {}
+    "C:\\Users\\Gebruiker\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/MovieHub.csproj",
+      "projectUniqueName": "E:\\development\\MovieHub\\MovieHub\\MovieHub.csproj",
       "projectName": "MovieHub",
-      "projectPath": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/MovieHub.csproj",
-      "packagesPath": "/Users/robvdhorst/.nuget/packages/",
-      "outputPath": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/obj/",
+      "projectPath": "E:\\development\\MovieHub\\MovieHub\\MovieHub.csproj",
+      "packagesPath": "C:\\Users\\Gebruiker\\.nuget\\packages\\",
+      "outputPath": "E:\\development\\MovieHub\\MovieHub\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/robvdhorst/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Gebruiker\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -10408,7 +10410,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.101/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
