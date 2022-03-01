@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fkzZd3Gptl07KdhXTp7hM/zwXY8zaV1h0MEOOxENmRI=",
+  "Hash": "w/4BU910YpTrXYkt/J3iyIbnzV97V5yJP6ZiqfRLeuU=",
   "Source": "MovieHub",
   "BasePath": "_content/MovieHub",
   "Mode": "Default",
@@ -1071,23 +1071,6 @@
       "OriginalItemSpec": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/obj/Debug/net6.0/scopedcss/projectbundle/MovieHub.bundle.scp.css"
     },
     {
-      "Identity": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/.DS_Store",
-      "SourceId": "MovieHub",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/",
-      "BasePath": "_content/MovieHub",
-      "RelativePath": ".DS_Store",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/.DS_Store"
-    },
-    {
       "Identity": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/css/site.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
@@ -1120,23 +1103,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
-    },
-    {
-      "Identity": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/img/.DS_Store",
-      "SourceId": "MovieHub",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/",
-      "BasePath": "_content/MovieHub",
-      "RelativePath": "img/.DS_Store",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/img/.DS_Store"
     },
     {
       "Identity": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/img/1.jpg",
@@ -1392,6 +1358,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/img/moviehub_wide.jpg"
+    },
+    {
+      "Identity": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/img/seat-available.png",
+      "SourceId": "MovieHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/",
+      "BasePath": "_content/MovieHub",
+      "RelativePath": "img/seat-available.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/img/seat-available.png"
+    },
+    {
+      "Identity": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/img/seat-not-available.png",
+      "SourceId": "MovieHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/",
+      "BasePath": "_content/MovieHub",
+      "RelativePath": "img/seat-not-available.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/img/seat-not-available.png"
     },
     {
       "Identity": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/wwwroot/js/site.js",
