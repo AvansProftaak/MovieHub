@@ -4,10 +4,11 @@ namespace MovieHub.ViewModel;
 
 public class IndexViewModel
 {
-    public Hall hall { get; set; }
-    public Movie movie { get; set; }
-    public IEnumerable<Showtime> showtime { get; set; }
-    public IEnumerable<Showtime> rob { get; set; }
+    public Hall? Hall { get; set; }
+    public Movie? Movie { get; set; }
+    
+    public IEnumerable<Showtime>? MovieIndex { get; set; }
+    public IEnumerable<Showtime>? HallIndex { get; set; }
     
     
 }

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using MovieHub.Data;
 using MovieHub.Models;
 using MovieHub.ViewModel;
+using Npgsql;
 
 namespace MovieHub.Controllers;
 
@@ -15,7 +13,8 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly ApplicationDbContext _context;
-    public IndexViewModel IndexViewModel { get; set; }
+    private const string ConnectionString = @"host=db-postgresql-ams3-54359-do-user-9452846-0.b.db.ondigitalocean.com;port=25060;username=doadmin;password=l22MGuwQCl314eL7;database=rob";
+
 
     public HomeController(ILogger<HomeController> logger,
         ApplicationDbContext context)
@@ -26,51 +25,66 @@ public class HomeController : Controller
 
     public async Task<ActionResult<IndexViewModel>> Index()
     {
-        var movieDao = new MovieDao();
+        // var movieDao = new MovieDao();
 
 // Get now playing movies
-        ViewBag.NowCinema1 = MovieDao.MovieNow(1).Title;
-        ViewBag.NowCinema2 = MovieDao.MovieNow(2).Title;
-        ViewBag.NowCinema3 = MovieDao.MovieNow(3).Title;
-        ViewBag.NowCinema4 = MovieDao.MovieNow(4).Title;
-        ViewBag.NowCinema5 = MovieDao.MovieNow(5).Title;
-        ViewBag.NowCinema6 = MovieDao.MovieNow(6).Title;
+        // ViewBag.NowCinema1 = MovieDao.MovieNow(1).Title;
+        // ViewBag.NowCinema2 = MovieDao.MovieNow(2).Title;
+        // ViewBag.NowCinema3 = MovieDao.MovieNow(3).Title;
+        // ViewBag.NowCinema4 = MovieDao.MovieNow(4).Title;
+        // ViewBag.NowCinema5 = MovieDao.MovieNow(5).Title;
+        // ViewBag.NowCinema6 = MovieDao.MovieNow(6).Title;
 
 // Get next playing movies
-        ViewBag.NextCinema1 = MovieDao.MovieNext(1).Title;
-        ViewBag.NextCinema2 = MovieDao.MovieNext(2).Title;
-        ViewBag.NextCinema3 = MovieDao.MovieNext(3).Title;
-        ViewBag.NextCinema4 = MovieDao.MovieNext(4).Title;
-        ViewBag.NextCinema5 = MovieDao.MovieNext(5).Title;
-        ViewBag.NextCinema6 = MovieDao.MovieNext(6).Title;
-
-        if (ViewBag.NextCinema1 == null) { ViewBag.NextCinema1 = "-"; } 
-        if (ViewBag.NextCinema2 == null) { ViewBag.NextCinema2 = "-"; } 
-        if (ViewBag.NextCinema3 == null) { ViewBag.NextCinema3 = "-"; } 
-        if (ViewBag.NextCinema4 == null) { ViewBag.NextCinema4 = "-"; } 
-        if (ViewBag.NextCinema5 == null) { ViewBag.NextCinema4 = "-"; } 
-        if (ViewBag.NextCinema6 == null) { ViewBag.NextCinema6 = "-"; }
-        if (ViewBag.NowCinema1 == null) { ViewBag.NowCinema1 = "-"; } 
-        if (ViewBag.NowCinema2 == null) { ViewBag.NowCinema2 = "-"; } 
-        if (ViewBag.NowCinema3 == null) { ViewBag.NowCinema3 = "-"; } 
-        if (ViewBag.NowCinema4 == null) { ViewBag.NowCinema4 = "-"; } 
-        if (ViewBag.NowCinema5 == null) { ViewBag.NowCinema5 = "-"; } 
-        if (ViewBag.NowCinema6 == null) { ViewBag.NowCinema6= "-"; }
+        // ViewBag.NextCinema1 = MovieNow(1);
+        // ViewBag.NextCinema2 = MovieDao.MovieNext(2);
+        // ViewBag.NextCinema3 = MovieDao.MovieNext(3);
+        // ViewBag.NextCinema4 = MovieDao.MovieNext(4);
+        // ViewBag.NextCinema5 = MovieDao.MovieNext(5);
+        // ViewBag.NextCinema6 = MovieDao.MovieNext(6);
+        //
+        // if (ViewBag.NextCinema1 == null) { ViewBag.NextCinema1 = "-"; } 
+        // if (ViewBag.NextCinema2 == null) { ViewBag.NextCinema2 = "-"; } 
+        // if (ViewBag.NextCinema3 == null) { ViewBag.NextCinema3 = "-"; } 
+        // if (ViewBag.NextCinema4 == null) { ViewBag.NextCinema4 = "-"; } 
+        // if (ViewBag.NextCinema5 == null) { ViewBag.NextCinema4 = "-"; } 
+        // if (ViewBag.NextCinema6 == null) { ViewBag.NextCinema6 = "-"; }
+        // if (ViewBag.NowCinema1 == null) { ViewBag.NowCinema1 = "-"; } 
+        // if (ViewBag.NowCinema2 == null) { ViewBag.NowCinema2 = "-"; } 
+        // if (ViewBag.NowCinema3 == null) { ViewBag.NowCinema3 = "-"; } 
+        // if (ViewBag.NowCinema4 == null) { ViewBag.NowCinema4 = "-"; } 
+        // if (ViewBag.NowCinema5 == null) { ViewBag.NowCinema5 = "-"; } 
+        // if (ViewBag.NowCinema6 == null) { ViewBag.NowCinema6= "-"; }
         
         
         IndexViewModel IndexViewModel = new();
 
-        IndexViewModel.showtime = _context.Showtime
+        IndexViewModel.MovieIndex = MovieIndex();
+        IndexViewModel.HallIndex = MovieNow();
+
+
+
+
+        return View(IndexViewModel);
+    }
+
+    public IOrderedQueryable<Showtime> MovieIndex()
+    {
+        return _context.Showtime
             .Where(s => s.StartAt.Date.Equals(DateTime.Today))
             .Where(s => s.StartAt.ToLocalTime() > DateTime.Now)
             .Include(s => s.Hall)
             .Include(s => s.Movie)
             .OrderBy(s => s.StartAt);
-        
-        // IndexViewModel.rob = 
-        
+    }
+    
+    public IEnumerable<Showtime> MovieNow()
+    {
+        using var connection = new NpgsqlConnection(ConnectionString);
 
-        return View(IndexViewModel);
+        var index = connection.Query<Showtime>("SELECT * FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\"  ORDER BY \"StartAt\") rn FROM rob.public.\"Showtime\" where \"StartAt\"::time > now()::time) x JOIN rob.public.\"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"");
+
+        return index;
     }
 
     public IActionResult Privacy()

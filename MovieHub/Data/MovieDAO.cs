@@ -38,31 +38,15 @@ public class MovieDao
     }
     
     
-    public static Movie MovieNext(int hallId)
+    public string MovieNext(int hallId)
     {
 
         //access the database
         using var connection = new NpgsqlConnection(ConnectionString);
-        
+                connection.Open();
         // SQL Query
-        const string sql = "SELECT * FROM rob.public.\"Movie\" JOIN rob.public.\"MovieRuntime\" ON \"MovieRuntime\".\"MovieId\" = \"Movie\".\"Id\" WHERE \"MovieRuntime\".\"HallId\" = @hallId AND \"MovieRuntime\".\"Time\"::Time > now()::Time ORDER BY \"MovieRuntime\".\"Time\" LIMIT 1";
+        return "SELECT * FROM rob.public.\"Showtime\" s JOIN rob.public.\"Movie\" m ON s.\"MovieId\" = m.\"Id\" WHERE \"StartAt\" > now() AND \"HallId\" = 1 ORDER BY \"StartAt\" LIMIT 1";
 
-        var command = new NpgsqlCommand(sql, connection);
-        command.Parameters.Add("@hallId", NpgsqlDbType.Integer).NpgsqlValue = hallId;
-
-        connection.Open();
-        var reader = command.ExecuteReader();
-
-        var movie = new Movie();
-
-        if (!reader.HasRows) return movie;
-        
-        while (reader.Read())
-        {
-            // create a new movie object. Add it to the list to return
-            movie.Title = reader.GetString(1);
-        }
-        return movie;
     }
     
     // public static TimeSpan MovieNextTime(int hallId)
