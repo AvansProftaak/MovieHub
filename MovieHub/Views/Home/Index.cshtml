@@ -13,12 +13,12 @@
     <div class="row">
         <div class="col-8 hide-scrollbar" style="min-height: 100%;">
             <div class="row text-center" style="height: calc(100vh - 250px)">
-                @foreach (var item in Model!.MovieIndex)
+                @foreach (var item in Model!.MovieIndex!)
                 {
                     <div class="col-4">
                         <h4 class="movie-title">@Html.DisplayFor(model => item.Movie.Title)</h4>
                         <a href="@Url.Action("Details", "Movies", new {id = item.MovieId})">
-                            <img width="80%" src="@Url.Content(item.Movie.ImageUrl)"/>
+                            <img width="80%" src="@Url.Content(item.Movie.ImageUrl)" alt="MoviePoster"/>
                         </a>
                         <div class="details-container">
                             <hr/>
@@ -74,16 +74,22 @@
         </div>
         <div class="col-4">
             <div class="text-center index-hall-overview">
-                @foreach (var item in Model.HallIndex)
-                    {
-                        <div class="row">
-                            <p class="index-hall-title">CINEMA @Html.DisplayFor(model => item.HallId)</p>
-                            <p class="index-hall-now">Now playing: @Html.DisplayFor(model => item.Movie.Title)</p>
-                            <p class="index-hall-next">Next movie: </p>
-                        </div>
-                        <hr class="index-hall-hr"/>
-                    }
+                @foreach (var item in Model.HallIndex!)
+                {
+                    <div class="row">
+                        <p class="index-hall-title">CINEMA @Html.DisplayFor(model => item.HallId)</p>
+                        <p class="index-hall-now">Now playing: </p>
+                        <p class="index-hall-next"><span class="index-hall-p">Next movie:</span> @Html.DisplayFor(model => item.Movie.Title)
+                            @{
+                                var startTime = item.StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm");
+                            }
+                            (@Html.DisplayFor(model => startTime))</p>
+                    </div>
+                    <hr class="index-hall-hr"/>
+                }
             </div>
         </div>
     </div>
-</div>
+</div>  
+
+
