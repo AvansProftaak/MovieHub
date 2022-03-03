@@ -78,17 +78,16 @@
                     @using (Html.BeginForm("SearchForMovie", "Home"))
                     {
                         <div class="col-md-12">
-                            <label for="searchPhrase">Search Movie</label>
+                            <label for="searchPhrase">Search Movie Title</label>
                             <input type="text" name="searchPhrase" id="searchPhrase" class="form-control"/>
+                            <hr/>
                         </div>
                         <div class="form-group">
-                            <div class="justify-content-between d-flex">
                                 <input type="submit" name="Search" class="btn btn-primary"/>
                             </div>
-                            </div>
                     }
-                  <div class="justify-content-between d-flex">
-                        <button onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-primary btn-sizing ms-1">Clear List</button>
+                    <div>
+                        <button onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-primary">Clear List</button>
                     </div>
                     </div>
                         <br/>
