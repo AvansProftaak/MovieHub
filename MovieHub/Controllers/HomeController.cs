@@ -37,6 +37,7 @@ public class HomeController : Controller
                 s.StartAt.Date.Equals(DateTime.Today)).Where(s => 
                 s.StartAt.ToLocalTime() > DateTime.Now).Include(s => s.Hall)
             .Include(s => s.Movie).Where(s=>s.Movie.Title.Contains(searchPhrase)).OrderBy(s => s.StartAt);
+
         return View("Index", applicationDbContext.ToList());
     }
     

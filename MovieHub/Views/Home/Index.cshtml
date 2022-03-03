@@ -78,19 +78,18 @@
                     @using (Html.BeginForm("SearchForMovie", "Home"))
                     {
                         <div class="col-md-12">
-                            <label for="searchPhrase">Search Movie Title</label>
-                            <input type="text" name="searchPhrase" id="searchPhrase" class="form-control"/>
+                            <input type="text" name="searchPhrase" id="searchPhrase" class="form-control" placeholder= "Search Movie Title"/>
                             <hr/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="float:left">
                                 <input type="submit" name="Search" class="btn btn-primary"/>
                             </div>
                     }
-                    <div>
+                    <div style="float:right">
                         <button onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-primary">Clear List</button>
                     </div>
                     </div>
-                        <br/>
+                        <br/><br/><br/>
                 @* Logo is optional *@
                 @* <div class="row"> *@
                 @*     <img class="index-hall-logo" src="@Url.Content("~/img/moviehub_wide.jpg")" alt="MovieHub Logo"> *@
