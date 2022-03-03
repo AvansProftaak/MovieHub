@@ -17,11 +17,19 @@
                 <img src="@Url.Content("~/img/IMDB_Logo_2016.svg")" style="width:50px"  alt="IMDB Logo">
                 <h4> @Html.DisplayFor(model => model.ImdbScore) / 10</h4>
             </div>
-            </div>
+        </div>
+        <div>
+           
+            @Html.DisplayFor(movie => Model.MovieGenres)<br/>
+             @Html.DisplayFor(movie => Model.MoviePegis)
+                       
+        
         <div style="display: block; float: right">
             <img src="@Url.Content("~/img/dolby-surround-2-logo-svg-vector_white.svg")" style="width:125px" alt="Dolby Logo">
-            @if(Model.Is3D) {
+            @if (Model.Is3D)
+            {
                 <img src="@Url.Content("~/img/3d-movie-white.png")" style="width:60px" alt="3D Logo">}
+        </div>
         </div>
         <hr/>
         <dt class="col-sm-2">

@@ -5,7 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using MovieHub.Data;
 using MovieHub.Models;
 
@@ -35,7 +38,10 @@ namespace MovieHub.Controllers
             }
 
             var movie = await _context.Movie
+                .Include(m => m.MovieGenres)
+                .Include(m => m.MoviePegis)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (movie == null)
             {
                 return NotFound();
