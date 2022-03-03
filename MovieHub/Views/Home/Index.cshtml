@@ -1,5 +1,4 @@
 ﻿@model MovieHub.ViewModel.IndexViewModel
-
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -78,7 +77,10 @@
                 {
                     <div class="row">
                         <p class="index-hall-title">CINEMA @Html.DisplayFor(model => item.HallId)</p>
-                        <p class="index-hall-now">Now playing: </p>
+                        <p class="index-hall-now">Now playing: @Html.DisplayFor(m => Model.MovieNow)
+                 
+                           </p>
+                            @* @Html.DisplayForModel("MovieNow", new { Model.MovieNow = item.HallId }))</p> *@
                         <p class="index-hall-next"><span class="index-hall-p">Next movie:</span> @Html.DisplayFor(model => item.Movie.Title)
                             @{
                                 var startTime = item.StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm");

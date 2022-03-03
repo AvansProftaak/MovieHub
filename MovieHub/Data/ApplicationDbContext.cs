@@ -21,7 +21,7 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<MovieHub.Models.CinemaTickettype> CinemaTicketType { get; set; } = null!;
     public DbSet<MovieHub.Models.CinemaMovie> CinemaMovie { get; set; } = null!;
     public DbSet<MovieHub.Models.Seat> Seat { get; set; } = null!;
-    public DbSet<MovieHub.Models.Showtime> Showtime { get; set; } = null!;
+    public DbSet<MovieHub.Models.Showtime>? Showtime { get; set; } = null!;
     public DbSet<MovieHub.Models.CateringPackage> CateringPackage { get; set; } = null!;
     public DbSet<MovieHub.Models.Order> Order { get; set; } = null!;
     public DbSet<MovieHub.Models.Ticket> Ticket { get; set; } = null!;
