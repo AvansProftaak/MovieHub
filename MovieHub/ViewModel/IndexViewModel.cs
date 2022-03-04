@@ -10,7 +10,7 @@ public class IndexViewModel
     
     public IEnumerable<Showtime>? MovieIndex { get; set; }
     public IEnumerable<Showtime>? HallIndex { get; set; }
-    public string MovieNow { get; set; }
+    public IEnumerable<Showtime> MovieNow { get; set; }
 
 
     

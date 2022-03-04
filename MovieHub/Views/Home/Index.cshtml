@@ -75,20 +75,18 @@
             <div class="text-center index-hall-overview">
                 @foreach (var item in Model.HallIndex!)
                 {
+
                     <div class="row">
-                        <p class="index-hall-title">CINEMA @Html.DisplayFor(model => item.HallId)</p>
-                        <p class="index-hall-now">Now playing: @Html.DisplayFor(m => Model.MovieNow)
-                 
-                           </p>
-                            @* @Html.DisplayForModel("MovieNow", new { Model.MovieNow = item.HallId }))</p> *@
-                        <p class="index-hall-next"><span class="index-hall-p">Next movie:</span> @Html.DisplayFor(model => item.Movie.Title)
-                            @{
-                                var startTime = item.StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm");
-                            }
-                            (@Html.DisplayFor(model => startTime))</p>
-                    </div>
-                    <hr class="index-hall-hr"/>
-                }
+                            <p class="index-hall-title">CINEMA @Html.DisplayFor(model => item.HallId)</p>
+                            <p class="index-hall-now">Now playing: @Html.DisplayFor(m => Model.MovieNow, item.HallId)</p>
+                            <p class="index-hall-next"><span class="index-hall-p">Next movie:</span> @Html.DisplayFor(model => item.Movie.Title)
+                                @{
+                                    var startTime = item.StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm");
+                                }
+                                (@Html.DisplayFor(model => startTime))</p>
+                        </div>
+                        <hr class="index-hall-hr"/>
+                    }
             </div>
         </div>
     </div>

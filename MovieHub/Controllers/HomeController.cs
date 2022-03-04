@@ -20,15 +20,12 @@ public class HomeController : Controller
         _context = context;
     }
 
-    public async Task<ActionResult<IndexViewModel>> Index(int nr)
+    public async Task<ActionResult<IndexViewModel>> Index(int hallId)
     {
-
-        var x = nr;
-        
         IndexViewModel indexViewModel = new IndexViewModel();
         
         indexViewModel.MovieIndex = MovieIndex();
-        indexViewModel.MovieNow = MovieNow(x);
+        indexViewModel.MovieNow = MovieNow(hallId);
         indexViewModel.HallIndex = MovieNext();
 
         return View(indexViewModel);
@@ -47,15 +44,15 @@ public class HomeController : Controller
     public IEnumerable<Showtime> MovieNext()
     {
         return _context.Showtime
-                 .FromSqlRaw("SELECT x.* FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\" ORDER BY \"StartAt\") rn FROM rob.public.\"Showtime\" where \"StartAt\" > now()) x JOIN rob.public.\"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"");
+                 .FromSqlRaw("SELECT x.* FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\" ORDER BY \"StartAt\") rn FROM rob.public.\"Showtime\" where \"StartAt\" > now()) x JOIN rob.public.\"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"").ToList();
     }
     
-    public string MovieNow(int nr)
+    public IEnumerable<Showtime> MovieNow(int hallId)
     {
-
-        var movie = "I am a string with param: " + nr;
-
-        return movie;
+        return _context.Showtime
+            .FromSqlRaw(
+                "SELECT x.* FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\" ORDER BY \"StartAt\") rn FROM rob.public.\"Showtime\" where \"HallId\" = {0} and \"StartAt\" > now()) x JOIN rob.public.\"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"",
+                hallId);
     }
 
 
