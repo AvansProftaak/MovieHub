@@ -20,7 +20,7 @@ namespace MovieHub.Controllers
         // GET: Movies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movie.ToListAsync());
+           return View(await _context.Movie.ToListAsync());
         }
 
         // GET: Movies/Details/5
@@ -54,6 +54,7 @@ namespace MovieHub.Controllers
         // POST: Movies/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie)
@@ -66,6 +67,22 @@ namespace MovieHub.Controllers
             }
             return View(movie);
         }
+        //
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> Create(MovieViewModel movieViewModel)
+        // {
+        //     if (ModelState.IsValid)
+        //     {
+        //         _context.Add(movieViewModel);
+        //         await _context.SaveChangesAsync();
+        //         return RedirectToAction(nameof(Index));
+        //     }
+        //     return View();
+        // }
+        //
+        
+        
 
         // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
