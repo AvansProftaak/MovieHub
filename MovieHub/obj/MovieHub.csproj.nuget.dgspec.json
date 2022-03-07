@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/MovieHub.csproj": {}
+    "/Users/danieljansen/GitHub/MovieHub/MovieHub/MovieHub.csproj": {}
   },
   "projects": {
-    "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/MovieHub.csproj": {
+    "/Users/danieljansen/GitHub/MovieHub/MovieHub/MovieHub.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/MovieHub.csproj",
+        "projectUniqueName": "/Users/danieljansen/GitHub/MovieHub/MovieHub/MovieHub.csproj",
         "projectName": "MovieHub",
-        "projectPath": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/MovieHub.csproj",
+        "projectPath": "/Users/danieljansen/GitHub/MovieHub/MovieHub/MovieHub.csproj",
         "packagesPath": "/Users/danieljansen/.nuget/packages/",
-        "outputPath": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/obj/",
+        "outputPath": "/Users/danieljansen/GitHub/MovieHub/MovieHub/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/danieljansen/.nuget/NuGet/NuGet.Config"

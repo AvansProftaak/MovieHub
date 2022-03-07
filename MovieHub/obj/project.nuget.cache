@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QV9h06kATSLY3HOFjQuY3BeVNWa/PodbjT5ObaH8u94oWLYEsjC29mZJr4e3s/AT41ZyCPpFeGM+0mKlBUgYbA==",
+  "dgSpecHash": "gUTtRZrcAnjlWhJknbIEgg8kNz7A3NZHmm/HskLoAPH/dCm5sOzQzUwUuTgAEo8UUiwuZJvjDWhiilmMrr3rpA==",
   "success": true,
-  "projectFilePath": "/Users/danieljansen/Documents/Github/MovieHub/MovieHub/MovieHub.csproj",
+  "projectFilePath": "/Users/danieljansen/GitHub/MovieHub/MovieHub/MovieHub.csproj",
   "expectedPackageFiles": [
     "/Users/danieljansen/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/danieljansen/.nuget/packages/messagepack/2.1.152/messagepack.2.1.152.nupkg.sha512",
