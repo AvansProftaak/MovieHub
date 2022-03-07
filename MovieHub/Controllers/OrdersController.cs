@@ -13,9 +13,11 @@ public class OrdersController : Controller
         OrderViewModel orderViewModel = new OrderViewModel();
         
         orderViewModel.showtime = showtime;
-
+        orderViewModel.Tickettypes = TicketTypeController.GetAll();
         
         return View(orderViewModel);
     }
+    
+    
     
 }
