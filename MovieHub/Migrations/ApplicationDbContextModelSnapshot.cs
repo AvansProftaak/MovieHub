@@ -742,8 +742,8 @@ namespace MovieHub.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("double precision");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
 
                     b.Property<int?>("TickettypeId")
                         .HasColumnType("integer");

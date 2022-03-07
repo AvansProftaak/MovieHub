@@ -1,5 +1,7 @@
 ﻿@using static MovieHub.Models.Tickettype;
 @using System.Collections
+@using MovieHub.Controllers
+@using MovieHub.Migrations
 @model MovieHub.ViewModels.OrderViewModel
 
 
@@ -50,7 +52,6 @@
         
         @foreach (Tickettype ticket in Model.Tickettypes)
         {
-            // here we need to do some price calculations
             if (ticket.Name != "3D")
             {
                 <tr>

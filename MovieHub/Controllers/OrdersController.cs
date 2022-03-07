@@ -17,24 +17,38 @@ public class OrdersController : Controller
     public async Task<ActionResult<OrderViewModel>> Index(Showtime showtime)
     {
         OrderViewModel orderViewModel = new OrderViewModel();
-        
+
         orderViewModel.showtime = showtime;
-        orderViewModel.Tickettypes = GetAllTicketTypes();
-        orderViewModel.Movie = GetMovie(showtime.Id);
+        orderViewModel.Movie = GetMovie(showtime.MovieId);
+        orderViewModel.Tickettypes = TicketTypes(showtime.MovieId);
+        
         
         
         return View(orderViewModel);
     }
     
-    public IQueryable<Tickettype>? GetAllTicketTypes()
+    public List<Tickettype>? GetAllTicketTypes()
     {
-        return _context.Set<Tickettype>();
+        return _context.Set<Tickettype>().ToList();
+    }
+
+    public List<Tickettype>? TicketTypes(int MovieId)
+    {
+        List<Tickettype>? tickets = GetAllTicketTypes();
+
+        foreach (var ticket in tickets)
+        {
+            ticket.Price = TicketTypeController.PriceCalculations(ticket, GetMovie(MovieId), _context);
+        }
+
+        return tickets;
+
     }
     
-    public IQueryable<Movie>? GetMovie(int id)
+    public Movie? GetMovie(int id)
     {
         return _context.Movie
-            .Where(m => m.Id.Equals(id));
+            .Where(m => m.Id.Equals(id)).ToList().FirstOrDefault();
     }
 
 }

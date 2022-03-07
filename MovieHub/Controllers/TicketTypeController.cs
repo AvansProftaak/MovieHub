@@ -151,13 +151,65 @@ namespace MovieHub.Controllers
             return _context.Tickettype.Any(e => e.Id == id);
         }
 
-        public IEnumerable<Tickettype> GetNormalTicket()
+        public static Tickettype GetNormalTicket(ApplicationDbContext context)
         {
-            IEnumerable<Tickettype> ticket =  _context.Tickettype
-                .Where(t => t.Name.Equals("Normal"));
             
-            return ticket.Cast<Tickettype>();
+            IEnumerable<Tickettype> ticket =  context.Tickettype
+                .Where(t => t.Name.Equals("Normaal"));
+
+            return ticket.ToList().FirstOrDefault();
         }
+        
+        public static decimal GetNormalPrice(ApplicationDbContext context)
+        {
+            Tickettype normalTicket = GetNormalTicket(context);
+            
+            
+            return normalTicket.Price;
+        }
+        
+        public static Tickettype Get3DTicket(ApplicationDbContext context)
+        {
+            IEnumerable<Tickettype> ticket =  context.Tickettype
+                .Where(t => t.Name.Equals("3D"));
+
+            return ticket.ToList().FirstOrDefault();
+        }
+        
+        public static decimal Get3DPrice(ApplicationDbContext context)
+        {
+            Tickettype normalTicket = Get3DTicket(context);
+            
+            return normalTicket.Price;
+        }
+        
+        public static decimal PriceCalculations(Tickettype ticket, Movie movie,ApplicationDbContext context)
+        {
+            decimal normalPrice = GetNormalPrice(context);
+            Console.WriteLine(movie);
+            decimal price = normalPrice;
+            Console.WriteLine(price);
+            if (movie.Duration > 90)
+            {
+                price =+ (decimal).50;
+            }
+
+            if (movie.Is3D == true)
+            {
+                price += Get3DPrice(context);
+            }
+            
+            if (ticket.Name == "Normaal")
+            {
+                return price;
+            }
+
+            price += ticket.Price;
+            
+            return price;
+            
+        }
+    
         
         
     }
