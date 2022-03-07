@@ -75,6 +75,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF5bWVudHMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/danieljansen/Documents/Github/MovieHub/MovieHub/Views/Pegis/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGVnaXMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/danieljansen/Documents/Github/MovieHub/MovieHub/Views/Seats/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VhdHMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
