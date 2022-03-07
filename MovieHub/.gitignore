@@ -6,6 +6,7 @@
 # User-specific files
 appsettings.json
 appsettings.Development.json
+Binaries.*
 *.rsuser
 *.suo
 *.user
