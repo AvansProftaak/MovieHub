@@ -155,7 +155,7 @@ namespace MovieHub.Controllers
         {
             
             IEnumerable<Tickettype> ticket =  context.Tickettype
-                .Where(t => t.Name.Equals("Normaal"));
+                .Where(t => t.Name.Equals("Normal"));
 
             return ticket.ToList().FirstOrDefault();
         }
@@ -185,28 +185,30 @@ namespace MovieHub.Controllers
         
         public static decimal PriceCalculations(Tickettype ticket, Movie movie,ApplicationDbContext context)
         {
+            
+             
+            
             decimal normalPrice = GetNormalPrice(context);
-            Console.WriteLine(movie);
             decimal price = normalPrice;
             Console.WriteLine(price);
+            Console.WriteLine(normalPrice);
+            
             if (movie.Duration > 90)
             {
-                price =+ (decimal).50;
+                price += (decimal).50;
             }
 
-            if (movie.Is3D == true)
+            if (movie.Is3D)
             {
                 price += Get3DPrice(context);
             }
             
-            if (ticket.Name == "Normaal")
+            if (ticket.Name == "Normal")
             {
                 return price;
             }
 
-            price += ticket.Price;
-            
-            return price;
+            return price - ticket.Price;
             
         }
     
