@@ -5,18 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container-fluid">
-    <div class="row">
         @if (@Model.Status == StatusEnum.Open)
         {
-            <h2>Please follow the instructions on the terminal</h2>
+            <meta http-equiv="refresh" content="1" />
+            <div class="row text-center">
+                <h2>Please follow the instructions on the terminal</h2>
+            </div>
         }
         @if (@Model.Status == StatusEnum.Pending)
         {
-            <h2>Processing payment...</h2>
+            <meta http-equiv="refresh" content="1" />
+            <div class="row text-center">
+                <h2>Processing payment...</h2>
+            </div>
         }
         @if (@Model.Status == StatusEnum.Paid)
         {
-            <h2>Payment successful!</h2>
+            <div class="row text-center">
+                <h2>Payment successful!</h2>
+                <button onclick="" class="btn btn-primary btn-sizing">Proceed</button>
+            </div>
         }
-    </div>
 </div>
