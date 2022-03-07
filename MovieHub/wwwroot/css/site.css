@@ -1,17 +1,14 @@
 html {
   font-size: 14px;
   color: #FFFFFF;
+  position: relative;
+  min-height: 100%;
 }
 
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
 }
 
 body {
@@ -27,8 +24,14 @@ h1 {
 h2, h3, h4{
   color: #FFFFFF;
 }
+
 p {
   color: #FFFFFF;
+  margin: 0px;
+}
+
+.footer {
+  background-color: #000000;
 }
 
 .btn-primary {
@@ -52,4 +55,98 @@ p {
 
 .form-group {
   margin-bottom: 5px;
+}
+
+.index-hall-overview {
+  width: -moz-available; 
+  position: fixed; 
+  padding-right: inherit;
+}
+
+.index-hall-logo {
+  margin: auto;
+  width: 150px;
+}
+
+.index-hall-hr {
+  color: #F8A613;
+  opacity: .405;
+  width: 70%;
+  margin: auto;
+}
+
+.index-hall-title {
+  font-size: 2.5vh;
+  color: #F8A613;
+  font-family: 'Poiret One', cursive;
+}
+
+.index-hall-now{
+  font-size: 1.8vh;
+}
+
+.index-hall-next{
+  font-size: 1.4vh;
+  margin-bottom: 1vh;
+}
+
+.available {
+  background-color: green;
+}
+
+.not-available {
+  background-color: red;
+}
+
+.img-container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.text-centered {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.movie-title {
+  color: #F8A613;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.details-container {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.align-start {
+  text-align: start;
+}
+
+.align-end {
+  text-align: end;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
+  background-color: #F8A613;
+  border-color: #F8A613;
+  color: black;
+}
+
+.btn-sizing {
+  display: block;
+  width: 100%;
+}
+
+.margin-top {
+  margin-top: 76px;
 }

@@ -1,0 +1,31 @@
+@model IEnumerable<MovieHub.Models.Seat>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    @foreach (var row in Model.GroupBy(r => r.RowNumber))
+    {
+        var rowList = row.ToList();
+
+        <h4>Row @row.Key</h4>
+        for (int i = 0; i < rowList.Count(); i++)
+        {
+            <a type="button" class="img-container">
+                @if (rowList[i].Available)
+                {
+                    <img src="@Url.Content("~/img/seat-available.png")" width="48">
+                }
+                else
+                {
+                    <img src="@Url.Content("~/img/seat-not-available.png")" width="48">
+                }
+                <div class="text-centered">
+                @Html.DisplayFor(s => rowList[i].SeatNumber)
+                </div>
+            </a>
+        }
+    }
+</div>

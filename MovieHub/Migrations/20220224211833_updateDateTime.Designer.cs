@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieHub.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MovieHub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220224211833_updateDateTime")]
+    partial class updateDateTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -493,38 +495,6 @@ namespace MovieHub.Migrations
                     b.ToTable("MoviePegi");
                 });
 
-            modelBuilder.Entity("MovieHub.Models.MovieRuntime", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("EndAt")
-                        .HasColumnType("Date");
-
-                    b.Property<int>("HallId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("StartAt")
-                        .HasColumnType("Date");
-
-                    b.Property<TimeSpan>("Time")
-                        .HasColumnType("Time");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HallId");
-
-                    b.HasIndex("MovieId");
-
-                    b.ToTable("MovieRuntime");
-                });
-
             modelBuilder.Entity("MovieHub.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -917,25 +887,6 @@ namespace MovieHub.Migrations
                     b.Navigation("Movie");
 
                     b.Navigation("Pegi");
-                });
-
-            modelBuilder.Entity("MovieHub.Models.MovieRuntime", b =>
-                {
-                    b.HasOne("MovieHub.Models.Hall", "Hall")
-                        .WithMany()
-                        .HasForeignKey("HallId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MovieHub.Models.Movie", "Movie")
-                        .WithMany()
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Hall");
-
-                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Order", b =>

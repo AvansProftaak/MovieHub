@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 
@@ -14,7 +16,7 @@ public class Movie
     [DisplayName("IMDb Score")]
     public double ImdbScore { get; set; } // In stead of Stars
     [DisplayName("Release date")]
-    public DateOnly ReleaseDate { get; set; } 
+    public DateTime ReleaseDate { get; set; } 
     [DisplayName("3D")]
     public bool Is3D { get; set; }
     [DisplayName("Secret")]
