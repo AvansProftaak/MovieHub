@@ -50,12 +50,16 @@
         
         @foreach (Tickettype ticket in Model.Tickettypes)
         {
-            <tr>
-                <td>@ticket.Name</td>
-                <td>@ticket.Price</td>
-                <td>@ticket.Description</td>
-            </tr>
-        }S
+            // here we need to do some price calculations
+            if (ticket.Name != "3D")
+            {
+                <tr>
+                    <td>@ticket.Name</td>
+                    <td>@ticket.Price</td>
+                    <td>@ticket.Description</td>
+                </tr> 
+            }
+        }
     </table>
     
     

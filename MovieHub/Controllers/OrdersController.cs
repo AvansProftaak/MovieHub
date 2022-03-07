@@ -20,6 +20,8 @@ public class OrdersController : Controller
         
         orderViewModel.showtime = showtime;
         orderViewModel.Tickettypes = GetAllTicketTypes();
+        orderViewModel.Movie = GetMovie(showtime.Id);
+        
         
         return View(orderViewModel);
     }
@@ -29,9 +31,10 @@ public class OrdersController : Controller
         return _context.Set<Tickettype>();
     }
     
-    public IQueryable<Movie>? GetMovie()
+    public IQueryable<Movie>? GetMovie(int id)
     {
-        return _context.Set<Movie>();
+        return _context.Movie
+            .Where(m => m.Id.Equals(id));
     }
 
 }

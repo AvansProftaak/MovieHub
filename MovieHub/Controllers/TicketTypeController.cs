@@ -151,11 +151,12 @@ namespace MovieHub.Controllers
             return _context.Tickettype.Any(e => e.Id == id);
         }
 
-        public ActionResult GetAllTickettypes()
+        public IEnumerable<Tickettype> GetNormalTicket()
         {
-            IList<Tickettype> Tickets = new List<Tickettype>();
+            IEnumerable<Tickettype> ticket =  _context.Tickettype
+                .Where(t => t.Name.Equals("Normal"));
             
-            return Content("henk");
+            return ticket.Cast<Tickettype>();
         }
         
         
