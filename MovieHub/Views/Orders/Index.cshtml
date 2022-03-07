@@ -1,4 +1,9 @@
-﻿@model MovieHub.Models.Showtime
+﻿@using static MovieHub.Models.Tickettype;
+@using System.Collections
+@model MovieHub.Models.Showtime
+
+
+
 
 @{
     ViewData["Title"] = "Index";
@@ -36,6 +41,28 @@
     </dl>
     <br />
     <p>order works! Here goes different tickettype selection.</p>
+    
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Code</th>
+            <th>Name</th>
+        </tr>
+        @code {
+            
+            IList<Tickettype> tickets = Tickettype.Tickettypes;
+        }
+        @foreach (Tickettype ticket in tickets)
+        {
+            <tr>
+                <td>@ticket.Name</td>
+                <td>@ticket.Price</td>
+                <td>@ticket.Description</td>
+            </tr>
+        }
+    </table>
+    
+    
     <br />
     <button onclick="location.href='@Url.Action("Index", "Seats", new {hallId = Model.HallId})'"
             class="btn btn-primary">Continue to seatmap</button>

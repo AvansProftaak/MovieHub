@@ -9,7 +9,7 @@ public class Tickettype
     public double Price { get; set; }
     public string Description { get; set; } = null!;
 
-    public IList<CinemaTickettype>? CinemaTickettypes { get; set; }
+    public IList<Tickettype> Tickettypes { get; set; }
 
     public Tickettype()
     {

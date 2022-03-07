@@ -150,5 +150,13 @@ namespace MovieHub.Controllers
         {
             return _context.Tickettype.Any(e => e.Id == id);
         }
+
+        public ActionResult GetAllTickettypes()
+        {
+            IList<Tickettype> Tickets = new List<Tickettype>();
+            
+            return Content("henk");
+        }
     }
+    
 }
