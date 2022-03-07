@@ -1,0 +1,22 @@
+@model MovieHub.Models.Payment
+
+@{
+    ViewData["Title"] = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        @if (@Model.Status == StatusEnum.Open)
+        {
+            <h2>Please follow the instructions on the terminal</h2>
+        }
+        @if (@Model.Status == StatusEnum.Pending)
+        {
+            <h2>Processing payment...</h2>
+        }
+        @if (@Model.Status == StatusEnum.Paid)
+        {
+            <h2>Payment successful!</h2>
+        }
+    </div>
+</div>

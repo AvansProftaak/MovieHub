@@ -7,7 +7,6 @@
     <div class="row ">
         <div class="col-12 text-center bg-black">
             <h1 class="display-4">Welcome</h1>
-            <p>This is the index-page of MovieHub.<br/>Site under construction</p>
         </div>   
     </div>
     <div class="row">
@@ -23,7 +22,8 @@
                         <div class="details-container">
                             <hr/>
                             <div class="justify-content-between d-flex">
-                                <button class="btn btn-primary btn-sizing me-1">Buy Tickets</button>
+                                <button onclick="location.href='@Url.Action("Payment", "Orders", new {orderId = 3})'" 
+                                    class="btn btn-primary btn-sizing me-1">Buy Tickets</button>
                                 <button onclick="location.href='@Url.Action("Details", "Movies", new {id = item.MovieId})'" 
                                         class="btn btn-primary btn-sizing ms-1">Movie Details</button>
                             </div>
