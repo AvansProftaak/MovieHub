@@ -158,10 +158,7 @@ namespace MovieHub.Controllers
             return Content("henk");
         }
         
-        public IQueryable<Tickettype> GetAll()
-        {
-            return _context.Set<Tickettype>();
-        }
+        
     }
     
 }

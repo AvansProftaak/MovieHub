@@ -745,7 +745,12 @@ namespace MovieHub.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
 
+                    b.Property<int?>("TickettypeId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TickettypeId");
 
                     b.ToTable("Tickettype");
                 });
@@ -860,7 +865,7 @@ namespace MovieHub.Migrations
                         .IsRequired();
 
                     b.HasOne("MovieHub.Models.Tickettype", "Tickettype")
-                        .WithMany("CinemaTickettypes")
+                        .WithMany()
                         .HasForeignKey("TickettypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1041,6 +1046,13 @@ namespace MovieHub.Migrations
                     b.Navigation("Tickettype");
                 });
 
+            modelBuilder.Entity("MovieHub.Models.Tickettype", b =>
+                {
+                    b.HasOne("MovieHub.Models.Tickettype", null)
+                        .WithMany("Tickettypes")
+                        .HasForeignKey("TickettypeId");
+                });
+
             modelBuilder.Entity("MovieHub.Models.Cinema", b =>
                 {
                     b.Navigation("CinemaMovies");
@@ -1069,7 +1081,7 @@ namespace MovieHub.Migrations
 
             modelBuilder.Entity("MovieHub.Models.Tickettype", b =>
                 {
-                    b.Navigation("CinemaTickettypes");
+                    b.Navigation("Tickettypes");
                 });
 #pragma warning restore 612, 618
         }

@@ -40,26 +40,22 @@
         </dd>
     </dl>
     <br />
-    <p>order works! Here goes different tickettype selection.</p>
-    
+
     <table>
         <tr>
-            <th>Id</th>
-            <th>Code</th>
             <th>Name</th>
+            <th>Price</th>
+            <th>Details</th>
         </tr>
-        @*@code {
-            
-            IList<Tickettype> tickets = Tickettype.Tickettypes;
-        }
-        @foreach (Tickettype ticket in tickets)
+        
+        @foreach (Tickettype ticket in Model.Tickettypes)
         {
             <tr>
                 <td>@ticket.Name</td>
                 <td>@ticket.Price</td>
                 <td>@ticket.Description</td>
             </tr>
-        }*@
+        }S
     </table>
     
     
