@@ -10,15 +10,12 @@ public class OrdersController : Controller
 
     public async Task<ActionResult<OrderViewModel>> Index(Showtime showtime)
     {
-        OrderViewModel indexViewModel = new OrderViewModel();
+        OrderViewModel orderViewModel = new OrderViewModel();
         
-        indexViewModel.MovieIndex = MovieIndex();
-        indexViewModel.AllHalls = GetHall();
-        indexViewModel.MovieNext = MovieNext();
-        indexViewModel.MovieNow = MovieNow();
+        orderViewModel.showtime = showtime;
 
-        return View(showtime);
-        return View(indexViewModel);
+        
+        return View(orderViewModel);
     }
     
 }
