@@ -7,6 +7,7 @@
 appsettings.json
 MovieHub/appsettings.json
 MovieHub/obj/**/*
+MovieHub/bin/**/*
 appsettings.Development.json
 *.rsuser
 *.suo
