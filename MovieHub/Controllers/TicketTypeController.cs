@@ -195,10 +195,10 @@ namespace MovieHub.Controllers
             var normalPrice= GetNormalPrice(context);
             var price = normalPrice;
             
-            if ((movie.Duration > 90) & (!normalPriceRaised) )
+            if ((movie.Duration > 120) & (!normalPriceRaised) )
             {
                 price += (decimal).50;
-                Console.WriteLine("duration +90 so price = " + price);
+                
             }
 
             if (movie.Is3D & !normalPriceRaised)
