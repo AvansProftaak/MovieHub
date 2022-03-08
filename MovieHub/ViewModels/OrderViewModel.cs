@@ -4,8 +4,10 @@ namespace MovieHub.ViewModels;
 
 public class OrderViewModel
 {
-    public Showtime? showtime { get; set; }
+    public Showtime? Showtime { get; set; }
 
     public List<Tickettype>? Tickettypes { get; set; }
+    public List<CateringPackage>? CateringPackages { get; set; }
     public Movie? Movie { get; set; }
+    
 }
