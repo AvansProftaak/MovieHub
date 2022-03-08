@@ -49,7 +49,18 @@
 
             @foreach (Tickettype ticket in Model.Tickettypes)
             {
-                if (ticket.Name != "3D")
+                
+                // TODO:    working on logic for kids discount
+                //          Problem is.... there are no kids movies at this time of day
+                /*if((ticket.Name == "kids") &
+                   ((DateTime.Now.TimeOfDay > new TimeSpan(18, 00, 01)) |
+                    Model.Movie.Language != "Dutch") 
+                )
+                {
+                    continue;
+                }*/
+                
+                if ((ticket.Name != "3D") )
                 {
                     <tr>
                         <td><input type="number" asp-for=@ticket.Quantity class="form-control" placeholder="Number of Tickets" min="1" max="10"/></td>
