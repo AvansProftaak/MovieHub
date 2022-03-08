@@ -1,91 +1,82 @@
-@model MovieHub.Models.Movie
+@using MovieHub.Migrations
+@model MovieHub.ViewModel.MovieViewModel
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="moviedetails">
+<div style="float: left">
+<img src="@Html.DisplayFor(model => model.Movie.ImageUrl)" alt="Movieposter" style="width:500px" height="auto">
+</div>
 
-<h1>Details</h1>
-
-<div>
-    <h4>Movie</h4>
-    <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
+        <div>
+            <h1 style="display: inline-flex;">@Html.DisplayFor(model => model.Movie.Title)</h1>
+            <div style="display: inline-flex; float: right">
+                <img src="@Url.Content("~/img/IMDB_Logo_2016.svg")" style="width:50px"  alt="IMDB Logo">
+                <h4> @Html.DisplayFor(model => model.Movie.ImdbScore) / 10</h4>
+            </div>
+        </div>
+        <div>
+           
+            @Html.DisplayFor(movie => Model.MovieGenres)<br/>
+             @Html.DisplayFor(movie => Model.MoviePegis)
+                       
+        
+        <div style="display: block; float: right">
+            <img src="@Url.Content("~/img/dolby-surround-2-logo-svg-vector_white.svg")" style="width:125px" alt="Dolby Logo">
+            @if (Model.Movie.Is3D)
+            {
+                <img src="@Url.Content("~/img/3d-movie-white.png")" style="width:60px" alt="3D Logo">}
+        </div>
+        </div>
+        <hr/>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Description)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Description)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Duration)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Duration) minuten
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Duration)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Cast)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Duration)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Cast)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cast)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Director)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cast)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Director)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Director)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.ReleaseDate)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Director)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.ReleaseDate)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImdbScore)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Language)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImdbScore)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Is3D)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Is3D)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsSecret)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsSecret)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Language)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Language)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TrailerUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrailerUrl)
-        </dd>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Movie.Language)
+    </dd>
+         <div>
+             <hr/>
+             <div class="justify-content-between d-flex">
+             @* TODO showtime for movie *@
+             @* <button onclick="location.href='@Url.Action("Index", "Orders", new {})'" *@
+             @*         class="btn btn-primary btn-sizing me-1">Buy Tickets</button> *@
+             <button onclick="location.href='@Url.Action("Index", "Home")'" 
+                     class="btn btn-primary btn-sizing ms-1">Back to home</button>
+         </div> </div>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
