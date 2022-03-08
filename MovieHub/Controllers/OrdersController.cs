@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
+using System.Diagnostics;
+using MovieHub.Models;
 
 namespace MovieHub.Controllers;
 
@@ -28,5 +30,19 @@ public class OrdersController : Controller
         var payment = await _context.Payment
             .FirstOrDefaultAsync(p => p.OrderId == orderId);
         return View(payment);
+    }
+
+    public async Task<string> getPaymentStatusCode(int orderId)
+    {
+        var payment = await _context.Payment
+            .FirstOrDefaultAsync(p => p.OrderId == orderId);
+        if (payment == null)
+        {
+            return "";
+        }
+        else 
+        {
+            return payment.Status.ToString();
+        }
     }
 }
