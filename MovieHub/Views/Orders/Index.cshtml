@@ -51,16 +51,17 @@
 
             @foreach (Tickettype ticket in Model.Tickettypes)
             {
-                
-                // TODO:    working on logic for kids discount
-                //          Problem is.... there are no kids movies at this time of day
-                /*if((ticket.Name == "kids") &
-                   ((DateTime.Now.TimeOfDay > new TimeSpan(18, 00, 01)) |
-                    Model.Movie.Language != "Dutch") 
+                var dateNow = DateTime.Now;
+                var kidsBedTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 18, 0, 0);
+                // TODO:    working on logic for kids discount add pegi rating
+                //          Problem is.... there are pegi ratings in db jet
+                if((ticket.Name == "Kids") &
+                   (((Model.Showtime.StartAt > kidsBedTime) |
+                     Model.Movie.Language != "Dutch") )
                 )
                 {
                     continue;
-                }*/
+                }
                 
                 if ((ticket.Name != "3D") )
                 {
