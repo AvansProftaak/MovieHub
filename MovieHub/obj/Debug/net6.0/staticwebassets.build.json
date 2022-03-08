@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ubxHTvRqmBy63I2aTXhx1BJkgM9zEk539K5nu4kPH8I=",
+  "Hash": "LxW3V8U7F/yjAvdzZetnWUSgNphbwHde6NB6B8L0c8s=",
   "Source": "MovieHub",
   "BasePath": "_content/MovieHub",
   "Mode": "Default",
@@ -2412,23 +2412,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\ticket\\FinishedTicketHtml.html"
-    },
-    {
-      "Identity": "D:\\Studie\\MovieHub\\MovieHub\\wwwroot\\ticket\\TicketPdf.pdf",
-      "SourceId": "MovieHub",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Studie\\MovieHub\\MovieHub\\wwwroot\\",
-      "BasePath": "_content/MovieHub",
-      "RelativePath": "ticket/TicketPdf.pdf",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\ticket\\TicketPdf.pdf"
     }
   ]
 }

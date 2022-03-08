@@ -18,9 +18,10 @@ public class OrdersController : Controller
     {
         OrderViewModel orderViewModel = new OrderViewModel();
 
-        orderViewModel.showtime = showtime;
+        orderViewModel.Showtime = showtime;
         orderViewModel.Movie = GetMovie(showtime.MovieId);
         orderViewModel.Tickettypes = TicketTypes(showtime.MovieId);
+        //orderViewModel.CateringPackages = GetCateringPackages();
         
         
         
@@ -31,6 +32,11 @@ public class OrdersController : Controller
     {
         return _context.Set<Tickettype>().ToList();
     }
+    
+    /*public List<CateringPackage>? GetCateringPackages()
+    {
+        return _context.CateringPackage.Where(t);
+    }*/
 
     public List<Tickettype>? TicketTypes(int MovieId)
     {
