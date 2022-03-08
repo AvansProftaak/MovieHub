@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/danieljansen/GitHub/MovieHub/MovieHub/MovieHub.csproj": {}
+    "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/MovieHub.csproj": {}
   },
   "projects": {
-    "/Users/danieljansen/GitHub/MovieHub/MovieHub/MovieHub.csproj": {
+    "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/MovieHub.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/danieljansen/GitHub/MovieHub/MovieHub/MovieHub.csproj",
+        "projectUniqueName": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/MovieHub.csproj",
         "projectName": "MovieHub",
-        "projectPath": "/Users/danieljansen/GitHub/MovieHub/MovieHub/MovieHub.csproj",
-        "packagesPath": "/Users/danieljansen/.nuget/packages/",
-        "outputPath": "/Users/danieljansen/GitHub/MovieHub/MovieHub/obj/",
+        "projectPath": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/MovieHub.csproj",
+        "packagesPath": "/Users/robvdhorst/.nuget/packages/",
+        "outputPath": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/danieljansen/.nuget/NuGet/NuGet.Config"
+          "/Users/robvdhorst/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -38,6 +38,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.42, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.1, )"
@@ -69,6 +73,30 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[6.0.3, )"
+            },
+            "Select.HtmlToPdf.NetCore": {
+              "target": "Package",
+              "version": "[22.1.0-rc1, )"
+            },
+            "Spire.Doc": {
+              "target": "Package",
+              "version": "[10.2.11, )"
+            },
+            "Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Linux": {
+              "target": "Package",
+              "version": "[19.4.0.54, )"
+            },
+            "Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Mac": {
+              "target": "Package",
+              "version": "[19.4.0.54, )"
+            },
+            "Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Windows": {
+              "target": "Package",
+              "version": "[19.4.0.54, )"
+            },
+            "Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core": {
+              "target": "Package",
+              "version": "[19.4.0.54, )"
             }
           },
           "imports": [

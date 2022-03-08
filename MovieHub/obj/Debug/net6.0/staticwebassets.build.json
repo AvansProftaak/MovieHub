@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mEMrMCiaa66PxniieIx4A+nkkkMGRno5NToiChLY+mQ=",
+  "Hash": "056S6HAGkgUEIlfdBuf7RLulQhjSzpcRQz4m7AA6TY0=",
   "Source": "MovieHub",
   "BasePath": "_content/MovieHub",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "MovieHub/wwwroot",
       "Source": "MovieHub",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/css/site.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/css/site.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/css/site.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/css/site.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/favicon.ico",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/favicon.ico",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -48,13 +48,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/favicon.ico"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/favicon.ico"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/js/site.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/js/site.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
@@ -65,13 +65,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/js/site.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/js/site.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css",
       "AssetKind": "All",
@@ -82,13 +82,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "AssetKind": "All",
@@ -99,13 +99,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "AssetKind": "All",
@@ -116,13 +116,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.min.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "AssetKind": "All",
@@ -133,13 +133,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "AssetKind": "All",
@@ -150,13 +150,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "AssetKind": "All",
@@ -167,13 +167,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "AssetKind": "All",
@@ -184,13 +184,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "AssetKind": "All",
@@ -201,13 +201,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css",
       "AssetKind": "All",
@@ -218,13 +218,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "AssetKind": "All",
@@ -235,13 +235,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "AssetKind": "All",
@@ -252,13 +252,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "AssetKind": "All",
@@ -269,13 +269,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "AssetKind": "All",
@@ -286,13 +286,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "AssetKind": "All",
@@ -303,13 +303,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "AssetKind": "All",
@@ -320,13 +320,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "AssetKind": "All",
@@ -337,13 +337,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css",
       "AssetKind": "All",
@@ -354,13 +354,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "AssetKind": "All",
@@ -371,13 +371,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "AssetKind": "All",
@@ -388,13 +388,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "AssetKind": "All",
@@ -405,13 +405,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "AssetKind": "All",
@@ -422,13 +422,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "AssetKind": "All",
@@ -439,13 +439,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "AssetKind": "All",
@@ -456,13 +456,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "AssetKind": "All",
@@ -473,13 +473,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css",
       "AssetKind": "All",
@@ -490,13 +490,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.map",
       "AssetKind": "All",
@@ -507,13 +507,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.min.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -524,13 +524,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.min.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -541,13 +541,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.min.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css",
       "AssetKind": "All",
@@ -558,13 +558,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "AssetKind": "All",
@@ -575,13 +575,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "AssetKind": "All",
@@ -592,13 +592,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "AssetKind": "All",
@@ -609,13 +609,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js",
       "AssetKind": "All",
@@ -626,13 +626,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "AssetKind": "All",
@@ -643,13 +643,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -660,13 +660,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "AssetKind": "All",
@@ -677,13 +677,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js",
       "AssetKind": "All",
@@ -694,13 +694,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "AssetKind": "All",
@@ -711,13 +711,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.js.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.js.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "AssetKind": "All",
@@ -728,13 +728,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.min.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.min.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "AssetKind": "All",
@@ -745,13 +745,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js",
       "AssetKind": "All",
@@ -762,13 +762,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.js.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.js.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js.map",
       "AssetKind": "All",
@@ -779,13 +779,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.js.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.js.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.min.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.min.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -796,13 +796,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.min.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.min.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.min.js.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js.map",
       "AssetKind": "All",
@@ -813,13 +813,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.min.js.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.min.js.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/LICENSE",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/LICENSE",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/bootstrap/LICENSE",
       "AssetKind": "All",
@@ -830,13 +830,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/LICENSE"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/bootstrap/LICENSE"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
@@ -847,13 +847,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
@@ -864,13 +864,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation-unobtrusive/LICENSE.txt",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt",
       "AssetKind": "All",
@@ -881,13 +881,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation-unobtrusive/LICENSE.txt"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation-unobtrusive/LICENSE.txt"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/additional-methods.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/additional-methods.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.js",
       "AssetKind": "All",
@@ -898,13 +898,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/additional-methods.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/additional-methods.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/additional-methods.min.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/additional-methods.min.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min.js",
       "AssetKind": "All",
@@ -915,13 +915,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/additional-methods.min.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/additional-methods.min.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/jquery.validate.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/jquery.validate.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.js",
       "AssetKind": "All",
@@ -932,13 +932,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/jquery.validate.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/jquery.validate.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/jquery.validate.min.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/jquery.validate.min.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min.js",
       "AssetKind": "All",
@@ -949,13 +949,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/jquery.validate.min.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/dist/jquery.validate.min.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/LICENSE.md",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/LICENSE.md",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery-validation/LICENSE.md",
       "AssetKind": "All",
@@ -966,13 +966,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/LICENSE.md"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery-validation/LICENSE.md"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/dist/jquery.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/dist/jquery.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery/dist/jquery.js",
       "AssetKind": "All",
@@ -983,13 +983,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/dist/jquery.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/dist/jquery.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/dist/jquery.min.js",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/dist/jquery.min.js",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery/dist/jquery.min.js",
       "AssetKind": "All",
@@ -1000,13 +1000,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/dist/jquery.min.js"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/dist/jquery.min.js"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/dist/jquery.min.map",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/dist/jquery.min.map",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery/dist/jquery.min.map",
       "AssetKind": "All",
@@ -1017,13 +1017,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/dist/jquery.min.map"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/dist/jquery.min.map"
     },
     {
-      "Identity": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/LICENSE.txt",
+      "Identity": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/LICENSE.txt",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
-      "ContentRoot": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
+      "ContentRoot": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/",
       "BasePath": "Identity",
       "RelativePath": "lib/jquery/LICENSE.txt",
       "AssetKind": "All",
@@ -1034,13 +1034,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/LICENSE.txt"
+      "OriginalItemSpec": "/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/staticwebassets/V5/lib/jquery/LICENSE.txt"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/obj/Debug/net6.0/scopedcss/bundle/MovieHub.styles.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/obj/Debug/net6.0/scopedcss/bundle/MovieHub.styles.css",
       "SourceId": "MovieHub",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/obj/Debug/net6.0/scopedcss/bundle/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/obj/Debug/net6.0/scopedcss/bundle/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "MovieHub.styles.css",
       "AssetKind": "All",
@@ -1051,13 +1051,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/GitHub/MovieHub/MovieHub/obj/Debug/net6.0/scopedcss/bundle/MovieHub.styles.css"
+      "OriginalItemSpec": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/obj/Debug/net6.0/scopedcss/bundle/MovieHub.styles.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/obj/Debug/net6.0/scopedcss/projectbundle/MovieHub.bundle.scp.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/obj/Debug/net6.0/scopedcss/projectbundle/MovieHub.bundle.scp.css",
       "SourceId": "MovieHub",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/obj/Debug/net6.0/scopedcss/projectbundle/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/obj/Debug/net6.0/scopedcss/projectbundle/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "MovieHub.bundle.scp.css",
       "AssetKind": "All",
@@ -1068,30 +1068,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/danieljansen/GitHub/MovieHub/MovieHub/obj/Debug/net6.0/scopedcss/projectbundle/MovieHub.bundle.scp.css"
+      "OriginalItemSpec": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/obj/Debug/net6.0/scopedcss/projectbundle/MovieHub.bundle.scp.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/.DS_Store",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/css/site.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
-      "BasePath": "_content/MovieHub",
-      "RelativePath": ".DS_Store",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/.DS_Store"
-    },
-    {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/css/site.css",
-      "SourceId": "MovieHub",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -1105,10 +1088,10 @@
       "OriginalItemSpec": "wwwroot/css/site.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/favicon.ico",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/favicon.ico",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -1122,10 +1105,10 @@
       "OriginalItemSpec": "wwwroot/favicon.ico"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/1.jpg",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/1.jpg",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/1.jpg",
       "AssetKind": "All",
@@ -1139,10 +1122,10 @@
       "OriginalItemSpec": "wwwroot/img/1.jpg"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/2.jpg",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/2.jpg",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/2.jpg",
       "AssetKind": "All",
@@ -1156,10 +1139,10 @@
       "OriginalItemSpec": "wwwroot/img/2.jpg"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/3.jpg",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/3.jpg",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/3.jpg",
       "AssetKind": "All",
@@ -1173,10 +1156,10 @@
       "OriginalItemSpec": "wwwroot/img/3.jpg"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/3d-movie-white.png",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/3d-movie-white.png",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/3d-movie-white.png",
       "AssetKind": "All",
@@ -1190,10 +1173,10 @@
       "OriginalItemSpec": "wwwroot/img/3d-movie-white.png"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/dolby-surround-2-logo-svg-vector_white.svg",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/dolby-surround-2-logo-svg-vector_white.svg",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/dolby-surround-2-logo-svg-vector_white.svg",
       "AssetKind": "All",
@@ -1207,10 +1190,10 @@
       "OriginalItemSpec": "wwwroot/img/dolby-surround-2-logo-svg-vector_white.svg"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/favicons/android-chrome-192x192.png",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/favicons/android-chrome-192x192.png",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/favicons/android-chrome-192x192.png",
       "AssetKind": "All",
@@ -1224,10 +1207,10 @@
       "OriginalItemSpec": "wwwroot/img/favicons/android-chrome-192x192.png"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/favicons/android-chrome-512x512.png",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/favicons/android-chrome-512x512.png",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/favicons/android-chrome-512x512.png",
       "AssetKind": "All",
@@ -1241,10 +1224,10 @@
       "OriginalItemSpec": "wwwroot/img/favicons/android-chrome-512x512.png"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/favicons/apple-touch-icon.png",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/favicons/apple-touch-icon.png",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/favicons/apple-touch-icon.png",
       "AssetKind": "All",
@@ -1258,10 +1241,10 @@
       "OriginalItemSpec": "wwwroot/img/favicons/apple-touch-icon.png"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/favicons/favicon-16x16.png",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/favicons/favicon-16x16.png",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/favicons/favicon-16x16.png",
       "AssetKind": "All",
@@ -1275,10 +1258,10 @@
       "OriginalItemSpec": "wwwroot/img/favicons/favicon-16x16.png"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/favicons/favicon-32x32.png",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/favicons/favicon-32x32.png",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/favicons/favicon-32x32.png",
       "AssetKind": "All",
@@ -1292,10 +1275,10 @@
       "OriginalItemSpec": "wwwroot/img/favicons/favicon-32x32.png"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/favicons/favicon.ico",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/favicons/favicon.ico",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/favicons/favicon.ico",
       "AssetKind": "All",
@@ -1309,10 +1292,10 @@
       "OriginalItemSpec": "wwwroot/img/favicons/favicon.ico"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/favicons/site.webmanifest",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/favicons/site.webmanifest",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/favicons/site.webmanifest",
       "AssetKind": "All",
@@ -1326,10 +1309,10 @@
       "OriginalItemSpec": "wwwroot/img/favicons/site.webmanifest"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/IMDB_Logo_2016.svg",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/IMDB_Logo_2016.svg",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/IMDB_Logo_2016.svg",
       "AssetKind": "All",
@@ -1343,10 +1326,10 @@
       "OriginalItemSpec": "wwwroot/img/IMDB_Logo_2016.svg"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/moviehub_square.jpg",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/moviehub_square.jpg",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/moviehub_square.jpg",
       "AssetKind": "All",
@@ -1360,10 +1343,10 @@
       "OriginalItemSpec": "wwwroot/img/moviehub_square.jpg"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/moviehub_wide.jpg",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/moviehub_wide.jpg",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/moviehub_wide.jpg",
       "AssetKind": "All",
@@ -1377,10 +1360,10 @@
       "OriginalItemSpec": "wwwroot/img/moviehub_wide.jpg"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/seat-available.png",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/seat-available.png",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/seat-available.png",
       "AssetKind": "All",
@@ -1394,10 +1377,10 @@
       "OriginalItemSpec": "wwwroot/img/seat-available.png"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/img/seat-not-available.png",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/img/seat-not-available.png",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "img/seat-not-available.png",
       "AssetKind": "All",
@@ -1411,10 +1394,10 @@
       "OriginalItemSpec": "wwwroot/img/seat-not-available.png"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/js/site.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/js/site.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
@@ -1428,27 +1411,10 @@
       "OriginalItemSpec": "wwwroot/js/site.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/.DS_Store",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
-      "BasePath": "_content/MovieHub",
-      "RelativePath": "lib/.DS_Store",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/lib/.DS_Store"
-    },
-    {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
-      "SourceId": "MovieHub",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css",
       "AssetKind": "All",
@@ -1462,10 +1428,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "AssetKind": "All",
@@ -1479,10 +1445,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "AssetKind": "All",
@@ -1496,10 +1462,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "AssetKind": "All",
@@ -1513,10 +1479,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "AssetKind": "All",
@@ -1530,10 +1496,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "AssetKind": "All",
@@ -1547,10 +1513,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "AssetKind": "All",
@@ -1564,10 +1530,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "AssetKind": "All",
@@ -1581,10 +1547,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css",
       "AssetKind": "All",
@@ -1598,10 +1564,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "AssetKind": "All",
@@ -1615,10 +1581,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "AssetKind": "All",
@@ -1632,10 +1598,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "AssetKind": "All",
@@ -1649,10 +1615,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "AssetKind": "All",
@@ -1666,10 +1632,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "AssetKind": "All",
@@ -1683,10 +1649,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "AssetKind": "All",
@@ -1700,10 +1666,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "AssetKind": "All",
@@ -1717,10 +1683,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css",
       "AssetKind": "All",
@@ -1734,10 +1700,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "AssetKind": "All",
@@ -1751,10 +1717,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "AssetKind": "All",
@@ -1768,10 +1734,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "AssetKind": "All",
@@ -1785,10 +1751,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "AssetKind": "All",
@@ -1802,10 +1768,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "AssetKind": "All",
@@ -1819,10 +1785,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "AssetKind": "All",
@@ -1836,10 +1802,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "AssetKind": "All",
@@ -1853,10 +1819,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css",
       "AssetKind": "All",
@@ -1870,10 +1836,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.map",
       "AssetKind": "All",
@@ -1887,10 +1853,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -1904,10 +1870,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -1921,10 +1887,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css",
       "AssetKind": "All",
@@ -1938,10 +1904,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "AssetKind": "All",
@@ -1955,10 +1921,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "AssetKind": "All",
@@ -1972,10 +1938,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "AssetKind": "All",
@@ -1989,10 +1955,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js",
       "AssetKind": "All",
@@ -2006,10 +1972,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "AssetKind": "All",
@@ -2023,10 +1989,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -2040,10 +2006,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "AssetKind": "All",
@@ -2057,10 +2023,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js",
       "AssetKind": "All",
@@ -2074,10 +2040,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "AssetKind": "All",
@@ -2091,10 +2057,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "AssetKind": "All",
@@ -2108,10 +2074,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "AssetKind": "All",
@@ -2125,10 +2091,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js",
       "AssetKind": "All",
@@ -2142,10 +2108,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js.map",
       "AssetKind": "All",
@@ -2159,10 +2125,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.js.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -2176,10 +2142,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.min.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js.map",
       "AssetKind": "All",
@@ -2193,10 +2159,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/bootstrap/LICENSE",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/bootstrap/LICENSE",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/bootstrap/LICENSE",
       "AssetKind": "All",
@@ -2210,10 +2176,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/LICENSE"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
@@ -2227,10 +2193,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
@@ -2244,10 +2210,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt",
       "AssetKind": "All",
@@ -2261,10 +2227,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/jquery-validation/dist/additional-methods.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/jquery-validation/dist/additional-methods.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.js",
       "AssetKind": "All",
@@ -2278,10 +2244,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/dist/additional-methods.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min.js",
       "AssetKind": "All",
@@ -2295,10 +2261,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/dist/additional-methods.min.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.js",
       "AssetKind": "All",
@@ -2312,10 +2278,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/dist/jquery.validate.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min.js",
       "AssetKind": "All",
@@ -2329,10 +2295,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/dist/jquery.validate.min.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/jquery-validation/LICENSE.md",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/jquery-validation/LICENSE.md",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/jquery-validation/LICENSE.md",
       "AssetKind": "All",
@@ -2346,10 +2312,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/LICENSE.md"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/jquery/dist/jquery.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/jquery/dist/jquery.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/jquery/dist/jquery.js",
       "AssetKind": "All",
@@ -2363,10 +2329,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/dist/jquery.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/jquery/dist/jquery.min.js",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/jquery/dist/jquery.min.js",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/jquery/dist/jquery.min.js",
       "AssetKind": "All",
@@ -2380,10 +2346,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/dist/jquery.min.js"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/jquery/dist/jquery.min.map",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/jquery/dist/jquery.min.map",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/jquery/dist/jquery.min.map",
       "AssetKind": "All",
@@ -2397,10 +2363,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/dist/jquery.min.map"
     },
     {
-      "Identity": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/lib/jquery/LICENSE.txt",
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/lib/jquery/LICENSE.txt",
       "SourceId": "MovieHub",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/danieljansen/GitHub/MovieHub/MovieHub/wwwroot/",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
       "BasePath": "_content/MovieHub",
       "RelativePath": "lib/jquery/LICENSE.txt",
       "AssetKind": "All",
@@ -2412,6 +2378,57 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/ticket/ExampleTicketHtml.html",
+      "SourceId": "MovieHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
+      "BasePath": "_content/MovieHub",
+      "RelativePath": "ticket/ExampleTicketHtml.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/ticket/ExampleTicketHtml.html"
+    },
+    {
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/ticket/FinishedTicketHtml.html",
+      "SourceId": "MovieHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
+      "BasePath": "_content/MovieHub",
+      "RelativePath": "ticket/FinishedTicketHtml.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/ticket/FinishedTicketHtml.html"
+    },
+    {
+      "Identity": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/ticket/TicketPdf.pdf",
+      "SourceId": "MovieHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/robvdhorst/IT Projects/MovieHub/MovieHub/wwwroot/",
+      "BasePath": "_content/MovieHub",
+      "RelativePath": "ticket/TicketPdf.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/ticket/TicketPdf.pdf"
     }
   ]
 }
