@@ -95,7 +95,7 @@
                                 var showNext = Model.ShowNext[hall.Id - 1];
                                 var startTime = showNext.StartAt .ToLocalTime().TimeOfDay.ToString(@"hh\:mm") + "h";
                                 
-                                if (showNext.StartAt.Date == DateTime.Today)
+                                if (showNext.StartAt.Date != DateTime.Today)
                                 {
                                     startTime = "tomorrow, " + startTime;
 
