@@ -230,9 +230,6 @@ namespace MovieHub.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CateringPackageId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
@@ -248,8 +245,6 @@ namespace MovieHub.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CateringPackageId");
 
                     b.ToTable("CateringPackage");
                 });
@@ -845,13 +840,6 @@ namespace MovieHub.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MovieHub.Models.CateringPackage", b =>
-                {
-                    b.HasOne("MovieHub.Models.CateringPackage", null)
-                        .WithMany("CateringPackages")
-                        .HasForeignKey("CateringPackageId");
-                });
-
             modelBuilder.Entity("MovieHub.Models.CinemaMovie", b =>
                 {
                     b.HasOne("MovieHub.Models.Cinema", "Cinema")
@@ -1066,11 +1054,6 @@ namespace MovieHub.Migrations
                     b.HasOne("MovieHub.Models.Tickettype", null)
                         .WithMany("Tickettypes")
                         .HasForeignKey("TickettypeId");
-                });
-
-            modelBuilder.Entity("MovieHub.Models.CateringPackage", b =>
-                {
-                    b.Navigation("CateringPackages");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Cinema", b =>

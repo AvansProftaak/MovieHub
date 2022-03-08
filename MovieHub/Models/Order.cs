@@ -20,7 +20,7 @@ public class Order
     public int ShowtimeId { get; set; }
     [ForeignKey("ShowtimeId")]
     public virtual Showtime Showtime { get; set; } = null!;
-
+    
     [DisplayName( "CateringPackage")] 
     public int CateringPackageId { get; set; }
     [ForeignKey("CateringPackageId")]

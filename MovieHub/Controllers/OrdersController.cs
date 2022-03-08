@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
 using MovieHub.ViewModels;
@@ -35,7 +36,8 @@ public class OrdersController : Controller
     
     public List<CateringPackage>? GetCateringPackages()
     {
-        return _context.Set<CateringPackage>().ToList();
+        return _context.CateringPackage
+            .FromSqlRaw("SELECT * FROM public.\"CateringPackage\"").ToList();
     }
 
     public List<Tickettype>? TicketTypes(int MovieId)

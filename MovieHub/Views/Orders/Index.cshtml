@@ -38,6 +38,8 @@
             @Html.DisplayFor(model => model.Showtime.StartAt)
         </dd>
 
+        <br/>
+        <h4>Ticket Selection:</h4>
 
         <table>
             <tr>
@@ -61,6 +63,8 @@
             }
         </table>
         
+        <br/><br/>
+        <h4>Catering Arrangements:</h4>
         <table>
                     <tr>
                         <th>Quantity</th>
@@ -84,7 +88,7 @@
 
 
 
-        <br/>
+        <br/><br/>
         <button onclick="location.href='@Url.Action("Index", "Seats", new {hallId = Model.Showtime.HallId})'"
                 class="btn btn-primary">Continue to seatmap</button>
     </div>
