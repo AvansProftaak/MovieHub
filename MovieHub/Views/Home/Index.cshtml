@@ -5,10 +5,9 @@
 <div class="container-fluid">
     <div class="row ">
         <div class="col-12 text-center bg-black">
-            <h1 class="display-4">Welcome</h1>
-            <p>This is the index-page of MovieHub.<br/>Site under construction</p>
-        </div>   
-    </div>
+            <h1 class="display-4">In the cinema today</h1>
+        </div>
+         </div>
     <div class="row">
         <div class="col-8 hide-scrollbar" style="min-height: 100%;">
             <div class="row text-center" style="height: calc(100vh - 250px)">
@@ -73,10 +72,28 @@
         </div>
         
         <div class="col-4">
-            <div class="text-center index-hall-overview"> 
+            <div class="text-center index-hall-overview">
+                <div class="form-group">
+                    @using (Html.BeginForm("SearchForMovie", "Home"))
+                    {
+                        <div class="col-md-12">
+                            <input type="text" name="searchPhrase" id="searchPhrase" class="form-control" placeholder= "Search Movie Title"/>
+                            <hr/>
+                        </div>
+                        <div class="form-group" style="float:left">
+                            <input type="submit" name="Search" class="btn btn-primary"/>
+                        </div>
+                    }
+                    <div style="float:right">
+                        <button onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-primary">Clear List</button>
+                    </div>
+                </div>
+                
+                <br/><br/><br/>
+                
                 @{
                     var halls = Model.Halls;
-                    
+
                     foreach (var hall in halls!)
                     {
                         <div class="row">
@@ -85,23 +102,23 @@
                                 var showNow = Model.ShowNow[hall.Id - 1];
                                 var movieNow = showNow.Movie.Title + "h";
 
-                                if (showNow.StartAt != DateTime.Today) 
+                                if (showNow.StartAt != DateTime.Today)
                                 {
                                     movieNow = "-";
                                 }
                             }
-                            <p class="index-hall-sm">Now playing: <span class="index-hall-lg">@Html.DisplayFor(m=> movieNow)</span></p>
+                            <p class="index-hall-sm">Now playing: <span class="index-hall-lg">@Html.DisplayFor(m => movieNow)</span></p>
                             @{
                                 var showNext = Model.ShowNext[hall.Id - 1];
-                                var startTime = showNext.StartAt .ToLocalTime().TimeOfDay.ToString(@"hh\:mm") + "h";
-                                
+                                var startTime = showNext.StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm") + "h";
+
                                 if (showNext.StartAt.Date != DateTime.Today)
                                 {
                                     startTime = "tomorrow, " + startTime;
 
                                 }
                             }
-                            <p class="index-hall-sm">Next (@Html.DisplayFor(m => startTime)): <span class="index-hall-lg">@Html.DisplayFor(m=> showNext.Movie.Title)</span></p>
+                            <p class="index-hall-sm">Next (@Html.DisplayFor(m => startTime)): <span class="index-hall-lg">@Html.DisplayFor(m => showNext.Movie.Title)</span></p>
                         </div>
                         <hr class="index-hall-hr"/>
                     }

@@ -34,6 +34,10 @@ p {
   background-color: #000000;
 }
 
+a{
+color: #F8A613;
+}
+
 .btn-primary {
   color: #FFFFFF;
   background-color:#000000;
@@ -97,6 +101,10 @@ p {
   color: lightgrey;
 }
 
+.moviedetails {
+  padding: 50px;
+}
+
 .available {
   background-color: green;
 }
@@ -156,7 +164,4 @@ p {
 
 .margin-top {
   margin-top: 76px;
-}
-
-.index-hall-p {
 }

@@ -5,8 +5,11 @@
 
 # User-specific files
 appsettings.json
+MovieHub/appsettings.json
 appsettings.Development.json
 Binaries/*
+MovieHub/obj/**/*
+MovieHub/bin/**/*
 *.rsuser
 *.suo
 *.user

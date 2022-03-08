@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieHub.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MovieHub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220227095436_cinema")]
+    partial class cinema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,6 +232,9 @@ namespace MovieHub.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
@@ -238,11 +243,8 @@ namespace MovieHub.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 
@@ -433,7 +435,7 @@ namespace MovieHub.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("ReleaseDate")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -742,18 +744,10 @@ namespace MovieHub.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("TickettypeId")
-                        .HasColumnType("integer");
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TickettypeId");
 
                     b.ToTable("Tickettype");
                 });
@@ -868,7 +862,7 @@ namespace MovieHub.Migrations
                         .IsRequired();
 
                     b.HasOne("MovieHub.Models.Tickettype", "Tickettype")
-                        .WithMany()
+                        .WithMany("CinemaTickettypes")
                         .HasForeignKey("TickettypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -954,13 +948,13 @@ namespace MovieHub.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MovieHub.Models.Showtime", "Showtime")
+                    b.HasOne("MovieHub.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("ShowtimeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MovieHub.Models.User", "User")
+                    b.HasOne("MovieHub.Models.Showtime", "Showtime")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1049,13 +1043,6 @@ namespace MovieHub.Migrations
                     b.Navigation("Tickettype");
                 });
 
-            modelBuilder.Entity("MovieHub.Models.Tickettype", b =>
-                {
-                    b.HasOne("MovieHub.Models.Tickettype", null)
-                        .WithMany("Tickettypes")
-                        .HasForeignKey("TickettypeId");
-                });
-
             modelBuilder.Entity("MovieHub.Models.Cinema", b =>
                 {
                     b.Navigation("CinemaMovies");
@@ -1084,7 +1071,7 @@ namespace MovieHub.Migrations
 
             modelBuilder.Entity("MovieHub.Models.Tickettype", b =>
                 {
-                    b.Navigation("Tickettypes");
+                    b.Navigation("CinemaTickettypes");
                 });
 #pragma warning restore 612, 618
         }
