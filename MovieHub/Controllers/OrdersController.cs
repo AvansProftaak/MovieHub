@@ -28,27 +28,6 @@ public class OrdersController : Controller
         
         return View(orderViewModel);
     }
-
-    public async Task<IActionResult> Payment(int orderId)
-    {
-        var payment = await _context.Payment
-            .FirstOrDefaultAsync(p => p.OrderId == orderId);
-        return View(payment);
-    }
-
-    public async Task<string> getPaymentStatusCode(int orderId)
-    {
-        var payment = await _context.Payment
-            .FirstOrDefaultAsync(p => p.OrderId == orderId);
-        if (payment == null)
-        {
-            return "";
-        }
-        else 
-        {
-            return payment.Status.ToString();
-        }
-    }
     
     public List<Tickettype>? GetAllTicketTypes()
     {

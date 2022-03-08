@@ -4,8 +4,47 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section Scripts
+{
+    <script type="text/javascript">
+        var status = '@Model.Status';
+        setInterval(function(){
+             $.ajax({
+                url: '@Url.Action("getPaymentStatusCode", "Orders", new { orderId = @Model.OrderId})',
+                contentType: "text/plain; charset=utf-8",
+                dataType: "text",
+                success: function(data){
+                    if(data != status) {
+                        location.reload();
+                    }
+                },
+                error: errorFunc
+            });
+        }, 3000);
+  
+        function errorFunc() {
+            console.log("error");
+        }
+    </script>
+}
 <div class="container-fluid">
-    <h1>Payment</h1>
-    <p>This is where the payments page goes.</p>
+        @if (@Model.Status == StatusEnum.Open)
+        {
+            <div class="row text-center">
+                <h2>Please follow the instructions on the terminal</h2>
+            </div>
+        }
+        @if (@Model.Status == StatusEnum.Pending)
+        {
+            <div class="row text-center">
+                <h2>Processing payment...</h2>
+            </div>
+        }
+        @if (@Model.Status == StatusEnum.Paid)
+        {
+            <div class="row text-center">
+                <h2>Payment successful!</h2>
+                <button onclick="" class="btn btn-primary btn-sizing">Proceed</button>
+            </div>
+        }
 </div>
