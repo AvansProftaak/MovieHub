@@ -745,6 +745,9 @@ namespace MovieHub.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
                     b.Property<int?>("TickettypeId")
                         .HasColumnType("integer");
 

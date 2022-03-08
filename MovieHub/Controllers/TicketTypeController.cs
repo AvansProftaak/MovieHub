@@ -162,8 +162,8 @@ namespace MovieHub.Controllers
         
         public static decimal GetNormalPrice(ApplicationDbContext context)
         {
-            Tickettype normalTicket = GetNormalTicket(context);
-            
+            Tickettype normalTicket = new Tickettype();
+            normalTicket = GetNormalTicket(context);
             
             return normalTicket.Price;
         }
@@ -183,22 +183,25 @@ namespace MovieHub.Controllers
             return normalTicket.Price;
         }
         
-        public static decimal PriceCalculations(Tickettype ticket, Movie movie,ApplicationDbContext context)
+        public static decimal PriceCalculations(Tickettype ticket, Movie movie,ApplicationDbContext context, bool normalPriceRaised)
         {
+            /* writing this we had some issues with ticket price of the normal ticket
+             * when the normal ticket passed the = > 90 mins or = 3D the values are raised
+             * Due to the nature of our calculations it stays raised
+             * so we have to figure out if normal ticket already passed the calculations or not
+             * we could simply tell the owner to insert the normal ticketprices first but they might forget.... 
+             */
+
+            var normalPrice= GetNormalPrice(context);
+            var price = normalPrice;
             
-             
-            
-            decimal normalPrice = GetNormalPrice(context);
-            decimal price = normalPrice;
-            Console.WriteLine(price);
-            Console.WriteLine(normalPrice);
-            
-            if (movie.Duration > 90)
+            if ((movie.Duration > 90) & (!normalPriceRaised) )
             {
                 price += (decimal).50;
+                Console.WriteLine("duration +90 so price = " + price);
             }
 
-            if (movie.Is3D)
+            if (movie.Is3D & !normalPriceRaised)
             {
                 price += Get3DPrice(context);
             }
@@ -209,7 +212,6 @@ namespace MovieHub.Controllers
             }
 
             return price - ticket.Price;
-            
         }
     
         

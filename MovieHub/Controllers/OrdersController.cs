@@ -36,9 +36,16 @@ public class OrdersController : Controller
     {
         List<Tickettype>? tickets = GetAllTicketTypes();
 
+        // due to the nature of our calculations we need to hold the normal price after we set it
+        // to do this we need this bool ( more explanation in pricecalc function)
+        bool normalPriceRaised = false;
         foreach (var ticket in tickets)
         {
-            ticket.Price = TicketTypeController.PriceCalculations(ticket, GetMovie(MovieId), _context);
+            ticket.Price = TicketTypeController.PriceCalculations(ticket, GetMovie(MovieId), _context, normalPriceRaised);
+            if (ticket.Name == "Normal")
+            {
+                normalPriceRaised = true;
+            }
         }
 
         return tickets;
