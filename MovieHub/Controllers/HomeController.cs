@@ -25,10 +25,9 @@ public class HomeController : Controller
         IndexViewModel indexViewModel = new IndexViewModel();
         
         indexViewModel.MovieIndex = MovieIndex();
-        indexViewModel.AllHalls = GetHall();
-        indexViewModel.MovieNext = MovieNext();
-        indexViewModel.MovieNow = MovieNow();
-
+        indexViewModel.Halls = GetHall();
+        indexViewModel.ShowNext = ShowNext();
+        indexViewModel.ShowNow = ShowNow();
 
         return View(indexViewModel);
         }
@@ -49,18 +48,17 @@ public class HomeController : Controller
             .FromSqlRaw("SELECT * FROM rob.public.\"Hall\"").ToList();
     }
     
-    public List<Showtime> MovieNext()
+    public List<Showtime> ShowNext()
     {
         return _context.Showtime!
                  .FromSqlRaw("SELECT x.* FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\" ORDER BY \"StartAt\") rn FROM rob.public.\"Showtime\" where \"StartAt\" > now()) x JOIN rob.public.\"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"").ToList();
     }
 
-    public List<Showtime> MovieNow()
+    public List<Showtime> ShowNow()
     {
         return _context.Showtime!
             .FromSqlRaw(
-                "SELECT x.* FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\" ORDER BY \"StartAt\" DESC ) rn FROM rob.public.\"Showtime\" WHERE \"StartAt\" < now()) x JOIN rob.public.\"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"")
-            .ToList();
+                "SELECT x.* FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\" ORDER BY \"StartAt\" DESC ) rn FROM rob.public.\"Showtime\" WHERE \"StartAt\" < now()) x JOIN rob.public.\"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"").ToList();
     }
     
     //

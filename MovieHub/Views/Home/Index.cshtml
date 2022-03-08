@@ -72,73 +72,39 @@
             </div>
         </div>
         
-        @{
-            var movieNext = Model.MovieNext;
-            var movieNow = Model.MovieNow;
-        }
-
         <div class="col-4">
-            <div class="text-center index-hall-overview">
-                
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 1</p>
-                    <p class="index-hall-now">Now playing: @Html.DisplayFor(m => movieNow[0].Movie.Title)</p>
-                    @{
-                        var nextStartTime1 = movieNext?[0].StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm");
-                    }
-                    <p class="index-hall-next"><span class="index-hall-p">Next movie: @Html.DisplayFor(m => movieNext[0].Movie.Title) (@Html.DisplayFor(m => nextStartTime1))</span>
-                </div>
-                <hr class="index-hall-hr"/>
-                
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 2</p>
-                    <p class="index-hall-now">Now playing: @Html.DisplayFor(m => movieNow[1].Movie.Title)</p>
-                    @{
-                        var nextStartTime2 = movieNext?[1].StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm");
-                    }
-                    <p class="index-hall-next"><span class="index-hall-p">Next movie: @Html.DisplayFor(m => movieNext[1].Movie.Title) (@Html.DisplayFor(m => nextStartTime2))</span>
-                </div>
-                <hr class="index-hall-hr"/>
-                
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 3</p>
-                    <p class="index-hall-now">Now playing: @Html.DisplayFor(m => movieNow[2].Movie.Title)</p>
-                    @{
-                        var nextStartTime3 = movieNext?[2].StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm");
-                    }
-                    <p class="index-hall-next"><span class="index-hall-p">Next movie: @Html.DisplayFor(m => movieNext[2].Movie.Title) (@Html.DisplayFor(m => nextStartTime3))</span>
-                </div>
-                <hr class="index-hall-hr"/>
-                
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 4</p>
-                    <p class="index-hall-now">Now playing: @Html.DisplayFor(m => movieNow[3].Movie.Title)</p>
-                    @{
-                        var nextStartTime4 = movieNext?[3].StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm");
-                    }
-                    <p class="index-hall-next"><span class="index-hall-p">Next movie: @Html.DisplayFor(m => movieNext[3].Movie.Title) (@Html.DisplayFor(m => nextStartTime4))</span>
-                </div>
-                <hr class="index-hall-hr"/>
-                
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 5</p>
-                    <p class="index-hall-now">Now playing: @Html.DisplayFor(m => movieNow[4].Movie.Title)</p>
-                    @{
-                        var nextStartTime5 = movieNext?[4].StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm");
-                    }
-                    <p class="index-hall-next"><span class="index-hall-p">Next movie: @Html.DisplayFor(m => movieNext[4].Movie.Title) (@Html.DisplayFor(m => nextStartTime5))</span>
-                </div>
-                <hr class="index-hall-hr"/>
+            <div class="text-center index-hall-overview"> 
+                @{
+                    var halls = Model.Halls;
+                    
+                    foreach (var hall in halls)
+                    {
+                        <div class="row">
+                            <p class="index-hall-title">CINEMA @Html.DisplayFor(m => hall.Id)</p>
+                            @{
+                                var showNow = Model.ShowNow[hall.Id - 1];
+                                var movieNow = showNow.Movie.Title + "h";
 
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 6</p>
-                    <p class="index-hall-now">Now playing: @Html.DisplayFor(m => movieNow[5].Movie.Title)</p>
-                    @{
-                        var nextStartTime6 = movieNext?[5].StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm");
+                                if (showNow.StartAt != DateTime.Today) 
+                                {
+                                    movieNow = "-";
+                                }
+                            }
+                            <p class="index-hall-now"><span>Now playing: </span>@Html.DisplayFor(m=> movieNow)</p>
+                            @{
+                                var showNext = Model.ShowNext[hall.Id - 1];
+                                var startTime = showNext.StartAt .ToLocalTime().TimeOfDay.ToString(@"hh\:mm") + "h";
+                                
+                                if (showNext.StartAt.Date != DateTime.Today) 
+                                {
+                                    startTime = "Tomorrow, " + startTime + "h";
+                                }
+                            }
+                            <p class="index-hall-next"><span class="index-hall-p">Next movie: @Html.DisplayFor(m=> showNext.Movie.Title) (@Html.DisplayFor(m => startTime))</span>
+                        </div>
+                        <hr class="index-hall-hr"/>
                     }
-                    <p class="index-hall-next"><span class="index-hall-p">Next movie: @Html.DisplayFor(m => movieNext[5].Movie.Title) (@Html.DisplayFor(m => nextStartTime6))</span>
-                </div>
-                <hr class="index-hall-hr"/>
+                }
             </div>
         </div>
     </div>
