@@ -34,6 +34,10 @@ p {
   background-color: #000000;
 }
 
+a{
+color: #F8A613;
+}
+
 .btn-primary {
   color: #FFFFFF;
   background-color:#000000;
@@ -88,6 +92,10 @@ p {
 .index-hall-next{
   font-size: 1.4vh;
   margin-bottom: 1vh;
+}
+
+.moviedetails {
+  padding: 50px;
 }
 
 .available {
@@ -149,4 +157,5 @@ p {
 
 .margin-top {
   margin-top: 76px;
+>>>>>>> origin/develop
 }

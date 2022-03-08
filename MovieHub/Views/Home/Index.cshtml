@@ -6,10 +6,9 @@
 <div class="container-fluid">
     <div class="row ">
         <div class="col-12 text-center bg-black">
-            <h1 class="display-4">Welcome</h1>
-            <p>This is the index-page of MovieHub.<br/>Site under construction</p>
-        </div>   
-    </div>
+            <h1 class="display-4">In the cinema today</h1>
+        </div>
+         </div>
     <div class="row">
         <div class="col-8 hide-scrollbar" style="min-height: 100%;">
             <div class="row text-center" style="height: calc(100vh - 250px)">
@@ -72,8 +71,25 @@
                 }
             </div>
         </div>
+        
         <div class="col-4">
             <div class="text-center index-hall-overview">
+                <div class="form-group">
+                    @using (Html.BeginForm("SearchForMovie", "Home"))
+                    {
+                        <div class="col-md-12">
+                            <input type="text" name="searchPhrase" id="searchPhrase" class="form-control" placeholder= "Search Movie Title"/>
+                            <hr/>
+                        </div>
+                        <div class="form-group" style="float:left">
+                                <input type="submit" name="Search" class="btn btn-primary"/>
+                            </div>
+                    }
+                    <div style="float:right">
+                        <button onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-primary">Clear List</button>
+                    </div>
+                    </div>
+                        <br/><br/><br/>
                 @* Logo is optional *@
                 @* <div class="row"> *@
                 @*     <img class="index-hall-logo" src="@Url.Content("~/img/moviehub_wide.jpg")" alt="MovieHub Logo"> *@
