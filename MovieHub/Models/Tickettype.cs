@@ -6,7 +6,6 @@ namespace MovieHub.Models;
 
 public class Tickettype
 {
-    private readonly ApplicationDbContext _context;
     public int Id { get; set; }
     public string Name { get; set; } = null!;
     public decimal Price { get; set; }
