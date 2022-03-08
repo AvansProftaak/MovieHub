@@ -77,7 +77,7 @@
                 @{
                     var halls = Model.Halls;
                     
-                    foreach (var hall in halls)
+                    foreach (var hall in halls!)
                     {
                         <div class="row">
                             <p class="index-hall-title">CINEMA @Html.DisplayFor(m => hall.Id)</p>
@@ -90,17 +90,18 @@
                                     movieNow = "-";
                                 }
                             }
-                            <p class="index-hall-now"><span>Now playing: </span>@Html.DisplayFor(m=> movieNow)</p>
+                            <p class="index-hall-sm">Now playing: <span class="index-hall-lg">@Html.DisplayFor(m=> movieNow)</span></p>
                             @{
                                 var showNext = Model.ShowNext[hall.Id - 1];
                                 var startTime = showNext.StartAt .ToLocalTime().TimeOfDay.ToString(@"hh\:mm") + "h";
                                 
-                                if (showNext.StartAt.Date != DateTime.Today) 
+                                if (showNext.StartAt.Date == DateTime.Today)
                                 {
-                                    startTime = "Tomorrow, " + startTime + "h";
+                                    startTime = "tomorrow, " + startTime;
+
                                 }
                             }
-                            <p class="index-hall-next"><span class="index-hall-p">Next movie: @Html.DisplayFor(m=> showNext.Movie.Title) (@Html.DisplayFor(m => startTime))</span>
+                            <p class="index-hall-sm">Next (@Html.DisplayFor(m => startTime)): <span class="index-hall-lg">@Html.DisplayFor(m=> showNext.Movie.Title)</span></p>
                         </div>
                         <hr class="index-hall-hr"/>
                     }

@@ -80,13 +80,21 @@ p {
   font-family: 'Poiret One', cursive;
 }
 
-.index-hall-now{
+.index-hall-lg{
   font-size: 1.8vh;
+  color: #FFFFFF;
 }
 
-.index-hall-next{
+.index-hall-sm-white{
   font-size: 1.4vh;
   margin-bottom: 1vh;
+  color: white;
+}
+
+.index-hall-sm{
+  font-size: 1.4vh;
+  margin-bottom: 1vh;
+  color: lightgrey;
 }
 
 .available {
