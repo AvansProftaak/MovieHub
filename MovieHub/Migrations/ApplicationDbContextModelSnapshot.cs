@@ -432,8 +432,8 @@ namespace MovieHub.Migrations
                     b.Property<string>("Language")
                         .HasColumnType("text");
 
-                    b.Property<DateOnly>("ReleaseDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("ReleaseDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -491,6 +491,38 @@ namespace MovieHub.Migrations
                     b.HasIndex("PegiId");
 
                     b.ToTable("MoviePegi");
+                });
+
+            modelBuilder.Entity("MovieHub.Models.MovieRuntime", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("EndAt")
+                        .HasColumnType("Date");
+
+                    b.Property<int>("HallId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("StartAt")
+                        .HasColumnType("Date");
+
+                    b.Property<TimeSpan>("Time")
+                        .HasColumnType("Time");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HallId");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("MovieRuntime");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Order", b =>
@@ -710,10 +742,18 @@ namespace MovieHub.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("double precision");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("TickettypeId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TickettypeId");
 
                     b.ToTable("Tickettype");
                 });
@@ -828,7 +868,7 @@ namespace MovieHub.Migrations
                         .IsRequired();
 
                     b.HasOne("MovieHub.Models.Tickettype", "Tickettype")
-                        .WithMany("CinemaTickettypes")
+                        .WithMany()
                         .HasForeignKey("TickettypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -885,6 +925,25 @@ namespace MovieHub.Migrations
                     b.Navigation("Movie");
 
                     b.Navigation("Pegi");
+                });
+
+            modelBuilder.Entity("MovieHub.Models.MovieRuntime", b =>
+                {
+                    b.HasOne("MovieHub.Models.Hall", "Hall")
+                        .WithMany()
+                        .HasForeignKey("HallId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MovieHub.Models.Movie", "Movie")
+                        .WithMany()
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hall");
+
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Order", b =>
@@ -990,6 +1049,13 @@ namespace MovieHub.Migrations
                     b.Navigation("Tickettype");
                 });
 
+            modelBuilder.Entity("MovieHub.Models.Tickettype", b =>
+                {
+                    b.HasOne("MovieHub.Models.Tickettype", null)
+                        .WithMany("Tickettypes")
+                        .HasForeignKey("TickettypeId");
+                });
+
             modelBuilder.Entity("MovieHub.Models.Cinema", b =>
                 {
                     b.Navigation("CinemaMovies");
@@ -1018,7 +1084,7 @@ namespace MovieHub.Migrations
 
             modelBuilder.Entity("MovieHub.Models.Tickettype", b =>
                 {
-                    b.Navigation("CinemaTickettypes");
+                    b.Navigation("Tickettypes");
                 });
 #pragma warning restore 612, 618
         }

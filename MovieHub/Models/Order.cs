@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,14 +12,14 @@ public class Order
     public StatusEnum Status { get; set; }
     
     [DisplayName( "User")] 
-    public int ShowtimeId { get; set; }
+    public int UserId { get; set; }
     [ForeignKey("UserId")]
-    public virtual Showtime Showtime { get; set; } = null!;
+    public virtual User User { get; set; } = null!;
 
     [DisplayName( "Showtime")] 
-    public int UserId { get; set; }
+    public int ShowtimeId { get; set; }
     [ForeignKey("ShowtimeId")]
-    public virtual User User { get; set; } = null!;
+    public virtual Showtime Showtime { get; set; } = null!;
 
     [DisplayName( "CateringPackage")] 
     public int CateringPackageId { get; set; }
