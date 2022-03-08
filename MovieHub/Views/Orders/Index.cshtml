@@ -1,4 +1,10 @@
-﻿@model IEnumerable<MovieHub.Models.Order>
+﻿@using static MovieHub.Models.Tickettype;
+@using System.Collections
+@using Microsoft.AspNetCore.Authentication
+@using MovieHub.Controllers
+@using MovieHub.Migrations
+@model MovieHub.ViewModels.OrderViewModel
+
 
 @{
     ViewData["Title"] = "Index";
@@ -6,5 +12,89 @@
 }
 
 <div class="container-fluid">
-  
+    <dl class="row">
+        <div class="col-4">
+        <img src="@Url.Content(@Model.Movie.ImageUrl)" alt="test" width="80%"/>
+        </div>
+    <div class="col-8">
+        <h4>Selected Showtime:</h4>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Showtime.Hall)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Showtime.HallId)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Showtime.StartAt)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Showtime.StartAt)
+        </dd>
+
+        <br/>
+        <h4>Ticket Selection:</h4>
+
+        <table>
+            <tr>
+                <th>Quantity</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Details</th>
+            </tr>
+
+            @foreach (Tickettype ticket in Model.Tickettypes)
+            {
+                if (ticket.Name != "3D")
+                {
+                    <tr>
+                        <td><input type="number" asp-for=@ticket.Quantity class="form-control" placeholder="Number of Tickets" min="1" max="10"/></td>
+                        <td>@ticket.Name</td>
+                        <td>@ticket.Price</td>
+                        <td>@ticket.Description</td>
+                    </tr>
+                }
+            }
+        </table>
+        
+        <br/><br/>
+        <h4>Catering Arrangements:</h4>
+        <table>
+                    <tr>
+                        <th>Quantity</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Details</th>
+                    </tr>
+        
+                    @foreach (CateringPackage package in Model.CateringPackages)
+                    {
+                        
+                            <tr>
+                                <td><input type="number" asp-for=@package.Quantity class="form-control" placeholder="Number of Tickets" min="1" max="10"/></td>
+                                <td>@package.Name</td>
+                                <td>@package.Price</td>
+                                <td>@package.Description</td>
+                            </tr>
+                        
+                    }
+                </table>
+
+
+
+        <br/><br/>
+        <button onclick="location.href='@Url.Action("Index", "Seats", new {hallId = Model.Showtime.HallId})'"
+                class="btn btn-primary">Continue to seatmap</button>
+    </div>
+    
+    </dl>
+    <br/>
 </div>
+
+
