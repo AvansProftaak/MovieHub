@@ -3,6 +3,9 @@
 @using Microsoft.AspNetCore.Authentication
 @using MovieHub.Controllers
 @using MovieHub.Migrations
+@using Nager.Date
+
+
 @model MovieHub.ViewModels.OrderViewModel
 
 
@@ -54,6 +57,7 @@
                 var dateNow = DateTime.Now;
                 DayOfWeek day = DateTime.Now.DayOfWeek;
                 var kidsBedTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 18, 0, 0);
+                
                 // TODO:    working on logic for kids discount add pegi rating
                 //          Problem is.... there are pegi ratings in db jet
                 if(((ticket.Name == "Kids") &
@@ -62,7 +66,8 @@
                     
                     ((ticket.Name == "Students") & ((day <= DayOfWeek.Monday) & (day >= DayOfWeek.Thursday))) |
                     
-                    ((ticket.Name == "65+") & ((day <= DayOfWeek.Monday) & (day >= DayOfWeek.Thursday)))
+                    ((ticket.Name == "65+") & ((day <= DayOfWeek.Monday) & (day >= DayOfWeek.Thursday)) &
+                     (!(DateSystem.IsPublicHoliday(dateNow, CountryCode.NL))))
                     )
                 )
                 {
