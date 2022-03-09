@@ -47,20 +47,20 @@ public class HomeController : Controller
     public List<Hall> GetHall()
     {
         return _context.Hall
-            .FromSqlRaw("SELECT * FROM rob.public.\"Hall\"").ToList();
+            .FromSqlRaw("SELECT * FROM public.\"Hall\"").ToList();
     }
     
     public List<Showtime> ShowNext()
     {
         return _context.Showtime!
-                 .FromSqlRaw("SELECT x.* FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\" ORDER BY \"StartAt\") rn FROM rob.public.\"Showtime\" where \"StartAt\" > now()) x JOIN rob.public.\"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"").ToList();
+                 .FromSqlRaw("SELECT x.* FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\" ORDER BY \"StartAt\") rn FROM public.\"Showtime\" where \"StartAt\" > now()) x JOIN public.\"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"").ToList();
     }
 
     public List<Showtime> ShowNow()
     {
         return _context.Showtime!
             .FromSqlRaw(
-                "SELECT x.* FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\" ORDER BY \"StartAt\" DESC ) rn FROM rob.public.\"Showtime\" WHERE \"StartAt\" < now()) x JOIN rob.public.\"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"").ToList();
+                "SELECT x.* FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\" ORDER BY \"StartAt\" DESC ) rn FROM public.\"Showtime\" WHERE \"StartAt\" < now()) x JOIN public.\"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"").ToList();
     }
     
     //
