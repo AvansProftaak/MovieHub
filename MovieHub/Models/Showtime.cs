@@ -1,7 +1,4 @@
-using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-
 namespace MovieHub.Models;
 
 public class Showtime
@@ -13,8 +10,9 @@ public class Showtime
     
     [ForeignKey("HallId")]
     public Hall Hall { get; set; } = null!;
+    
     [ForeignKey("MovieId")]
-    public Movie Movie { get; set; } = null!;
+    public Movie Movie { get; set; }
 
     public Showtime()
     {

@@ -1,4 +1,4 @@
-﻿@model MovieHub.ViewModel.IndexViewModel
+﻿@model MovieHub.ViewModels.IndexViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -91,35 +91,54 @@
                 @*     </div> *@
                 @* </div> *@
                 @* <br/><br/><br/> *@
-
+                
+                @*                 @{ *@
+                @*                     var halls = Model.Halls; *@
+                @* *@
+                @*                     foreach (var hall in halls!) *@
+                @*                     { *@
+                @*                         <div class="row"> *@
+                @*                             <p class="index-hall-title">CINEMA @Html.DisplayFor(m => hall.Id)</p> *@
+                @*                             <p class="index-hall-sm">Now playing: </p> *@
+                @*                             <p class="index-hall-sm" style="  margin-bottom: 1vh;">Next (): <span class="index-hall-lg"></span></p> *@
+                @*                         </div> *@
+                @*                         <hr class="index-hall-hr"/> *@
+                @*                     } *@
+                @*                 } *@
+                
+                
+                
                 @{
                     var halls = Model.Halls;
-
+                    var movies = Model.Movies;
+                
                     foreach (var hall in halls!)
                     {
                         <div class="row">
                             <p class="index-hall-title">CINEMA @Html.DisplayFor(m => hall.Id)</p>
                             @{
-                                var showNow = Model.ShowNow[hall.Id - 1];
-                                var movieNow = showNow.Movie.Title;
-
-                                if (showNow.StartAt.Date != DateTime.Today.Date)
+                                var movieIdNow = Model.ShowNow[hall.Id - 1].MovieId;
+                                var movieNowDate = Model.ShowNow[hall.Id - 1].StartAt.Date;
+                                var movieNowTitle = movies[movieIdNow - 1].Title;
+                                
+                                if (movieNowDate != DateTime.Now.Date)
                                 {
-                                    movieNow = "-";
+                                    movieNowTitle = "-";
                                 }
                             }
-                            <p class="index-hall-sm">Now playing: <span class="index-hall-lg">@Html.DisplayFor(m => movieNow)</span></p>
+                            <p class="index-hall-sm">Now playing: <span class="index-hall-lg">@Html.DisplayFor(m => movieNowTitle)</span></p>
                             @{
-                                var showNext = Model.ShowNext[hall.Id - 1];
-                                var startTime = showNext.StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm") + "h";
-
-                                if (showNext.StartAt.Date != DateTime.Today)
+                                var movieIdNext = Model.ShowNext[hall.Id - 1].MovieId;
+                                var movieNextTitle = movies[movieIdNext - 1].Title;
+                                var movieNextDateTime = Model.ShowNext[hall.Id - 1].StartAt;
+                                var movieNextTime = movieNextDateTime.ToLocalTime().TimeOfDay.ToString(@"hh\:mm") + "h";
+                
+                                if (movieNextDateTime.Date != DateTime.Today)
                                 {
-                                    startTime = "tomorrow, " + startTime;
-
+                                    movieNextTime = "tomorrow, " + movieNextTime;
                                 }
                             }
-                            <p class="index-hall-sm" style="  margin-bottom: 1vh;">Next (@Html.DisplayFor(m => startTime)): <span class="index-hall-lg">@Html.DisplayFor(m => showNext.Movie.Title)</span></p>
+                            <p class="index-hall-sm" style="  margin-bottom: 1vh;">Next (@Html.DisplayFor(m => movieNextTime)): <span class="index-hall-lg">@Html.DisplayFor(m => movieNextTitle)</span></p>
                         </div>
                         <hr class="index-hall-hr"/>
                     }

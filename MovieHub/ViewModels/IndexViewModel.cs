@@ -1,6 +1,6 @@
 using MovieHub.Models;
 
-namespace MovieHub.ViewModel;
+namespace MovieHub.ViewModels;
 
 public class IndexViewModel
 {
@@ -9,7 +9,8 @@ public class IndexViewModel
     public List<Hall>? Halls { get; set; }
     
     public Movie? Movie { get; set; }
-    
+
+    public List<Movie>? Movies { get; set; }
     public IEnumerable<Showtime>? MovieIndex { get; set; }
     public List<Showtime>? ShowNext { get; set; }
     public List<Showtime>? ShowNow { get; set; }
