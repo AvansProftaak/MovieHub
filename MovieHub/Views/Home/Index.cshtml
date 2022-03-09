@@ -1,5 +1,4 @@
-﻿@model IEnumerable<MovieHub.Models.Showtime>
-
+﻿@model MovieHub.ViewModel.IndexViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -12,12 +11,12 @@
     <div class="row">
         <div class="col-8 hide-scrollbar" style="min-height: 100%;">
             <div class="row text-center" style="height: calc(100vh - 250px)">
-                @foreach (var item in Model!)
+                @foreach (var item in Model!.MovieIndex!)
                 {
                     <div class="col-4">
                         <h4 class="movie-title">@Html.DisplayFor(model => item.Movie.Title)</h4>
                         <a href="@Url.Action("Details", "Movies", new {id = item.MovieId})">
-                            <img width="80%" src="@Url.Content(item.Movie.ImageUrl)"/>
+                            <img width="80%" src="@Url.Content(item.Movie.ImageUrl)" alt="MoviePoster"/>
                         </a>
                         <div class="details-container">
                             <hr/>
@@ -82,55 +81,51 @@
                             <hr/>
                         </div>
                         <div class="form-group" style="float:left">
-                                <input type="submit" name="Search" class="btn btn-primary"/>
-                            </div>
+                            <input type="submit" name="Search" class="btn btn-primary"/>
+                        </div>
                     }
                     <div style="float:right">
                         <button onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-primary">Clear List</button>
                     </div>
-                    </div>
-                        <br/><br/><br/>
-                @* Logo is optional *@
-                @* <div class="row"> *@
-                @*     <img class="index-hall-logo" src="@Url.Content("~/img/moviehub_wide.jpg")" alt="MovieHub Logo"> *@
-                @* </div> *@
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 1</p>
-                    <p class="index-hall-now">Now playing:</p>
-                    <p class="index-hall-next">Next show:</p>
                 </div>
-                <hr class="index-hall-hr"/>
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 2</p>
-                    <p class="index-hall-now">Now playing:</p>
-                    <p class="index-hall-next">Next show:</p>
-                </div>
-                <hr class="index-hall-hr"/>
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 3</p>
-                    <p class="index-hall-now">Now playing:</p>
-                    <p class="index-hall-next">Next show:</p>
-                </div>
-                <hr class="index-hall-hr"/>
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 4</p>
-                    <p class="index-hall-now">Now playing:</p>
-                    <p class="index-hall-next">Next show:</p>
-                </div>
-                <hr class="index-hall-hr"/>
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 5</p>
-                    <p class="index-hall-now">Now playing:</p>
-                    <p class="index-hall-next">Next show:</p>
-                </div>
-                <hr class="index-hall-hr"/>
-                <div class="row">
-                    <p class="index-hall-title">CINEMA 6</p>
-                    <p class="index-hall-now">Now playing:</p>
-                    <p class="index-hall-next">Next show:</p>
-                </div>
-                <hr class="index-hall-hr"/>
+                
+                <br/><br/><br/>
+                
+                @{
+                    var halls = Model.Halls;
+
+                    foreach (var hall in halls!)
+                    {
+                        <div class="row">
+                            <p class="index-hall-title">CINEMA @Html.DisplayFor(m => hall.Id)</p>
+                            @{
+                                var showNow = Model.ShowNow[hall.Id - 1];
+                                var movieNow = showNow.Movie.Title + "h";
+
+                                if (showNow.StartAt != DateTime.Today)
+                                {
+                                    movieNow = "-";
+                                }
+                            }
+                            <p class="index-hall-sm">Now playing: <span class="index-hall-lg">@Html.DisplayFor(m => movieNow)</span></p>
+                            @{
+                                var showNext = Model.ShowNext[hall.Id - 1];
+                                var startTime = showNext.StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm") + "h";
+
+                                if (showNext.StartAt.Date != DateTime.Today)
+                                {
+                                    startTime = "tomorrow, " + startTime;
+
+                                }
+                            }
+                            <p class="index-hall-sm">Next (@Html.DisplayFor(m => startTime)): <span class="index-hall-lg">@Html.DisplayFor(m => showNext.Movie.Title)</span></p>
+                        </div>
+                        <hr class="index-hall-hr"/>
+                    }
+                }
             </div>
         </div>
     </div>
-</div>
+</div>  
+
+

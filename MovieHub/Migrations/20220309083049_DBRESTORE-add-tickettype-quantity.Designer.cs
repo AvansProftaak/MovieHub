@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieHub.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MovieHub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220309083049_DBRESTORE-add-tickettype-quantity")]
+    partial class DBRESTOREaddtickettypequantity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,6 +232,9 @@ namespace MovieHub.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
@@ -240,9 +245,6 @@ namespace MovieHub.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -748,7 +750,12 @@ namespace MovieHub.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("TickettypeId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TickettypeId");
 
                     b.ToTable("Tickettype");
                 });
@@ -1044,6 +1051,13 @@ namespace MovieHub.Migrations
                     b.Navigation("Tickettype");
                 });
 
+            modelBuilder.Entity("MovieHub.Models.Tickettype", b =>
+                {
+                    b.HasOne("MovieHub.Models.Tickettype", null)
+                        .WithMany("Tickettypes")
+                        .HasForeignKey("TickettypeId");
+                });
+
             modelBuilder.Entity("MovieHub.Models.Cinema", b =>
                 {
                     b.Navigation("CinemaMovies");
@@ -1068,6 +1082,11 @@ namespace MovieHub.Migrations
             modelBuilder.Entity("MovieHub.Models.Pegi", b =>
                 {
                     b.Navigation("MoviePegis");
+                });
+
+            modelBuilder.Entity("MovieHub.Models.Tickettype", b =>
+                {
+                    b.Navigation("Tickettypes");
                 });
 #pragma warning restore 612, 618
         }
