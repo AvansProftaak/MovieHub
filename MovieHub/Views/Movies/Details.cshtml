@@ -24,8 +24,11 @@
                var test =  item.Genre.GenreEnum + " | ";
                @Html.DisplayFor(model => test)
            }
-             @Html.DisplayFor(movie => Model.MoviePegis)
-                       
+           
+           @foreach (var item in Model!.MoviePegis!)
+           {
+               @Html.DisplayFor(model => item.Pegi!.Icon)
+           }
         
         <div style="display: block; float: right">
             <img src="@Url.Content("~/img/dolby-surround-2-logo-svg-vector_white.svg")" style="width:125px; padding-bottom: 10px" alt="Dolby Logo">
