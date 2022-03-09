@@ -34,6 +34,10 @@ p {
   background-color: #000000;
 }
 
+a{
+color: #F8A613;
+}
+
 .btn-primary {
   color: #FFFFFF;
   background-color:#000000;
@@ -69,9 +73,8 @@ p {
 }
 
 .index-hall-hr {
-  color: #F8A613;
-  opacity: .405;
-  width: 70%;
+  color: inherit;
+  width: 60%;
   margin: auto;
 }
 
@@ -81,13 +84,23 @@ p {
   font-family: 'Poiret One', cursive;
 }
 
-.index-hall-now{
+.index-hall-lg{
   font-size: 1.8vh;
+  color: #FFFFFF;
 }
 
-.index-hall-next{
+.index-hall-sm-white{
   font-size: 1.4vh;
-  margin-bottom: 1vh;
+  color: white;
+}
+
+.index-hall-sm{
+  font-size: 1.4vh;
+  color: lightgrey;
+}
+
+.moviedetails {
+  padding: 50px;
 }
 
 .available {

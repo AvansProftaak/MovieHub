@@ -21,9 +21,9 @@ namespace MovieHub.Controllers
         }
 
         // GET: Seats
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int hallId)
         {
-            var applicationDbContext = _context.Seat.Where(s => s.HallId == 1).Include(s => s.Hall);
+            var applicationDbContext = _context.Seat.Where(s => s.HallId == hallId).Include(s => s.Hall);
             return View(await applicationDbContext.ToListAsync());
         }
     }
