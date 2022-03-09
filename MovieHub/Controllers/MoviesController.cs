@@ -1,13 +1,10 @@
 #nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
+using MovieHub.ViewModel;
 
 namespace MovieHub.Controllers
 {
@@ -23,7 +20,7 @@ namespace MovieHub.Controllers
         // GET: Movies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movie.ToListAsync());
+           return View(await _context.Movie.ToListAsync());
         }
 
         // GET: Movies/Details/5
@@ -34,14 +31,18 @@ namespace MovieHub.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (movie == null)
+            MovieViewModel movieViewModel = new MovieViewModel()
             {
-                return NotFound();
-            }
-
-            return View(movie);
+                Movie = await _context.Movie
+                    .Include(m => m.MovieGenres)
+                    .Include(m => m.MoviePegis)
+                    .FirstOrDefaultAsync(m => m.Id == id),
+            };
+            // if (Movie == null)
+            //     {
+            //     return NotFound();
+            //     };
+            return View(movieViewModel);
         }
 
         // GET: Movies/Create
@@ -53,9 +54,10 @@ namespace MovieHub.Controllers
         // POST: Movies/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +67,22 @@ namespace MovieHub.Controllers
             }
             return View(movie);
         }
+        //
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> Create(MovieViewModel movieViewModel)
+        // {
+        //     if (ModelState.IsValid)
+        //     {
+        //         _context.Add(movieViewModel);
+        //         await _context.SaveChangesAsync();
+        //         return RedirectToAction(nameof(Index));
+        //     }
+        //     return View();
+        // }
+        //
+        
+        
 
         // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)

@@ -12,15 +12,15 @@ public class Order
     public StatusEnum Status { get; set; }
     
     [DisplayName( "User")] 
-    public int ShowtimeId { get; set; }
-    [ForeignKey("UserId")]
-    public virtual Showtime Showtime { get; set; } = null!;
-
-    [DisplayName( "Showtime")] 
     public int UserId { get; set; }
-    [ForeignKey("ShowtimeId")]
+    [ForeignKey("UserId")]
     public virtual User User { get; set; } = null!;
 
+    [DisplayName( "Showtime")] 
+    public int ShowtimeId { get; set; }
+    [ForeignKey("ShowtimeId")]
+    public virtual Showtime Showtime { get; set; } = null!;
+    
     [DisplayName( "CateringPackage")] 
     public int CateringPackageId { get; set; }
     [ForeignKey("CateringPackageId")]
