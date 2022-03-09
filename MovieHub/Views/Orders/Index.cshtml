@@ -3,6 +3,9 @@
 @using Microsoft.AspNetCore.Authentication
 @using MovieHub.Controllers
 @using MovieHub.Migrations
+@using Nager.Date
+
+
 @model MovieHub.ViewModels.OrderViewModel
 
 
@@ -51,7 +54,28 @@
 
             @foreach (Tickettype ticket in Model.Tickettypes)
             {
-                if (ticket.Name != "3D")
+                var dateNow = DateTime.Now;
+                DayOfWeek day = DateTime.Now.DayOfWeek;
+                var kidsBedTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 18, 0, 0);
+                
+                // TODO:    working on logic for kids discount add pegi rating
+                //          Problem is.... there are pegi ratings in db jet
+                if(((ticket.Name == "Kids") &
+                    (((Model.Showtime.StartAt > kidsBedTime) |
+                      Model.Movie.Language != "Dutch")) |
+                    
+                    ((ticket.Name == "Students") & (!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday)) |
+                    
+                    ((((ticket.Name == "65+") & ((!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday)) |
+                     ((DateSystem.IsPublicHoliday(dateNow, CountryCode.NL))))))))
+                    )
+                )
+                {
+                    Console.WriteLine(ticket.Name + "Should be excluded");
+                    continue;
+                }
+                
+                if ((ticket.Name != "3D") )
                 {
                     <tr>
                         <td><input type="number" asp-for=@ticket.Quantity class="form-control" placeholder="Number of Tickets" min="1" max="10"/></td>

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using MovieHub.Data;
 using MovieHub.Models;
 using MovieHub.ViewModel;
+using MovieHub.ViewModels;
 using Npgsql;
 
 namespace MovieHub.Controllers;
@@ -27,7 +28,8 @@ public class HomeController : Controller
         IndexViewModel indexViewModel = new IndexViewModel();
         
         indexViewModel.MovieIndex = MovieIndex();
-        indexViewModel.Halls = GetHall();
+        indexViewModel.Halls = GetHalls();
+        indexViewModel.Movies = GetMovies();
         indexViewModel.ShowNext = ShowNext();
         indexViewModel.ShowNow = ShowNow();
 
@@ -44,10 +46,16 @@ public class HomeController : Controller
             .OrderBy(s => s.StartAt);
     }
 
-    public List<Hall> GetHall()
+    public List<Hall> GetHalls()
     {
         return _context.Hall
-            .FromSqlRaw("SELECT * FROM public.\"Hall\"").ToList();
+            .FromSqlRaw("SELECT * FROM public.\"Hall\" ORDER BY \"Id\"").ToList();
+    }
+    
+    public List<Movie> GetMovies()
+    {
+        return _context.Movie
+            .FromSqlRaw("SELECT * FROM public.\"Movie\" ORDER BY \"Id\"").ToList();
     }
     
     public List<Showtime> ShowNext()
