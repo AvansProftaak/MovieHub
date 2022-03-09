@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using MovieHub.Data;
 using MovieHub.Models;
 using MovieHub.ViewModel;
+using MovieHub.ViewModels;
 using Npgsql;
 
 namespace MovieHub.Controllers;
@@ -27,7 +28,8 @@ public class HomeController : Controller
         IndexViewModel indexViewModel = new IndexViewModel();
         
         indexViewModel.MovieIndex = MovieIndex();
-        indexViewModel.Halls = GetHall();
+        indexViewModel.Halls = GetHalls();
+        indexViewModel.Movies = GetMovies();
         indexViewModel.ShowNext = ShowNext();
         indexViewModel.ShowNow = ShowNow();
 
@@ -44,10 +46,16 @@ public class HomeController : Controller
             .OrderBy(s => s.StartAt);
     }
 
-    public List<Hall> GetHall()
+    public List<Hall> GetHalls()
     {
         return _context.Hall
-            .FromSqlRaw("SELECT * FROM public.\"Hall\"").ToList();
+            .FromSqlRaw("SELECT * FROM public.\"Hall\" ORDER BY \"Id\"").ToList();
+    }
+    
+    public List<Movie> GetMovies()
+    {
+        return _context.Movie
+            .FromSqlRaw("SELECT * FROM public.\"Movie\" ORDER BY \"Id\"").ToList();
     }
     
     public List<Showtime> ShowNext()
@@ -63,24 +71,16 @@ public class HomeController : Controller
                 "SELECT x.* FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\" ORDER BY \"StartAt\" DESC ) rn FROM public.\"Showtime\" WHERE \"StartAt\" < now()) x JOIN public.\"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"").ToList();
     }
     
-    //
-    // public IEnumerable<Showtime> MovieNow(int hallId)
-    // {
-    //     return _context.Showtime
-    //         .FromSqlRaw(
-    //             "SELECT x.* FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\" ORDER BY \"StartAt\") rn FROM rob.public.\"Showtime\" where \"HallId\" = {0} and \"StartAt\" > now()) x JOIN rob.public.\"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"",
-    //             hallId);
-    // }
     
-    public async Task<IActionResult> SearchForMovie(string searchPhrase)
-    {
-        var applicationDbContext = _context.Showtime.Where(s => 
-                s.StartAt.Date.Equals(DateTime.Today)).Where(s => 
-                s.StartAt.ToLocalTime() > DateTime.Now).Include(s => s.Hall)
-            .Include(s => s.Movie).Where(s=>s.Movie.Title.Contains(searchPhrase)).OrderBy(s => s.StartAt);
-
-        return View("Index", applicationDbContext.ToList());
-    }
+    // public async Task<IActionResult> SearchForMovie(string searchPhrase)
+    // {
+    //     var applicationDbContext = _context.Showtime.Where(s => 
+    //             s.StartAt.Date.Equals(DateTime.Today)).Where(s => 
+    //             s.StartAt.ToLocalTime() > DateTime.Now).Include(s => s.Hall)
+    //         .Include(s => s.Movie).Where(s=>s.Movie.Title.Contains(searchPhrase)).OrderBy(s => s.StartAt);
+    //
+    //     return View("Index", applicationDbContext.ToList());
+    // }
     
     public IActionResult Privacy()
     {
