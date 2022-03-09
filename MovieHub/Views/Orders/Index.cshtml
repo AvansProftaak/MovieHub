@@ -64,10 +64,10 @@
                     (((Model.Showtime.StartAt > kidsBedTime) |
                       Model.Movie.Language != "Dutch")) |
                     
-                    ((ticket.Name == "Students") & ((day <= DayOfWeek.Monday) & (day >= DayOfWeek.Thursday))) |
+                    ((ticket.Name == "Students") & (!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday)) |
                     
-                    ((ticket.Name == "65+") & ((day <= DayOfWeek.Monday) & (day >= DayOfWeek.Thursday)) &
-                     (!(DateSystem.IsPublicHoliday(dateNow, CountryCode.NL))))
+                    ((((ticket.Name == "65+") & ((!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday)) |
+                     ((DateSystem.IsPublicHoliday(dateNow, CountryCode.NL))))))))
                     )
                 )
                 {
