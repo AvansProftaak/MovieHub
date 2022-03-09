@@ -14,23 +14,24 @@
         <div>
             <h1 style="display: inline-flex;">@Html.DisplayFor(model => model.Title)</h1>
             <div style="display: inline-flex; float: right">
-                <img src="@Url.Content("~/img/IMDB_Logo_2016.svg")" style="width:50px"  alt="IMDB Logo">
+                <img src="@Url.Content("~/img/IMDB_Logo_2016.svg")" style="width:60px; padding-right: 10px"  alt="IMDB Logo">
                 <h4> @Html.DisplayFor(model => model.ImdbScore) / 10</h4>
             </div>
         </div>
-        <div>
+        <div class="flex-container">
            @foreach (var item in Model!.MovieGenres!)
            {
-               @Html.DisplayFor(model => item.Genre.GenreEnum)<br/>
+               var test =  item.Genre.GenreEnum + " | ";
+               @Html.DisplayFor(model => test)
            }
              @Html.DisplayFor(movie => Model.MoviePegis)
                        
         
         <div style="display: block; float: right">
-            <img src="@Url.Content("~/img/dolby-surround-2-logo-svg-vector_white.svg")" style="width:125px" alt="Dolby Logo">
+            <img src="@Url.Content("~/img/dolby-surround-2-logo-svg-vector_white.svg")" style="width:125px; padding-bottom: 10px" alt="Dolby Logo">
             @if (Model.Is3D)
             {
-                <img src="@Url.Content("~/img/3d-movie-white.png")" style="width:60px" alt="3D Logo">}
+                <img src="@Url.Content("~/img/3d-movie-white.png")" style="width:70px; padding-left: 10px; padding-bottom: 10px" alt="3D Logo">}
         </div>
         </div>
         <hr/>
