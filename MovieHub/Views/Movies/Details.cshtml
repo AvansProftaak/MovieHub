@@ -1,5 +1,5 @@
 @using MovieHub.Migrations
-@model MovieHub.ViewModel.MovieViewModel
+@model MovieHub.Models.Movie
 
 @{
     ViewData["Title"] = "Details";
@@ -7,66 +7,68 @@
 }
 <div class="moviedetails">
 <div style="float: left">
-<img src="@Html.DisplayFor(model => model.Movie.ImageUrl)" alt="Movieposter" style="width:500px" height="auto">
+<img src="@Html.DisplayFor(model => model.ImageUrl)" alt="Movieposter" style="width:500px" height="auto">
 </div>
 
     <dl class="row">
         <div>
-            <h1 style="display: inline-flex;">@Html.DisplayFor(model => model.Movie.Title)</h1>
+            <h1 style="display: inline-flex;">@Html.DisplayFor(model => model.Title)</h1>
             <div style="display: inline-flex; float: right">
                 <img src="@Url.Content("~/img/IMDB_Logo_2016.svg")" style="width:50px"  alt="IMDB Logo">
-                <h4> @Html.DisplayFor(model => model.Movie.ImdbScore) / 10</h4>
+                <h4> @Html.DisplayFor(model => model.ImdbScore) / 10</h4>
             </div>
         </div>
         <div>
-           
-            @Html.DisplayFor(movie => Model.MovieGenres)<br/>
+           @foreach (var item in Model!.MovieGenres!)
+           {
+               @Html.DisplayFor(model => item.Genre.GenreEnum)<br/>
+           }
              @Html.DisplayFor(movie => Model.MoviePegis)
                        
         
         <div style="display: block; float: right">
             <img src="@Url.Content("~/img/dolby-surround-2-logo-svg-vector_white.svg")" style="width:125px" alt="Dolby Logo">
-            @if (Model.Movie.Is3D)
+            @if (Model.Is3D)
             {
                 <img src="@Url.Content("~/img/3d-movie-white.png")" style="width:60px" alt="3D Logo">}
         </div>
         </div>
         <hr/>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.Description)
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Movie.Description)
+            @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.Duration)
+            @Html.DisplayNameFor(model => model.Duration)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Movie.Duration) minuten
+            @Html.DisplayFor(model => model.Duration) minuten
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.Cast)
+            @Html.DisplayNameFor(model => model.Cast)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Movie.Cast)
+            @Html.DisplayFor(model => model.Cast)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.Director)
+            @Html.DisplayNameFor(model => model.Director)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Movie.Director)
+            @Html.DisplayFor(model => model.Director)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.ReleaseDate)
+            @Html.DisplayNameFor(model => model.ReleaseDate)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Movie.ReleaseDate)
+            @Html.DisplayFor(model => model.ReleaseDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.Language)
+            @Html.DisplayNameFor(model => model.Language)
         </dt>
     <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Movie.Language)
+        @Html.DisplayFor(model => model.Language)
     </dd>
          <div>
              <hr/>
