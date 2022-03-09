@@ -1,6 +1,6 @@
 using MovieHub.Models;
 
-namespace MovieHub.ViewModel;
+namespace MovieHub.ViewModels;
 
 public class MovieViewModel
 {

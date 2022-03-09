@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
-using MovieHub.ViewModel;
+using MovieHub.ViewModels;
 
 namespace MovieHub.Controllers
 {
