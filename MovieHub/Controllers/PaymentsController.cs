@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
+using MovieHub.ViewModels;
 using Syncfusion.HtmlConverter;
 using Syncfusion.Pdf;
 
@@ -16,7 +17,7 @@ public class PaymentsController : Controller
         _context = context;
     }
 
-    public IActionResult ReceiveTicket()
+    public IActionResult ReceiveTicket(OrderViewModel orderViewModel)
     {
         // TODO: Receive information about the payment
         
@@ -90,11 +91,12 @@ public class PaymentsController : Controller
         return File(fileBytes, "application/pdf", "ticket.pdf");
     }
 
-    public async Task<IActionResult> Index(int orderId)
+    public async Task<IActionResult> Index(int orderId, OrderViewModel orderViewModel)
     {
         var payment = await _context.Payment
             .FirstOrDefaultAsync(p => p.OrderId == orderId);
-        return View(payment);
+        orderViewModel.Payment = payment;
+        return View(orderViewModel);
     }
 
     public async Task<string> getPaymentStatusCode(int orderId)

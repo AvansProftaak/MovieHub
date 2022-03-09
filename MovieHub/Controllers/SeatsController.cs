@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
+using MovieHub.ViewModels;
 
 namespace MovieHub.Controllers
 {
@@ -21,10 +22,11 @@ namespace MovieHub.Controllers
         }
 
         // GET: Seats
-        public async Task<IActionResult> Index(int hallId)
+        public async Task<IActionResult> Index(int hallId, OrderViewModel orderViewModel)
         {
             var applicationDbContext = _context.Seat.Where(s => s.HallId == hallId).Include(s => s.Hall);
-            return View(await applicationDbContext.ToListAsync());
+            orderViewModel.Seats = await applicationDbContext.ToListAsync();
+            return View(orderViewModel);
         }
     }
 }

@@ -113,7 +113,7 @@
 
 
         <br/><br/>
-        <button onclick="location.href='@Url.Action("Index", "Seats", new {hallId = Model.Showtime.HallId})'"
+        <button onclick="location.href='@Url.Action("Index", "Seats", new {hallId = Model.Showtime.HallId, @Model})'"
                 class="btn btn-primary">Continue to seatmap</button>
     </div>
     

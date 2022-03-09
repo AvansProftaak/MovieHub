@@ -1,4 +1,4 @@
-﻿@model MovieHub.Models.Payment
+﻿@model MovieHub.ViewModels.OrderViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -7,10 +7,10 @@
 @section Scripts
 {
     <script type="text/javascript">
-        var status = '@Model.Status';
+        var status = '@Model.Payment.Status';
         setInterval(function(){
              $.ajax({
-                url: '@Url.Action("getPaymentStatusCode", "Payments", new { orderId = @Model.OrderId})',
+                url: '@Url.Action("getPaymentStatusCode", "Payments", new { orderId = @Model.Payment.OrderId})',
                 contentType: "text/plain; charset=utf-8",
                 dataType: "text",
                 success: function(data){
@@ -28,30 +28,30 @@
     </script>
 }
 <div class="container-fluid">
-        @if (@Model.Status == StatusEnum.Open)
+    @if (@Model.Payment.Status == StatusEnum.Open)
         {
             <div class="row">
                 <div class="col-5 offset-md-4 text-center">
-                    <h2>Please follow the instructions on the terminal</h2>
+                    <h1>Please follow the instructions on the terminal</h1>
                     <img id="loading" src="@Url.Content("~/img/loading-buffering.gif")" width="8%" alt="Loading ..."/>
                 </div>
             </div>
         }
-        @if (@Model.Status == StatusEnum.Pending)
+        @if (@Model.Payment.Status == StatusEnum.Pending)
         {
             <div class="row">
                 <div class="col-5 offset-md-4 text-center">
-                    <h2>Processing payment...</h2>
+                    <h1>Processing payment...</h1>
                     <img id="loading" src="@Url.Content("~/img/loading-buffering.gif")" width="8%" alt="Loading ..."/>
                 </div>
             </div>
         }
-        @if (@Model.Status == StatusEnum.Paid)
+        @if (@Model.Payment.Status == StatusEnum.Paid)
         {
             <div class="row text-center">
                 <div class="col-5 offset-md-4">
-                    <h2>Payment successful!</h2>
-                    <button onclick="location.href='@Url.Action("ReceiveTicket", "Payments")'" class="btn btn-primary btn-sizing">Proceed</button>
+                    <h1>Payment successful!</h1>
+                    <button onclick="location.href='@Url.Action("ReceiveTicket", "Payments", @Model)'" class="btn btn-primary btn-sizing">Receive Ticket</button>
                 </div>
             </div>
         }
