@@ -4,6 +4,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @section Scripts
 {
     <script type="text/javascript">
@@ -27,7 +28,7 @@
         }
     </script>
 }
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 120px">
     @if (@Model.Payment.Status == StatusEnum.Open)
         {
             <div class="row">
@@ -56,3 +57,4 @@
             </div>
         }
 </div>
+
