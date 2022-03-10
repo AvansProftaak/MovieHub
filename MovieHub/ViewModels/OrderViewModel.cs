@@ -9,5 +9,7 @@ public class OrderViewModel
     public List<Tickettype>? Tickettypes { get; set; }
     public List<CateringPackage>? CateringPackages { get; set; }
     public Movie? Movie { get; set; }
+    public IEnumerable<Seat>? Seats { get; set; }
+    public Payment? Payment { get; set; }
     
 }
