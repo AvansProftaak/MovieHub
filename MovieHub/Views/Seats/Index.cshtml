@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 120px">
     <h1>Select your seat</h1>
     @foreach (var row in Model.GroupBy(r => r.RowNumber))
     {
