@@ -7,9 +7,7 @@ namespace MovieHub.Models;
 public class Order
 {
     public int Id { get; set; }
-    public double TotalPrice { get; set; }
-    public DateTime PaidAt { get; set; }
-    public StatusEnum Status { get; set; }
+    public Decimal TotalPrice { get; set; }
     
     [DisplayName( "User")] 
     public int UserId { get; set; }
@@ -20,11 +18,7 @@ public class Order
     public int ShowtimeId { get; set; }
     [ForeignKey("ShowtimeId")]
     public virtual Showtime Showtime { get; set; } = null!;
-    
-    [DisplayName( "CateringPackage")] 
-    public int CateringPackageId { get; set; }
-    [ForeignKey("CateringPackageId")]
-    public virtual CateringPackage CateringPackage { get; set; } = null!;
+
 
     public Order()
     {
