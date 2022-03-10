@@ -34,6 +34,8 @@ namespace MovieHub.Controllers
             var movie = await _context.Movie
                 .Include(m => m.MovieGenres)
                 .ThenInclude(mg => mg.Genre)
+                .Include(m => m.MoviePegis)
+                .ThenInclude(mg => mg.Pegi)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
                 {
