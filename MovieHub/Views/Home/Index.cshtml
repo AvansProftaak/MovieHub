@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 120px">
     
     <div class="row ">
         <div class="col-12 text-center bg-black">
@@ -10,8 +10,8 @@
     </div>
 
     <div class="row">
-        <div class="col-8 hide-scrollbar" style="min-height: 100%;">
-            <div class="row text-center" style="height: calc(100vh - 250px)">
+        <div class="col-8 hide-scrollbar">
+            <div class="row text-center">
                 @foreach (var item in Model!.MovieIndex!)
                 {
                     <div class="col-4">
@@ -73,8 +73,7 @@
         </div>
         <div class="col-4">
             <div class="text-center index-hall-overview">
-
-
+                
                 @* <div class="form-group"> *@
                 @*     @using (Html.BeginForm("SearchForMovie", "Home")) *@
                 @*     { *@
@@ -92,22 +91,6 @@
                 @* </div> *@
                 @* <br/><br/><br/> *@
                 
-                @*                 @{ *@
-                @*                     var halls = Model.Halls; *@
-                @* *@
-                @*                     foreach (var hall in halls!) *@
-                @*                     { *@
-                @*                         <div class="row"> *@
-                @*                             <p class="index-hall-title">CINEMA @Html.DisplayFor(m => hall.Id)</p> *@
-                @*                             <p class="index-hall-sm">Now playing: </p> *@
-                @*                             <p class="index-hall-sm" style="  margin-bottom: 1vh;">Next (): <span class="index-hall-lg"></span></p> *@
-                @*                         </div> *@
-                @*                         <hr class="index-hall-hr"/> *@
-                @*                     } *@
-                @*                 } *@
-                
-                
-                
                 @{
                     var halls = Model.Halls;
                     var movies = Model.Movies;
@@ -117,9 +100,9 @@
                         <div class="row">
                             <p class="index-hall-title">CINEMA @Html.DisplayFor(m => hall.Id)</p>
                             @{
-                                var movieIdNow = Model.ShowNow[hall.Id - 1].MovieId;
+                                var movieIdNow = Model.ShowNow![hall.Id - 1].MovieId;
                                 var movieNowDate = Model.ShowNow[hall.Id - 1].StartAt.Date;
-                                var movieNowTitle = movies[movieIdNow - 1].Title;
+                                var movieNowTitle = movies![movieIdNow - 1].Title;
                                 
                                 if (movieNowDate != DateTime.Now.Date)
                                 {
@@ -128,7 +111,7 @@
                             }
                             <p class="index-hall-sm">Now playing: <span class="index-hall-lg">@Html.DisplayFor(m => movieNowTitle)</span></p>
                             @{
-                                var movieIdNext = Model.ShowNext[hall.Id - 1].MovieId;
+                                var movieIdNext = Model.ShowNext![hall.Id - 1].MovieId;
                                 var movieNextTitle = movies[movieIdNext - 1].Title;
                                 var movieNextDateTime = Model.ShowNext[hall.Id - 1].StartAt;
                                 var movieNextTime = movieNextDateTime.ToLocalTime().TimeOfDay.ToString(@"hh\:mm") + "h";

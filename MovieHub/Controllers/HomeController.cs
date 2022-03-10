@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.Extensions.Logging;
 using MovieHub.Data;
 using MovieHub.Models;
-using MovieHub.ViewModel;
 using MovieHub.ViewModels;
+
 using Npgsql;
 
 namespace MovieHub.Controllers;
@@ -23,11 +23,12 @@ public class HomeController : Controller
         _context = context;
     }
 
-    public async Task<ActionResult<IndexViewModel>> Index()
+    public async Task<ActionResult<IndexViewModel>> Index(string searchPhrase)
     {
         IndexViewModel indexViewModel = new IndexViewModel();
         
         indexViewModel.MovieIndex = MovieIndex();
+        // indexViewModel.SearchForMovie = SearchForMovie (searchPhrase);
         indexViewModel.Halls = GetHalls();
         indexViewModel.Movies = GetMovies();
         indexViewModel.ShowNext = ShowNext();
@@ -45,7 +46,16 @@ public class HomeController : Controller
             .Include(s => s.Movie)
             .OrderBy(s => s.StartAt);
     }
-
+    // public IOrderedQueryable<Showtime> SearchForMovie(string searchPhrase)
+    // {
+    //     return _context.Showtime
+    //         .Where(s => s.StartAt.Date.Equals(DateTime.Today))
+    //         .Where(s => s.StartAt.ToLocalTime() > DateTime.Now)
+    //         .Include(s => s.Hall)
+    //         .Include(s => s.Movie)
+    //         .Where(s=>s.Movie.Title.Contains(searchPhrase))
+    //         .OrderBy(s => s.StartAt);
+    // } 
     public List<Hall> GetHalls()
     {
         return _context.Hall
@@ -71,16 +81,6 @@ public class HomeController : Controller
                 "SELECT x.* FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\" ORDER BY \"StartAt\" DESC ) rn FROM public.\"Showtime\" WHERE \"StartAt\" < now()) x JOIN public.\"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"").ToList();
     }
     
-    
-    // public async Task<IActionResult> SearchForMovie(string searchPhrase)
-    // {
-    //     var applicationDbContext = _context.Showtime.Where(s => 
-    //             s.StartAt.Date.Equals(DateTime.Today)).Where(s => 
-    //             s.StartAt.ToLocalTime() > DateTime.Now).Include(s => s.Hall)
-    //         .Include(s => s.Movie).Where(s=>s.Movie.Title.Contains(searchPhrase)).OrderBy(s => s.StartAt);
-    //
-    //     return View("Index", applicationDbContext.ToList());
-    // }
     
     public IActionResult Privacy()
     {

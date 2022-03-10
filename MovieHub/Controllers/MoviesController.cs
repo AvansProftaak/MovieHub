@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
-using MovieHub.ViewModel;
+using MovieHub.ViewModels;
 
 namespace MovieHub.Controllers
 {
@@ -30,19 +30,18 @@ namespace MovieHub.Controllers
             {
                 return NotFound();
             }
-
-            MovieViewModel movieViewModel = new MovieViewModel()
-            {
-                Movie = await _context.Movie
-                    .Include(m => m.MovieGenres)
-                    .Include(m => m.MoviePegis)
-                    .FirstOrDefaultAsync(m => m.Id == id),
-            };
-            // if (Movie == null)
-            //     {
-            //     return NotFound();
-            //     };
-            return View(movieViewModel);
+            
+            var movie = await _context.Movie
+                .Include(m => m.MovieGenres)
+                .ThenInclude(mg => mg.Genre)
+                .Include(m => m.MoviePegis)
+                .ThenInclude(mg => mg.Pegi)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (movie == null)
+                {
+                return NotFound();
+                };
+            return View(movie);
         }
 
         // GET: Movies/Create

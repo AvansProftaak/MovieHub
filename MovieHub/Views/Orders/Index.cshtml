@@ -14,7 +14,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 120px">
     <dl class="row">
         <div class="col-4">
         <img src="@Url.Content(@Model.Movie.ImageUrl)" alt="test" width="80%"/>
@@ -113,7 +113,7 @@
 
 
         <br/><br/>
-        <button onclick="location.href='@Url.Action("Index", "Seats", new {hallId = Model.Showtime.HallId})'"
+        <button onclick="location.href='@Url.Action("Index", "Seats", new {hallId = Model.Showtime.HallId, @Model})'"
                 class="btn btn-primary">Continue to seatmap</button>
     </div>
     
