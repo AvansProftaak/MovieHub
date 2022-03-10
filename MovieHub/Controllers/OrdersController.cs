@@ -66,4 +66,14 @@ public class OrdersController : Controller
             .Where(m => m.Id.Equals(id)).ToList().FirstOrDefault();
     }
 
+    /*public Order? PlaceOrder()
+    {
+        // here we need to create the tickets - > will be done in ticketController
+        // the ticket controller wil bu used to save tickets and arangement tickets
+        // put the tickets in order and return order
+        
+        
+        return "Order Placed";
+    }*/
+
 }
