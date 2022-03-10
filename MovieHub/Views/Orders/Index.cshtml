@@ -57,6 +57,8 @@
                 var dateNow = DateTime.Now;
                 DayOfWeek day = DateTime.Now.DayOfWeek;
                 var kidsBedTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 18, 0, 0);
+                IList<MoviePegi> pegi = Model.Movie.MoviePegis;
+                Console.WriteLine(pegi);
                 
                 // TODO:    working on logic for kids discount add pegi rating
                 //          Problem is.... there are pegi ratings in db jet
