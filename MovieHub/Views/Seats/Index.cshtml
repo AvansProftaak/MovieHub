@@ -1,4 +1,4 @@
-@model IEnumerable<MovieHub.Models.Seat>
+@model MovieHub.ViewModels.OrderViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -7,7 +7,7 @@
 
 <div class="container-fluid" style="margin-top: 120px">
     <h1>Select your seat</h1>
-    @foreach (var row in Model.GroupBy(r => r.RowNumber))
+    @foreach (var row in Model.Seats.GroupBy(r => r.RowNumber))
     {
         var rowList = row.ToList();
 
@@ -31,6 +31,6 @@
     }
     <br />
     <br />
-    <button onclick="location.href='@Url.Action("Index", "Payments")'"
+    <button onclick="location.href='@Url.Action("Index", "Payments", new {orderId = 2, Model})'"
             class="btn btn-primary">Continue to payment</button>
 </div>

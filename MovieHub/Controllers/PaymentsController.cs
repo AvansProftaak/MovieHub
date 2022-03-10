@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MovieHub.Data;
+using MovieHub.ViewModels;
 using Syncfusion.HtmlConverter;
 using Syncfusion.Pdf;
 
@@ -7,18 +10,14 @@ namespace MovieHub.Controllers;
 public class PaymentsController : Controller
 {
     private readonly IWebHostEnvironment _hostEnvironment;
-    public PaymentsController(IWebHostEnvironment hostEnvironment)
+    private readonly ApplicationDbContext _context;
+    public PaymentsController(IWebHostEnvironment hostEnvironment, ApplicationDbContext context)
     {
         _hostEnvironment= hostEnvironment;
+        _context = context;
     }
-    
-    // GET
-    // public IActionResult Index()
-    // {
-    //     return View();
-    // }
 
-    public IActionResult Index()
+    public IActionResult ReceiveTicket(OrderViewModel orderViewModel)
     {
         // TODO: Receive information about the payment
         
@@ -91,5 +90,27 @@ public class PaymentsController : Controller
         //Return Pdf for download
         return File(fileBytes, "application/pdf", "ticket.pdf");
     }
-    
+
+    public async Task<IActionResult> Index(int orderId, OrderViewModel orderViewModel)
+    {
+        var payment = await _context.Payment
+            .FirstOrDefaultAsync(p => p.OrderId == orderId);
+        orderViewModel.Payment = payment;
+        return View(orderViewModel);
+    }
+
+    public async Task<string> getPaymentStatusCode(int orderId)
+    {
+        var payment = await _context.Payment
+            .FirstOrDefaultAsync(p => p.OrderId == orderId);
+        if (payment == null)
+        {
+            return "";
+        }
+        else
+        {
+            return payment.Status.ToString();
+        }
+    }
+
 }
