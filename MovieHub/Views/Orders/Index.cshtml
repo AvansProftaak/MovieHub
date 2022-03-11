@@ -1,124 +1,158 @@
-﻿@using static MovieHub.Models.Tickettype;
-@using System.Collections
-@using Microsoft.AspNetCore.Authentication
-@using MovieHub.Controllers
-@using MovieHub.Migrations
-@using Nager.Date
+﻿@using Nager.Date
 
 
 @model MovieHub.ViewModels.OrderViewModel
 
 
 @{
-    ViewData["Title"] = "Index";
+    var title = Model!.Movie!.Title;
+    ViewData["Title"] = "Buy '" + title + "' tickets";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container-fluid" style="margin-top: 120px">
+<div class="container" style="margin-top: 120px">
     <dl class="row">
         <div class="col-4">
-        <img src="@Url.Content(@Model.Movie.ImageUrl)" alt="test" width="80%"/>
+            <img src="@Url.Content(@Model.Movie.ImageUrl)" alt="test" width="80%"/>
         </div>
-    <div class="col-8">
-        <h4>Selected Showtime:</h4>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Movie.Title)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Showtime.Hall)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Showtime.HallId)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Showtime.StartAt)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Showtime.StartAt)
-        </dd>
-
-        <br/>
-        <h4>Ticket Selection:</h4>
-
-        <table>
-            <tr>
-                <th>Quantity</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Details</th>
-            </tr>
-
-            @foreach (Tickettype ticket in Model.Tickettypes)
-            {
-                var dateNow = DateTime.Now;
-                DayOfWeek day = DateTime.Now.DayOfWeek;
-                var kidsBedTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 18, 0, 0);
-                
-                // TODO:    working on logic for kids discount add pegi rating
-                //          Problem is.... there are pegi ratings in db jet
-                if(((ticket.Name == "Kids") &
-                    (((Model.Showtime.StartAt > kidsBedTime) |
-                      Model.Movie.Language != "Dutch")) |
-                    
-                    ((ticket.Name == "Students") & (!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday)) |
-                    
-                    ((((ticket.Name == "65+") & ((!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday)) |
-                     ((DateSystem.IsPublicHoliday(dateNow, CountryCode.NL))))))))
-                    )
-                )
-                {
-                    Console.WriteLine(ticket.Name + "Should be excluded");
-                    continue;
-                }
-                
-                if ((ticket.Name != "3D") )
-                {
-                    <tr>
-                        <td><input type="number" asp-for=@ticket.Quantity class="form-control" placeholder="Number of Tickets" min="1" max="10"/></td>
-                        <td>@ticket.Name</td>
-                        <td>@ticket.Price</td>
-                        <td>@ticket.Description</td>
-                    </tr>
-                }
-            }
-        </table>
+        <div class="col-8">
+            <h4>Selected Showtime:</h4>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Movie!.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Movie!.Title)
+            </dd>
         
-        <br/><br/>
-        <h4>Catering Arrangements:</h4>
-        <table>
-                    <tr>
-                        <th>Quantity</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Details</th>
-                    </tr>
-        
-                    @foreach (CateringPackage package in Model.CateringPackages)
+            @* HIER MOET DE DROPDOWN MET SHOWTIMES KOMEN!*@
+
+            <div class="form-group" style="width: 30%">
+                @Html.LabelFor(m => Model.Showtime, new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.DropDownListFor(m => Model.Showtime!.StartAt, new SelectList(Model.ShowList, "Value", "Text"), "Select show", new { @class = "form-control", id = "showList"  })
+                </div>
+            </div>
+
+            <br/>
+            <h4>Ticket Selection:</h4>
+
+            <table>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Details</th>
+                </tr>
+
+
+                @{
+                    System.Diagnostics.Debug.Assert(Model.Tickettypes != null, "Model.Tickettypes != null");
+                }
+                @foreach (Tickettype ticket in Model.Tickettypes)
+                {
+                    var dateNow = DateTime.Now;
+                    DayOfWeek day = DateTime.Now.DayOfWeek;
+                    var kidsBedTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 18, 0, 0);
+                
+                    // TODO:    working on logic for kids discount add pegi rating
+                    //          Problem is.... there are pegi ratings in db yet
+                    if(((ticket.Name == "Kids") &
+                        (
+                        
+                        @* COMMENTED OUT BECAUSE SHOWTIME LATER ADDED TODO*@
+                            // (Model.Showtime.StartAt > kidsBedTime) |
+                        
+                            (Model.Movie.Language != "Dutch")
+                            )
+                        |
+                
+                        ((ticket.Name == "Students") & (!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday)) |
+                
+                         ((((ticket.Name == "65+") & ((!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday)) |
+                                                      ((DateSystem.IsPublicHoliday(dateNow, CountryCode.NL))))))))
+                        )
+                        )
                     {
-                        
-                            <tr>
-                                <td><input type="number" asp-for=@package.Quantity class="form-control" placeholder="Number of Tickets" min="1" max="10"/></td>
-                                <td>@package.Name</td>
-                                <td>@package.Price</td>
-                                <td>@package.Description</td>
-                            </tr>
-                        
+                        Console.WriteLine(ticket.Name + "Should be excluded");
+                        continue;
                     }
-                </table>
+        
+                    if ((ticket.Name != "3D") )
+                    {
+                        <tr>
+                            <td style="width: 30%"><input type="number" asp-for=@ticket.Quantity class="form-control" placeholder="Number of Tickets" min="1" max="10"/></td>
+                            <td>@ticket.Name</td>
+                            <td>@ticket.Price</td>
+                            <td>@ticket.Description</td>
+                        </tr>
+                    }
+                }
+            </table>
+        
+            <br/><br/>
+            <h4>Catering Arrangements:</h4>
+            <table>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Details</th>
+                </tr>
+
+
+                @{
+                    System.Diagnostics.Debug.Assert(Model.CateringPackages != null, "Model.CateringPackages != null");
+                }
+                @foreach (CateringPackage package in Model.CateringPackages)
+                {
+                        
+                    <tr>
+                        <td style="width: 30%"><input type="number" asp-for=@package.Quantity class="form-control" placeholder="Number of Tickets" min="1" max="10"/></td>
+                        <td>@package.Name</td>
+                        <td>@package.Price</td>
+                        <td>@package.Description</td>
+                    </tr>
+                        
+                }
+            </table>
 
 
 
-        <br/><br/>
-        <button onclick="location.href='@Url.Action("Index", "Seats", new {hallId = Model.Showtime.HallId, @Model})'"
-                class="btn btn-primary">Continue to seatmap</button>
-    </div>
+            <br/><br/>
+            @* <button onclick="location.href='@Url.Action("Index", "Seats", new {hallId = Model.Showtime.HallId, @Model})'" *@
+            @*         class="btn btn-primary">Continue to seatmap</button> *@
+        </div>
     
     </dl>
     <br/>
 </div>
+
+
+<script>
+
+$("#showList").change(function() {
+    
+    const selectedVal = $(this).val();
+   
+    $.ajax({
+        type: 'POST',
+        dataType: 'JSON',
+        url: 'Orders/GetPickedShowtime',
+        data: {Id: selectedVal},
+    
+        success:
+        function(response) {
+          console.log(response)
+        },
+    
+        error:
+        function(response) {
+          alert("Error: " + response)
+        }
+    });
+})
+    
+ 
+</script>
 
 

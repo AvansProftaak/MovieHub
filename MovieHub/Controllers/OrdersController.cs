@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Globalization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
@@ -15,19 +17,51 @@ public class OrdersController : Controller
     }
     // GET
 
-    public async Task<ActionResult<OrderViewModel>> Index(Showtime showtime)
+    
+    // CHANGED INCOMING SHOWTIME TO MOVIE 
+    public async Task<ActionResult<OrderViewModel>> Index(Movie movie)
     {
         OrderViewModel orderViewModel = new OrderViewModel();
 
-        orderViewModel.Showtime = showtime;
-        orderViewModel.Movie = GetMovie(showtime.MovieId);
-        orderViewModel.Tickettypes = TicketTypes(showtime.MovieId);
+        orderViewModel.Movie = GetMovie(movie.Id);
+        orderViewModel.Tickettypes = TicketTypes(movie.Id);
         orderViewModel.CateringPackages = GetCateringPackages();
-        
-        
+        orderViewModel.StartDates = GetStartDates(movie.Id);
+        orderViewModel.ShowList = new List<SelectListItem>();
+
+        foreach (var item in GetStartDates(movie.Id))
+        {
+            var show = new SelectListItem()
+            {
+                Value = item.Id.ToString(),
+                Text = item.StartAt.ToString()
+            };
+
+            orderViewModel.ShowList.Add(show);
+        }
         
         return View(orderViewModel);
     }
+
+    public List<Showtime> GetStartDates(int movieId)
+    {
+        var showtimes = _context.Showtime
+            .FromSqlRaw("SELECT * FROM \"Showtime\" WHERE \"MovieId\" = {0} ORDER BY \"StartAt\"", movieId).ToList();
+        
+        var showsThisWeek = new List<Showtime>();
+        
+        foreach (var show in showtimes)
+        {
+            if ((show.StartAt >= DateTime.Now) && (show.StartAt.Date <= DateTime.Now.Date.AddDays(7)))
+            {
+                showsThisWeek.Add(show);
+            }
+        }
+
+        return showsThisWeek;
+    }
+    
+    
     
     public List<Tickettype>? GetAllTicketTypes()
     {
@@ -40,7 +74,7 @@ public class OrdersController : Controller
             .FromSqlRaw("SELECT * FROM public.\"CateringPackage\"").ToList();
     }
 
-    public List<Tickettype>? TicketTypes(int MovieId)
+    public List<Tickettype>? TicketTypes(int movieId)
     {
         List<Tickettype>? tickets = GetAllTicketTypes();
 
@@ -49,7 +83,7 @@ public class OrdersController : Controller
         bool normalPriceRaised = false;
         foreach (var ticket in tickets)
         {
-            ticket.Price = TicketTypeController.PriceCalculations(ticket, GetMovie(MovieId), _context, normalPriceRaised);
+            ticket.Price = TicketTypeController.PriceCalculations(ticket, GetMovie(movieId), _context, normalPriceRaised);
             if (ticket.Name == "Normal")
             {
                 normalPriceRaised = true;
@@ -58,6 +92,12 @@ public class OrdersController : Controller
 
         return tickets;
 
+    }
+
+    public IQueryable<Showtime> GetPickedShowtime(int id)
+    {
+        return _context.Showtime
+            .FromSqlRaw("SELECT * FROM \"Showtime\" WHERE \"Id\" = {0}", id);
     }
     
     public Movie? GetMovie(int id)
