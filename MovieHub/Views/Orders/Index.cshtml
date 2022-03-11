@@ -128,31 +128,6 @@
 </div>
 
 
-<script>
 
-$("#showList").change(function() {
-    
-    const selectedVal = $(this).val();
-   
-    $.ajax({
-        type: 'POST',
-        dataType: 'JSON',
-        url: 'Orders/GetPickedShowtime',
-        data: {Id: selectedVal},
-    
-        success:
-        function(response) {
-          console.log(response)
-        },
-    
-        error:
-        function(response) {
-          alert("Error: " + response)
-        }
-    });
-})
-    
- 
-</script>
 
 
