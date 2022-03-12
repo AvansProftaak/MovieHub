@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MovieHub.Models;
 
 namespace MovieHub.ViewModels;
@@ -6,7 +7,7 @@ namespace MovieHub.ViewModels;
 public class OrderViewModel
 {
     public Showtime? Showtime { get; set; }
-
+    public int PickedShowtime { get; set; }
     public List<Tickettype>? Tickettypes { get; set; }
     public List<CateringPackage>? CateringPackages { get; set; }
     public Movie? Movie { get; set; }
@@ -14,5 +15,5 @@ public class OrderViewModel
     public Payment? Payment { get; set; }
     public List<Showtime>? StartDates { get; set; }
     public List<SelectListItem>? ShowList { get; set; }
-    
+
 }

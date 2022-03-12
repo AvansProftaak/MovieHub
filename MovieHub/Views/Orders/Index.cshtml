@@ -1,6 +1,5 @@
 ﻿@using Nager.Date
-
-
+@using Newtonsoft.Json
 @model MovieHub.ViewModels.OrderViewModel
 
 
@@ -32,6 +31,13 @@
                     @Html.DropDownListFor(m => Model.Showtime!.StartAt, new SelectList(Model.ShowList, "Value", "Text"), "Select show", new { @class = "form-control", id = "showList"  })
                 </div>
             </div>
+            
+            @{
+                var showtest = @Model.PickedShowtime;
+                var test = "test";
+            }
+            
+            <h4 id="testId"></h4>
 
             <br/>
             <h4>Ticket Selection:</h4>
@@ -129,5 +135,11 @@
 
 
 
-
-
+@* *@
+@* *@
+@* <script> *@
+@* function myFunction(showtest) { *@
+@*      *@
+@*   alert("My ShowtimeId is: " + showtest); *@
+@* } *@
+@* </script> *@

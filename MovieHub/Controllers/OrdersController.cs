@@ -19,7 +19,7 @@ public class OrdersController : Controller
 
     
     // CHANGED INCOMING SHOWTIME TO MOVIE 
-    public async Task<ActionResult<OrderViewModel>> Index(Movie movie)
+    public async Task<ActionResult<OrderViewModel>> Index(Movie movie, int showTimeId)
     {
         OrderViewModel orderViewModel = new OrderViewModel();
 
@@ -28,6 +28,7 @@ public class OrdersController : Controller
         orderViewModel.CateringPackages = GetCateringPackages();
         orderViewModel.StartDates = GetStartDates(movie.Id);
         orderViewModel.ShowList = new List<SelectListItem>();
+        orderViewModel.PickedShowtime = GetPickedShowtime(showTimeId);
 
         foreach (var item in GetStartDates(movie.Id))
         {
@@ -60,8 +61,12 @@ public class OrdersController : Controller
 
         return showsThisWeek;
     }
-    
-    
+
+    public int GetPickedShowtime(int showTimeId)
+    {
+        var show = showTimeId;
+        return show;
+    }
     
     public List<Tickettype>? GetAllTicketTypes()
     {
@@ -92,12 +97,6 @@ public class OrdersController : Controller
 
         return tickets;
 
-    }
-
-    public IQueryable<Showtime> GetPickedShowtime(int id)
-    {
-        return _context.Showtime
-            .FromSqlRaw("SELECT * FROM \"Showtime\" WHERE \"Id\" = {0}", id);
     }
     
     public Movie? GetMovie(int id)

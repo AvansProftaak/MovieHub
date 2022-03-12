@@ -59,8 +59,8 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
 
+<script>
 $("#showList").change(function() {
     
     var selectedVal = $(this).val();
@@ -68,12 +68,16 @@ $("#showList").change(function() {
     $.ajax({
         type: 'POST',
         dataType: 'JSON',
-        url: 'Orders/GetPickedShowtime',
-        data: {id: selectedVal},
+        url: '/Orders/GetPickedShowtime/',
+        data: {showTimeId: selectedVal},
     
         success:
         function(response) {
-          console.log(response)
+            
+            response = JSON.stringify(response)
+            
+            $('#testId').text(response)
+          
         },
     
         error:
@@ -82,9 +86,9 @@ $("#showList").change(function() {
         }
     });
 })
-    
- 
 </script>
+
+
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
