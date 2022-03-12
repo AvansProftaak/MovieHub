@@ -62,10 +62,12 @@ public class OrdersController : Controller
         return showsThisWeek;
     }
 
-    public int GetPickedShowtime(int showTimeId)
+    public ActionResult<Showtime> GetPickedShowtime(int showTimeId)
     {
-        var show = showTimeId;
-        return show;
+        var show = _context.Showtime!
+            .Where(s => s.Id == showTimeId);
+
+        return Json(show);
     }
     
     public List<Tickettype>? GetAllTicketTypes()

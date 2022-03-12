@@ -31,12 +31,7 @@
                     @Html.DropDownListFor(m => Model.Showtime!.StartAt, new SelectList(Model.ShowList, "Value", "Text"), "Select show", new { @class = "form-control", id = "showList"  })
                 </div>
             </div>
-            
-            @{
-                var showtest = @Model.PickedShowtime;
-                var test = "test";
-            }
-            
+
             <h4 id="testId"></h4>
 
             <br/>
