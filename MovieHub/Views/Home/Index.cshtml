@@ -28,7 +28,7 @@
                                 <div class="details-container">
                                     <hr/>
                                     <div class="justify-content-between d-flex">
-                                        <button onclick="location.href='@Url.Action("Index", "Orders", item)'"
+                                        <button onclick="location.href='@Url.Action("Index", "Orders", new {id = item.Id})'"
                                                 class="btn btn-primary btn-sizing me-1">Buy Tickets</button>
                                         <button onclick="location.href='@Url.Action("Details", "Movies", new {id = item.Id})'"
                                                 class="btn btn-primary btn-sizing ms-1">Movie Details</button>

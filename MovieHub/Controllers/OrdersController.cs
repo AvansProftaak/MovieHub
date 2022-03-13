@@ -19,18 +19,17 @@ public class OrdersController : Controller
 
     
     // CHANGED INCOMING SHOWTIME TO MOVIE 
-    public async Task<ActionResult<OrderViewModel>> Index(Movie movie, int showTimeId)
+    public async Task<ActionResult<OrderViewModel>> Index(int id)
     {
         OrderViewModel orderViewModel = new OrderViewModel();
 
-        orderViewModel.Movie = GetMovie(movie.Id);
-        orderViewModel.Tickettypes = TicketTypes(movie.Id);
+        orderViewModel.Movie = GetMovie(id);
+        orderViewModel.Tickettypes = TicketTypes(id);
         orderViewModel.CateringPackages = GetCateringPackages();
-        orderViewModel.StartDates = GetStartDates(movie.Id);
+        orderViewModel.StartDates = GetStartDates(id);
         orderViewModel.ShowList = new List<SelectListItem>();
-        orderViewModel.PickedShowtime = GetPickedShowtime(showTimeId);
 
-        foreach (var item in GetStartDates(movie.Id))
+        foreach (var item in GetStartDates(id))
         {
             var show = new SelectListItem()
             {
@@ -61,18 +60,10 @@ public class OrdersController : Controller
 
         return showsThisWeek;
     }
-
-    public ActionResult<Showtime> GetPickedShowtime(int showTimeId)
-    {
-        var show = _context.Showtime!
-            .Where(s => s.Id == showTimeId);
-
-        return Json(show);
-    }
     
     public List<Tickettype>? GetAllTicketTypes()
     {
-        return _context.Set<Tickettype>().ToList();
+        return _context.Tickettype.ToList();
     }
     
     public List<CateringPackage>? GetCateringPackages()
@@ -83,22 +74,24 @@ public class OrdersController : Controller
 
     public List<Tickettype>? TicketTypes(int movieId)
     {
+        
+        
         List<Tickettype>? tickets = GetAllTicketTypes();
-
+    
         // due to the nature of our calculations we need to hold the normal price after we set it
         // to do this we need this bool ( more explanation in pricecalc function)
         bool normalPriceRaised = false;
         foreach (var ticket in tickets)
         {
-            ticket.Price = TicketTypeController.PriceCalculations(ticket, GetMovie(movieId), _context, normalPriceRaised);
+            ticket.Price = TicketTypeController.PriceCalculations(ticket, movieId, _context, normalPriceRaised);
             if (ticket.Name == "Normal")
             {
                 normalPriceRaised = true;
             }
         }
-
+    
         return tickets;
-
+    
     }
     
     public Movie? GetMovie(int id)

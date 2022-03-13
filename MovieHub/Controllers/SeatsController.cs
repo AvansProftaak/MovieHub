@@ -22,11 +22,17 @@ namespace MovieHub.Controllers
         }
 
         // GET: Seats
-        public async Task<IActionResult> Index(int hallId, OrderViewModel orderViewModel)
+        public async Task<IActionResult> Index(int showtimeId, int ticketQuantity)
         {
-            var applicationDbContext = _context.Seat.Where(s => s.HallId == hallId).Include(s => s.Hall);
-            orderViewModel.Seats = await applicationDbContext.ToListAsync();
-            return View(orderViewModel);
+            var show = _context.Showtime.First(s => s.Id == showtimeId);
+            var hallId = show.HallId;
+            var seatViewModel = new SeatViewModel();
+            
+            var seatsPerHall = _context.Seat.Where(s => s.HallId == hallId).Include(s => s.Hall);
+            seatViewModel.Seats = await seatsPerHall.ToListAsync();
+
+            
+            return View(seatViewModel);
         }
     }
 }
