@@ -62,8 +62,8 @@ public class HomeController : Controller
             ThisWeeksMovieList.Add(item.Movie);
         }
 
-        var movieTitle = ThisWeeksMovieList.Distinct();
-            return movieTitle.ToList();
+        var thisWeeksMovieListDistinct = ThisWeeksMovieList.Distinct();
+            return  thisWeeksMovieListDistinct.ToList();
         
     }
 
