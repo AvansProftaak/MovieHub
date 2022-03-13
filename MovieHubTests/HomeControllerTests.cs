@@ -1,10 +1,8 @@
 using System;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
 using MovieHub.Controllers;
-using MovieHub.Data;
 using MovieHub.Models;
 using Xunit;
 

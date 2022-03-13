@@ -96,21 +96,21 @@ public abstract class DatabaseTests
             HallId = 1,
             StartAt = DateTime.Today.Date,
             EndAt = DateTime.Today.AddDays(1).Date,
-            Time = TimeSpan.FromHours(19)
+            Time = TimeSpan.FromHours(23)
         });
 
         context.Add(new Showtime()
         {
             HallId = 1,
             MovieId = 1,
-            StartAt = DateTime.Today.AddHours(19)
+            StartAt = DateTime.Today.AddHours(23)
         });
         
         context.Add(new Showtime()
         {
             HallId = 1,
             MovieId = 1,
-            StartAt = DateTime.Today.AddDays(1).AddHours(19)
+            StartAt = DateTime.Today.AddDays(1).AddHours(23)
         });
 
         context.SaveChanges();
