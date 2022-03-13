@@ -1,4 +1,5 @@
-﻿@model MovieHub.ViewModels.IndexViewModel
+﻿@using MovieHub.Migrations
+@model MovieHub.ViewModels.IndexViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -12,27 +13,31 @@
     <div class="row">
         <div class="col-8 hide-scrollbar">
             <div class="row text-center">
-                @foreach (var item in Model!.MovieIndex!)
-                {
-                    <div class="col-3"style="padding-bottom: 25px">
-                        <div class ="movieborder">
-                        <h4 class="movie-title">@Html.DisplayFor(model => item.Movie.Title)</h4>
-                        <a href="@Url.Action("Details", "Movies", new {id = item.MovieId})">
-                            <img width="80%" src="@Url.Content(item.Movie.ImageUrl)" alt="MoviePoster"/>
-                        </a>
-                            <div class="details-container">
-                                <hr/>
-                                <div class="justify-content-between d-flex">
-                                    <button onclick="location.href='@Url.Action("Index", "Orders", item)'"
-                                            class="btn btn-primary btn-sizing me-1">Buy Tickets</button>
-                                    <button onclick="location.href='@Url.Action("Details", "Movies", new {id = item.MovieId})'"
-                                            class="btn btn-primary btn-sizing ms-1">Movie Details</button>
+                @* @foreach (var item in Model!.Movies) *@
+
+                @foreach (var item in Model!.MovieIndex)
+                    {
+                    //     Console.WriteLine($"This weeks movies {item.Title}");
+                    //     }
+                        <div class="col-3"style="padding-bottom: 25px">
+                            <div class="movieborder">
+                                <h4 class="movie-title">@Html.DisplayFor(model => item.Title)</h4>
+                                <a href="@Url.Action("Details", "Movies", new {id = item.Id})">
+                                    <img width="80%" src="@Url.Content(item.ImageUrl)" alt="MoviePoster"/>
+                                </a>
+                                <div class="details-container">
+                                    <hr/>
+                                    <div class="justify-content-between d-flex">
+                                        <button onclick="location.href='@Url.Action("Index", "Orders", item)'"
+                                                class="btn btn-primary btn-sizing me-1">Buy Tickets</button>
+                                        <button onclick="location.href='@Url.Action("Details", "Movies", new {id = item.Id})'"
+                                                class="btn btn-primary btn-sizing ms-1">Movie Details</button>
+                                    </div>
+                                    @* <hr/> *@
                                 </div>
-                                @* <hr/> *@
                             </div>
-                            </div>
-                    </div>
-                }
+                        </div>
+                    }
             </div>
         </div>
         <div class="col-4">

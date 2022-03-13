@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.Extensions.Logging;
 using MovieHub.Data;
+using MovieHub.Migrations;
 using MovieHub.Models;
 using MovieHub.ViewModels;
 
@@ -33,25 +34,53 @@ public class HomeController : Controller
         indexViewModel.Movies = GetMovies();
         indexViewModel.ShowNext = ShowNext();
         indexViewModel.ShowNow = ShowNow();
+        // indexViewModel.MoviesThisWeek = MoviesThisWeek();
 
         return View(indexViewModel);
         }
-    
-    public IOrderedQueryable<Showtime> MovieIndex()
+
+    public List<Movie> MovieIndex()
     {
-        
+
         DateTime date = DateTime.Today;
         var firstday = GetFirstDayOfWeek(date);
         var lastday = GetLastDayOfWeek(date);
 
-        return _context.Showtime
+        // return _context.Showtime
+        var showtime = _context.Showtime
+
             .Where(s => (s.StartAt.ToLocalTime() >= firstday))
             .Where(s => s.StartAt.ToLocalTime() <= lastday)
             .Include(s => s.Hall)
             .Include(s => s.Movie)
-            // .GroupBy(s => s.Movie.Id)
             .OrderBy(s => s.StartAt);
+
+        var ThisWeeksMovieList = new List<Movie>();
+
+        foreach (var item in showtime)
+        {
+            ThisWeeksMovieList.Add(item.Movie);
+        }
+
+        var movieTitle = ThisWeeksMovieList.Distinct();
+            return movieTitle.ToList();
+        
     }
+
+    //
+    // public List<MovieRuntime> MoviesThisWeek()
+    // {
+    //     
+    //     DateTime date = DateTime.Today;
+    //     var firstday = GetFirstDayOfWeek(date);
+    //     var lastday = GetLastDayOfWeek(date);
+    //
+    //     return _context.MovieRuntime.ToList()
+    //
+    //         .Where(m => (m.StartAt.ToLocalTime() >= firstday))
+    //         .Where(m => m.StartAt.ToLocalTime() <= lastday)
+    //         .GroupBy(m => m.MovieId);
+    // }
     
     // public IOrderedQueryable<Showtime> SearchForMovie(string searchPhrase)
     // {
