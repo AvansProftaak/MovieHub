@@ -51,7 +51,7 @@ function BuyTickets()
         return
     }
     SaveToLocalStorage();    
-    location.href='@Url.Action("Index", "Seats")';
+    location.href='@Url.Action("Index", "Seats")?showtimeId='+JSON.stringify(showtimeId);
     
     
 }
