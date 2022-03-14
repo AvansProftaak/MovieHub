@@ -10,33 +10,60 @@
 
 <script>
 
-let showtimeId;
 let ticketQuantity;
+let ticketName;
 
-function BuyTickets() 
+function BuyTickets()
 {
-    if (!showtimeId) {
+    let selectedShow = document.getElementById('selectedShow')
+    let showtimeId = parseInt(selectedShow.value)
+   
+    ticketQuantity = document.querySelectorAll('.ticketQuantity')
+    ticketName = document.querySelectorAll('.ticketName')
+    
+    let ticketTypes = CountTickets(ticketQuantity, ticketName); 
+    let totalTickets = TotalTickets(ticketQuantity)
+    
+    if (!showtimeId || totalTickets === 0) {
         document.getElementById('ErrorNoSelection').style.color = "red";
         document.getElementById('ErrorNoSelection').innerHTML = "Please fill in all fields";
         return
     }
        
-    location.href='@Url.Action("Index", "Seats")?showtimeId='+JSON.stringify(showtimeId)+'&ticketQuantity='+JSON.stringify(ticketQuantity)
+    console.log(showtimeId)
+    console.log(totalTickets)
+    console.log(ticketTypes)
     
+    
+    location.href='@Url.Action("Index", "Seats")?showtimeId='+JSON.stringify(showtimeId)+'&ticketQuantity='+JSON.stringify(totalTickets)+'&'+ticketTypes;
+
 }
 
-function OnShowListChange(event) 
-{    
-    // console.log(parseInt(event.target.value))
-    showtimeId = parseInt(event.target.value)
+function CountTickets (ticketQuantity, ticketName) {
+    let ticketTypes = "";
+  
+    for (let i = 0; i < ticketQuantity.length; i++)
+    {
+        let ticketString = ticketName[i].innerHTML + "=" + parseInt(ticketQuantity[i].value) + "&"; 
+        ticketTypes = ticketTypes + ticketString
+        
+    }
+    return (ticketTypes.slice(0, -1));
 }
 
-function OnQuantityChange(event) 
-{    
-    // console.log(parseInt(event.target.value))
-    ticketQuantity = parseInt(event.target.value)
+function TotalTickets(ticketQuantity) {
+    let sumTq = 0;
+    
+    ticketQuantity.forEach((tq, index) => {
+        
+        sumTq = sumTq + parseInt(tq.value)
+    })
+    return sumTq
 }
-   
+    
+
+
+
 
 
    
@@ -85,91 +112,92 @@ function OnQuantityChange(event)
                 </div>
             </div>
             
-            <h4>Ticket Selection:</h4> 
-            <input type="number"  class="form-control" placeholder="Number of Tickets" min="1" max="10" id="ticketQuantity"/>
-            @*     <br/> *@
-        @*     <h4>Ticket Selection:</h4> *@
-        @* *@
-        @*     <table> *@
-        @*         <tr> *@
-        @*             <th>Quantity</th> *@
-        @*             <th>Name</th> *@
-        @*             <th>Price</th> *@
-        @*             <th>Details</th> *@
-        @*         </tr> *@
-        @* *@
-        @* *@
-        @*         @{ *@
-        @*             System.Diagnostics.Debug.Assert(Model.Tickettypes != null, "Model.Tickettypes != null"); *@
-        @* *@
-        @*         } *@
-        @*         @foreach (var ticket in Model.Tickettypes) *@
-        @*         { *@
-        @*             var dateNow = DateTime.Now; *@
-        @*             var day = DateTime.Now.DayOfWeek; *@
-        @*             var kidsBedTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 18, 0, 0); *@
-        @* *@
-        @*             // TODO:    working on logic for kids discount add pegi rating *@
-        @*             //          Problem is.... there are pegi ratings in db yet *@
-        @*             if(((ticket.Name == "Kids") & *@
-        @*                 ( *@
-        @* *@
-        @*                 $1$ COMMENTED OUT BECAUSE SHOWTIME LATER ADDED TODO#1# *@
-        @*                     // (Model.Showtime.StartAt > kidsBedTime) | *@
-        @* *@
-        @*                     (Model.Movie.Language != "Dutch") *@
-        @*                     ) *@
-        @*                 | *@
-        @* *@
-        @*                 ((ticket.Name == "Students") & (!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday)) | *@
-        @* *@
-        @*                  ((((ticket.Name == "65+") & ((!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday)) | *@
-        @*                                               ((DateSystem.IsPublicHoliday(dateNow, CountryCode.NL)))))))) *@
-        @*                 ) *@
-        @*                 ) *@
-        @*             { *@
-        @*                 Console.WriteLine(ticket.Name + "Should be excluded"); *@
-        @*                 continue; *@
-        @*             } *@
-        @* *@
-        @*             if (ticket.Name != "3D")  *@
-        @*             { *@
-        @*                 <tr> *@
-        @*                     <td style="width: 30%"><input type="number" asp-for=@ticket.Quantity class="form-control" placeholder="Number of Tickets" min="1" max="10"/></td> *@
-        @*                     <td id="ticketName">@ticket.Name</td> *@
-        @*                     <td id="ticketPrice">@ticket.Price</td> *@
-        @*                     <td>@ticket.Description</td> *@
-        @*                 </tr> *@
-        @*             } *@
-        @*         } *@
-        @*     </table> *@
-        @*      *@
-        @*     <br/><br/> *@
-        @*     <h4>Catering Arrangements:</h4> *@
-        @*     <table> *@
-        @*         <tr> *@
-        @*             <th>Quantity</th> *@
-        @*             <th>Name</th> *@
-        @*             <th>Price</th> *@
-        @*             <th>Details</th> *@
-        @*         </tr> *@
-        @*      *@
-        @*      *@
-        @*         @{ *@
-        @*             System.Diagnostics.Debug.Assert(Model.CateringPackages != null, "Model.CateringPackages != null"); *@
-        @*         } *@
-        @*         @foreach (var package in Model.CateringPackages) *@
-        @*         { *@
-        @*      *@
-        @*             <tr> *@
-        @*                 <td style="width: 30%"><input type="number" asp-for=@package.Quantity class="form-control" placeholder="Number of Tickets" min="1" max="10"/></td> *@
-        @*                 <td>@package.Name</td> *@
-        @*                 <td>@package.Price</td> *@
-        @*                 <td>@package.Description</td> *@
-        @*             </tr> *@
-        @*      *@
-        @*         } *@
-        @*     </table> *@
+            @* <h4>Ticket Selection:</h4>  *@
+            @* <input type="number"  class="form-control" placeholder="Number of Tickets" min="1" max="10" id="ticketQuantity"/> *@
+                <br/>
+            <h4>Ticket Selection:</h4>
+        
+            <table>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Details</th>
+                </tr>
+        
+        
+                @{
+                    System.Diagnostics.Debug.Assert(Model.Tickettypes != null, "Model.Tickettypes != null");
+        
+                }
+                @foreach (var ticket in Model.Tickettypes)
+                {
+                    var dateNow = DateTime.Now;
+                    var day = DateTime.Now.DayOfWeek;
+                    var kidsBedTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 18, 0, 0);
+        
+                    // TODO:    working on logic for kids discount add pegi rating
+                    //          Problem is.... there are pegi ratings in db yet
+                    if(((ticket.Name == "Kids") &
+                        (
+        
+                        @* COMMENTED OUT BECAUSE SHOWTIME LATER ADDED TODO*@
+                            // (Model.Showtime.StartAt > kidsBedTime) |
+        
+                            (Model.Movie.Language != "Dutch")
+                            )
+                        |
+        
+                        ((ticket.Name == "Students") & (!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday)) |
+        
+                         ((((ticket.Name == "65+") & ((!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday)) |
+                                                      ((DateSystem.IsPublicHoliday(dateNow, CountryCode.NL))))))))
+                        )
+                        )
+                    {
+                        Console.WriteLine(ticket.Name + "Should be excluded");
+                        continue;
+                    }
+        
+                    if (ticket.Name != "3D")
+                    {
+                        <tr>
+                            
+                            <td style="width: 30%"><input type="number" asp-for=@ticket.Quantity class="form-control ticketQuantity" placeholder="Number of Tickets" min="1" max="10"/></td>
+                            <td class="ticketName">@ticket.Name</td>
+                            <td>@ticket.Price</td>
+                            <td>@ticket.Description</td>
+                        </tr>
+                    }
+                }
+            </table>
+        
+            <br/><br/>
+            <h4>Catering Arrangements:</h4>
+            <table>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Details</th>
+                </tr>
+        
+        
+                @{
+                    System.Diagnostics.Debug.Assert(Model.CateringPackages != null, "Model.CateringPackages != null");
+                }
+                @foreach (var package in Model.CateringPackages)
+                {
+        
+                    <tr>
+                        <td style="width: 30%"><input type="number" asp-for=@package.Quantity class="form-control" placeholder="Number of Tickets" min="1" max="10"/></td>
+                        <td>@package.Name</td>
+                        <td>@package.Price</td>
+                        <td>@package.Description</td>
+                    </tr>
+        
+                }
+            </table>
             <br/><br/>
             <button onclick="BuyTickets()" class="btn btn-primary btn-sizing ms-1" style="margin-bottom: 2px">Select seats</button>
             <p class="text-center" id="ErrorNoSelection"></p>
