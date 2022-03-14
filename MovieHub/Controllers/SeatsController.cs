@@ -1,13 +1,7 @@
 #nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
-using MovieHub.Models;
 using MovieHub.ViewModels;
 
 namespace MovieHub.Controllers
@@ -22,7 +16,7 @@ namespace MovieHub.Controllers
         }
 
         // GET: Seats
-        public async Task<IActionResult> Index(int showtimeId, int ticketQuantity)
+        public async Task<IActionResult> Index(int showtimeId)
         {
             var show = _context.Showtime.First(s => s.Id == showtimeId);
             var hallId = show.HallId;
