@@ -12,18 +12,27 @@
 
 let ticketQuantity;
 let ticketName;
+let packageQuantity;
+let packageName;
 
 function BuyTickets()
 {
+    // Showinfo:
     let selectedShow = document.getElementById('selectedShow')
     let showtimeId = parseInt(selectedShow.value)
    
+    // Ticketinfo: 
     ticketQuantity = document.querySelectorAll('.ticketQuantity')
     ticketName = document.querySelectorAll('.ticketName')
-    
     let ticketTypes = CountTickets(ticketQuantity, ticketName); 
     let totalTickets = TotalTickets(ticketQuantity)
     
+    //Packageinfo:
+    packageQuantity = document.querySelectorAll('.packageQuantity')
+    packageName = document.querySelectorAll('.packageName')
+    let cateringPackages = CountTickets(packageQuantity, packageName); 
+    
+    // 
     if (!showtimeId || totalTickets === 0) {
         document.getElementById('ErrorNoSelection').style.color = "red";
         document.getElementById('ErrorNoSelection').innerHTML = "Please fill in all fields";
@@ -33,9 +42,10 @@ function BuyTickets()
     console.log(showtimeId)
     console.log(totalTickets)
     console.log(ticketTypes)
+    console.log(cateringPackages)
     
     
-    location.href='@Url.Action("Index", "Seats")?showtimeId='+JSON.stringify(showtimeId)+'&ticketQuantity='+JSON.stringify(totalTickets)+'&'+ticketTypes;
+    location.href='@Url.Action("Index", "Seats")?showtimeId='+JSON.stringify(showtimeId)+'&totalTickets='+JSON.stringify(totalTickets)+'&'+ticketTypes+'&'+cateringPackages;
 
 }
 
@@ -45,7 +55,7 @@ function CountTickets (ticketQuantity, ticketName) {
     for (let i = 0; i < ticketQuantity.length; i++)
     {
         let ticketString = ticketName[i].innerHTML + "=" + parseInt(ticketQuantity[i].value) + "&"; 
-        ticketTypes = ticketTypes + ticketString
+        ticketTypes += ticketString
         
     }
     return (ticketTypes.slice(0, -1));
@@ -60,36 +70,19 @@ function TotalTickets(ticketQuantity) {
     })
     return sumTq
 }
-    
 
-
-
-
-
-   
-    // $.ajax({
-    //     type: 'POST',
-    //     dataType: 'JSON',
-    //     url: '/Orders/GetPickedShowtime/',
-    //     data: {showTimeId: selectedVal},
-    //
-    //     success:
-    //     function(response) {
-    //        
-    //         response = JSON.stringify(response[0])
-    //        
-    //         $('#testId').text(response)
-    //     
-    //     },
-    //
-    //     error:
-    //     function(response) {
-    //       console.log("ERROR: ", response)
-    //     }
-    // });
-
-
-</script>
+function CountPackages (packageQuantity, packageName) {
+    let cateringPackages = "";
+  
+    for (let i = 0; i < packageQuantity.length; i++)
+    {
+        let packageString = packageName[i].innerHTML + "=" + parseInt(packageQuantity[i].value) + "&"; 
+        cateringPackages += packageString
+        
+    }
+    return (cateringPackages.slice(0, -1));
+}
+</script>  
 
 <div class="container" style="margin-top: 120px">
     <dl class="row">
@@ -111,10 +104,7 @@ function TotalTickets(ticketQuantity) {
                     @Html.DropDownListFor(m => Model.Showtime!.StartAt, new SelectList(Model.ShowList, "Value", "Text"), "Select show", new { @class = "form-control", id="selectedShow"})
                 </div>
             </div>
-            
-            @* <h4>Ticket Selection:</h4>  *@
-            @* <input type="number"  class="form-control" placeholder="Number of Tickets" min="1" max="10" id="ticketQuantity"/> *@
-                <br/>
+            <br/>
             <h4>Ticket Selection:</h4>
         
             <table>
@@ -124,11 +114,9 @@ function TotalTickets(ticketQuantity) {
                     <th>Price</th>
                     <th>Details</th>
                 </tr>
-        
-        
+                
                 @{
                     System.Diagnostics.Debug.Assert(Model.Tickettypes != null, "Model.Tickettypes != null");
-        
                 }
                 @foreach (var ticket in Model.Tickettypes)
                 {
@@ -177,9 +165,9 @@ function TotalTickets(ticketQuantity) {
             <table>
                 <tr>
                     <th>Quantity</th>
-                    <th>Name</th>
-                    <th>Price</th>
+                    <th hidden="hidden">Name</th>
                     <th>Details</th>
+                    <th>Price</th>
                 </tr>
         
         
@@ -190,10 +178,10 @@ function TotalTickets(ticketQuantity) {
                 {
         
                     <tr>
-                        <td style="width: 30%"><input type="number" asp-for=@package.Quantity class="form-control" placeholder="Number of Tickets" min="1" max="10"/></td>
-                        <td>@package.Name</td>
-                        <td>@package.Price</td>
+                        <td style="width: 30%"><input type="number" asp-for=@package.Quantity class="form-control packageQuantity" placeholder="Number of Tickets" min="1" max="10"/></td>
+                        <td class="packageName" hidden="hidden">@package.Name</td>
                         <td>@package.Description</td>
+                        <td>@package.Price</td>
                     </tr>
         
                 }
