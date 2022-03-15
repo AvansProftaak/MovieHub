@@ -34,7 +34,7 @@ public class OrdersController : Controller
             var show = new SelectListItem()
             {
                 Value = item.Id.ToString(),
-                Text = item.StartAt.ToString()
+                Text = item.StartAt.ToLocalTime().ToString("D")
             };
 
             orderViewModel.ShowList.Add(show);

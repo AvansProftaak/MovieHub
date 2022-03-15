@@ -27,7 +27,7 @@ h2, h3, h4{
 
 p {
   color: #FFFFFF;
-  margin: 0px;
+  margin: 0;
 }
 
 .footer {
@@ -40,7 +40,7 @@ color: #F8A613;
 
 .btn-primary {
   color: #FFFFFF;
-  background-color:#000000;
+  background-color: #2C2C2E;
   border: 2px solid #F8A613
 }
 
@@ -169,4 +169,56 @@ color: #F8A613;
   color: #F8A613;
   padding: 10px 0 15px 0;
   border-radius: 5px;
+}
+
+.order-title-h1 {
+  color: #F8A613;
+  font-family: 'Poiret One', cursive;
+}
+
+.order-title-h3 {
+
+}
+
+.order-ticket-hr {
+  color: inherit;
+  width: 60%;
+  margin: 5px 0 5px 0;
+}
+
+.order-row {
+  align-self: center;
+  margin: 1px;
+  padding: 0;
+}
+
+#selectedShow {
+  color: white;
+  background-color: #2C2C2E;
+  border: 2px solid #F8A613;
+}
+
+.ticketQuantity,
+.packageQuantity {
+  color: #F8A613;
+  background-color: #000000;
+  border: none;
+  font-size: 20px;
+}
+
+.ticketQuantity[type=number],
+.packageQuantity[type=number] {
+  color: #F8A613;
+  background-color: #000000;
+  border: none;
+  margin: 0;
+  outline: black;
+  box-shadow: none;
+  -webkit-animation: none;
+}
+
+.order-title-hr {
+  border: 2px solid #F8A613;
+  width: 60%;
+  margin: 5px 0 5px 0;
 }
