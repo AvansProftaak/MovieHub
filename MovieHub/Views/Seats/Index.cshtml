@@ -1,23 +1,69 @@
-@model MovieHub.ViewModels.OrderViewModel
+@model MovieHub.ViewModels.SeatViewModel
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    int seatsToSelect = 2; //TODO: get amount of tickets
 }
 
+<div class="container-fluid" style="margin-top: 120px">
+    <h1>Select your seats</h1>
+    <span id="chairSelectHelpText">You need to select (<span id="amountOfChairsLeft"></span>) more chairs</span>
+    @foreach (var row in Model.Seats.GroupBy(r => r.RowNumber).OrderByDescending(r => r.Key))
+    {
+        var rowList = row.ToList();
+        <h4>Row @row.Key</h4>
+        for (int i = 0; i < rowList.Count(); i++)
+        {
+            @if (rowList[i].Available)
+            {
+                <a type="button" onclick="toggleSelected(this, @row.Key, @rowList[i].SeatNumber)" class="img-container">
+                    <img src="@Url.Content("~/img/seat-available.png")" width="48">
+                    <div class="text-centered">
+                        @Html.DisplayFor(s => rowList[i].SeatNumber)
+                    </div>
+                </a>
+            }
+            else
+            {
+                <a type="button" class="img-container">
+                    <img src="@Url.Content("~/img/seat-not-available.png")" width="48">
+                </a>
+            }
+        }
+    }
+    <br/>
+    <br/>
+    <button onclick="getPaymentUrl()"
+            class="btn btn-primary">
+        Continue to payment
+    </button>
+</div>
+
 <script >
-    //seats is an object to prevent looping
-    let seats = {};
     let seatsLeft = 0;
+    let seats = {};
+    let orderData = localStorage.getItem('orderData') ? JSON.parse(localStorage.getItem('orderData')) : '';
+    Object.keys(orderData['ticketTypes']).forEach((value, index, array) => {
+        seatsLeft += orderData['ticketTypes'][value];
+    });
+    updateHelperText();
+    
+    //seats is an object to prevent looping
     function defaultSelect(row, seat){
-        console.log(row, seat)
         if (!seats[row]){
             seats[row] = {};
         }
         //add seat to object
         seats[row][seat] = true;
         
+    }
+    function updateHelperText() {
+        if (seatsLeft !== 0){
+            document.getElementById('amountOfChairsLeft').innerText = seatsLeft;
+            document.getElementById('chairSelectHelpText').hidden = false;
+        }else {
+            document.getElementById('chairSelectHelpText').hidden = true;
+        }       
     }
     function toggleSelected(seatElement, row, seat){
         let imgElement = seatElement.querySelector('img');
@@ -35,12 +81,12 @@
             defaultSelect(row, seat);
             imgElement.src = '@Url.Content("~/img/seat-selected.png")';
         }
+        updateHelperText()
     }
     
     function getSelectedSeatsArray(){
         let seatsArray = [];
         for (const row of Object.keys(seats)) {
-            console.log(row)
           for (const seatNumber of Object.keys(seats[row])) {
             seatsArray.push([row, seatNumber])
           }
@@ -49,59 +95,10 @@
     }
     
     function getPaymentUrl(){
-        location.href='@Url.Action("Index", "Payments", new {orderId = 2, Model})&seats='+JSON.stringify(getSelectedSeatsArray());
+        if (seatsLeft !== 0){
+            return
+        }
+        orderData['seats'] = getSelectedSeatsArray();
+        location.href='@Url.Action("Index", "Payments")?orderData='+JSON.stringify(orderData);
     }
 </script>
-
-<div class="container-fluid" style="margin-top: 120px">
-    <h1>Select your seats</h1>
-    @foreach (var row in Model.Seats.GroupBy(r => r.RowNumber).OrderByDescending(r => r.Key))
-    {
-        var rowList = row.ToList();
-        <h4>Row @row.Key</h4>
-        for (int i = 0; i < rowList.Count(); i++)
-        {
-            @if (rowList[i].Available)
-            {
-                @if (seatsToSelect > 0)
-                {
-                    <script>defaultSelect(@row.Key, @rowList[i].SeatNumber)</script>
-                }
-                <a type="button" onclick="toggleSelected(this, @row.Key, @rowList[i].SeatNumber)" class="img-container">
-                    @if (seatsToSelect > 0)
-                    {
-                        seatsToSelect--;
-                        <img src="@Url.Content("~/img/seat-selected.png")" width="48">
-                    }
-                    else
-                    {
-                        <img src="@Url.Content("~/img/seat-available.png")" width="48">
-                    }
-                    <div class="text-centered">
-                        @Html.DisplayFor(s => rowList[i].SeatNumber)
-                    </div>
-                </a>
-            }
-            else
-            {
-                <a type="button" class="img-container">
-                    <img src="@Url.Content("~/img/seat-not-available.png")" width="48">
-                </a>
-            }
-        }
-    }
-    @if (seatsToSelect > 0)
-    {
-        <h1>There are not enough seats left for the amount of tickets you've selected</h1>
-    }
-    else
-    {
-        <br/>
-        <br/>
-        <button onclick="getPaymentUrl()"
-                class="btn btn-primary">
-            Continue to payment
-        </button>
-    }
-
-</div>
