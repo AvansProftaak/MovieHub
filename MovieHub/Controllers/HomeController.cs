@@ -24,7 +24,7 @@ public class HomeController : Controller
         _context = context;
     }
 
-    public async Task<ActionResult<IndexViewModel>> Index(string searchPhrase)
+    public async Task<ActionResult<IndexViewModel>> Index()
     {
         IndexViewModel indexViewModel = new IndexViewModel();
         
@@ -34,6 +34,7 @@ public class HomeController : Controller
         indexViewModel.Movies = GetMovies();
         indexViewModel.ShowNext = ShowNext();
         indexViewModel.ShowNow = ShowNow();
+        indexViewModel.MovieRuntimes = GetAllMovieRuntimes();
         // indexViewModel.MoviesThisWeek = MoviesThisWeek();
 
         return View(indexViewModel);
@@ -156,6 +157,10 @@ public class HomeController : Controller
         // Add 6 days to get the last day, but to display all movies from the last day we add 7!
         return start.AddDays(7).Date;
     }
-    
+
+    public List<MovieRuntime?> GetAllMovieRuntimes()
+    {
+        return _context.MovieRuntime.ToList();
+    }
     
 }

@@ -10,9 +10,10 @@ public class IndexViewModel
     public Movie? Movie { get; set; }
     public List<Movie>? Movies { get; set; }
     public List<Movie>? MovieIndex { get; set; }
-    // public IEnumerable<Showtime>? SearchForMovie { get; set; }
     public List<Showtime>? ShowNext { get; set; }
     public List<Showtime>? ShowNow { get; set; }
+    public List<MovieRuntime> MovieRuntimes { get; set; }
     
     // public List<MovieRuntime>? MoviesThisWeek { get; set; }
+    // public IEnumerable<Showtime>? SearchForMovie { get; set; }
 }
