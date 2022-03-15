@@ -10,7 +10,7 @@ dotnet ef database update
 ### Dev build
 
 ```bash
-dotnet watch build
+dotnet watch run
 ```
 
 ### Production build
