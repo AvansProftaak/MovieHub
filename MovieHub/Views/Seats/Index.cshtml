@@ -1,4 +1,4 @@
-@model MovieHub.ViewModels.OrderViewModel
+@model MovieHub.ViewModels.SeatViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -31,6 +31,10 @@
     }
     <br />
     <br />
+    
+
+    
+    
     <button onclick="location.href='@Url.Action("Index", "Payments", new {orderId = 2, Model})'"
             class="btn btn-primary">Continue to payment</button>
 </div>
