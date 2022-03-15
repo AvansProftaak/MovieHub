@@ -60,6 +60,42 @@ public class OrdersController : Controller
 
     }
     
+    // here we create the order, make tickets, orer and fill the db
+    // values i will get from others movieId, showtimeId, ticketsWanted [tickettupeid , quantity], seat [rowNumber, seatnumber], cateringWanted[cateringID, quantity]
+    public int PlaceOrdersController(int movieId, int showtimeId,IDictionary<string, string> ticketsWanted["Name of ticket" , "quantity"],IDictionary<int, int> seat["rowNumber", "seatnumber"], IDictionary<int, string> cateringWanted["cateringID", "quantity"])
+    {
+        // TODO: get the showtime with showtime id
+        Showtime showtime = getshowtimeWithShowtimeId;
+
+        OrderViewModel orderViewModel = new OrderViewModel();
+
+        orderViewModel.Showtime = showtime;
+        orderViewModel.Movie = GetMovie(showtime.MovieId);
+        orderViewModel.Tickettypes = TicketTypes(showtime.MovieId);
+        orderViewModel.CateringPackages = GetCateringPackages();
+
+        // create a new order and put order id in var to put in ticket
+        Order order = new Order();
+        
+        foreach (keyvaluepair ticket in ticketsWanted)
+        {
+            // set counter to loop seat asswell
+            // find ticketType with calculated values and create tickets x quantity
+            // set orderid in ticket
+            // also add a seat to eveyticket
+        }
+        
+        foreach (keyvaluepair ticket in ticketsWanted)
+        {
+            // set counter to loop seat asswell
+            // find ticketType with calculated values and create tickets x quantity
+            // set orderid in ticket
+            // also add a seat to eveyticket
+        }
+
+        return orderid;
+    }
+    
     public Movie? GetMovie(int id)
     {
         return _context.Movie
