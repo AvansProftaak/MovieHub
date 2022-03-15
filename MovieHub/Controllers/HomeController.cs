@@ -88,14 +88,12 @@ public class HomeController : Controller
     
     public List<Hall> GetHalls()
     {
-        return _context.Hall
-            .FromSqlRaw("SELECT * FROM public.\"Hall\" ORDER BY \"Id\"").ToList();
+        return _context.Hall.OrderBy(h => h.Id).ToList();
     }
     
     public List<Movie> GetMovies()
     {
-        return _context.Movie
-            .FromSqlRaw("SELECT * FROM public.\"Movie\" ORDER BY \"Id\"").ToList();
+        return _context.Movie.OrderBy(m => m.Id).ToList();
     }
     
     public List<Showtime> ShowNext()
