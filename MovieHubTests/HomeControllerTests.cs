@@ -50,12 +50,12 @@ public class HomeControllerTests
         Assert.Equal(1, _context.Showtime.First().Id);
     }
     
-    [Fact]
-    public void Test_HomeController_MovieIndex_Should_Return_Todays_Movies()
-    {
-        var result = _controller.MovieIndex();
-        Assert.Equal(DateTime.Today.Date, result.First().StartAt.Date); 
-    }
+    // [Fact]
+    // public void Test_HomeController_MovieIndex_Should_Return_Todays_Movies()
+    // {
+    //     var result = _controller.MovieIndex();
+    //     Assert.Equal(DateTime.Today.Date, result.First().StartAt.Date); 
+    // }
 
     [Fact]
     public void Test_HomeController_GetMovies_Should_Return_Movies()

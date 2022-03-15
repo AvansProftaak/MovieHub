@@ -34,7 +34,7 @@
                                     
                                     foreach (var runtime in Model.MovieRuntimes.Where(m => m.MovieId == item.Id))
                                     {
-                                        var time = runtime.Time + " ";
+                                        var time = runtime.Time.ToString(@"hh\:mm") + " ";
                                         @Html.DisplayFor(m=> time)
                                     }
                                 }
