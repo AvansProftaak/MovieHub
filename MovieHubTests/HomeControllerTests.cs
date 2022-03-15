@@ -50,7 +50,8 @@ public class HomeControllerTests
         Assert.Equal(1, _context.Showtime.First().Id);
     }
     
-    // [Fact]
+    // This test was commented out as it was only relevant in Kiosk mode retrieving today's movies.
+    // [Fact] 
     // public void Test_HomeController_MovieIndex_Should_Return_Todays_Movies()
     // {
     //     var result = _controller.MovieIndex();

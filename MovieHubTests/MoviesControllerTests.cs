@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Moq;
 using MovieHub.Controllers;
 using MovieHub.Data;
 using MovieHub.Models;
@@ -36,6 +37,15 @@ public class MoviesControllerTests
     {
         var result = _controller.Details(1);
         Assert.IsType<Task<IActionResult>>(result);
+    }
+
+    [Fact]
+    public void Test_Delete_Should_Delete_Movie()
+    {
+        var movie = _context.Movie.First();
+        _controller.DeleteConfirmed(movie.Id);
+
+        Assert.Null(_context.Movie.Find(movie.Id));
     }
 
     private void InsertTestData(ApplicationDbContext context)
