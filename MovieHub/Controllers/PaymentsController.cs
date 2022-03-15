@@ -83,7 +83,8 @@ public class PaymentsController : Controller
         //Save and close the PDF document 
         document.Save(fileStream);
         document.Close(true);
-
+        fileStream.Close();
+        
         //Create byte file from Pdf
         var fileBytes = System.IO.File.ReadAllBytes(FinishedPdfTicketPath);
         

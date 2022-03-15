@@ -1,10 +1,5 @@
 #nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
@@ -183,7 +178,7 @@ namespace MovieHub.Controllers
             return normalTicket.Price;
         }
         
-        public static decimal PriceCalculations(Tickettype ticket, Movie movie, ApplicationDbContext context, bool normalPriceRaised)
+        public static decimal PriceCalculations(Tickettype ticket, int movieId, ApplicationDbContext context, bool normalPriceRaised)
         {
             /* writing this we had some issues with ticket price of the normal ticket
              * when the normal ticket passed the = > 90 mins or = 3D the values are raised
@@ -191,6 +186,8 @@ namespace MovieHub.Controllers
              * so we have to figure out if normal ticket already passed the calculations or not
              * we could simply tell the owner to insert the normal ticketprices first but they might forget.... 
              */
+
+            var movie = context.Movie.FirstOrDefault(m => m.Id == movieId);
 
             var normalPrice = GetNormalPrice(context);
             var price = normalPrice;

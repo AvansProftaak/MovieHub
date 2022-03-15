@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.Extensions.Logging;
 using MovieHub.Data;
+using MovieHub.Migrations;
 using MovieHub.Models;
 using MovieHub.ViewModels;
 
@@ -23,7 +24,7 @@ public class HomeController : Controller
         _context = context;
     }
 
-    public async Task<ActionResult<IndexViewModel>> Index(string searchPhrase)
+    public async Task<ActionResult<IndexViewModel>> Index()
     {
         IndexViewModel indexViewModel = new IndexViewModel();
         
@@ -33,24 +34,64 @@ public class HomeController : Controller
         indexViewModel.Movies = GetMovies();
         indexViewModel.ShowNext = ShowNext();
         indexViewModel.ShowNow = ShowNow();
+        indexViewModel.MovieRuntimes = GetAllMovieRuntimes();
+        // indexViewModel.MoviesThisWeek = MoviesThisWeek();
 
         return View(indexViewModel);
         }
 
-    public IOrderedQueryable<Showtime> MovieIndex()
+    public List<Movie> MovieIndex()
     {
-        return _context.Showtime
-            .Where(s => s.StartAt.Date.Equals(DateTime.Today))
-            .Where(s => s.StartAt.ToLocalTime() > DateTime.Now)
+
+        DateTime date = DateTime.Today;
+        var firstday = GetFirstDayOfWeek(date);
+        var lastday = GetLastDayOfWeek(date);
+
+        // return _context.Showtime
+        var showtime = _context.Showtime
+
+            .Where(s => (s.StartAt.ToLocalTime() >= firstday))
+            .Where(s => s.StartAt.ToLocalTime() <= lastday)
             .Include(s => s.Hall)
             .Include(s => s.Movie)
             .OrderBy(s => s.StartAt);
+
+        var ThisWeeksMovieList = new List<Movie>();
+
+        foreach (var item in showtime)
+        {
+            ThisWeeksMovieList.Add(item.Movie);
+        }
+
+        var thisWeeksMovieListDistinct = ThisWeeksMovieList.Distinct();
+            return  thisWeeksMovieListDistinct.ToList();
+        
     }
+
+    //
+    // public List<MovieRuntime> MoviesThisWeek()
+    // {
+    //     
+    //     DateTime date = DateTime.Today;
+    //     var firstday = GetFirstDayOfWeek(date);
+    //     var lastday = GetLastDayOfWeek(date);
+    //
+    //     return _context.MovieRuntime.ToList()
+    //
+    //         .Where(m => (m.StartAt.ToLocalTime() >= firstday))
+    //         .Where(m => m.StartAt.ToLocalTime() <= lastday)
+    //         .GroupBy(m => m.MovieId);
+    // }
+    
     // public IOrderedQueryable<Showtime> SearchForMovie(string searchPhrase)
     // {
+    // DateTime date = DateTime.Today;
+    // var firstday = GetFirstDayOfWeek(date);
+    // var lastday = GetLastDayOfWeek(date);
+    //     
     //     return _context.Showtime
-    //         .Where(s => s.StartAt.Date.Equals(DateTime.Today))
-    //         .Where(s => s.StartAt.ToLocalTime() > DateTime.Now)
+    //     .Where(s => (s.StartAt.ToLocalTime() >= firstday))
+    // .Where(s => s.StartAt.ToLocalTime() <= lastday)
     //         .Include(s => s.Hall)
     //         .Include(s => s.Movie)
     //         .Where(s=>s.Movie.Title.Contains(searchPhrase))
@@ -58,14 +99,12 @@ public class HomeController : Controller
     // } 
     public List<Hall> GetHalls()
     {
-        return _context.Hall
-            .FromSqlRaw("SELECT * FROM public.\"Hall\" ORDER BY \"Id\"").ToList();
+        return _context.Hall.OrderBy(h => h.Id).ToList();
     }
     
     public List<Movie> GetMovies()
     {
-        return _context.Movie
-            .FromSqlRaw("SELECT * FROM public.\"Movie\" ORDER BY \"Id\"").ToList();
+        return _context.Movie.OrderBy(m => m.Id).ToList();
     }
     
     public List<Showtime> ShowNext()
@@ -91,5 +130,34 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+    }
+    
+    public static DateTime GetFirstDayOfWeek(DateTime date)
+    {
+        var firstday = DayOfWeek.Monday;
+
+        var diff = date.DayOfWeek - firstday;
+        if (diff < 0)
+            diff += 7;
+        return date.AddDays(-diff).Date;
+    }
+
+    //To Get The Last Day of the Week in C#
+    public static DateTime GetLastDayOfWeek(DateTime date)
+    {
+        var firstday = DayOfWeek.Monday;
+        var diff = date.DayOfWeek - firstday;
+
+        if (diff < 0)
+            diff += 7;
+        DateTime start = date.AddDays(-diff).Date;
+        
+        // Add 6 days to get the last day, but to display all movies from the last day we add 7!
+        return start.AddDays(7).Date;
+    }
+
+    public List<MovieRuntime?> GetAllMovieRuntimes()
+    {
+        return _context.MovieRuntime.ToList()!;
     }
 }
