@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections;
+using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,21 +12,22 @@ namespace MovieHub.Controllers;
 public class OrdersController : Controller
 {
     private readonly ApplicationDbContext _context;
+
     public OrdersController(ApplicationDbContext context)
     {
         _context = context;
     }
     // GET
 
-    
+
     // CHANGED INCOMING SHOWTIME TO MOVIE 
     public async Task<ActionResult<OrderViewModel>> Index(int id)
     {
         OrderViewModel orderViewModel = new OrderViewModel();
 
-        orderViewModel.Movie = GetMovie(id);
-        orderViewModel.Tickettypes = TicketTypes(id);
-        orderViewModel.CateringPackages = GetCateringPackages();
+        orderViewModel.Movie = GetMovie(id, _context);
+        orderViewModel.Tickettypes = TicketTypes(id, _context);
+        orderViewModel.CateringPackages = GetCateringPackages(_context);
         orderViewModel.StartDates = GetStartDates(id);
         orderViewModel.ShowList = new List<SelectListItem>();
 
@@ -39,7 +41,7 @@ public class OrdersController : Controller
 
             orderViewModel.ShowList.Add(show);
         }
-        
+
         return View(orderViewModel);
     }
 
@@ -47,9 +49,9 @@ public class OrdersController : Controller
     {
         var showtimes = _context.Showtime
             .FromSqlRaw("SELECT * FROM \"Showtime\" WHERE \"MovieId\" = {0} ORDER BY \"StartAt\"", movieId).ToList();
-        
+
         var showsThisWeek = new List<Showtime>();
-        
+
         foreach (var show in showtimes)
         {
             if ((show.StartAt >= DateTime.Now) && (show.StartAt.Date <= DateTime.Now.Date.AddDays(7)))
@@ -60,24 +62,23 @@ public class OrdersController : Controller
 
         return showsThisWeek;
     }
-    
-    public List<Tickettype>? GetAllTicketTypes()
+
+    public static List<Tickettype>? GetAllTicketTypes(ApplicationDbContext context)
     {
-        return _context.Tickettype.ToList();
+        return context.Tickettype.ToList();
     }
-    
-    public List<CateringPackage>? GetCateringPackages()
+
+    public static List<CateringPackage>? GetCateringPackages(ApplicationDbContext context)
     {
-        return _context.CateringPackage
+        return context.CateringPackage
             .FromSqlRaw("SELECT * FROM public.\"CateringPackage\"").ToList();
     }
 
-    public List<Tickettype>? TicketTypes(int movieId)
+    public static List<Tickettype>? TicketTypes(int movieId, ApplicationDbContext context)
     {
-        
-        
-        List<Tickettype>? tickets = GetAllTicketTypes();
-    
+        ApplicationDbContext _context = context; 
+        List<Tickettype>? tickets = GetAllTicketTypes(context);
+
         // due to the nature of our calculations we need to hold the normal price after we set it
         // to do this we need this bool ( more explanation in pricecalc function)
         bool normalPriceRaised = false;
@@ -89,61 +90,59 @@ public class OrdersController : Controller
                 normalPriceRaised = true;
             }
         }
-    
+
         return tickets;
-    
     }
-    
+
     // here we create the order, make tickets, orer and fill the db
-    // values i will get from others movieId, showtimeId, ticketsWanted [tickettupeid , quantity], seat [rowNumber, seatnumber], cateringWanted[cateringID, quantity]
-    public int PlaceOrdersController(int movieId, int showtimeId,IDictionary<string, string> ticketsWanted["Name of ticket" , "quantity"],IDictionary<int, int> seat["rowNumber", "seatnumber"], IDictionary<int, string> cateringWanted["cateringID", "quantity"])
+    // values i will get from others movieId, showtimeId, ticketsWanted [ticketid , quantity], seat [rowNumber, seatnumber], cateringWanted[cateringID, quantity]
+    public static int PlaceOrder(ApplicationDbContext context)
     {
-        // TODO: get the showtime with showtime id
-        Showtime showtime = getshowtimeWithShowtimeId;
+        ApplicationDbContext _context = context;
+        int movieId = 7;
+        int showtimeId = 1837;
+        IDictionary<int, string> ticketsWanted = new Dictionary<int, string>();
+        ticketsWanted.Add(1, "8");
+        ticketsWanted.Add(3, "7.50");
 
-        OrderViewModel orderViewModel = new OrderViewModel();
-
-        orderViewModel.Showtime = showtime;
-        orderViewModel.Movie = GetMovie(showtime.MovieId);
-        orderViewModel.Tickettypes = TicketTypes(showtime.MovieId);
-        orderViewModel.CateringPackages = GetCateringPackages();
+        Showtime showtime = _context.Showtime
+            .Where(s => (s.Id >= showtimeId)).FirstOrDefault();
+        
+        Movie movie = GetMovie(showtime.MovieId, _context);
+        List<Tickettype> tickettypes = TicketTypes(showtime.MovieId, context);
+        List<CateringPackage> cateringPackages = GetCateringPackages(context);
+        //List<Seat> seats = GetSeat();
 
         // create a new order and put order id in var to put in ticket
         Order order = new Order();
+
+        int counter = 0;
         
-        foreach (keyvaluepair ticket in ticketsWanted)
+        foreach (int key in ticketsWanted.Keys)
         {
-            // set counter to loop seat asswell
-            // find ticketType with calculated values and create tickets x quantity
-            // set orderid in ticket
-            // also add a seat to eveyticket
-        }
-        
-        foreach (keyvaluepair ticket in ticketsWanted)
-        {
-            // set counter to loop seat asswell
-            // find ticketType with calculated values and create tickets x quantity
-            // set orderid in ticket
+            counter += 1;
+            decimal ticketPrice = System.Convert.ToDecimal(ticketsWanted[key]);
+            Ticket ticketToCreate = new Ticket();
+            ticketToCreate.Barcode = 12345;
+            //ticketToCreate.Name = tickettypes.Where(t => t.Id  ==key ).FirstOrDefault().Name; 
+            ticketToCreate.Name = "Henk"; 
+            ticketToCreate.OrderId = order.Id;
+            ticketToCreate.Price = ticketPrice;
+
             // also add a seat to eveyticket
         }
 
-        return orderid;
+        /*foreach (keyvaluepair catering in cateringWanted)
+        {
+            CateringPackage createCateringTickets = new CateringPackage();
+        }*/
+
+        return order.Id;
     }
-    
-    public Movie? GetMovie(int id)
+
+    public static Movie? GetMovie(int id, ApplicationDbContext context)
     {
-        return _context.Movie
+        return context.Movie
             .Where(m => m.Id.Equals(id)).ToList().FirstOrDefault();
     }
-
-    /*public Order? PlaceOrder()
-    {
-        // here we need to create the tickets - > will be done in ticketController
-        // the ticket controller wil bu used to save tickets and arangement tickets
-        // put the tickets in order and return order
-        
-        
-        return "Order Placed";
-    }*/
-
 }

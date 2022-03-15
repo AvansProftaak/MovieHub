@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.ViewModels;
+using MovieHub.Controllers;
 using Syncfusion.HtmlConverter;
 using Syncfusion.Pdf;
 
@@ -19,6 +20,9 @@ public class PaymentsController : Controller
 
     public IActionResult ReceiveTicket(OrderViewModel orderViewModel)
     {
+        // Here we call placeOrder from the ordersController
+        OrdersController.PlaceOrder(_context);
+        
         // TODO: Receive information about the payment
         
         //Get wwwroot path information
