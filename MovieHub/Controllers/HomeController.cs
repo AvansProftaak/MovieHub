@@ -160,7 +160,6 @@ public class HomeController : Controller
 
     public List<MovieRuntime?> GetAllMovieRuntimes()
     {
-        return _context.MovieRuntime.ToList();
+        return _context.MovieRuntime.ToList()!;
     }
-    
 }

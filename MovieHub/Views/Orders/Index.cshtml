@@ -1,5 +1,4 @@
 ﻿@using Nager.Date
-@using Spire.Pdf.Exporting.XPS.Schema
 @model MovieHub.ViewModels.OrderViewModel
 
 @{
@@ -21,7 +20,7 @@ function SaveToLocalStorage() {
     let ticketTypes = CountTickets(ticketQuantity, ticketTypeId);
     let cateringPackages = CountTickets(packageQuantity, CateringPackageId);
     
-    // Showinfo:
+    // Show info:
     let selectedShow = document.getElementById('selectedShow')
     let showtimeId = parseInt(selectedShow.value)
     
@@ -29,18 +28,19 @@ function SaveToLocalStorage() {
     
 }
 
+@* JAVASCRIPT CODE: *@
 function BuyTickets()
 {
-    // Showinfo:
+    // Show info:
     let selectedShow = document.getElementById('selectedShow')
     let showtimeId = parseInt(selectedShow.value)
    
-    // Ticketinfo: 
+    // Ticket info: 
     ticketQuantity = document.querySelectorAll('.ticketQuantity')
     ticketTypeId = document.querySelectorAll('.ticketTypeId')
     let totalTickets = TotalTickets(ticketQuantity)
     
-    //Packageinfo:
+    //Package info:
     packageQuantity = document.querySelectorAll('.packageQuantity')
     CateringPackageId = document.querySelectorAll('.cateringPackageId')
     
@@ -52,8 +52,6 @@ function BuyTickets()
     }
     SaveToLocalStorage();    
     location.href='@Url.Action("Index", "Seats")?showtimeId='+JSON.stringify(showtimeId);
-    
-    
 }
 
 function CountTickets (quantity, id) {
@@ -69,7 +67,7 @@ function CountTickets (quantity, id) {
 function TotalTickets(ticketQuantity) {
     let sumTq = 0;
     
-    ticketQuantity.forEach((tq, index) => {
+    ticketQuantity.forEach((tq) => {
         
         sumTq = sumTq + parseInt(tq.value)
     })
@@ -77,6 +75,7 @@ function TotalTickets(ticketQuantity) {
 }
 </script>
 
+@* HTML CODE: *@
 <div class="container" style="margin-top: 120px">
     <dl class="row">
         <div class="col-4">
@@ -103,7 +102,7 @@ function TotalTickets(ticketQuantity) {
                     <th>Details</th>
                 </tr>
 
-                @foreach (var ticket in Model.Tickettypes)
+                @foreach (var ticket in Model.Tickettypes!)
                 {
                     var dateNow = DateTime.Now;
                     var day = DateTime.Now.DayOfWeek;
@@ -112,16 +111,12 @@ function TotalTickets(ticketQuantity) {
                     // TODO:    working on logic for kids discount add pegi rating
                     //          Problem is.... there are pegi ratings in db yet
                     if (((ticket.Name == "Kids") &
-                         (
-
+                         
                         @* COMMENTED OUT BECAUSE SHOWTIME LATER ADDED TODO*@
                              // (Model.Showtime.StartAt > kidsBedTime) |
         
-                             (Model.Movie.Language != "Dutch")
-                             )
-                         | ((ticket.Name == "Students") & (!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday)) |
-                            ((((ticket.Name == "65+") & ((!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday)) |
-                                                         ((DateSystem.IsPublicHoliday(dateNow, CountryCode.NL))))))))))
+                    (Model.Movie.Language != "Dutch") | (ticket.Name == "Students") & !(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday) |
+                            (ticket.Name == "65+") & (!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday) | DateSystem.IsPublicHoliday(dateNow, CountryCode.NL))))
                     {
                         Console.WriteLine(ticket.Name + "Should be excluded");
                         continue;
@@ -139,8 +134,8 @@ function TotalTickets(ticketQuantity) {
                     }
                 }
             </table>
-        
             <br/><br/>
+            
             <h4>Catering Arrangements:</h4>
             <table>
                 <tr>
@@ -148,28 +143,22 @@ function TotalTickets(ticketQuantity) {
                     <th>Product</th>
                     <th>Price</th>
                 </tr>
-        
-        
-                @{
-                    System.Diagnostics.Debug.Assert(Model.CateringPackages != null, "Model.CateringPackages != null");
-                }
-                @foreach (var package in Model.CateringPackages)
+                @foreach (var package in Model.CateringPackages!)
                 {
-        
                     <tr>
                         <td hidden="hidden" class="cateringPackageId">@package.Id</td>
                         <td style="width: 30%"><input type="number" asp-for=@package.Quantity class="form-control packageQuantity" placeholder="Number of Tickets" min="1" max="10"/></td>
                         <td>@package.Description</td>
                         <td>@package.Price</td>
                     </tr>
-        
                 }
             </table>
             <br/><br/>
+            
             <button onclick="BuyTickets()" class="btn btn-primary btn-sizing ms-1" style="margin-bottom: 2px">Select seats</button>
             <p class="text-center" id="ErrorNoSelection"></p>
+            
         </div>
-        
     </dl>
     <br/>
 </div>
