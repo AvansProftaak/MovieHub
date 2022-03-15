@@ -46,6 +46,11 @@
     Object.keys(orderData['ticketTypes']).forEach((value, index, array) => {
         seatsLeft += orderData['ticketTypes'][value];
     });
+    document.querySelectorAll('img').forEach((value, index, array) => {
+        if (seatsLeft > 0 && value.src.includes('/img/seat-available.png')){
+            value.click();
+        }
+    })
     updateHelperText();
     
     //seats is an object to prevent looping
