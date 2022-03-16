@@ -77,12 +77,12 @@
          <div>
              <hr/>
              <div class="justify-content-between d-flex">
-             @* TODO showtime for movie *@
-             @* <button onclick="location.href='@Url.Action("Index", "Orders", new {})'" *@
-             @*         class="btn btn-primary btn-sizing me-1">Buy Tickets</button> *@
-             <button onclick="location.href='@Url.Action("Index", "Home")'" 
-                     class="btn btn-primary btn-sizing ms-1">Back to home</button>
-         </div> </div>
+                <button onclick="location.href='@Url.Action("Index", "Home")'" 
+                        class="btn btn-primary btn-sizing ms-1">Back to home</button> 
+                 <button onclick="location.href='@Url.Action("Index", "Orders", new {id = Model.Id})'"
+                         class="btn btn-primary btn-sizing ms-1">Buy Tickets</button>
+
+             </div> </div>
     </dl>
 </div>
 
