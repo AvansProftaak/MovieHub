@@ -14,5 +14,6 @@ public class OrderViewModel
     public List<Showtime>? StartDates { get; set; }
     public List<SelectListItem>? ShowList { get; set; }
     public List<MovieRuntime>? MovieRuntimes { get; set; }
+    public List<MoviePegi>? MoviePegis { get; set; }
 
 }
