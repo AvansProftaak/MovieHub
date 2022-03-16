@@ -103,8 +103,6 @@ public class PaymentsController : Controller
     public async Task<IActionResult> Index( Dictionary<string,string> json)
     {
         Console.Write(json);
-        int orderId = OrdersController.PlaceOrder(_context);
-
         OrderData orderData = JsonConvert.DeserializeObject<OrderData>(json["orderData"]);
         Console.Write(orderData);
 
@@ -116,6 +114,17 @@ public class PaymentsController : Controller
         
         Showtime showtime = _context.Showtime
             .Where(s => (s.Id >= showtimeId)).FirstOrDefault();
+        //int orderId = OrdersController.PlaceOrder(_context);
+
+        Order order = new Order();
+        order.UserId = 1;
+        order.Showtime = showtime;
+        
+
+        _context.Order.Add(order);
+        await _context.SaveChangesAsync();
+        
+
         
         Movie movie = OrdersController.GetMovie(movieId, _context);
         List<Tickettype> tickettypes = OrdersController.TicketTypes(showtime.MovieId, _context);
@@ -132,12 +141,14 @@ public class PaymentsController : Controller
             {
                 Ticket ticket = new Ticket();
                 ticket.Barcode = 123;
-                ticket.OrderId = orderId;
+                ticket.OrderId = order.Id;
                 ticket.Name = tickettype.Name;
                 ticket.Price = tickettype.Price;
+                ticket.SeatId = 22;
 
-                _context.add(ticket);
-                _context.savechanges;
+                _context.Ticket.Add(ticket);
+                await _context.SaveChangesAsync();
+                i++;
             }
             
             //ticket.Name 
@@ -148,7 +159,7 @@ public class PaymentsController : Controller
 
 
             var payment = await _context.Payment
-            .FirstOrDefaultAsync(p => p.OrderId == orderId);
+            .FirstOrDefaultAsync(p => p.OrderId == order.Id);
         return View(payment);
     }
 
