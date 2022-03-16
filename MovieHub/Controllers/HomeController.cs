@@ -35,7 +35,6 @@ public class HomeController : Controller
         indexViewModel.ShowNext = ShowNext();
         indexViewModel.ShowNow = ShowNow();
         indexViewModel.MovieRuntimes = GetAllMovieRuntimes();
-        // indexViewModel.MoviesThisWeek = MoviesThisWeek();
 
         return View(indexViewModel);
         }
@@ -67,21 +66,7 @@ public class HomeController : Controller
             return  thisWeeksMovieListDistinct.ToList();
         
     }
-
-    //
-    // public List<MovieRuntime> MoviesThisWeek()
-    // {
-    //     
-    //     DateTime date = DateTime.Today;
-    //     var firstday = GetFirstDayOfWeek(date);
-    //     var lastday = GetLastDayOfWeek(date);
-    //
-    //     return _context.MovieRuntime.ToList()
-    //
-    //         .Where(m => (m.StartAt.ToLocalTime() >= firstday))
-    //         .Where(m => m.StartAt.ToLocalTime() <= lastday)
-    //         .GroupBy(m => m.MovieId);
-    // }
+    
     
     // public IOrderedQueryable<Showtime> SearchForMovie(string searchPhrase)
     // {
@@ -90,12 +75,13 @@ public class HomeController : Controller
     // var lastday = GetLastDayOfWeek(date);
     //     
     //     return _context.Showtime
-    //     .Where(s => (s.StartAt.ToLocalTime() >= firstday))
-    // .Where(s => s.StartAt.ToLocalTime() <= lastday)
-    //         .Include(s => s.Hall)
-    //         .Include(s => s.Movie)
-    //         .Where(s=>s.Movie.Title.Contains(searchPhrase))
-    //         .OrderBy(s => s.StartAt);
+    //         .Where(s => (s.StartAt.ToLocalTime() >= firstday))
+    //         .Where(s => s.StartAt.ToLocalTime() <= lastday)
+    //          .Include(s => s.Hall)
+    //          .Include(s => s.Movie)
+    //          .OrderBy(s => s.StartAt);
+    //          .Where(s=>s.Movie.Title.Contains(searchPhrase))
+    //          .OrderBy(s => s.StartAt);
     // } 
     public List<Hall> GetHalls()
     {

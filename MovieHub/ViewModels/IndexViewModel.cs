@@ -14,6 +14,5 @@ public class IndexViewModel
     public List<Showtime>? ShowNow { get; set; }
     public List<MovieRuntime> MovieRuntimes { get; set; }
     
-    // public List<MovieRuntime>? MoviesThisWeek { get; set; }
     // public IEnumerable<Showtime>? SearchForMovie { get; set; }
 }

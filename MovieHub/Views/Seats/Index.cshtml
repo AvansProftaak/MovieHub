@@ -6,35 +6,104 @@
 }
 
 <div class="container-fluid" style="margin-top: 120px">
-    <h1>Select your seat</h1>
-    @foreach (var row in Model.Seats.GroupBy(r => r.RowNumber))
+    <h1>Select your seats</h1>
+    <span id="chairSelectHelpText">You need to select (<span id="amountOfChairsLeft"></span>) more chairs</span>
+    @foreach (var row in Model.Seats.GroupBy(r => r.RowNumber).OrderByDescending(r => r.Key))
     {
         var rowList = row.ToList();
-
         <h4>Row @row.Key</h4>
         for (int i = 0; i < rowList.Count(); i++)
         {
-            <a type="button" class="img-container">
-                @if (rowList[i].Available)
-                {
+            @if (rowList[i].Available)
+            {
+                <a type="button" onclick="toggleSelected(this, @row.Key, @rowList[i].SeatNumber)" class="img-container">
                     <img src="@Url.Content("~/img/seat-available.png")" width="48">
-                }
-                else
-                {
+                    <div class="text-centered">
+                        @Html.DisplayFor(s => rowList[i].SeatNumber)
+                    </div>
+                </a>
+            }
+            else
+            {
+                <a type="button" class="img-container">
                     <img src="@Url.Content("~/img/seat-not-available.png")" width="48">
-                }
-                <div class="text-centered">
-                    @Html.DisplayFor(s => rowList[i].SeatNumber)
-                </div>
-            </a>
+                </a>
+            }
         }
     }
-    <br />
-    <br />
-    
-
-    
-    
-    <button onclick="location.href='@Url.Action("Index", "Payments", new {orderId = 2, Model})'"
-            class="btn btn-primary">Continue to payment</button>
+    <br/>
+    <br/>
+    <button onclick="getPaymentUrl()"
+            class="btn btn-primary">
+        Continue to payment
+    </button>
 </div>
+
+<script >
+    let seatsLeft = 0;
+    let seats = {};
+    let orderData = localStorage.getItem('orderData') ? JSON.parse(localStorage.getItem('orderData')) : '';
+    Object.keys(orderData['ticketTypes']).forEach((value, index, array) => {
+        seatsLeft += orderData['ticketTypes'][value];
+    });
+    document.querySelectorAll('img').forEach((value, index, array) => {
+        if (seatsLeft > 0 && value.src.includes('/img/seat-available.png')){
+            value.click();
+        }
+    })
+    updateHelperText();
+    
+    //seats is an object to prevent looping
+    function defaultSelect(row, seat){
+        if (!seats[row]){
+            seats[row] = {};
+        }
+        //add seat to object
+        seats[row][seat] = true;
+        
+    }
+    function updateHelperText() {
+        if (seatsLeft !== 0){
+            document.getElementById('amountOfChairsLeft').innerText = seatsLeft;
+            document.getElementById('chairSelectHelpText').hidden = false;
+        }else {
+            document.getElementById('chairSelectHelpText').hidden = true;
+        }       
+    }
+    function toggleSelected(seatElement, row, seat){
+        let imgElement = seatElement.querySelector('img');
+        if (seats[row] && seats[row][seat]){
+            seatsLeft++;
+            //remove seat from object
+            delete seats[row][seat];
+            //if last selected seat of row was removed remove row from object
+            if (Object.keys(seats[row]).length === 0){
+              delete seats[row];
+            }
+            imgElement.src = '@Url.Content("~/img/seat-available.png")';
+        }else if (seatsLeft > 0){
+            seatsLeft--;
+            defaultSelect(row, seat);
+            imgElement.src = '@Url.Content("~/img/seat-selected.png")';
+        }
+        updateHelperText()
+    }
+    
+    function getSelectedSeatsArray(){
+        let seatsArray = [];
+        for (const row of Object.keys(seats)) {
+          for (const seatNumber of Object.keys(seats[row])) {
+            seatsArray.push([row, seatNumber])
+          }
+        }
+        return seatsArray
+    }
+    
+    function getPaymentUrl(){
+        if (seatsLeft !== 0){
+            return
+        }
+        orderData['seats'] = getSelectedSeatsArray();
+        location.href='@Url.Action("Index", "Payments")?orderData='+JSON.stringify(orderData);
+    }
+</script>
