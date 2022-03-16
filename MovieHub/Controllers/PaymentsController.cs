@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.ViewModels;
 using MovieHub.Controllers;
+using MovieHub.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NuGet.Protocol;
@@ -103,15 +104,13 @@ public class PaymentsController : Controller
     {
         Console.Write(json);
         int orderId = OrdersController.PlaceOrder(_context);
-
-
-        Dictionary<string, string> henk = json["orderData"].Split(';').Select (part  => part.Split(','))
-            .ToDictionary (sp => sp[0], sp => sp[1]);
         
-        Console.Write(henk);
-        Object orderData = JsonConvert.DeserializeObject<Object>(json["orderData"]);
+        OrderData orderData = JsonConvert.DeserializeObject<OrderData>(json["orderData"]);
+        int movieId = orderData.movieId;
+        int showtimeId = orderData.showtimeId;
+        Console.Write(movieId);
 
-        int movieId = orderData["movieId"].Value<string>() ?
+
 
 
             var payment = await _context.Payment

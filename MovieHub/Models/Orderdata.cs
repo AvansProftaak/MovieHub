@@ -7,18 +7,12 @@ namespace MovieHub.Models;
 public class OrderData
 {
     public int movieId { get; set; }
-    public Decimal TotalPrice { get; set; }
+    public int showtimeId { get; set; }
+
+    public Dictionary<int,int> ticketTypes { get; set; }
+    public Dictionary<int,int> cateringPackages { get; set; }
+    public Dictionary<int,int> seats { get; set; }
     
-    [DisplayName( "User")] 
-    public int UserId { get; set; }
-    [ForeignKey("UserId")]
-    public virtual User User { get; set; } = null!;
-
-    [DisplayName( "Showtime")] 
-    public int ShowtimeId { get; set; }
-    [ForeignKey("ShowtimeId")]
-    public virtual Showtime Showtime { get; set; } = null!;
-
 
     public OrderData()
     {
