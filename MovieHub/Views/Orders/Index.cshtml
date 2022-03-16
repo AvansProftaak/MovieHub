@@ -60,7 +60,7 @@ function CountTickets (quantity, id) {
   
     for (let i = 0; i < quantity.length; i++)
     {
-        ticketTypes[id[i].innerHTML] = parseInt(quantity[i].value);
+        ticketTypes[parseInt(id[i].innerHTML)] = parseInt(quantity[i].value);
     }
     return ticketTypes;
 }
