@@ -162,6 +162,32 @@ public class PaymentsController : Controller
             counter += 1;
         }
 
+        counter = 0;
+        
+        foreach (var key in cateringPackagesSelected.Keys)
+        {
+            int i = 0;
+            CateringPackage cateringPackage = cateringPackages[counter];
+
+            while (i <= cateringPackagesSelected[key])
+            {
+                Ticket ticket = new Ticket();
+                ticket.Barcode = 123;
+                ticket.OrderId = order.Id;
+                ticket.Name = cateringPackage.Name;
+                ticket.Price = cateringPackage.Price;
+                ticket.SeatId = 22;
+                
+
+                _context.Ticket.Add(ticket);
+                await _context.SaveChangesAsync();
+                i++;
+            }
+            
+            //ticket.Name 
+            counter += 1;
+        }
+
 
 
 
