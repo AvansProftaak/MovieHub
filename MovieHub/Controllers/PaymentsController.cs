@@ -104,11 +104,45 @@ public class PaymentsController : Controller
     {
         Console.Write(json);
         int orderId = OrdersController.PlaceOrder(_context);
-        
+
         OrderData orderData = JsonConvert.DeserializeObject<OrderData>(json["orderData"]);
+        Console.Write(orderData);
+
         int movieId = orderData.movieId;
         int showtimeId = orderData.showtimeId;
-        Console.Write(movieId);
+        Dictionary<string, int> ticketTypesSelected = orderData.ticketTypes;
+        Dictionary<string, int> cateringPackagesSelected = orderData.cateringPackages;
+        Dictionary<string, string> seatsSelected = orderData.seats;
+        
+        Showtime showtime = _context.Showtime
+            .Where(s => (s.Id >= showtimeId)).FirstOrDefault();
+        
+        Movie movie = OrdersController.GetMovie(movieId, _context);
+        List<Tickettype> tickettypes = OrdersController.TicketTypes(showtime.MovieId, _context);
+        List<CateringPackage> cateringPackages = OrdersController.GetCateringPackages(_context);
+
+
+        int counter = 0;
+        foreach (var key in ticketTypesSelected.Keys)
+        {
+            int i = 0;
+            Tickettype tickettype = tickettypes[counter];
+
+            while (i <= ticketTypesSelected[key])
+            {
+                Ticket ticket = new Ticket();
+                ticket.Barcode = 123;
+                ticket.OrderId = orderId;
+                ticket.Name = tickettype.Name;
+                ticket.Price = tickettype.Price;
+
+                _context.add(ticket);
+                _context.savechanges;
+            }
+            
+            //ticket.Name 
+            counter += 1;
+        }
 
 
 
