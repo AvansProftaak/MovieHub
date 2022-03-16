@@ -108,6 +108,7 @@ public class PaymentsController : Controller
 
         int movieId = orderData.movieId;
         int showtimeId = orderData.showtimeId;
+        int userId = 1;
         Dictionary<string, int> ticketTypesSelected = orderData.ticketTypes;
         Dictionary<string, int> cateringPackagesSelected = orderData.cateringPackages;
         Dictionary<string, string> seatsSelected = orderData.seats;
@@ -115,10 +116,16 @@ public class PaymentsController : Controller
         Showtime showtime = _context.Showtime
             .Where(s => (s.Id >= showtimeId)).FirstOrDefault();
         //int orderId = OrdersController.PlaceOrder(_context);
+        User user = _context.User
+            .Where(u => (u.Id >= userId)).FirstOrDefault();
+        //int orderId = OrdersController.PlaceOrder(_context);
 
         Order order = new Order();
-        order.UserId = 1;
+        order.UserId = userId;
         order.Showtime = showtime;
+        order.ShowtimeId = showtimeId;
+        order.User = user;
+        
         
 
         _context.Order.Add(order);
