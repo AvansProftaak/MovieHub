@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
@@ -19,68 +18,58 @@ public class OrdersController : Controller
 
     
     // CHANGED INCOMING SHOWTIME TO MOVIE 
-    public async Task<ActionResult<OrderViewModel>> Index(int id)
+    public Task<ActionResult<OrderViewModel>> Index(int id)
     {
-        OrderViewModel orderViewModel = new OrderViewModel();
-
-        orderViewModel.Movie = GetMovie(id);
-        orderViewModel.Tickettypes = TicketTypes(id);
-        orderViewModel.CateringPackages = GetCateringPackages();
-        orderViewModel.StartDates = GetStartDates(id);
-        orderViewModel.ShowList = new List<SelectListItem>();
-
-        foreach (var item in GetStartDates(id))
+        var orderViewModel = new OrderViewModel
         {
-            var show = new SelectListItem()
-            {
-                Value = item.Id.ToString(),
-                Text = item.StartAt.ToLocalTime().ToString("f")
-            };
+            Movie = GetMovie(id),
+            Tickettypes = TicketTypes(id),
+            CateringPackages = GetCateringPackages(),
+            StartDates = GetStartDates(id),
+            ShowList = new List<SelectListItem>(),
+            MoviePegis = MoviePegis()
+        };
 
+        foreach (var show in GetStartDates(id).Select(item => new SelectListItem()
+                 {
+                     Value = item.Id.ToString(),
+                     Text = item.StartAt.ToLocalTime().ToString("f")
+                 }))
+        {
             orderViewModel.ShowList.Add(show);
         }
         
-        return View(orderViewModel);
+        return Task.FromResult<ActionResult<OrderViewModel>>(View(orderViewModel));
     }
-
+ 
     public List<Showtime> GetStartDates(int movieId)
     {
-        var showtimes = _context.Showtime
+        var showtimes = _context.Showtime?
             .FromSqlRaw("SELECT * FROM \"Showtime\" WHERE \"MovieId\" = {0} ORDER BY \"StartAt\"", movieId).ToList();
-        
-        var showsThisWeek = new List<Showtime>();
-        
-        foreach (var show in showtimes)
-        {
-            if ((show.StartAt >= DateTime.Now) && (show.StartAt.Date <= DateTime.Now.Date.AddDays(7)))
-            {
-                showsThisWeek.Add(show);
-            }
-        }
 
-        return showsThisWeek;
+        return showtimes!.Where(show => (show.StartAt >= DateTime.Now) && (show.StartAt.Date <= DateTime.Now.Date.AddDays(7))).ToList();
     }
     
-    public List<Tickettype>? GetAllTicketTypes()
+    public List<Tickettype> GetAllTicketTypes()
     {
         return _context.Tickettype.ToList();
     }
     
-    public List<CateringPackage>? GetCateringPackages()
+    public List<CateringPackage> GetCateringPackages()
     {
         return _context.CateringPackage
             .FromSqlRaw("SELECT * FROM public.\"CateringPackage\"").ToList();
     }
 
-    public List<Tickettype>? TicketTypes(int movieId)
+    public List<Tickettype> TicketTypes(int movieId)
     {
         
         
-        List<Tickettype>? tickets = GetAllTicketTypes();
+        var tickets = GetAllTicketTypes();
     
         // due to the nature of our calculations we need to hold the normal price after we set it
         // to do this we need this bool ( more explanation in pricecalc function)
-        bool normalPriceRaised = false;
+        var normalPriceRaised = false;
         foreach (var ticket in tickets)
         {
             ticket.Price = TicketTypeController.PriceCalculations(ticket, movieId, _context, normalPriceRaised);
@@ -109,5 +98,11 @@ public class OrdersController : Controller
         
         return "Order Placed";
     }*/
+
+    public List<MoviePegi> MoviePegis()
+    {
+        return _context.MoviePegi
+            .Include(m=> m.Pegi).ToList();
+    }
 
 }
