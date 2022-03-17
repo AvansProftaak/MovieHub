@@ -1,4 +1,4 @@
-﻿@model MovieHub.Models.Payment
+﻿@model int
 
 @{
     ViewData["Title"] = "Index";
@@ -6,34 +6,25 @@
 }
 
 <div class="container-fluid" style="margin-top: 120px">
-    @if (@Model.Status == StatusEnum.Open)
-        {
-            <div class="row">
-                <div class="col-5 offset-md-4 text-center">
-                    <h1>Please follow the instructions on the terminal</h1>
-                    <img id="loading" src="@Url.Content("~/img/loading-buffering.gif")" width="8%" alt="Loading ..."/>
-                    <button onclick="location.href='@Url.Action("UpdateStatus", "Payments", new {orderId = 2, status = 1})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button>
-                </div>
-            </div>
-        }
-        @if (@Model.Status == StatusEnum.Pending)
-        {
-            <div class="row">
-                <div class="col-5 offset-md-4 text-center">
-                    <h1>Processing payment...</h1>
-                    <img id="loading" src="@Url.Content("~/img/loading-buffering.gif")" width="8%" alt="Loading ..."/>
-                    <button onclick="location.href='@Url.Action("UpdateStatus", "Payments", new {orderId = 2, status = 2})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button>
-                </div>
-            </div>
-        }
-        @if (@Model.Status == StatusEnum.Paid)
-        {
-            <div class="row text-center">
-                <div class="col-5 offset-md-4">
-                    <h1>Payment successful!</h1>
-                    <button onclick="location.href='@Url.Action("ReceiveTicket", "Payments")'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Receive Ticket</button>
-                </div>
-            </div>
-        }
+    <div class="row">
+        <div class="col-5 offset-md-4 text-center">
+            <h1>Please select your payment method</h1>
+            <label for="paymentMethod">Payment method:</label>
+            <select name="paymentMethod" id="paymentMethod">
+              <option value="1">Pay with card at the cinema</option> 
+              <option value="2">Credit card</option>
+              <option value="3">Paypal</option>
+              <option value="4">Ideal</option>
+            </select>
+            <button onclick="goToPayment()" style="margin-top: 24px" class="btn btn-primary btn-sizing">Continue</button>
+        </div>
+    </div>
 </div>
 
+<script>
+function goToPayment() {
+    let paymentMethod = document.getElementById("paymentMethod")
+    let paymentMethodval = paymentMethod.value
+    location.href='@Url.Action("CreatePayment", "Payments")?orderId=' + @Model + '&paymentMethodId=' + paymentMethodval
+}
+</script>
