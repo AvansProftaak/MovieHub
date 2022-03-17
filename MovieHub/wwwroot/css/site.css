@@ -228,3 +228,11 @@ color: #F8A613;
   padding: 10px 0 15px 0;
   border-radius: 5px;
 }
+
+.navigation {
+  align-content: center;
+  height: 100%;
+  float: right;
+  border-style: solid;
+  border-width: 1px;
+}
