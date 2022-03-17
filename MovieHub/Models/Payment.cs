@@ -16,7 +16,7 @@ public class Payment
     public Order Order { get; set; } = null!;
 
     [DisplayName( "PaymentMethod")] 
-    public int PaymentMethodId { get; set; }
+    public int? PaymentMethodId { get; set; }
     [ForeignKey("PaymentMethodId")]
     public PaymentMethod PaymentMethod { get; set; } = null!;
 

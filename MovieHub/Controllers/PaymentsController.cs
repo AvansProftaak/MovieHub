@@ -161,17 +161,7 @@ public class PaymentsController : Controller
             //ticket.Name 
             counter += 1;
         }
-
-        Payment payment = new Payment();
-        payment.Status = StatusEnum.Open;
-        payment.OrderId = order.Id;
-        payment.PaymentMethodId = 1;
-
-        _context.Payment.Add(payment);
-        await _context.SaveChangesAsync();
-        var getPayment = await _context.Payment
-            .FirstOrDefaultAsync(p => p.OrderId == order.Id);
-        return View(getPayment);
+        return View(order.Id);
     }
 
     public async Task<IActionResult> UpdateStatus(int orderId, int status)
@@ -196,6 +186,27 @@ public class PaymentsController : Controller
             _context.Update(payment);
             await _context.SaveChangesAsync();
         }
-        return RedirectToAction("Index", new { orderId = orderId });
+        return RedirectToAction("GetPayment", new { orderId = orderId });
+    }
+
+    public async Task<IActionResult> CreatePayment(int orderId, int paymentMethodId)
+    {
+        Payment payment = new Payment();
+        payment.Status = StatusEnum.Open;
+        payment.OrderId = orderId;
+        payment.PaymentMethodId = paymentMethodId;
+
+        _context.Payment.Add(payment);
+        await _context.SaveChangesAsync();
+        var getPayment = await _context.Payment
+    .FirstOrDefaultAsync(p => p.OrderId == orderId);
+        return View(getPayment);
+    }
+
+    public async Task<IActionResult> GetPayment(int orderId)
+    {
+        var getPayment = await _context.Payment
+    .FirstOrDefaultAsync(p => p.OrderId == orderId);
+        return View(getPayment);
     }
 }
