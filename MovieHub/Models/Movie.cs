@@ -15,9 +15,12 @@ public class Movie
     [DisplayName("IMDb Score")]
     public double ImdbScore { get; set; } // In stead of Stars
     [DisplayName("Release date")]
+    
+    [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = true)]
     [DataType(DataType.Date)]
     [Column(TypeName="date")]
     public DateTime ReleaseDate { get; set; } 
+    
     [DisplayName("3D")]
     public bool Is3D { get; set; }
     [DisplayName("Secret")]
