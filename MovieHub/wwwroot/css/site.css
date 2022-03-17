@@ -229,8 +229,9 @@ color: #F8A613;
   border-radius: 5px;
 }
 .details-3D{
-  width:70px; 
-  padding-left: 23px; 
-  margin-top: -85px; 
-  margin-left: 83px;
+  width: 70px;
+  padding-left: 18px;
+  margin-top: -7px;
+  margin-left: -51px;
+  position: absolute;
   }
