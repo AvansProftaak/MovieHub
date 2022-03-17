@@ -1,18 +1,19 @@
 @using MovieHub.Migrations
+@using System.Globalization
 @model MovieHub.Models.Movie
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="moviedetails">
-<div style="float: left">
-<img src="@Html.DisplayFor(model => model.ImageUrl)" alt="Movieposter" style="width:500px" height="inherit">
-</div>
 
+<div class="moviedetails container">
+    <div style="float: left">
+        <img src="@Html.DisplayFor(model => model.ImageUrl)" alt="Movieposter" style="width:500px" height="inherit">
+    </div>
     <dl class="row">
         <div>
-            <h1 style="display: inline-flex;">@Html.DisplayFor(model => model.Title)</h1>
+            <h1 style="display: inline-flex; font-family: 'Poiret One', cursive">@Html.DisplayFor(model => model.Title)</h1>
             <div style="display: inline-flex; float: right; padding-top: 10px">
                 <img src="@Url.Content("~/img/IMDB_Logo_2016.svg")" style="width:60px; padding-right: 10px"  alt="IMDB Logo">
                 <h4 style="padding-top: 5px"> @Html.DisplayFor(model => model.ImdbScore) / 10</h4>
