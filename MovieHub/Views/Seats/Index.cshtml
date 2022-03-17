@@ -89,11 +89,11 @@
         updateHelperText()
     }
     
-    function getSelectedSeatsArray(){
-        let seatsArray = [];
+function getSelectedSeatsArray(){
+        let seatsArray = {};
         for (const row of Object.keys(seats)) {
           for (const seatNumber of Object.keys(seats[row])) {
-            seatsArray.push([row, seatNumber])
+            seatsArray[row] = seatNumber
           }
         }
         return seatsArray

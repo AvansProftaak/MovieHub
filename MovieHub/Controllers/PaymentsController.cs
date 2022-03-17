@@ -1,7 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+using System.Reflection;
+using System.Text.Json.Nodes;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.ViewModels;
+using MovieHub.Controllers;
+using MovieHub.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using NuGet.Protocol;
 using Syncfusion.HtmlConverter;
 using Syncfusion.Pdf;
 
@@ -92,10 +100,99 @@ public class PaymentsController : Controller
         return File(fileBytes, "application/pdf", "ticket.pdf");
     }
 
-    public async Task<IActionResult> Index(int orderId)
+    public async Task<IActionResult> Index( Dictionary<string,string> json)
     {
-        var payment = await _context.Payment
-            .FirstOrDefaultAsync(p => p.OrderId == orderId);
+        Console.Write(json);
+        OrderData orderData = JsonConvert.DeserializeObject<OrderData>(json["orderData"]);
+        Console.Write(orderData);
+
+        int movieId = orderData.movieId;
+        int showtimeId = orderData.showtimeId;
+        int userId = 1;
+        Dictionary<string, int> ticketTypesSelected = orderData.ticketTypes;
+        Dictionary<string, int> cateringPackagesSelected = orderData.cateringPackages;
+        Dictionary<string, string> seatsSelected = orderData.seats;
+        
+        Showtime showtime = _context.Showtime
+            .Where(s => (s.Id >= showtimeId)).FirstOrDefault();
+        //int orderId = OrdersController.PlaceOrder(_context);
+        User user = _context.User
+            .Where(u => (u.Id >= userId)).FirstOrDefault();
+        //int orderId = OrdersController.PlaceOrder(_context);
+
+        Order order = new Order();
+        order.UserId = userId;
+        order.Showtime = showtime;
+        order.ShowtimeId = showtimeId;
+        order.User = user;
+        
+        
+
+        _context.Order.Add(order);
+        await _context.SaveChangesAsync();
+        
+
+        
+        Movie movie = OrdersController.GetMovie(movieId, _context);
+        List<Tickettype> tickettypes = OrdersController.TicketTypes(showtime.MovieId, _context);
+        List<CateringPackage> cateringPackages = OrdersController.GetCateringPackages(_context);
+
+
+        int counter = 0;
+        foreach (var key in ticketTypesSelected.Keys)
+        {
+            int i = 0;
+            Tickettype tickettype = tickettypes[counter];
+
+            while (i <= ticketTypesSelected[key])
+            {
+                Ticket ticket = new Ticket();
+                ticket.Barcode = 123;
+                ticket.OrderId = order.Id;
+                ticket.Name = tickettype.Name;
+                ticket.Price = tickettype.Price;
+                ticket.SeatId = 22;
+
+                _context.Ticket.Add(ticket);
+                await _context.SaveChangesAsync();
+                i++;
+            }
+            
+            //ticket.Name 
+            counter += 1;
+        }
+
+        counter = 0;
+        
+        foreach (var key in cateringPackagesSelected.Keys)
+        {
+            int i = 0;
+            CateringPackage cateringPackage = cateringPackages[counter];
+
+            while (i <= cateringPackagesSelected[key])
+            {
+                Ticket ticket = new Ticket();
+                ticket.Barcode = 123;
+                ticket.OrderId = order.Id;
+                ticket.Name = cateringPackage.Name;
+                ticket.Price = cateringPackage.Price;
+                ticket.SeatId = 22;
+                
+
+                _context.Ticket.Add(ticket);
+                await _context.SaveChangesAsync();
+                i++;
+            }
+            
+            //ticket.Name 
+            counter += 1;
+        }
+
+
+
+
+            var payment = await _context.Payment
+            .FirstOrDefaultAsync(p => p.OrderId == order.Id);
         return View(payment);
     }
 
