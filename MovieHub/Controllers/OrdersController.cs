@@ -30,6 +30,7 @@ public class OrdersController : Controller
         orderViewModel.CateringPackages = GetCateringPackages(_context);
         orderViewModel.StartDates = GetStartDates(id);
         orderViewModel.ShowList = new List<SelectListItem>();
+        orderViewModel.MoviePegis = MoviePegis();
 
         foreach (var item in GetStartDates(id))
         {
@@ -144,5 +145,12 @@ public class OrdersController : Controller
     {
         return context.Movie
             .Where(m => m.Id.Equals(id)).ToList().FirstOrDefault();
+    }
+    
+    
+    public List<MoviePegi> MoviePegis()
+    {
+        return _context.MoviePegi
+            .Include(m=> m.Pegi).ToList();
     }
 }
