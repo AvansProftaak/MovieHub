@@ -162,12 +162,16 @@ public class PaymentsController : Controller
             counter += 1;
         }
 
+        Payment payment = new Payment();
+        payment.Status = StatusEnum.Open;
+        payment.OrderId = order.Id;
+        payment.PaymentMethodId = 1;
 
-
-
-            var payment = await _context.Payment
+        _context.Payment.Add(payment);
+        await _context.SaveChangesAsync();
+        var getPayment = await _context.Payment
             .FirstOrDefaultAsync(p => p.OrderId == order.Id);
-        return View(payment);
+        return View(getPayment);
     }
 
     public async Task<IActionResult> UpdateStatus(int orderId, int status)
