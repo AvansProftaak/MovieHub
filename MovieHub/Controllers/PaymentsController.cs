@@ -17,7 +17,7 @@ public class PaymentsController : Controller
         _context = context;
     }
 
-    public IActionResult ReceiveTicket(OrderViewModel orderViewModel)
+    public IActionResult ReceiveTicket()
     {
         // TODO: Receive information about the payment
         
@@ -83,7 +83,8 @@ public class PaymentsController : Controller
         //Save and close the PDF document 
         document.Save(fileStream);
         document.Close(true);
-
+        fileStream.Close();
+        
         //Create byte file from Pdf
         var fileBytes = System.IO.File.ReadAllBytes(FinishedPdfTicketPath);
         
@@ -91,26 +92,35 @@ public class PaymentsController : Controller
         return File(fileBytes, "application/pdf", "ticket.pdf");
     }
 
-    public async Task<IActionResult> Index(int orderId, OrderViewModel orderViewModel)
+    public async Task<IActionResult> Index(int orderId)
     {
         var payment = await _context.Payment
             .FirstOrDefaultAsync(p => p.OrderId == orderId);
-        orderViewModel.Payment = payment;
-        return View(orderViewModel);
+        return View(payment);
     }
 
-    public async Task<string> getPaymentStatusCode(int orderId)
+    public async Task<IActionResult> UpdateStatus(int orderId, int status)
     {
         var payment = await _context.Payment
             .FirstOrDefaultAsync(p => p.OrderId == orderId);
         if (payment == null)
         {
-            return "";
-        }
-        else
+            return NotFound();
+        } else
         {
-            return payment.Status.ToString();
+            switch(status)
+            {
+                case 1:
+                    payment.Status = Models.StatusEnum.Pending;
+                    break;
+                case 2:
+                    payment.Status = Models.StatusEnum.Paid;
+                    break;
+                default: throw new ArgumentOutOfRangeException(nameof(status));
+            }
+            _context.Update(payment);
+            await _context.SaveChangesAsync();
         }
+        return RedirectToAction("Index", new { orderId = orderId });
     }
-
 }
