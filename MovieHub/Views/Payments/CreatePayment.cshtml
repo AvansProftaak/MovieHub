@@ -6,6 +6,17 @@
 }
 
 <div class="container-fluid" style="margin-top: 120px">
+    @if (@Model.PaymentMethodId == 1)
+    {
+        <div class="row">
+            <div class="col-5 offset-md-4 text-center">
+                <h1>Thank you for your order!</h1>
+                <button onclick="location.href='@Url.Action("Index", "Home")'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Return</button>
+            </div>
+        </div>
+
+    } else
+    {
         <div class="row">
             <div class="col-5 offset-md-4 text-center">
                 <h1>Please follow the instructions on the payment website</h1>
@@ -13,4 +24,5 @@
                 <button onclick="location.href='@Url.Action("UpdateStatus", "Payments", new {orderId = @Model.OrderId, status = 1})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button>
             </div>
         </div>
+    }
 </div>
