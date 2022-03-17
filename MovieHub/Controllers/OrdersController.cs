@@ -33,7 +33,7 @@ public class OrdersController : Controller
         foreach (var show in GetStartDates(id).Select(item => new SelectListItem()
                  {
                      Value = item.Id.ToString(),
-                     Text = item.StartAt.ToLocalTime().ToString("f")
+                     Text = item.StartAt.ToLocalTime().ToString("dddd dd MMMM yyyy, HH:mm")
                  }))
         {
             orderViewModel.ShowList.Add(show);
