@@ -1,6 +1,4 @@
-﻿@using MovieHub.Migrations
-@using Humanizer
-@model MovieHub.ViewModels.IndexViewModel
+﻿@model MovieHub.ViewModels.IndexViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -10,23 +8,25 @@
         <div class="col-12 text-center bg-black">
         </div>
     </div>
-
+    
     <div class="row">
         <div class="col-8 hide-scrollbar">
             <div class="row text-center">
 
                 @foreach (var item in Model!.MovieIndex!)
                 {
-                    <div class="col-3"style="padding-bottom: 25px">
+                    <div class="col-3" style="padding-bottom: 25px">
                         <div class="movieborder">
                             <h4 class="movie-title">@Html.DisplayFor(model => item.Title)</h4>
                             <a href="@Url.Action("Details", "Movies", new {id = item.Id})">
                                 <img width="80%" src="@Url.Content(item.ImageUrl)" alt="MoviePoster"/>
                             </a>
-                                @* @if (item.Is3D) *@
-                                @* { *@
-                                @*   <img src="@Url.Content("~/img/3d-movie-white.png")" style="width:70px; padding-left: 23px; margin-top: -85px; margin-left: 83px;" alt="3D Logo"> *@
-                                @* }                            *@
+                            
+                            @if (item.Is3D)
+                            {
+                                <img class="details-3D" src="@Url.Content("~/img/3d-movie-white.png")" alt="3D Logo">
+                            }
+                            
                             <div class="details-container-time">
                                 <hr/>
 
