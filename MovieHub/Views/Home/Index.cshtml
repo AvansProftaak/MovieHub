@@ -114,9 +114,15 @@
                 }
             </div>
             <div id="newsletterDiv" style="margin-top: 24px">
-                <h4>Sign up for the newsletter</h4>
-                <input type="text" id="email" name="newsletter" placeholder="Enter Email" title="test">
-                <button onclick="checkEmail()" class="btn btn-primary ms-1">Sign up</button>
+                <h4 class="movie-title">Sign up for the newsletter</h4>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6" id="inputEmail">
+                        <input class="form-control" type="text" id="email" name="newsletter" placeholder="Enter Email" title="test">
+                    </div>
+                    <div class="col-sm-3">
+                        <button onclick="checkEmail()" class="btn btn-primary ms-1">Sign up</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -136,7 +142,7 @@
             contentType: "text/plain; charset=utf-8",
             dataType: "text",
             success: function(){
-                 document.getElementById("newsletterDiv").innerHTML = "<h4>Thank you for signing up!</h4>"
+                 document.getElementById("newsletterDiv").innerHTML = "<h4 class='movie-title'>Thank you for signing up!</h4>"
             },
             error: function(){
                 console.log("error")
@@ -145,11 +151,15 @@
     }
 
     function checkEmail() {
-        let email = document.getElementById("email").value;
-        if (validateEmail(email)) {
-            insertEmail(email)
+        let email = document.getElementById("email")
+        if (validateEmail(email.value)) {
+            insertEmail(email.value)
         } else {
-            console.log("not valid")
+            email.classList.add("is-invalid");
+            var element = document.createElement("div");
+            element.classList.add("invalid-feedback")
+            element.appendChild(document.createTextNode("Please use a valid email"));
+            document.getElementById("inputEmail").appendChild(element);
         }
     }
 
