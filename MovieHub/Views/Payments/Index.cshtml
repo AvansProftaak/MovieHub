@@ -3,10 +3,11 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var enumStatus = StatusEnum.Paid;
 }
 
 <div class="container-fluid" style="margin-top: 120px">
-    @if (@Model.Status == StatusEnum.Open)
+    @if (enumStatus == StatusEnum.Open)
         {
             <div class="row">
                 <div class="col-5 offset-md-4 text-center">
@@ -16,7 +17,7 @@
                 </div>
             </div>
         }
-        @if (@Model.Status == StatusEnum.Pending)
+        @if (enumStatus == StatusEnum.Pending)
         {
             <div class="row">
                 <div class="col-5 offset-md-4 text-center">
@@ -26,7 +27,7 @@
                 </div>
             </div>
         }
-        @if (@Model.Status == StatusEnum.Paid)
+        @if (enumStatus == StatusEnum.Paid)
         {
             <div class="row text-center">
                 <div class="col-5 offset-md-4">
