@@ -565,7 +565,8 @@ namespace MovieHub.Migrations
                     b.Property<DateTime?>("PaidAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("PaymentMethodId")
+                    b.Property<int?>("PaymentMethodId")
+                        .IsRequired()
                         .HasColumnType("integer");
 
                     b.Property<int>("Status")

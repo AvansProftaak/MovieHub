@@ -126,9 +126,7 @@ public class PaymentsController : Controller
 
         _context.Order.Add(order);
         await _context.SaveChangesAsync();
-        
 
-        
         Movie movie = OrdersController.GetMovie(movieId, _context);
         List<Tickettype> tickettypes = OrdersController.TicketTypes(showtime.MovieId, _context);
         List<CateringPackage> cateringPackages = OrdersController.GetCateringPackages(_context);
