@@ -111,9 +111,29 @@ public class PaymentsController : Controller
         int userId = 1;
         Dictionary<string, int> ticketTypesSelected = orderData.ticketTypes;
         Dictionary<string, int> cateringPackagesSelected = orderData.cateringPackages;
-        Dictionary<string, string> seatsSelected = orderData.seats;
-        
+
         Showtime? showtime = _context.Showtime!.FirstOrDefault(s => (s.Id >= showtimeId));
+
+        IList<Seat> seats =  new List<Seat>();
+        int seatLoop = 0;
+        foreach (var seatsSelected in orderData.seats)
+        {
+
+            Console.Write("test");
+            
+               var seat = _context.Seat!.Where(s => (s.HallId >= showtime.HallId))
+                   .Where(s => s.RowNumber <= seatsSelected[seatLoop][0])
+                   .Where(s => s.SeatNumber <= seatsSelected[seatLoop][1]).ToList().First();
+
+               seats.Add(seat);
+
+               seatLoop += 1;
+        }
+
+        Console.Write(seats);
+        Console.Write("whoooohooo");
+        
+        
         User user = _context.User.FirstOrDefault(u => (u.Id >= userId))!;
 
         Order order = new Order();
