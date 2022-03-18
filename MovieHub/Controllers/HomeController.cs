@@ -146,4 +146,15 @@ public class HomeController : Controller
     {
         return _context.MovieRuntime.ToList()!;
     }
+
+    public async Task<IActionResult> InsertEmail(string email)
+    {
+        Newsletter newsletter = new Newsletter
+        {
+            Email = email,
+        };
+        await _context.Newsletter.AddAsync(newsletter);
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
+    }
 }
