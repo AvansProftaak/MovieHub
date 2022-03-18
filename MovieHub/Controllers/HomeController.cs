@@ -149,12 +149,20 @@ public class HomeController : Controller
 
     public async Task<IActionResult> InsertEmail(string email)
     {
-        Newsletter newsletter = new Newsletter
+        var result = await _context.Newsletter.FirstOrDefaultAsync(p => p.Email == email);
+        if(result != null)
         {
-            Email = email,
-        };
-        await _context.Newsletter.AddAsync(newsletter);
-        await _context.SaveChangesAsync();
-        return Ok();
+            return BadRequest();
+        } 
+        else
+        {
+            Newsletter newsletter = new Newsletter
+            {
+                Email = email,
+            };
+            await _context.Newsletter.AddAsync(newsletter);
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
     }
 }

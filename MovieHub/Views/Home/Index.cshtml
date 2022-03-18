@@ -142,24 +142,36 @@
             contentType: "text/plain; charset=utf-8",
             dataType: "text",
             success: function(){
-                 document.getElementById("newsletterDiv").innerHTML = "<h4 class='movie-title'>Thank you for signing up!</h4>"
+                 document.getElementById("newsletterDiv").innerHTML = "<h4 class='movie-title'>Thank you for signing up!</h4>";
             },
-            error: function(){
-                console.log("error")
+            error: function(error){
+                if(error.status == 400) {
+                    invalidOrUsedEmail("This email is already signed up!");
+                }
             }
         });
     }
 
-    function checkEmail() {
-        let email = document.getElementById("email")
-        if (validateEmail(email.value)) {
-            insertEmail(email.value)
-        } else {
+    function invalidOrUsedEmail(errorText) {
+        let emailDiv = document.getElementById("errorEmail");
+        if(!emailDiv){
             email.classList.add("is-invalid");
-            var element = document.createElement("div");
-            element.classList.add("invalid-feedback")
-            element.appendChild(document.createTextNode("Please use a valid email"));
+            let element = document.createElement("div");
+            element.id = "errorEmail";
+            element.classList.add("invalid-feedback");
+            element.appendChild(document.createTextNode(errorText));
             document.getElementById("inputEmail").appendChild(element);
+        } else {
+            emailDiv.innerHTML = errorText;
+        }
+    }
+
+    function checkEmail() {
+        let email = document.getElementById("email");
+        if (validateEmail(email.value)) {
+            insertEmail(email.value);
+        } else {
+            invalidOrUsedEmail("Please use a valid email");
         }
     }
 
