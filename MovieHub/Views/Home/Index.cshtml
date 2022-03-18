@@ -113,10 +113,10 @@
                     }
                 }
             </div>
-            <div style="margin-top: 24px">
+            <div id="newsletterDiv" style="margin-top: 24px">
                 <h4>Sign up for the newsletter</h4>
-                <input type="text" id="email" name="newsletter" placeholder="Enter Email">
-                <button onclick="insertEmail()" class="btn btn-primary ms-1">Sign up</button>
+                <input type="text" id="email" name="newsletter" placeholder="Enter Email" title="test">
+                <button onclick="checkEmail()" class="btn btn-primary ms-1">Sign up</button>
             </div>
         </div>
     </div>
@@ -129,10 +129,25 @@
 
 
 <script>
-    function insertEmail() {
+
+    function insertEmail(email) {
+        $.ajax({
+            url: '@Url.Action("InsertEmail", "Home")?email='+email,
+            contentType: "text/plain; charset=utf-8",
+            dataType: "text",
+            success: function(){
+                 document.getElementById("newsletterDiv").innerHTML = "<h4>Thank you for signing up!</h4>"
+            },
+            error: function(){
+                console.log("error")
+            }
+        });
+    }
+
+    function checkEmail() {
         let email = document.getElementById("email").value;
         if (validateEmail(email)) {
-            location.href='@Url.Action("InsertEmail", "Home")?email='+email;
+            insertEmail(email)
         } else {
             console.log("not valid")
         }

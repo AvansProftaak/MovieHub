@@ -155,6 +155,6 @@ public class HomeController : Controller
         };
         await _context.Newsletter.AddAsync(newsletter);
         await _context.SaveChangesAsync();
-        return RedirectToAction(nameof(Index));
+        return Ok();
     }
 }
