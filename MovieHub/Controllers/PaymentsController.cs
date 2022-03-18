@@ -146,13 +146,16 @@ public class PaymentsController : Controller
                 ticket.Name = tickettype.Name;
                 ticket.Price = tickettype.Price;
                 ticket.SeatId = 22;
+                
+                // TODO: make seatid nullable because we can also have cateringtickets
+                // TODO: make user nullable, this wil be used for the payment at the counter
+                // TODO: add a seat to a ticket not being hardcoded
 
                 _context.Ticket.Add(ticket);
                 await _context.SaveChangesAsync();
                 i++;
             }
-            
-            //ticket.Name 
+
             counter += 1;
         }
 

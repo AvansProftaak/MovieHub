@@ -85,54 +85,7 @@ public class OrdersController : Controller
 
         return tickets;
     }
-
-
-    // here we create the order, make tickets, orer and fill the db
-    // values i will get from others movieId, showtimeId, ticketsWanted [ticketid , quantity], seat [rowNumber, seatnumber], cateringWanted[cateringID, quantity]
-    public static int PlaceOrder(ApplicationDbContext context)
-    {
-        ApplicationDbContext _context = context;
-        int movieId = 7;
-        int showtimeId = 1837;
-        IDictionary<int, string> ticketsWanted = new Dictionary<int, string>();
-        ticketsWanted.Add(1, "8");
-        ticketsWanted.Add(3, "7.50");
-
-        Showtime showtime = _context.Showtime
-            .Where(s => (s.Id >= showtimeId)).FirstOrDefault();
-        
-        Movie movie = GetMovie(showtime.MovieId, _context);
-        List<Tickettype> tickettypes = TicketTypes(showtime.MovieId, context);
-        List<CateringPackage> cateringPackages = GetCateringPackages(context);
-        //List<Seat> seats = GetSeat();
-
-        // create a new order and put order id in var to put in ticket
-        Order order = new Order();
-
-        int counter = 0;
-        
-        foreach (int key in ticketsWanted.Keys)
-        {
-            counter += 1;
-            decimal ticketPrice = System.Convert.ToDecimal(ticketsWanted[key]);
-            Ticket ticketToCreate = new Ticket();
-            ticketToCreate.Barcode = 12345;
-            //ticketToCreate.Name = tickettypes.Where(t => t.Id  ==key ).FirstOrDefault().Name; 
-            ticketToCreate.Name = "Henk"; 
-            ticketToCreate.OrderId = order.Id;
-            ticketToCreate.Price = ticketPrice;
-
-            // also add a seat to eveyticket
-        }
-
-        /*foreach (keyvaluepair catering in cateringWanted)
-        {
-            CateringPackage createCateringTickets = new CateringPackage();
-        }*/
-
-        return order.Id;
-    }
-
+    
     public static Movie? GetMovie(int id, ApplicationDbContext context)
     {
         return context.Movie
