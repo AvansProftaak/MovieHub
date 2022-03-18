@@ -181,7 +181,7 @@ namespace MovieHub.Controllers
         public static decimal PriceCalculations(Tickettype ticket, int movieId, ApplicationDbContext context, bool normalPriceRaised)
         {
             /* writing this we had some issues with ticket price of the normal ticket
-             * when the normal ticket passed the = > 90 mins or = 3D the values are raised
+             * when the normal ticket passed the = > 120 mins or = 3D the values are raised
              * Due to the nature of our calculations it stays raised
              * so we have to figure out if normal ticket already passed the calculations or not
              * we could simply tell the owner to insert the normal ticketprices first but they might forget.... 
@@ -208,6 +208,7 @@ namespace MovieHub.Controllers
                 return price;
             }
 
+            Console.Write("name = " + ticket.Name + " price = " + ticket.Price);
             return price - ticket.Price;
         }
     } 
