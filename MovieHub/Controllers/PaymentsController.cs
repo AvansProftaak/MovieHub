@@ -103,7 +103,7 @@ public class PaymentsController : Controller
     public async Task<IActionResult> Index( Dictionary<string,string> json)
     {
         Console.Write(json);
-        OrderData orderData = JsonConvert.DeserializeObject<OrderData>(json["orderData"]);
+        OrderData? orderData = JsonConvert.DeserializeObject<OrderData>(json["orderData"]);
         Console.Write(orderData);
 
         int movieId = orderData.movieId;
@@ -113,12 +113,8 @@ public class PaymentsController : Controller
         Dictionary<string, int> cateringPackagesSelected = orderData.cateringPackages;
         Dictionary<string, string> seatsSelected = orderData.seats;
         
-        Showtime showtime = _context.Showtime
-            .Where(s => (s.Id >= showtimeId)).FirstOrDefault();
-        //int orderId = OrdersController.PlaceOrder(_context);
-        User user = _context.User
-            .Where(u => (u.Id >= userId)).FirstOrDefault();
-        //int orderId = OrdersController.PlaceOrder(_context);
+        Showtime? showtime = _context.Showtime!.FirstOrDefault(s => (s.Id >= showtimeId));
+        User user = _context.User.FirstOrDefault(u => (u.Id >= userId))!;
 
         Order order = new Order();
         order.UserId = userId;

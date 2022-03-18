@@ -21,9 +21,9 @@ public class OrdersController : Controller
 
 
     // CHANGED INCOMING SHOWTIME TO MOVIE 
-    public async Task<ActionResult<OrderViewModel>> Index(int id)
+    public Task<ActionResult<OrderViewModel>> Index(int id)
     {
-        OrderViewModel orderViewModel = new OrderViewModel();
+        var orderViewModel = new OrderViewModel();
 
         orderViewModel.Movie = GetMovie(id, _context);
         orderViewModel.Tickettypes = TicketTypes(id, _context);
@@ -32,37 +32,28 @@ public class OrdersController : Controller
         orderViewModel.ShowList = new List<SelectListItem>();
         orderViewModel.MoviePegis = MoviePegis();
 
-        foreach (var item in GetStartDates(id))
+        foreach (var show in GetStartDates(id).Select(item => new SelectListItem()
+                 {
+                     Value = item.Id.ToString(),
+                     Text = item.StartAt.ToLocalTime().ToString("dddd dd MMMM yyyy, HH:mm")
+                 }))
         {
-            var show = new SelectListItem()
-            {
-                Value = item.Id.ToString(),
-                Text = item.StartAt.ToLocalTime().ToString("f")
-            };
-
             orderViewModel.ShowList.Add(show);
         }
-
-        return View(orderViewModel);
+        
+        return Task.FromResult<ActionResult<OrderViewModel>>(View(orderViewModel));
     }
 
     public List<Showtime> GetStartDates(int movieId)
     {
-        var showtimes = _context.Showtime
+        var showtimes = _context.Showtime?
             .FromSqlRaw("SELECT * FROM \"Showtime\" WHERE \"MovieId\" = {0} ORDER BY \"StartAt\"", movieId).ToList();
 
-        var showsThisWeek = new List<Showtime>();
-
-        foreach (var show in showtimes)
-        {
-            if ((show.StartAt >= DateTime.Now) && (show.StartAt.Date <= DateTime.Now.Date.AddDays(7)))
-            {
-                showsThisWeek.Add(show);
-            }
-        }
-
-        return showsThisWeek;
+        return showtimes!.Where(show => (show.StartAt >= DateTime.Now) && (show.StartAt.Date <= DateTime.Now.Date.AddDays(7))).ToList();
     }
+    
+    
+    
 
     public static List<Tickettype>? GetAllTicketTypes(ApplicationDbContext context)
     {
@@ -74,7 +65,7 @@ public class OrdersController : Controller
         return context.CateringPackage
             .FromSqlRaw("SELECT * FROM public.\"CateringPackage\"").ToList();
     }
-
+ 
     public static List<Tickettype>? TicketTypes(int movieId, ApplicationDbContext context)
     {
         ApplicationDbContext _context = context; 
@@ -94,6 +85,7 @@ public class OrdersController : Controller
 
         return tickets;
     }
+
 
     // here we create the order, make tickets, orer and fill the db
     // values i will get from others movieId, showtimeId, ticketsWanted [ticketid , quantity], seat [rowNumber, seatnumber], cateringWanted[cateringID, quantity]
@@ -146,11 +138,11 @@ public class OrdersController : Controller
         return context.Movie
             .Where(m => m.Id.Equals(id)).ToList().FirstOrDefault();
     }
-    
-    
+
     public List<MoviePegi> MoviePegis()
     {
         return _context.MoviePegi
             .Include(m=> m.Pegi).ToList();
     }
+
 }
