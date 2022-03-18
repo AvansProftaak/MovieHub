@@ -1,9 +1,41 @@
-@model dynamic
-
 @{
-    ViewBag.Title = "About" +
-                    "";
-    Layout = "_Layout";
+    ViewData["Title"] = "About MovieHub";
 }
 
-<h2>Where to find MovieHub?</h2>
+@* <h1>@ViewData["Title"]</h1> *@
+
+<div class="row">
+    <div class="col-md-3">
+        <h1>Where to find MovieHub?</h1>
+       <h5>Address</h5>
+        <p>Hogeschoollaan 1, <br/>
+        4818 CR Breda
+        </p> 
+    </div>
+
+    <div class="col-md-9">
+        <div id="map" style="height: 600px; width: 1000px"></div>
+        <script>
+            var map;
+            const moviehub= {lat: 51.583698, lng: 4.797110}
+            function initMap(){
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: moviehub,
+                zoom: 14,
+                });
+             const marker = new google.maps.Marker({
+                position: moviehub,
+                // label: { fontWeight: 'bold', fontSize: '14px', text: 'MovieHub' },
+                map: map,
+                title: "MovieHub",
+              });
+        }
+            </script>
+        
+        <script type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvkOzTZD-QqqwMj6Q94U3l_VM1yY0_-pc&callback=initMap"
+                async defer></script>
+        
+   
+    </div>
+</div>
