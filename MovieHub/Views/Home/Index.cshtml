@@ -117,7 +117,7 @@
                 <h4 class="movie-title">Sign up for the newsletter</h4>
                 <div class="row justify-content-center">
                     <div class="col-sm-6" id="inputEmail">
-                        <input class="form-control" type="text" id="email" name="newsletter" placeholder="Enter Email" title="test">
+                        <input class="form-control" type="text" id="email" name="newsletter" placeholder="Enter Email">
                     </div>
                     <div class="col-sm-3">
                         <button onclick="checkEmail()" class="btn btn-primary ms-1">Sign up</button>
@@ -135,7 +135,6 @@
 
 
 <script>
-
     function insertEmail(email) {
         $.ajax({
             url: '@Url.Action("InsertEmail", "Home")?email='+email,
