@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Text.Json.Nodes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using MovieHub.Data;
 using MovieHub.ViewModels;
 using MovieHub.Controllers;
@@ -102,9 +103,7 @@ public class PaymentsController : Controller
 
     public async Task<IActionResult> Index( Dictionary<string,string> json)
     {
-        Console.Write(json);
         OrderData? orderData = JsonConvert.DeserializeObject<OrderData>(json["orderData"]);
-        Console.Write(orderData);
 
         int movieId = orderData.movieId;
         int showtimeId = orderData.showtimeId;
@@ -114,65 +113,66 @@ public class PaymentsController : Controller
 
         Showtime? showtime = _context.Showtime!.FirstOrDefault(s => (s.Id >= showtimeId));
 
-        IList<Seat> seats =  new List<Seat>();
-        int seatLoop = 0;
-        foreach (var seatsSelected in orderData.seats)
+
+        List<List<string>> seatsSelected = orderData.seats;
+
+        List<int> seatIds = new List<int>();
+        foreach (List<string> seat in seatsSelected)
         {
-
-            Console.Write("test");
-            
-               var seat = _context.Seat!.Where(s => (s.HallId >= showtime.HallId))
-                   .Where(s => s.RowNumber <= seatsSelected[seatLoop][0])
-                   .Where(s => s.SeatNumber <= seatsSelected[seatLoop][1]).ToList().First();
-
-               seats.Add(seat);
-
-               seatLoop += 1;
+            int? seatId = _context.Seat
+                .Where(s => s.RowNumber.Equals(Int32.Parse(seat[0])))
+                .Where(s => s.SeatNumber.Equals(Int32.Parse(seat[1])))
+                .ToList().FirstOrDefault()?.Id;
+            if (seatId.HasValue)
+            {
+                seatIds.Add((int) seatId);
+            }
         }
 
-        Console.Write(seats);
-        Console.Write("whoooohooo");
-        
-        
-        User user = _context.User.FirstOrDefault(u => (u.Id >= userId))!;
+        var user = _context.User.FirstOrDefault(u => (u.Id >= userId))!;
 
-        Order order = new Order();
+        var order = new Order();
         order.UserId = userId;
         order.Showtime = showtime;
         order.ShowtimeId = showtimeId;
         order.User = user;
-        
-        
 
-        _context.Order.Add(order);
-        await _context.SaveChangesAsync();
+        Insert(_context, order);
+        /*_context.Order.Add(order);
+        await _context.SaveChangesAsync();*/
 
         Movie movie = OrdersController.GetMovie(movieId, _context);
-        List<Tickettype> tickettypes = OrdersController.TicketTypes(showtime.MovieId, _context);
+        var ticketTypesPrices = OrdersController.CalculationTicketTypes(showtime.MovieId, _context);
+        var ticketTypesNames = OrdersController.ReturnTicketNames(showtime.MovieId, _context);
         List<CateringPackage> cateringPackages = OrdersController.GetCateringPackages(_context);
 
 
         int counter = 0;
+        int seatsCounter = 0;
         foreach (var key in ticketTypesSelected.Keys)
         {
-            int i = 0;
-            Tickettype tickettype = tickettypes[counter];
+            int ticketId = Convert.ToInt32(key);
+            int i = 1;
 
-            while (i <= ticketTypesSelected[key])
+            var loopCount = (int) ticketTypesSelected[key];
+            
+            while (i <= loopCount )
             {
                 Ticket ticket = new Ticket();
                 ticket.Barcode = 123;
                 ticket.OrderId = order.Id;
-                ticket.Name = tickettype.Name;
-                ticket.Price = tickettype.Price;
-                ticket.SeatId = 22;
+                ticket.Name = ticketTypesNames[ticketId];
+                ticket.Price = ticketTypesPrices[ticketId];
+                ticket.SeatId = seatIds[seatsCounter];
                 
                 // TODO: make seatid nullable because we can also have cateringtickets
                 // TODO: make user nullable, this wil be used for the payment at the counter
                 // TODO: add a seat to a ticket not being hardcoded
 
-                _context.Ticket.Add(ticket);
-                await _context.SaveChangesAsync();
+                /*_context.Ticket.Add(ticket);
+                await _context.SaveChangesAsync();*/
+                Insert(_context, ticket);
+                seatsCounter++;
                 i++;
             }
 
@@ -193,11 +193,12 @@ public class PaymentsController : Controller
                 ticket.OrderId = order.Id;
                 ticket.Name = cateringPackage.Name;
                 ticket.Price = cateringPackage.Price;
-                ticket.SeatId = 22;
+                ticket.SeatId = 1;
                 
 
-                _context.Ticket.Add(ticket);
-                await _context.SaveChangesAsync();
+                Insert(_context, ticket);
+                /*_context.Ticket.Add(ticket);
+                await _context.SaveChangesAsync();*/
                 i++;
             }
             
@@ -208,8 +209,9 @@ public class PaymentsController : Controller
 
 
 
-            var payment = await _context.Payment
-            .FirstOrDefaultAsync(p => p.OrderId == order.Id);
+
+        var payment = await _context.Payment
+        .FirstOrDefaultAsync(p => p.OrderId == order.Id);
         //return View(payment);
         return View(order.Id);
     }
@@ -258,5 +260,11 @@ public class PaymentsController : Controller
         var getPayment = await _context.Payment
     .FirstOrDefaultAsync(p => p.OrderId == orderId);
         return View(getPayment);
+    }
+    
+    public static void Insert(DbContext context, object entity)
+    {
+        context.Add(entity);
+        context.SaveChanges();
     }
 }

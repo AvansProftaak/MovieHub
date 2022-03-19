@@ -98,4 +98,68 @@ public class OrdersController : Controller
             .Include(m=> m.Pegi).ToList();
     }
 
+
+    public static Dictionary <int, decimal> CalculationTicketTypes(int movieId, ApplicationDbContext context)
+    {
+        ApplicationDbContext _context = context; 
+        List<Tickettype>? tickets = GetAllTicketTypes(context);
+
+        // due to the nature of our calculations we need to hold the normal price after we set it
+        // to do this we need this bool ( more explanation in pricecalc function)
+        bool normalPriceRaised = false;
+        foreach (var ticket in tickets)
+        {
+            ticket.Price = TicketTypeController.PriceCalculations(ticket, movieId, _context, normalPriceRaised);
+            if (ticket.Name == "Normal")
+            {
+                normalPriceRaised = true;
+            }
+        }
+
+        Dictionary<int, decimal> prices = new Dictionary<int, decimal>();
+        foreach (var ticket in tickets)
+        {
+            prices.Add(ticket.Id, ticket.Price);
+        }
+
+        foreach (var ticket in tickets)
+        {
+            _context.Entry(ticket).State = EntityState.Unchanged;
+        }
+
+        return prices;
+    }
+    
+    public static Dictionary <int, string> ReturnTicketNames(int movieId, ApplicationDbContext context)
+    {
+        ApplicationDbContext _context = context; 
+        List<Tickettype>? tickets = GetAllTicketTypes(context);
+
+        // due to the nature of our calculations we need to hold the normal price after we set it
+        // to do this we need this bool ( more explanation in pricecalc function)
+        bool normalPriceRaised = false;
+        foreach (var ticket in tickets)
+        {
+            ticket.Price = TicketTypeController.PriceCalculations(ticket, movieId, _context, normalPriceRaised);
+            if (ticket.Name == "Normal")
+            {
+                normalPriceRaised = true;
+            }
+        }
+
+        Dictionary<int, string> names = new Dictionary<int, string>();
+        foreach (var ticket in tickets)
+        {
+            names.Add(ticket.Id, ticket.Name);
+        }
+        foreach (var ticket in tickets)
+        {
+            _context.Entry(ticket).State = EntityState.Unchanged;
+        }
+        
+        
+
+        return names;
+    }
+    
 }
