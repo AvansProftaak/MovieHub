@@ -57,7 +57,7 @@ public class OrdersController : Controller
 
     public static List<Tickettype>? GetAllTicketTypes(ApplicationDbContext context)
     {
-        return context.Tickettype.ToList();
+        return context.Tickettype.OrderByDescending(t => t.Price).ToList();
     }
 
     public static List<CateringPackage>? GetCateringPackages(ApplicationDbContext context)
