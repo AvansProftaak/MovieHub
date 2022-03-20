@@ -222,9 +222,17 @@ color: #F8A613;
   width: 60%;
   margin: 5px 0 5px 0;
 }
+
 .now-playing{
   border: 1px solid;
   color: dimgrey;
   padding: 10px 0 15px 0;
   border-radius: 5px;
 }
+.details-3D{
+  width: 70px;
+  padding-left: 18px;
+  margin-top: -7px;
+  margin-left: -51px;
+  position: absolute;
+  }
