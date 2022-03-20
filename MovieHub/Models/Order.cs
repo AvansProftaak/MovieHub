@@ -17,7 +17,7 @@ public class Order
     [DisplayName( "Showtime")] 
     public int ShowtimeId { get; set; }
     [ForeignKey("ShowtimeId")]
-    public virtual Showtime Showtime { get; set; } = null!;
+    public virtual Showtime? Showtime { get; set; } = null!;
 
 
     public Order()
