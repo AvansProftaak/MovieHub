@@ -164,13 +164,7 @@ public class PaymentsController : Controller
                 ticket.Name = ticketTypesNames[ticketId];
                 ticket.Price = ticketTypesPrices[ticketId];
                 ticket.SeatId = seatIds[seatsCounter];
-                
-                // TODO: make seatid nullable because we can also have cateringtickets
-                // TODO: make user nullable, this wil be used for the payment at the counter
-                // TODO: add a seat to a ticket not being hardcoded
 
-                /*_context.Ticket.Add(ticket);
-                await _context.SaveChangesAsync();*/
                 Insert(_context, ticket);
                 seatsCounter++;
                 i++;
@@ -197,8 +191,6 @@ public class PaymentsController : Controller
                 
 
                 Insert(_context, ticket);
-                /*_context.Ticket.Add(ticket);
-                await _context.SaveChangesAsync();*/
                 i++;
             }
             
@@ -212,7 +204,6 @@ public class PaymentsController : Controller
 
         var payment = await _context.Payment
         .FirstOrDefaultAsync(p => p.OrderId == order.Id);
-        //return View(payment);
         return View(order.Id);
     }
 
