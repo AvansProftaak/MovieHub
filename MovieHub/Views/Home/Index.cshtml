@@ -10,7 +10,7 @@
     </div>
     
     <div class="row">
-        <div class="col-8 hide-scrollbar">
+        <div class="col-9 hide-scrollbar">
             <div class="row text-center">
 
                 @foreach (var item in Model!.MovieIndex!)
@@ -29,24 +29,24 @@
                             <div class="details-container-time">
                                 <hr/>
 
-                                <p>Daily showtimes:</p>
-                                •
+                                <p style="font-size: 1.9vh">Daily showtimes:</p>
+                                <span  style="font-size: 1.7vh">•
                                 @{
                                     foreach (var runtime in Model.MovieRuntimes.Where(m => m.MovieId == item.Id).OrderBy(m => m.Time))
                                     {
                                         var time = runtime.Time.ToString(@"hh\:mm") + " • ";
                                         @Html.DisplayFor(m => time)
                                     }
-
-                                    <hr/>
-
                                 }
+                                </span>
+                                <hr/>    
+                                
                                 <div class="details-container">
                                     <div class="justify-content-between d-flex">
                                         <button onclick="location.href='@Url.Action("Index", "Orders", new {id = item.Id})'"
-                                                class="btn btn-primary btn-sizing me-1">Buy Tickets</button>
+                                                class="btn btn-primary btn-sizing me-1" style="font-size: 1.3vh";>Buy Tickets</button>
                                         <button onclick="location.href='@Url.Action("Details", "Movies", new {id = item.Id})'"
-                                                class="btn btn-primary btn-sizing ms-1">Movie Details</button>
+                                                class="btn btn-primary btn-sizing ms-1" style="font-size: 1.3vh">Movie Details</button>
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                 }
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-3">
             
             <div class="text-center index-hall-overview">
                 <div class="now-playing">
@@ -76,7 +76,7 @@
                 @*     </div> *@
                 @* </div> *@
                 @* <br/><br/><br/> *@
-                <h3 style="font-family: 'Poiret One', cursive"> Now playing </h3>
+                <h3 style="font-family: 'Poiret One', cursive; font-size: 3.0vh;"> Now playing </h3>
                 @{
                     var halls = Model.Halls;
                     var movies = Model.Movies;
@@ -107,19 +107,19 @@
                                     movieNextTime = "tomorrow, " + movieNextTime;
                                 }
                             }
-                            <p class="index-hall-sm" style="  margin-bottom: 1vh;">Next (@Html.DisplayFor(m => movieNextTime)): <span class="index-hall-lg">@Html.DisplayFor(m => movieNextTitle)</span></p>
+                            <p class="index-hall-sm" style="  margin-bottom: 1vh;">Next (@Html.DisplayFor(m => movieNextTime)): <span onclick="location.href='@Url.Action("Details", "Movies", new {id = movieIdNext})'" class="index-hall-lg hover-orange" style="cursor: pointer">@Html.DisplayFor(m => movieNextTitle)</span></p>
                         </div>
                         <hr class="index-hall-hr"/>
                     }
                 }
             </div>
-            <div id="newsletterDiv" style="margin-top: 24px">
-                <h4 class="movie-title">Sign up for the newsletter</h4>
+            <div id="newsletterDiv" style="margin-top: 1vh;">
+                <h4 class="movie-title" style="font-size: 2vh">Sign up for the newsletter</h4>
                 <div class="row justify-content-center">
-                    <div class="col-sm-4" id="inputEmail">
-                        <input class="form-control" type="text" id="email" name="newsletter" placeholder="Enter Email">
+                    <div class="col-sm-5" id="inputEmail">
+                        <input class="form-control" type="text" id="email" name="newsletter" placeholder="Enter Email" style="font-size: 1.4vh">
                     </div>
-                    <button style="width: 15%; height: 15%" onclick="checkEmail()" class="btn btn-primary ms-1">Sign up</button>
+                    <button style="width: 20%; height: 20%; font-size: 1.3vh" onclick="checkEmail()" class="btn btn-primary ms-1">Sign up</button>
                 </div>
             </div>
         </div>
