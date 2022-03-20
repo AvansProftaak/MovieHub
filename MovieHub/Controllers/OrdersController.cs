@@ -52,7 +52,7 @@ public class OrdersController : Controller
     
     public List<Tickettype> GetAllTicketTypes()
     {
-        return _context.Tickettype.ToList();
+        return _context.Tickettype.OrderByDescending(m => m.Price).ToList();
     }
     
     public List<CateringPackage> GetCateringPackages()
