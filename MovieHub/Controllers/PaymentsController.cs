@@ -183,7 +183,7 @@ public class PaymentsController : Controller
         
         foreach (var key in cateringPackagesSelected.Keys)
         {
-            int i = 0;
+            int i = 1;
             CateringPackage cateringPackage = cateringPackages[counter];
 
             while (i <= cateringPackagesSelected[key])
