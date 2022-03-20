@@ -2,12 +2,10 @@
     ViewData["Title"] = "About MovieHub";
 }
 
-@* <h1>@ViewData["Title"]</h1> *@
-
 <div class="row">
     <div class="col-md-3">
         <h1>Where to find MovieHub?</h1>
-       <h5>Address</h5>
+        <h5>Address</h5>
         <p>Hogeschoollaan 1, 4818 CR Breda
         </p> 
         <br/>
@@ -17,31 +15,110 @@
             <a href="https://www.instagram.com/" target="_blank"><img src="@Url.Content("~/img/instagram.png")" style="width: 5vh" alt="Instagram"></a>
             <a href="https://twitter.com/" target="_blank"><img src="@Url.Content("~/img/twitter.png")" style="width: 5vh" alt="Twitter"></a>
         </p>
-d    </div>
+        <br/>
 
-    <div class="col-md-9">
-        <div id="map" style="height: 600px; width: 1000px"></div>
-        <script>
-            var map;
-            const moviehub= {lat: 51.583698, lng: 4.797110}
-            function initMap(){
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: moviehub,
-                zoom: 14,
-                });
-             const marker = new google.maps.Marker({
-                position: moviehub,
-                // label: { fontWeight: 'bold', fontSize: '14px', text: 'MovieHub' },
-                map: map,
-                title: "MovieHub",
-              });
-        }
-            </script>
+        <div class="form-group">
+            <label for="from" class="col-xs-2 control-label"></label>
+            <h5>Route</h5>
+            <div class="col-xs-4">
+                <input type="text" id="from" placeholder="your address" class="form-control">
+            </div>
+            <br/>
+            <div class="col-xs-4">
+                <button class="btn btn-primary" onclick="calcRoute();">Show directions on map</button>
+            </div>
         
-        <script type="text/javascript"
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvkOzTZD-QqqwMj6Q94U3l_VM1yY0_-pc&callback=initMap"
-                async defer></script>
-        
-   
+        </div>
+        <div id="output">
+                
+        </div>
+    </div>
+
+
+
+        <div class="col-md-9">
+            <div id="googleMap">
+
+                <div id="map" style="height: 600px; width: 1000px"></div>
+                <script>
+                var map;
+                var directionsService;
+                var directionsRenderer;
+                
+                function initMap(){
+                      directionsService = new google.maps.DirectionsService();
+                      directionsRenderer = new google.maps.DirectionsRenderer();
+                      
+                      var moviehub= new google.maps.LatLng(51.583698, 4.797110);
+                      var mapOptions = {
+                              zoom:14,
+                              center: moviehub
+                            }
+                       map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
+                             directionsRenderer.setMap(map);
+                       
+                     
+                        const marker = new google.maps.Marker({
+                                    position: moviehub,
+                                    map: map,
+                                    icon: src="@Url.Content("~/img/icon_moviehub.png")",})}
+                           
+                           
+                           function calcRoute() {
+                           
+                            var request = {
+                                origin: document.getElementById("from").value,
+                                destination: "Hogeschoollaan 1, 4818 CR Breda",
+                                travelMode: google.maps.TravelMode.DRIVING, //WALKING, BYCYCLING, TRANSIT
+                                unitSystem: google.maps.UnitSystem.METRIC
+                            }
+                                 //   console.log(request);
+                                 // directionsService.route(request, function(result, status) {
+                                 //   if (status == 'OK') {
+                                 //     directionsRenderer.setDirections(result);
+                                 //   }
+                                 
+                             //pass the request to the route method
+                                 directionsService.route(request, function (result, status) {
+                                     if (status == google.maps.DirectionsStatus.OK) {
+                             
+                                         //Get distance and time
+                                         const output = document.querySelector('#output');
+                                         output.innerHTML = "<div class='route-info'>" +
+                                          "Driving distance : " + result.routes[0].legs[0].distance.text + ".<br />" +
+                                           "Duration : " + result.routes[0].legs[0].duration.text + ".</div>";
+                             
+                                         //display route
+                                         directionsRenderer.setDirections(result);
+                                     } else {
+                                         //delete route from map
+                                         directionsDisplay.setDirections({ routes: [] });
+                                         //center map
+                                         map.setCenter(myLatLng);
+                             
+                                         //show error message
+                                         output.innerHTML = "<div class='alert-danger'></i> Could not retrieve driving distance.</div>";
+                                     }
+                                 
+                                 
+                                 });
+
+                               }
+                                 // //create autocomplete objects for all inputs
+                                 // var options = {
+                                 // fields: ["address_components"],  
+                                 // types: ["(address)"],
+                                 //  }
+                                 //                         
+                                 //  var input1 = document.getElementById("from");
+                                 //  var autocomplete1 = new google.maps.places.Autocomplete(input1, options);                                 
+                    </script>
+  
+
+            
+            <script    src ="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvkOzTZD-QqqwMj6Q94U3l_VM1yY0_-pc&callback=initMap&libraries=places"
+                       async defer></script>
+            
+        </div>
     </div>
 </div>

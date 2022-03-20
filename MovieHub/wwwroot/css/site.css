@@ -236,3 +236,20 @@ color: #F8A613;
   margin-left: -51px;
   position: absolute;
   }
+
+/*map*/
+#googleMap {
+  width: 100%;
+  height: 700px;
+  margin: 10px auto;
+}
+
+/*output box*/
+#output {
+  text-align: left;
+  font-size: 1.52em;
+  margin: 20px auto;
+}
+.route-info{
+  color: #F8A613;
+}
