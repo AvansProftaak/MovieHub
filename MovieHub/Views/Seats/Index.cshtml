@@ -90,10 +90,10 @@
     }
     
 function getSelectedSeatsArray(){
-        let seatsArray = {};
+        let seatsArray = [];
         for (const row of Object.keys(seats)) {
           for (const seatNumber of Object.keys(seats[row])) {
-            seatsArray[row] = seatNumber
+            seatsArray.push([row, seatNumber])
           }
         }
         return seatsArray

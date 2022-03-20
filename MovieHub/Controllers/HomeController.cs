@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.Extensions.Logging;
 using MovieHub.Data;
@@ -147,5 +146,23 @@ public class HomeController : Controller
     {
         return _context.MovieRuntime.ToList()!;
     }
-    
+
+    public async Task<IActionResult> InsertEmail(string email)
+    {
+        var result = await _context.Newsletter.FirstOrDefaultAsync(p => p.Email == email);
+        if(result != null)
+        {
+            return BadRequest();
+        } 
+        else
+        {
+            Newsletter newsletter = new Newsletter
+            {
+                Email = email,
+            };
+            await _context.Newsletter.AddAsync(newsletter);
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+    }
 }
