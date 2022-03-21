@@ -41,7 +41,7 @@ color: #F8A613;
 .btn-primary {
   color: #FFFFFF;
   background-color: #2C2C2E;
-  border: 2px solid #F8A613
+  border: 2px solid #F8A613;
 }
 
 .form-check-input:checked {
@@ -79,23 +79,23 @@ color: #F8A613;
 }
 
 .index-hall-title {
-  font-size: 2.5vh;
+  font-size: 2.0vh;
   color: #F8A613;
   font-family: 'Poiret One', cursive;
 }
 
 .index-hall-lg{
-  font-size: 1.8vh;
+  font-size: 1.6vh;
   color: #FFFFFF;
 }
 
 .index-hall-sm-white{
-  font-size: 1.4vh;
+  font-size: 1.2vh;
   color: white;
 }
 
 .index-hall-sm{
-  font-size: 1.4vh;
+  font-size: 1.2vh;
   color: lightgrey;
 }
 
@@ -126,6 +126,7 @@ color: #F8A613;
 
 .movie-title {
   color: #F8A613;
+  font-size: 1.3vw;
 }
 
 .hide-scrollbar {
@@ -229,13 +230,28 @@ color: #F8A613;
   padding: 10px 0 15px 0;
   border-radius: 5px;
 }
+
 .details-3D{
   width: 70px;
   padding-left: 18px;
   margin-top: -7px;
   margin-left: -51px;
   position: absolute;
-  }
+}
+
+.nav-link {
+  font-size: 1vw;
+}
+
+.hover-orange:hover {
+  color: #F8A613 !important;
+  transition: 0.5s;
+}
+
+.hover-white:hover {
+  color: #FFFFFF !important;
+  transition: 0.5s;
+}
 
 /*map*/
 #googleMap {
@@ -250,6 +266,7 @@ color: #F8A613;
   font-size: 1.52em;
   margin: 20px auto;
 }
+
 .route-info{
   color: #F8A613;
 }
