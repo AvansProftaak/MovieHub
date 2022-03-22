@@ -46,6 +46,13 @@
                 var directionsRenderer;
                 
                 function initMap(){
+               //create autocomplete objects for input
+                    new google.maps.places.Autocomplete(document.getElementById("from"), {
+                        fields: ["address_components"],
+                        types: ["address"],
+                     }).setComponentRestrictions({
+                        country: ["nl"],
+                     });
                       directionsService = new google.maps.DirectionsService();
                       directionsRenderer = new google.maps.DirectionsRenderer();
                       
@@ -104,14 +111,8 @@
                                  });
 
                                }
-                                 // //create autocomplete objects for all inputs
-                                 // var options = {
-                                 // fields: ["address_components"],  
-                                 // types: ["(address)"],
-                                 //  }
-                                 //                         
-                                 //  var input1 = document.getElementById("from");
-                                 //  var autocomplete1 = new google.maps.places.Autocomplete(input1, options);                                 
+
+
                     </script>
   
 
