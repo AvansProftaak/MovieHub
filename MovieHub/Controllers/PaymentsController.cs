@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Reflection;
+using System.Security.AccessControl;
 using System.Text.Json.Nodes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ using Newtonsoft.Json.Linq;
 using NuGet.Protocol;
 using Syncfusion.HtmlConverter;
 using Syncfusion.Pdf;
+using Syncfusion.Pdf.Parsing;
 
 namespace MovieHub.Controllers;
 
@@ -26,9 +28,15 @@ public class PaymentsController : Controller
         _context = context;
     }
 
-    public IActionResult ReceiveTicket()
+    public IActionResult ReceiveTicket(int orderId)
     {
-        // TODO: Receive information about the payment
+        // TODO: Add more into the foreach loop, and only append a finished PDF ticket to the existing PDF-tickets
+        
+        var order = _context.Order.FirstOrDefault(o => o.Id == orderId);
+        var showTime = _context.Showtime.FirstOrDefault(s => s.Id == order.ShowtimeId);
+        var hall = _context.Hall.FirstOrDefault(h => h.Id == showTime.HallId);
+        var movie = _context.Movie.FirstOrDefault(m => m.Id == showTime.MovieId);
+        
         
         //Get wwwroot path information
         var wwwRootPath = _hostEnvironment.WebRootPath;
@@ -60,7 +68,7 @@ public class PaymentsController : Controller
         var FinishedHtmlTicketPath = Path.Combine(wwwRootPath, @"ticket/FinishedTicketHtml.html");
         var FinishedPdfTicketPath = Path.Combine(wwwRootPath, @"ticket/TicketPdf.pdf");
 
-        //Remove existing finished tickets before creating new ones
+        //Remove existing tickets before creating new ones
         if (System.IO.File.Exists(FinishedPdfTicketPath))
         {
             System.IO.File.Delete(FinishedPdfTicketPath);
@@ -73,26 +81,56 @@ public class PaymentsController : Controller
         
         //Fetch ExampleTicketHtml
         var finishedHtmlTicket = System.IO.File.ReadAllText(ExampleHtmlTicketPath);
-        
-        //Replace all values
-        finishedHtmlTicket = finishedHtmlTicket
-            .Replace("#MovieName", "Two Girls one Cup")
-            .Replace("#Person", "John Doe")
-            .Replace("#Seat", "7A")
-            .Replace("#Time", "12:00")
-            .Replace("QRCODE", "Dummy QR");
 
-        //Save finished Html ticket
-        System.IO.File.WriteAllText(FinishedHtmlTicketPath, finishedHtmlTicket);
+        PdfDocument finalTicketsDoc = new PdfDocument();
 
-        //Convert HTML to PDF
-        PdfDocument document = htmlConverter.Convert(FinishedHtmlTicketPath);
-        FileStream fileStream = new FileStream(FinishedPdfTicketPath, FileMode.CreateNew, FileAccess.ReadWrite);
+        // var ticket = _context.Ticket.FirstOrDefault(t => t.OrderId == orderId);
+        var tickets = _context.Ticket.Where(t => t.OrderId == orderId).ToList();
+        foreach (var ticket in tickets)
+        {
+            Console.WriteLine("TICKET INFO");
+            Console.WriteLine(ticket.Id);
+            var seat = _context.Seat.FirstOrDefault(s => ticket.SeatId == s.Id);
+            finishedHtmlTicket = finishedHtmlTicket
+                .Replace("#MovieName", movie.Title)
+                .Replace("#Type", ticket.Name)
+                .Replace("#HallNumber", hall.Name)
+                .Replace("#Seat", seat.SeatNumber.ToString())
+                .Replace("#Row", seat.RowNumber.ToString())
+                .Replace("#Time", showTime.StartAt.TimeOfDay.ToString())
+                .Replace("#Date", showTime.StartAt.ToShortDateString())
+                .Replace("QRCODE", "Dummy QR");
+            
+            //Save finished Html ticket
+            System.IO.File.WriteAllText(FinishedHtmlTicketPath, finishedHtmlTicket);
+            
+            // Create filestream for PDF
+            FileStream fileStream = new FileStream(FinishedPdfTicketPath, FileMode.CreateNew, FileAccess.ReadWrite);
+            fileStream.Close();
+            
+            //Loads the PDF document 
+            PdfLoadedDocument loadedDocument = new PdfLoadedDocument(FinishedPdfTicketPath);
+            
+            //Convert HTML to PDF
+            PdfDocument document = htmlConverter.Convert(FinishedHtmlTicketPath);
 
-        //Save and close the PDF document 
-        document.Save(fileStream);
-        document.Close(true);
+            finalTicketsDoc.Append();
+
+            document.Save(fileStream);
+      
+            //Append new ticket to existing PDF
+            // fileStream.
+            //
+            // fileStream.SetAccessControl(FileAccess.Read);
+            
+            //Save and close the PDF document 
+
+            // fileStream.Close();
+        }
+        finalDoc.Save(fileStream);
+        finalDoc.Close();
         fileStream.Close();
+        
         
         //Create byte file from Pdf
         var fileBytes = System.IO.File.ReadAllBytes(FinishedPdfTicketPath);
