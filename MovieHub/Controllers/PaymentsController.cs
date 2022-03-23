@@ -89,6 +89,9 @@ public class PaymentsController : Controller
 
             // Get seat && row for current ticket
             var seat = _context.Seat.FirstOrDefault(s => s.Id == ticket.SeatId);
+            
+            Console.WriteLine("SEATSSSSSS");
+            Console.WriteLine(seat.Id);
 
             finishedHtmlTicket = finishedHtmlTicket
                 .Replace("#MovieName", movie.Title)

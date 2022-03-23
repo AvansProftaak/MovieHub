@@ -18,6 +18,10 @@
         <Content Update="wwwroot\**" ExcludeFromSingleFile="false">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="wwwroot\ticket\ExampleArrangementHtml.html">
+          <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
