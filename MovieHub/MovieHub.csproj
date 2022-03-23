@@ -49,6 +49,8 @@
 
     <ItemGroup>
       <Folder Include="Binaries" />
+      <Folder Include="wwwroot\ticket\FinishedHtmlTickets" />
+      <Folder Include="wwwroot\ticket\FinishedPdfTickets" />
     </ItemGroup>
 
 </Project>
