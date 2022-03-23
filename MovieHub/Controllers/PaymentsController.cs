@@ -53,6 +53,7 @@ public class PaymentsController : Controller
 
         // Get paths to PDF and HTML documents
         var ExampleHtmlTicketPath = Path.Combine(wwwRootPath, @"ticket/ExampleTicketHtml.html");
+        var ExampleHtmlArrangementPath = Path.Combine(wwwRootPath, @"ticket/ExampleArrangementHtml.html");
         var FinishedPdfTicketsPath = Path.Combine(wwwRootPath, @"ticket/TicketsPdf.pdf");
         
         // Dirs for storing finished HTML and PDF docs
@@ -81,44 +82,72 @@ public class PaymentsController : Controller
             dir.Delete(true); 
         }
 
+        string[] arrangements = {"Popcorn", "Popcorn and Soda", "VIP", "Children's party"};
+
         var tickets = _context.Ticket.Where(t => t.OrderId == orderId).ToList();
         foreach (var ticket in tickets)
         {
-            // Get ExampleTicketHtml
-            var finishedHtmlTicket = System.IO.File.ReadAllText(ExampleHtmlTicketPath);
+            if (arrangements.Contains(ticket.Name))
+            {
+                // Get ExampleTicketHtml
+                var finishedHtmlArrangement = System.IO.File.ReadAllText(ExampleHtmlArrangementPath);
 
-            // Get seat && row for current ticket
-            var seat = _context.Seat.FirstOrDefault(s => s.Id == ticket.SeatId);
-            
-            Console.WriteLine("SEATSSSSSS");
-            Console.WriteLine(seat.Id);
+                finishedHtmlArrangement = finishedHtmlArrangement
+                    .Replace("#Type", ticket.Name);
 
-            finishedHtmlTicket = finishedHtmlTicket
-                .Replace("#MovieName", movie.Title)
-                .Replace("#Type", ticket.Name)
-                .Replace("#HallNumber", hall.Name)
-                .Replace("#Seat", seat.SeatNumber.ToString())
-                .Replace("#Row", seat.RowNumber.ToString())
-                .Replace("#Time", showTime.StartAt.TimeOfDay.ToString())
-                .Replace("#Date", showTime.StartAt.ToShortDateString())
-                .Replace("QRCODE", "Dummy QR");
-            
-            var FinishedHtmlTicketFile = Path.Combine(FinishedHtmlTicketFolder, ticket.Id + ".html");
-            
-            // Save finished Html ticket
-            System.IO.File.WriteAllText(FinishedHtmlTicketFile, finishedHtmlTicket);
+                var FinishedHtmlArrangementFile = Path.Combine(FinishedHtmlTicketFolder, ticket.Id + ".html");
+                
+                // Save finished Html ticket
+                System.IO.File.WriteAllText(FinishedHtmlArrangementFile, finishedHtmlArrangement);
 
-            // Convert HTML to PDF
-            PdfDocument document = htmlConverter.Convert(FinishedHtmlTicketFile);
+                // Convert HTML to PDF
+                PdfDocument document = htmlConverter.Convert(FinishedHtmlArrangementFile);
 
-            // Create a filestream for the finished pdf ticket
-            var FinishedPdfTicketPath = Path.Combine(FinishedPdfTicketFolder, ticket.Id + ".pdf");
-            FileStream fileStream = new FileStream(FinishedPdfTicketPath, FileMode.Create, FileAccess.ReadWrite);
+                // Create a filestream for the finished pdf ticket
+                var FinishedPdfTicketPath = Path.Combine(FinishedPdfTicketFolder, ticket.Id + ".pdf");
+                FileStream fileStream = new FileStream(FinishedPdfTicketPath, FileMode.Create, FileAccess.ReadWrite);
             
-            // Save and close files/streams
-            document.Save(fileStream);
-            document.Close(true);
-            fileStream.Close();
+                // Save and close files/streams
+                document.Save(fileStream);
+                document.Close(true);
+                fileStream.Close();
+            }
+            else
+            {
+                // Get ExampleTicketHtml
+                var finishedHtmlTicket = System.IO.File.ReadAllText(ExampleHtmlTicketPath);
+
+                // Get seat && row for current ticket
+                var seat = _context.Seat.FirstOrDefault(s => s.Id == ticket.SeatId);
+
+                finishedHtmlTicket = finishedHtmlTicket
+                    .Replace("#MovieName", movie.Title)
+                    .Replace("#Type", ticket.Name)
+                    .Replace("#HallNumber", hall.Name)
+                    .Replace("#Seat", seat.SeatNumber.ToString())
+                    .Replace("#Row", seat.RowNumber.ToString())
+                    .Replace("#Time", showTime.StartAt.TimeOfDay.ToString())
+                    .Replace("#Date", showTime.StartAt.ToShortDateString())
+                    .Replace("QRCODE", "Dummy QR");
+            
+                var FinishedHtmlTicketFile = Path.Combine(FinishedHtmlTicketFolder, ticket.Id + ".html");
+            
+                // Save finished Html ticket
+                System.IO.File.WriteAllText(FinishedHtmlTicketFile, finishedHtmlTicket);
+
+                // Convert HTML to PDF
+                PdfDocument document = htmlConverter.Convert(FinishedHtmlTicketFile);
+
+                // Create a filestream for the finished pdf ticket
+                var FinishedPdfTicketPath = Path.Combine(FinishedPdfTicketFolder, ticket.Id + ".pdf");
+                FileStream fileStream = new FileStream(FinishedPdfTicketPath, FileMode.Create, FileAccess.ReadWrite);
+            
+                // Save and close files/streams
+                document.Save(fileStream);
+                document.Close(true);
+                fileStream.Close();
+            }
+
         }
         
         // Get the folder path into DirectoryInfo
