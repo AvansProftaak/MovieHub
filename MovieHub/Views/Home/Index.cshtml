@@ -10,6 +10,9 @@
     </div>
     
     <div class="row">
+                    <p style="font-family: 'Poiret One', cursive; color: #F8A613; font-size: 2vw;">
+                            This weeks movies at MovieHub
+                        </p>
         <div class="col-9 hide-scrollbar">
             <div class="row text-center">
 
@@ -21,7 +24,7 @@
                             <a href="@Url.Action("Details", "Movies", new {id = item.Id})">
                                 <img width="80%" src="@Url.Content(item.ImageUrl)" alt="MoviePoster"/>
                             </a>
-                            
+
                             @if (item.Is3D)
                             {
                                 <img class="details-3D" src="@Url.Content("~/img/button-3d-movie-white.png")" alt="3D Logo">
@@ -30,17 +33,17 @@
                                 <hr/>
 
                                 <p style="font-size: 1.9vh">Daily showtimes:</p>
-                                <span  style="font-size: 1.7vh">•
-                                @{
-                                    foreach (var runtime in Model.MovieRuntimes.Where(m => m.MovieId == item.Id).OrderBy(m => m.Time))
-                                    {
-                                        var time = runtime.Time.ToString(@"hh\:mm") + " • ";
-                                        @Html.DisplayFor(m => time)
+                                <span style="font-size: 1.7vh">•
+                                    @{
+                                        foreach (var runtime in Model.MovieRuntimes.Where(m => m.MovieId == item.Id).OrderBy(m => m.Time))
+                                        {
+                                            var time = runtime.Time.ToString(@"hh\:mm") + " • ";
+                                            @Html.DisplayFor(m => time)
+                                        }
                                     }
-                                }
                                 </span>
-                                <hr/>    
-                                
+                                <hr/>
+
                                 <div class="details-container">
                                     <div class="justify-content-between d-flex">
                                         <button onclick="location.href='@Url.Action("Index", "Orders", new {id = item.Id})'"
@@ -56,74 +59,74 @@
             </div>
         </div>
         <div class="col-3">
-            
+
             <div class="text-center index-hall-overview">
                 <div class="now-playing">
 
-                @* <div class="form-group"> *@
-                @*     @using (Html.BeginForm("SearchForMovie", "Home")) *@
-                @*     { *@
-                @*         <div class="col-md-12"> *@
-                @*             <input type="text" name="searchPhrase" id="searchPhrase" class="form-control" placeholder="Search Movie Title"/> *@
-                @*             <hr/> *@
-                @*         </div> *@
-                @*         <div class="form-group" style="float:left"> *@
-                @*             <input type="submit" name="Search" class="btn btn-primary"/> *@
-                @*         </div> *@
-                @*     } *@
-                @*     <div style="float:right"> *@
-                @*         <button onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-primary">Clear List</button> *@
-                @*     </div> *@
-                @* </div> *@
-                @* <br/><br/><br/> *@
-                <h3 style="font-family: 'Poiret One', cursive; font-size: 3.0vh;"> Now playing </h3>
-                @{
-                    var halls = Model.Halls;
-                    var movies = Model.Movies;
+                    @* <div class="form-group"> *@
+                    @*     @using (Html.BeginForm("SearchForMovie", "Home")) *@
+                    @*     { *@
+                    @*         <div class="col-md-12"> *@
+                    @*             <input type="text" name="searchPhrase" id="searchPhrase" class="form-control" placeholder="Search Movie Title"/> *@
+                    @*             <hr/> *@
+                    @*         </div> *@
+                    @*         <div class="form-group" style="float:left"> *@
+                    @*             <input type="submit" name="Search" class="btn btn-primary"/> *@
+                    @*         </div> *@
+                    @*     } *@
+                    @*     <div style="float:right"> *@
+                    @*         <button onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-primary">Clear List</button> *@
+                    @*     </div> *@
+                    @* </div> *@
+                    @* <br/><br/><br/> *@
+                    <h3 style="font-family: 'Poiret One', cursive; font-size: 3.0vh;"> Now playing </h3>
+                    @{
+                        var halls = Model.Halls;
+                        var movies = Model.Movies;
 
-                    foreach (var hall in halls!)
-                    {
-                        <div class="row">
-                            <p class="index-hall-title">HALL @Html.DisplayFor(m => hall.Id)</p>
-                            @{
-                                var movieIdNow = Model.ShowNow![hall.Id - 1].MovieId;
-                                var movieNowDate = Model.ShowNow[hall.Id - 1].StartAt.Date;
-                                var movieNowTitle = movies![movieIdNow - 1].Title;
+                        foreach (var hall in halls!)
+                        {
+                            <div class="row">
+                                <p class="index-hall-title">HALL @Html.DisplayFor(m => hall.Id)</p>
+                                @{
+                                    var movieIdNow = Model.ShowNow![hall.Id - 1].MovieId;
+                                    var movieNowDate = Model.ShowNow[hall.Id - 1].StartAt.Date;
+                                    var movieNowTitle = movies![movieIdNow - 1].Title;
 
-                                if (movieNowDate != DateTime.Now.Date)
-                                {
-                                    movieNowTitle = "-";
+                                    if (movieNowDate != DateTime.Now.Date)
+                                    {
+                                        movieNowTitle = "-";
+                                    }
                                 }
-                            }
-                            <p class="index-hall-sm">Now playing: <span class="index-hall-lg">@Html.DisplayFor(m => movieNowTitle)</span></p>
-                            @{
-                                var movieIdNext = Model.ShowNext![hall.Id - 1].MovieId;
-                                var movieNextTitle = movies[movieIdNext - 1].Title;
-                                var movieNextDateTime = Model.ShowNext[hall.Id - 1].StartAt;
-                                var movieNextTime = movieNextDateTime.ToLocalTime().TimeOfDay.ToString(@"hh\:mm") + "h";
+                                <p class="index-hall-sm">Now playing: <span class="index-hall-lg">@Html.DisplayFor(m => movieNowTitle)</span></p>
+                                @{
+                                    var movieIdNext = Model.ShowNext![hall.Id - 1].MovieId;
+                                    var movieNextTitle = movies[movieIdNext - 1].Title;
+                                    var movieNextDateTime = Model.ShowNext[hall.Id - 1].StartAt;
+                                    var movieNextTime = movieNextDateTime.ToLocalTime().TimeOfDay.ToString(@"hh\:mm") + "h";
 
-                                if (movieNextDateTime.Date != DateTime.Today)
-                                {
-                                    movieNextTime = "tomorrow, " + movieNextTime;
+                                    if (movieNextDateTime.Date != DateTime.Today)
+                                    {
+                                        movieNextTime = "tomorrow, " + movieNextTime;
+                                    }
                                 }
-                            }
-                            <p class="index-hall-sm" style="  margin-bottom: 1vh;">Next (@Html.DisplayFor(m => movieNextTime)): <span onclick="location.href='@Url.Action("Details", "Movies", new {id = movieIdNext})'" class="index-hall-lg hover-orange" style="cursor: pointer">@Html.DisplayFor(m => movieNextTitle)</span></p>
-                        </div>
-                        <hr class="index-hall-hr"/>
+                                <p class="index-hall-sm" style="  margin-bottom: 1vh;">Next (@Html.DisplayFor(m => movieNextTime)): <span onclick="location.href='@Url.Action("Details", "Movies", new {id = movieIdNext})'" class="index-hall-lg hover-orange" style="cursor: pointer">@Html.DisplayFor(m => movieNextTitle)</span></p>
+                            </div>
+                            <hr class="index-hall-hr"/>
+                        }
                     }
-                }
-            </div>
-            <div id="newsletterDiv" style="margin-top: 1vh;">
-                <h4 class="movie-title" style="font-size: 2vh">Sign up for the newsletter</h4>
-                <div class="row justify-content-center">
-                    <div class="col-sm-5" id="inputEmail">
-                        <input class="form-control" type="text" id="email" name="newsletter" placeholder="Enter Email" style="font-size: 1.4vh">
+                </div>
+                <div id="newsletterDiv" style="margin-top: 1vh;">
+                    <h4 class="movie-title" style="font-size: 2vh">Sign up for the newsletter</h4>
+                    <div class="row justify-content-center">
+                        <div class="col-sm-5" id="inputEmail">
+                            <input class="form-control" type="text" id="email" name="newsletter" placeholder="Enter Email" style="font-size: 1.4vh">
+                        </div>
+                        <button style="width: 20%; height: 20%; font-size: 1.3vh" onclick="checkEmail()" class="btn btn-primary ms-1">Sign up</button>
                     </div>
-                    <button style="width: 20%; height: 20%; font-size: 1.3vh" onclick="checkEmail()" class="btn btn-primary ms-1">Sign up</button>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <div class="row">
          <div class="col-4 offset-8">

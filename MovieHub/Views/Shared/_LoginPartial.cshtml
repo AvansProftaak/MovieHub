@@ -9,7 +9,7 @@
             <a class="nav-link" style="color: #FFFFFF" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
         </li>
         <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})">
+            <form class="form-inline" style="border-left: 1px solid #F8A613" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})">
                 <button type="submit" class="nav-link btn btn-link text-dark hover-orange">Logout</button>
             </form>
         </li>

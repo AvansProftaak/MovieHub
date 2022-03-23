@@ -47,8 +47,4 @@
       <_ContentIncludedByDefault Remove="Views\Showtime\Index.cshtml" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Binaries" />
-    </ItemGroup>
-
 </Project>

@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace MovieHub.Models;
 
 public class User

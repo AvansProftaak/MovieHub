@@ -1,5 +1,7 @@
 #nullable disable
 
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
@@ -8,6 +10,7 @@ using MovieHub.ViewModels;
 
 namespace MovieHub.Controllers
 {
+    [Authorize]
     public class MoviesController : Controller
     {
         private readonly ApplicationDbContext _context;

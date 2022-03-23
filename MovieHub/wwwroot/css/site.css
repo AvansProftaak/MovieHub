@@ -250,6 +250,10 @@ color: #F8A613;
   transition: 0.5s;
 }
 
+.hover-orange {
+  color: #FFFFFF !important;
+}
+
 .hover-white:hover {
   color: #FFFFFF !important;
   transition: 0.5s;
@@ -309,4 +313,8 @@ tbody, td, tfoot, th, thead, tr {
 }
 .navbar-light .navbar-nav .nav-link:after {
   color: #F8A613;
+}
+/*loginscreen@ */
+.form-floating>label {
+color: black;
 }
