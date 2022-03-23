@@ -12,23 +12,34 @@ public static class SeedData
 
     private static void SeedUsers(UserManager<IdentityUser> userManager)
     {
-        if (userManager.FindByNameAsync("admin").Result == null)
+        if (userManager.FindByEmailAsync("admin@moviehub.nl").Result == null)
         {
             var user = new IdentityUser
             {
-                UserName = "admin",
-                Email = "admin@moviehub.nl"
+                UserName = "Admin",
+                Email = "admin@moviehub.nl",
+                EmailConfirmed = true
             };
             var result = userManager.CreateAsync(user, "Welkom@01").Result;
             if (result.Succeeded)
             {
-                userManager.AddToRoleAsync(user, "Manager").Wait();
+                userManager.AddToRoleAsync(user, "Admin").Wait();
             }
         }
     }
 
     private static void SeedRoles(RoleManager<IdentityRole> roleManager)
     {
+        
+        if (!roleManager.RoleExistsAsync("Admin").Result)
+        {
+            var role = new IdentityRole
+            {
+                Name = "Admin"
+            };
+            var result  = roleManager.CreateAsync(role).Result;
+        }  
+        
         if (!roleManager.RoleExistsAsync("Manager").Result)
         {
             var role = new IdentityRole

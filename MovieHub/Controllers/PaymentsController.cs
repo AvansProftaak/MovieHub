@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Reflection;
 using System.Text.Json.Nodes;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,10 +21,12 @@ public class PaymentsController : Controller
 {
     private readonly IWebHostEnvironment _hostEnvironment;
     private readonly ApplicationDbContext _context;
-    public PaymentsController(IWebHostEnvironment hostEnvironment, ApplicationDbContext context)
+    private readonly UserManager<IdentityUser> _userManager;
+    public PaymentsController(IWebHostEnvironment hostEnvironment, ApplicationDbContext context, UserManager<IdentityUser> userManager)
     {
         _hostEnvironment= hostEnvironment;
         _context = context;
+        _userManager = userManager;
     }
 
     public IActionResult ReceiveTicket()
@@ -129,14 +132,14 @@ public class PaymentsController : Controller
             }
         }
 
-        var user = _context.User.FirstOrDefault(u => (u.Id >= userId))!;
+        var user = _userManager.GetUserAsync(HttpContext.User);
 
         var order = new Order
         {
-            UserId = userId,
+            UserId = _userManager.GetUserId(HttpContext.User),
             Showtime = showtime,
             ShowtimeId = showtimeId,
-            User = user
+            User = await user
         };
 
         Insert(_context, order);
