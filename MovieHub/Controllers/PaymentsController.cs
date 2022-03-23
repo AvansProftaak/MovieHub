@@ -131,39 +131,44 @@ public class PaymentsController : Controller
 
         var user = _context.User.FirstOrDefault(u => (u.Id >= userId))!;
 
-        var order = new Order();
-        order.UserId = userId;
-        order.Showtime = showtime;
-        order.ShowtimeId = showtimeId;
-        order.User = user;
+        var order = new Order
+        {
+            UserId = userId,
+            Showtime = showtime,
+            ShowtimeId = showtimeId,
+            User = user
+        };
 
         Insert(_context, order);
         /*_context.Order.Add(order);
         await _context.SaveChangesAsync();*/
 
-        Movie movie = OrdersController.GetMovie(movieId, _context);
+        var movie = OrdersController.GetMovie(movieId, _context);
         var ticketTypesPrices = OrdersController.CalculationTicketTypes(showtime.MovieId, _context);
         var ticketTypesNames = OrdersController.ReturnTicketNames(showtime.MovieId, _context);
-        List<CateringPackage> cateringPackages = OrdersController.GetCateringPackages(_context);
+        var cateringPackages = OrdersController.GetCateringPackages(_context);
+        var rd = new Random();
 
 
-        int counter = 0;
-        int seatsCounter = 0;
+        var counter = 0;
+        var seatsCounter = 0;
         foreach (var key in ticketTypesSelected.Keys)
         {
-            int ticketId = Convert.ToInt32(key);
-            int i = 1;
+            var ticketId = Convert.ToInt32(key);
+            var i = 1;
 
             var loopCount = (int) ticketTypesSelected[key];
             
             while (i <= loopCount )
             {
-                Ticket ticket = new Ticket();
-                ticket.Barcode = 123;
-                ticket.OrderId = order.Id;
-                ticket.Name = ticketTypesNames[ticketId];
-                ticket.Price = ticketTypesPrices[ticketId];
-                ticket.SeatId = seatIds[seatsCounter];
+                var ticket = new Ticket
+                {
+                    Barcode = rd.Next(134909324, 912453657),
+                    OrderId = order.Id,
+                    Name = ticketTypesNames[ticketId],
+                    Price = ticketTypesPrices[ticketId],
+                    SeatId = seatIds[seatsCounter]
+                };
 
                 Insert(_context, ticket);
                 seatsCounter++;
@@ -177,18 +182,20 @@ public class PaymentsController : Controller
         
         foreach (var key in cateringPackagesSelected.Keys)
         {
-            int i = 1;
-            CateringPackage cateringPackage = cateringPackages[counter];
+            var i = 1;
+            var cateringPackage = cateringPackages[counter];
 
             while (i <= cateringPackagesSelected[key])
             {
-                Ticket ticket = new Ticket();
-                ticket.Barcode = 123;
-                ticket.OrderId = order.Id;
-                ticket.Name = cateringPackage.Name;
-                ticket.Price = cateringPackage.Price;
-                ticket.SeatId = 1;
-                
+                var ticket = new Ticket
+                {
+                    Barcode = rd.Next(134909324, 912453657),
+                    OrderId = order.Id,
+                    Name = cateringPackage.Name,
+                    Price = cateringPackage.Price,
+                    SeatId = null
+                };
+
 
                 Insert(_context, ticket);
                 i++;
