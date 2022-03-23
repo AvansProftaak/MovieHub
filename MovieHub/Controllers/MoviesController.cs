@@ -9,7 +9,7 @@ using MovieHub.ViewModels;
 
 namespace MovieHub.Controllers
 {
-    [Authorize(Roles = "Manager, Back-Office")]
+    [Authorize(Roles = "Admin, Manager, Back-Office")]
     public class MoviesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -40,9 +40,9 @@ namespace MovieHub.Controllers
                 .ThenInclude(mg => mg.Pegi)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
-                {
+            {
                 return NotFound();
-                };
+            };
             return View(movie);
         }
 

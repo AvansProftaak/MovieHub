@@ -270,3 +270,13 @@ color: #F8A613;
 .route-info{
   color: #F8A613;
 }
+
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+}
+/*.navbar-light .navbar-nav .nav-link:hover {*/
+/*  color: white;*/
+/*}*/
+.navbar-light .navbar-nav .nav-link:after {
+  color: #F8A613;
+}
