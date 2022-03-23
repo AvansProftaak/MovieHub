@@ -5,13 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>TicketType</h1>
 
-<p>
-    <a asp-action="Create" class="btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>
- Create New</a>
-</p>
-<table class="table">
+    <a asp-action="Create" class="btn btn-primary">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    Create new
+    </a>
+<br/>
+<br>
+<table id="tblMovies" class="table">
     <thead>
         <tr>
             <th>
@@ -23,7 +25,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th></th>
+            <th>
+                Actions
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -53,3 +57,10 @@
 }
     </tbody>
 </table>
+@section Scripts{
+    <script>
+    $(document).ready( function () {
+        $('#tblMovies').DataTable();
+    } );
+    </script>
+}

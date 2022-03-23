@@ -42,6 +42,8 @@ color: #F8A613;
   color: #FFFFFF;
   background-color: #2C2C2E;
   border: 2px solid #F8A613;
+  padding: 5px;
+  border-radius: 3px;
 }
 
 .form-check-input:checked {
@@ -296,4 +298,15 @@ tbody, td, tfoot, th, thead, tr {
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
   color: #F8A613 !important;
+}
+
+/*navbar menu*/
+.navbar-light .navbar-nav .nav-link {
+  color: #F8A613;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+  color: white;
+}
+.navbar-light .navbar-nav .nav-link:after {
+  color: #F8A613;
 }

@@ -5,12 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Movies</h1>
 
-<p>
-    <a asp-action="Create" class="btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>
- Create New</a>
-</p>
+
+<a asp-action="Create" class="btn btn-primary">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    Create new
+</a>
+<br/>
 <br/>
 <table id="tblMovies" class="table">
     <thead>
@@ -122,5 +124,4 @@
         $('#tblMovies').DataTable();
     } );
     </script>
-    
 }
