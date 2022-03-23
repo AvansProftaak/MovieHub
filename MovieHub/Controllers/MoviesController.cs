@@ -1,5 +1,6 @@
 #nullable disable
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
@@ -8,6 +9,7 @@ using MovieHub.ViewModels;
 
 namespace MovieHub.Controllers
 {
+    [Authorize(Roles = "Manager, Back-Office")]
     public class MoviesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -16,7 +18,7 @@ namespace MovieHub.Controllers
         {
             _context = context;
         }
-
+        
         // GET: Movies
         public async Task<IActionResult> Index()
         {

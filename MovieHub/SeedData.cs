@@ -17,27 +17,18 @@ public static class SeedData
             var user = new IdentityUser
             {
                 UserName = "admin",
-                Email = "admin@localhost"
+                Email = "admin@moviehub.nl"
             };
             var result = userManager.CreateAsync(user, "Welkom@01").Result;
             if (result.Succeeded)
             {
-                userManager.AddToRoleAsync(user, "Admin").Wait();
+                userManager.AddToRoleAsync(user, "Manager").Wait();
             }
         }
     }
 
     private static void SeedRoles(RoleManager<IdentityRole> roleManager)
     {
-        if (!roleManager.RoleExistsAsync("Admin").Result)
-        {
-            var role = new IdentityRole
-            {
-                Name = "Admin"
-            };
-            var result  = roleManager.CreateAsync(role).Result;
-        }   
-        
         if (!roleManager.RoleExistsAsync("Manager").Result)
         {
             var role = new IdentityRole
