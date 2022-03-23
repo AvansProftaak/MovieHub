@@ -1,18 +1,11 @@
-﻿using System.Net;
-using System.Reflection;
-using System.Text.Json.Nodes;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using MovieHub.Data;
-using MovieHub.ViewModels;
-using MovieHub.Controllers;
 using MovieHub.Models;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using NuGet.Protocol;
 using Syncfusion.HtmlConverter;
 using Syncfusion.Pdf;
+using Syncfusion.Pdf.Parsing;
 
 namespace MovieHub.Controllers;
 
@@ -26,23 +19,23 @@ public class PaymentsController : Controller
         _context = context;
     }
 
-    public IActionResult ReceiveTicket()
+    public IActionResult ReceiveTicket(int orderId)
     {
-        // TODO: Receive information about the payment
-        
-        //Get wwwroot path information
-        var wwwRootPath = _hostEnvironment.WebRootPath;
+        var order = _context.Order.FirstOrDefault(o => o.Id == orderId);
+        var showTime = _context.Showtime.FirstOrDefault(s => s.Id == order.ShowtimeId);
+        var hall = _context.Hall.FirstOrDefault(h => h.Id == showTime.HallId);
+        var movie = _context.Movie.FirstOrDefault(m => m.Id == showTime.MovieId);
 
-        //Initialize HTML to PDF converter with Blink rendering engine
+        // Initialize HTML to PDF converter with Blink rendering engine
         HtmlToPdfConverter htmlConverter = new HtmlToPdfConverter(HtmlRenderingEngine.Blink);
         BlinkConverterSettings blinkConverterSettings = new BlinkConverterSettings();
         
-        //Check for current OS and set the BlinkBinaries folder path
+        // Check for current OS and set the BlinkBinaries folder path
         if (OperatingSystem.IsMacOS())
         {
             blinkConverterSettings.BlinkPath = @"Binaries/BlinkBinariesMac/";
             Console.WriteLine("We're on macOS!");
-        }else if (OperatingSystem.IsLinux())
+        } else if (OperatingSystem.IsLinux())
         {
             blinkConverterSettings.BlinkPath = @"Binaries/BlinkBinariesLinux/";
             Console.WriteLine("We're on Linux!");
@@ -52,52 +45,150 @@ public class PaymentsController : Controller
             Console.WriteLine("We're on Windows!");
         }
 
-        //Assign Blink converter settings to HTML converter
+        // Assign Blink converter settings to HTML converter
         htmlConverter.ConverterSettings = blinkConverterSettings;
+        
+        // Get wwwroot path information
+        var wwwRootPath = _hostEnvironment.WebRootPath;
 
         // Get paths to PDF and HTML documents
         var ExampleHtmlTicketPath = Path.Combine(wwwRootPath, @"ticket/ExampleTicketHtml.html");
-        var FinishedHtmlTicketPath = Path.Combine(wwwRootPath, @"ticket/FinishedTicketHtml.html");
-        var FinishedPdfTicketPath = Path.Combine(wwwRootPath, @"ticket/TicketPdf.pdf");
-
-        //Remove existing finished tickets before creating new ones
-        if (System.IO.File.Exists(FinishedPdfTicketPath))
+        var ExampleHtmlArrangementPath = Path.Combine(wwwRootPath, @"ticket/ExampleArrangementHtml.html");
+        var FinishedPdfTicketsPath = Path.Combine(wwwRootPath, @"ticket/TicketsPdf.pdf");
+        
+        // Dirs for storing finished HTML and PDF docs
+        var FinishedPdfTicketFolder = Path.Combine(wwwRootPath, @"ticket/FinishedPdfTickets/");
+        var FinishedHtmlTicketFolder = Path.Combine(wwwRootPath, @"ticket/FinishedHtmlTickets/");
+        
+        // Delete all finished tickets within the FinishedTickets folder
+        DirectoryInfo di = new DirectoryInfo(FinishedPdfTicketFolder);
+        foreach (FileInfo file in di.GetFiles())
         {
-            System.IO.File.Delete(FinishedPdfTicketPath);
+            file.Delete(); 
+        }
+        foreach (DirectoryInfo dir in di.GetDirectories())
+        {
+            dir.Delete(true); 
         }
         
-        if (System.IO.File.Exists(FinishedHtmlTicketPath))
+        // Delete all finished tickets within the FinishedHtmlTickets folder
+        DirectoryInfo html_di = new DirectoryInfo(FinishedHtmlTicketFolder);
+        foreach (FileInfo file in html_di.GetFiles())
         {
-            System.IO.File.Delete(FinishedHtmlTicketPath);
+            file.Delete(); 
+        }
+        foreach (DirectoryInfo dir in html_di.GetDirectories())
+        {
+            dir.Delete(true); 
+        }
+
+        string[] arrangements = {"Popcorn", "Popcorn and Soda", "VIP", "Children's party"};
+
+        var tickets = _context.Ticket.Where(t => t.OrderId == orderId).ToList();
+        foreach (var ticket in tickets)
+        {
+            if (arrangements.Contains(ticket.Name))
+            {
+                // Get ExampleTicketHtml
+                var finishedHtmlArrangement = System.IO.File.ReadAllText(ExampleHtmlArrangementPath);
+
+                finishedHtmlArrangement = finishedHtmlArrangement
+                    .Replace("#Type", ticket.Name);
+
+                var FinishedHtmlArrangementFile = Path.Combine(FinishedHtmlTicketFolder, ticket.Id + ".html");
+                
+                // Save finished Html ticket
+                System.IO.File.WriteAllText(FinishedHtmlArrangementFile, finishedHtmlArrangement);
+
+                // Convert HTML to PDF
+                PdfDocument document = htmlConverter.Convert(FinishedHtmlArrangementFile);
+
+                // Create a filestream for the finished pdf ticket
+                var FinishedPdfTicketPath = Path.Combine(FinishedPdfTicketFolder, ticket.Id + ".pdf");
+                FileStream fileStream = new FileStream(FinishedPdfTicketPath, FileMode.Create, FileAccess.ReadWrite);
+            
+                // Save and close files/streams
+                document.Save(fileStream);
+                document.Close(true);
+                fileStream.Close();
+            }
+            else
+            {
+                // Get ExampleTicketHtml
+                var finishedHtmlTicket = System.IO.File.ReadAllText(ExampleHtmlTicketPath);
+
+                // Get seat && row for current ticket
+                var seat = _context.Seat.FirstOrDefault(s => s.Id == ticket.SeatId);
+
+                finishedHtmlTicket = finishedHtmlTicket
+                    .Replace("#MovieName", movie.Title)
+                    .Replace("#Type", ticket.Name)
+                    .Replace("#HallNumber", hall.Name)
+                    .Replace("#Seat", seat.SeatNumber.ToString())
+                    .Replace("#Row", seat.RowNumber.ToString())
+                    .Replace("#Time", showTime.StartAt.TimeOfDay.ToString())
+                    .Replace("#Date", showTime.StartAt.ToShortDateString())
+                    .Replace("QRCODE", "Dummy QR");
+            
+                var FinishedHtmlTicketFile = Path.Combine(FinishedHtmlTicketFolder, ticket.Id + ".html");
+            
+                // Save finished Html ticket
+                System.IO.File.WriteAllText(FinishedHtmlTicketFile, finishedHtmlTicket);
+
+                // Convert HTML to PDF
+                PdfDocument document = htmlConverter.Convert(FinishedHtmlTicketFile);
+
+                // Create a filestream for the finished pdf ticket
+                var FinishedPdfTicketPath = Path.Combine(FinishedPdfTicketFolder, ticket.Id + ".pdf");
+                FileStream fileStream = new FileStream(FinishedPdfTicketPath, FileMode.Create, FileAccess.ReadWrite);
+            
+                // Save and close files/streams
+                document.Save(fileStream);
+                document.Close(true);
+                fileStream.Close();
+            }
+
         }
         
-        //Fetch ExampleTicketHtml
-        var finishedHtmlTicket = System.IO.File.ReadAllText(ExampleHtmlTicketPath);
+        // Get the folder path into DirectoryInfo
+        DirectoryInfo directoryInfo = new DirectoryInfo(FinishedPdfTicketFolder);
+ 
+        // Get the PDF files in folder path into FileInfo
+        FileInfo[] files = directoryInfo.GetFiles("*.pdf");
+ 
+        // Create a new PDF document 
+        PdfDocument pdfTicketCombined = new PdfDocument();
+ 
+        // Set enable memory optimization as true 
+        pdfTicketCombined.EnableMemoryOptimization = true;
         
-        //Replace all values
-        finishedHtmlTicket = finishedHtmlTicket
-            .Replace("#MovieName", "Two Girls one Cup")
-            .Replace("#Person", "John Doe")
-            .Replace("#Seat", "7A")
-            .Replace("#Time", "12:00")
-            .Replace("QRCODE", "Dummy QR");
-
-        //Save finished Html ticket
-        System.IO.File.WriteAllText(FinishedHtmlTicketPath, finishedHtmlTicket);
-
-        //Convert HTML to PDF
-        PdfDocument document = htmlConverter.Convert(FinishedHtmlTicketPath);
-        FileStream fileStream = new FileStream(FinishedPdfTicketPath, FileMode.CreateNew, FileAccess.ReadWrite);
-
-        //Save and close the PDF document 
-        document.Save(fileStream);
-        document.Close(true);
-        fileStream.Close();
+        // Open file stream for appending
+        FileStream finishedPdfs = new FileStream(FinishedPdfTicketsPath, FileMode.Create, FileAccess.ReadWrite);
         
-        //Create byte file from Pdf
-        var fileBytes = System.IO.File.ReadAllBytes(FinishedPdfTicketPath);
+        // Loop over all the files in the FinishedTickets dir
+        foreach (FileInfo file in files)
+        {
+            // Load the PDF document 
+            FileStream fileStream = new FileStream(file.FullName, FileMode.Open);
+            PdfLoadedDocument loadedDocument = new PdfLoadedDocument(fileStream);
+ 
+            // Merge PDF file
+            PdfDocumentBase.Merge(pdfTicketCombined, loadedDocument);
+ 
+            // Close the existing PDF document 
+            loadedDocument.Close(true);
+        }
+ 
+        // Save the PDF document
+        pdfTicketCombined.Save(finishedPdfs);
+ 
+        // Close the instance of PdfDocument
+        pdfTicketCombined.Close(true);
         
-        //Return Pdf for download
+        // Create byte file from Pdf
+        var fileBytes = System.IO.File.ReadAllBytes(FinishedPdfTicketsPath);
+        
+        // Return Pdf for download
         return File(fileBytes, "application/pdf", "ticket.pdf");
     }
 
