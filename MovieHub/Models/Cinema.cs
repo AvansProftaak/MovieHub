@@ -20,9 +20,4 @@ public class Cinema
     public IList<CinemaTickettype>? CinemaTickettypes { get; set; }
     public IList<CinemaMovie>? CinemaMovies { get; set; }
 
-    
-    public Cinema()
-    {
-        
-    }
 }

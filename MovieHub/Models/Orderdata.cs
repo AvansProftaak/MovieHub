@@ -1,21 +1,12 @@
-﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace MovieHub.Models;
+﻿namespace MovieHub.Models;
 
 public class OrderData
 {
-    public int movieId { get; set; }
-    public int showtimeId { get; set; }
+    public int MovieId { get; set; }
+    public int ShowtimeId { get; set; }
 
-    public Dictionary<string,int> ticketTypes { get; set; }
-    public Dictionary<string,int> cateringPackages { get; set; }
-    public List<List <string>> seats { get; set; }
-    
+    public Dictionary<string,int>? TicketTypes { get; set; }
+    public Dictionary<string,int>? CateringPackages { get; set; }
+    public List<List <string>>? Seats { get; set; }
 
-    public OrderData()
-    {
-        
-    }
 }

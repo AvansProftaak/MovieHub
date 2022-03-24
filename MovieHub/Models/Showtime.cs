@@ -12,11 +12,5 @@ public class Showtime
     public Hall Hall { get; set; } = null!;
     
     [ForeignKey("MovieId")]
-    public Movie Movie { get; set; }
-
-    public Showtime()
-    {
-        
-    }
-
+    public Movie? Movie { get; set; }
 }

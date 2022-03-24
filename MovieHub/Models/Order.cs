@@ -1,7 +1,5 @@
-using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Identity;
 
 namespace MovieHub.Models;
@@ -9,7 +7,7 @@ namespace MovieHub.Models;
 public class Order
 {
     public int Id { get; set; }
-    public Decimal TotalPrice { get; set; }
+    public decimal TotalPrice { get; set; }
     
     [DisplayName( "User")] 
     public string? UserId { get; set; }
@@ -20,11 +18,6 @@ public class Order
     [DisplayName( "Showtime")] 
     public int ShowtimeId { get; set; }
     [ForeignKey("ShowtimeId")]
-    public virtual Showtime? Showtime { get; set; } = null!;
+    public virtual Showtime? Showtime { get; set; }
 
-
-    public Order()
-    {
-        
-    }
 }

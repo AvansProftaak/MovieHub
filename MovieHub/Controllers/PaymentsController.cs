@@ -87,7 +87,7 @@ public class PaymentsController : Controller
             dir.Delete(true); 
         }
 
-        IEnumerable<string> arrangementNames = _context.CateringPackage.Select(arrangement => arrangement.Name);
+        IEnumerable<string> arrangementNames = _context.CateringPackage.Select(arrangement => arrangement.Name)!;
 
         var tickets = _context.Ticket.Where(t => t.OrderId == orderId).ToList();
         foreach (var ticket in tickets)
@@ -229,11 +229,11 @@ public class PaymentsController : Controller
     public async Task<IActionResult> Index( Dictionary<string,string> json)
     {
         var orderData = JsonConvert.DeserializeObject<OrderData>(json["orderData"]);
-        var showtimeId = orderData!.showtimeId;
-        var ticketTypesSelected = orderData.ticketTypes;
-        var cateringPackagesSelected = orderData.cateringPackages;
+        var showtimeId = orderData!.ShowtimeId;
+        var ticketTypesSelected = orderData.TicketTypes;
+        var cateringPackagesSelected = orderData.CateringPackages;
         var showtime = _context.Showtime!.FirstOrDefault(s => (s.Id >= showtimeId));
-        var seatsSelected = orderData.seats;
+        var seatsSelected = orderData.Seats;
 
         var seatIds = (from seat in seatsSelected
             select _context.Seat.Where(s => s.RowNumber.Equals(Int32.Parse(seat[0])))
@@ -265,7 +265,7 @@ public class PaymentsController : Controller
         var counter = 0;
         var seatsCounter = 0;
         
-        foreach (var key in ticketTypesSelected.Keys)
+        foreach (var key in ticketTypesSelected?.Keys!)
         {
             var ticketId = Convert.ToInt32(key);
             var i = 1;
@@ -292,7 +292,7 @@ public class PaymentsController : Controller
         
         counter = 0;
         
-        foreach (var key in cateringPackagesSelected.Keys)
+        foreach (var key in cateringPackagesSelected?.Keys!)
         {
             var i = 1;
             var cateringPackage = cateringPackages?[counter];

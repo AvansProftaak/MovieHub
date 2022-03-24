@@ -17,10 +17,4 @@ public class Hall
     [ForeignKey("CinemaId")]
     public virtual Cinema Cinema { get; set; } = null!;
     
-
-    public Hall()
-    {
-        
-    }
-    
 }

@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using MovieHub.Controllers;
-using MovieHub.Data;
-
 namespace MovieHub.Models;
 
 public class Tickettype
@@ -12,10 +8,4 @@ public class Tickettype
     public string Description { get; set; } = null!;
     public int Quantity { get; set; }
 
-    public Tickettype()
-    {
-        
-    }
-
-    
 }

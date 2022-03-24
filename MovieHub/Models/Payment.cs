@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,9 +19,4 @@ public class Payment
     [ForeignKey("PaymentMethodId")]
     public PaymentMethod PaymentMethod { get; set; } = null!;
 
-    public Payment()
-    {
-        
-    }
-    
 }

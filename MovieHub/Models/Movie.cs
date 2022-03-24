@@ -35,10 +35,4 @@ public class Movie
     public IList<MovieGenre>? MovieGenres { get; set; }
     public IList<CinemaMovie>? CinemaMovies { get; set; }
 
-
-
-    public Movie()
-    {
-
-    }
 }

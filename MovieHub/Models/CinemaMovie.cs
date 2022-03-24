@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using MessagePack;
 
 namespace MovieHub.Models;
 
@@ -18,8 +17,4 @@ public class CinemaMovie
     [ForeignKey("CinemaId")]
     public virtual Cinema? Cinema { get; set;  }
 
-    public CinemaMovie()
-    {
-        
-    }
 }

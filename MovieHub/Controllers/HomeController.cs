@@ -31,7 +31,7 @@ public class HomeController : Controller
         return Task.FromResult<ActionResult<IndexViewModel>>(View(indexViewModel));
         }
 
-    public List<Movie> MovieIndex()
+    public List<Movie?> MovieIndex()
     {
 
         var date = DateTime.Today;
@@ -76,12 +76,6 @@ public class HomeController : Controller
                 "SELECT x.* FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY \"HallId\" ORDER BY \"StartAt\" DESC ) rn FROM \"Showtime\" WHERE \"StartAt\" < now()) x JOIN \"Movie\" M ON \"MovieId\" = M.\"Id\" WHERE x.rn = 1 ORDER BY \"HallId\"").ToList();
     }
     
-    
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

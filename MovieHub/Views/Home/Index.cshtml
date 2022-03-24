@@ -17,8 +17,8 @@
                 {
                     <div class="col-3" style="padding-bottom: 25px">
                         <div class="movieborder">
-                            <h4 class="movie-title">@Html.DisplayFor(model => item.Title)</h4>
-                            <a href="@Url.Action("Details", "Movies", new {id = item.Id})">
+                            <h4 class="movie-title">@Html.DisplayFor(model => item!.Title)</h4>
+                            <a href="@Url.Action("Details", "Movies", new {id = item!.Id})">
                                 <img width="80%" src="@Url.Content(item.ImageUrl)" alt="MoviePoster"/>
                             </a>
                             
@@ -32,7 +32,7 @@
                                 <p style="font-size: 1.9vh">Daily showtimes:</p>
                                 <span  style="font-size: 1.7vh">•
                                 @{
-                                    foreach (var runtime in Model.MovieRuntimes.Where(m => m.MovieId == item.Id).OrderBy(m => m.Time))
+                                    foreach (var runtime in Model.MovieRuntimes?.Where(m => m.MovieId == item.Id).OrderBy(m => m.Time)!)
                                     {
                                         var time = runtime.Time.ToString(@"hh\:mm") + " • ";
                                         @Html.DisplayFor(m => time)

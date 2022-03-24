@@ -17,8 +17,4 @@ public class CinemaTickettype
     [ForeignKey("TickettypeId")]
     public virtual Tickettype? Tickettype { get; set;  }
 
-    public CinemaTickettype()
-    {
-        
-    }
 }

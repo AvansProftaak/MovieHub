@@ -16,10 +16,5 @@ public class MoviePegi
     public int MovieId { get; set; }
     [ForeignKey("MovieId")]
     public virtual Movie? Movie { get; set;  }
-    
-    public MoviePegi()
-    {
-        
-    }
 
 }

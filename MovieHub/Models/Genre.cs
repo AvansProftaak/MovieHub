@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.ComponentModel;
-using MovieHub.Migrations;
 
 namespace MovieHub.Models;
 
@@ -12,7 +10,4 @@ public class Genre
     
     public IList<MovieGenre>? MovieGenres { get; set; }
 
-    public Genre()
-    {
-    }
 }

@@ -1,4 +1,4 @@
-namespace MovieHub.Models;
+namespace MovieHub.ViewModels;
 
 public class ErrorViewModel
 {

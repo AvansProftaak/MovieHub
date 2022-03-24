@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -26,10 +25,5 @@ public class MovieRuntime
         public virtual Movie Movie { get; set; } = null!;
         [ForeignKey("HallId")] 
         public virtual Hall Hall { get; set; } = null!;
-
-        public MovieRuntime()
-        {
-                
-        }
 
 }

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace MovieHub.Models;
 
 public class Pegi
@@ -9,9 +7,5 @@ public class Pegi
     public string Icon { get; set; } = null!;
     
     public IList<MoviePegi>? MoviePegis { get; set; }
-    
-    public Pegi()
-    {
-        
-    }
+
 }

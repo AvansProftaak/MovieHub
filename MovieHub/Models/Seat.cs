@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.CodeAnalysis;
 
 namespace MovieHub.Models;
 
@@ -16,9 +15,4 @@ public class Seat
     [ForeignKey("HallId")]
     public virtual Hall Hall { get; set; } = null!;
 
-    public Seat()
-    {
-        
-    }
-    
 }
