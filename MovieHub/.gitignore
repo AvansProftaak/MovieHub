@@ -17,6 +17,7 @@ MovieHub/bin/**/*
 *.sln.docstates
 wwwroot/ticket/FinishedHtmlTickets/*
 wwwroot/ticket/FinishedPdfTickets/*
+wwwroot/ticket/TicketsPdf.pdf
 
 
 
