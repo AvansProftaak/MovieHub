@@ -36,6 +36,10 @@
         <PackageReference Include="Nager.Date" Version="1.32.0" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
         <PackageReference Include="Select.HtmlToPdf.NetCore" Version="22.1.0-rc1" />
+<<<<<<< HEAD
+=======
+        <PackageReference Include="SkiaSharp" Version="2.88.0-preview.232" />
+>>>>>>> develop_daniel
         <PackageReference Include="SkiaSharp.QrCode" Version="0.4.1" />
         <PackageReference Include="Spire.Doc" Version="10.2.11" />
         <PackageReference Include="Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Linux" Version="19.4.0.56" />

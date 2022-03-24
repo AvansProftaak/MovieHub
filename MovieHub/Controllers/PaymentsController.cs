@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
 using Newtonsoft.Json;
+using SkiaSharp;
+using SkiaSharp.QrCode;
 using Syncfusion.HtmlConverter;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Parsing;
@@ -117,6 +119,36 @@ public class PaymentsController : Controller
                 // Get ExampleTicketHtml
                 var finishedHtmlTicket = System.IO.File.ReadAllText(ExampleHtmlTicketPath);
 
+                var content = ticket.Id.ToString();
+                using QRCodeGenerator generator = new QRCodeGenerator();
+
+                ECCLevel level = ECCLevel.H;
+                var qr = generator.CreateQrCode(content, level);
+
+                SKImageInfo info = new SKImageInfo(512, 512);
+                using SKSurface surface = SKSurface.Create(info);
+
+                var canvas = surface.Canvas;
+                canvas.Render(qr, SKRect.Create(512, 512), SKColors.White, SKColors.Black);
+
+                using SKImage image = surface.Snapshot();
+                using SKData data = image.Encode(SKEncodedImageFormat.Png, 100);
+
+                var subPath = Path.Combine(wwwRootPath, @"ticket/qr/");
+                bool exists = System.IO.Directory.Exists(subPath);
+                if (!exists)
+                    System.IO.Directory.CreateDirectory(subPath);
+                using FileStream stream = System.IO.File.OpenWrite(
+                    Path.Combine(subPath, @"qr-" + content + ".png")
+                );
+                data.SaveTo(stream);
+                stream.Close();
+                byte[] imageArray = System.IO.File.ReadAllBytes(
+                    Path.Combine(subPath, @"qr-" + content + ".png")
+                );
+                string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+
+                new FileInfo(Path.Combine(subPath, @"qr-" + content + ".png")).Delete();
                 // Get seat && row for current ticket
                 var seat = _context.Seat.FirstOrDefault(s => s.Id == ticket.SeatId);
 
@@ -128,8 +160,8 @@ public class PaymentsController : Controller
                     .Replace("#Row", seat.RowNumber.ToString())
                     .Replace("#Time", showTime.StartAt.TimeOfDay.ToString())
                     .Replace("#Date", showTime.StartAt.ToShortDateString())
-                    .Replace("QRCODE", "Dummy QR");
-            
+                    .Replace("QRCODE", base64ImageRepresentation);
+
                 var FinishedHtmlTicketFile = Path.Combine(FinishedHtmlTicketFolder, ticket.Id + ".html");
             
                 // Save finished Html ticket
