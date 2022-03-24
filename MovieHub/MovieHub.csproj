@@ -40,7 +40,7 @@
         <PackageReference Include="Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Linux" Version="19.4.0.56" />
         <PackageReference Include="Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Mac" Version="19.4.0.56" />
         <PackageReference Include="Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Windows" Version="19.4.0.56" />
-        <PackageReference Include="Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core" Version="19.4.0.54" />
+        <PackageReference Include="Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core" Version="19.4.0.56" />
     </ItemGroup>
 
     <ItemGroup>
