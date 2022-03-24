@@ -133,10 +133,19 @@ public class PaymentsController : Controller
 
                 using SKImage image = surface.Snapshot();
                 using SKData data = image.Encode(SKEncodedImageFormat.Png, 100);
-                using FileStream stream = System.IO.File.OpenWrite(@$"qr-{content}.png");
+
+                var subPath = Path.Combine(wwwRootPath, @"ticket/qr/");
+                bool exists = System.IO.Directory.Exists(subPath);
+                if (!exists)
+                    System.IO.Directory.CreateDirectory(subPath);
+                using FileStream stream = System.IO.File.OpenWrite(
+                    Path.Combine(subPath, @"qr-" + content + ".png")
+                );
                 data.SaveTo(stream);
                 stream.Close();
-                byte[] imageArray = System.IO.File.ReadAllBytes(@$"qr-{content}.png");
+                byte[] imageArray = System.IO.File.ReadAllBytes(
+                    Path.Combine(subPath, @"qr-" + content + ".png")
+                );
                 string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 
                 // Get seat && row for current ticket
