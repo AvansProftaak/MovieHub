@@ -1,11 +1,13 @@
 #nullable disable
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
 
 namespace MovieHub.Controllers
-{
+{ 
+    [Authorize]
     public class TicketTypeController : Controller
     {
         private readonly ApplicationDbContext _context;

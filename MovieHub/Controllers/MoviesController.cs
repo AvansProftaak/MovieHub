@@ -25,7 +25,7 @@ namespace MovieHub.Controllers
         {
            return View(await _context.Movie.ToListAsync());
         }
-
+        [AllowAnonymous]
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
