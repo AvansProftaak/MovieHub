@@ -10,6 +10,8 @@ appsettings.Development.json
 Binaries/*
 MovieHub/obj/**/*
 MovieHub/bin/**/*
+MovieHub/wwwroot/ticket/FinishedHtmlTickets/**/*
+MovieHub/wwwroot/ticket/FinishedPdfTickets/**/*
 *.rsuser
 *.suo
 *.user
