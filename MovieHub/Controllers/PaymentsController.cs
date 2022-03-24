@@ -254,10 +254,11 @@ public class PaymentsController : Controller
         }
 
         var user = _userManager.GetUserAsync(HttpContext.User);
+        var userId = _userManager.GetUserId(HttpContext.User);
 
         var order = new Order
         {
-            UserId = _userManager.GetUserId(HttpContext.User),
+            UserId = userId,
             Showtime = showtime,
             ShowtimeId = showtimeId,
             User = await user
