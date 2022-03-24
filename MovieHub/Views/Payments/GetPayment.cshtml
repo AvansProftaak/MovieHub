@@ -21,7 +21,7 @@
         <div class="row text-center">
             <div class="col-5 offset-md-4">
                 <h1>Payment successful!</h1>
-                <button onclick="location.href='@Url.Action("ReceiveTicket", "Payments")'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Receive Ticket</button>
+                <button onclick="location.href='@Url.Action("ReceiveTicket", "Payments", new {orderId = @Model.OrderId})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Receive Ticket</button>
             </div>
         </div>
         <div class="row text-center"style="margin-top: 100px">

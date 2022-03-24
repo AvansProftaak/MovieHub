@@ -22,7 +22,7 @@ public class Ticket
     
     [AllowNull]
     [ForeignKey("SeatId")]
-    public virtual Seat Seat { get; set; }
+    public virtual Seat? Seat { get; set; }
     
     public Ticket()
     {
