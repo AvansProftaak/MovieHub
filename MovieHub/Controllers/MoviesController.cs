@@ -10,7 +10,7 @@ using MovieHub.ViewModels;
 
 namespace MovieHub.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class MoviesController : Controller
     {
         private readonly ApplicationDbContext _context;
