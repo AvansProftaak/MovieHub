@@ -82,12 +82,12 @@ public class PaymentsController : Controller
             dir.Delete(true); 
         }
 
-        string[] arrangements = {"Popcorn", "Popcorn and Soda", "VIP", "Children's party"};
+        IEnumerable<string> arrangementNames = _context.CateringPackage.Select(arrangement => arrangement.Name);
 
         var tickets = _context.Ticket.Where(t => t.OrderId == orderId).ToList();
         foreach (var ticket in tickets)
         {
-            if (arrangements.Contains(ticket.Name))
+            if (arrangementNames.Contains(ticket.Name))
             {
                 // Get ExampleTicketHtml
                 var finishedHtmlArrangement = System.IO.File.ReadAllText(ExampleHtmlArrangementPath);
