@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieHub.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MovieHub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220323191737_Change_to_Userstable")]
+    partial class Change_to_Userstable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,10 +87,6 @@ namespace MovieHub.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("text");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
@@ -139,8 +137,6 @@ namespace MovieHub.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -763,10 +759,18 @@ namespace MovieHub.Migrations
 
             modelBuilder.Entity("MovieHub.Models.User", b =>
                 {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("AcceptedNewsletter")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -776,7 +780,12 @@ namespace MovieHub.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasDiscriminator().HasValue("User");
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

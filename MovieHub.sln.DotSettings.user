@@ -2,6 +2,8 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
   &lt;Assembly Path="/Users/robvdhorst/.nuget/packages/microsoft.aspnetcore.identity.ui/6.0.1/lib/net6.0/Microsoft.AspNetCore.Identity.UI.dll" /&gt;
   &lt;Assembly Path="/home/joris/.nuget/packages/select.htmltopdf.netcore/21.2.0/lib/netstandard2.0/Select.HtmlToPdf.dll" /&gt;
+  &lt;Assembly Path="/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/6.0.0/ref/net6.0/Microsoft.AspNetCore.Mvc.RazorPages.dll" /&gt;
+  &lt;Assembly Path="/Users/robvdhorst/.nuget/packages/microsoft.extensions.identity.core/6.0.1/lib/net6.0/Microsoft.Extensions.Identity.Core.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1b4311d9_002D0f93_002D43e2_002D8dd5_002D22d02707270e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="MovieIndex_Should_Return_Todays_Movies" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;

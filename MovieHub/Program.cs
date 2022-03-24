@@ -1,20 +1,27 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MovieHub;
 using MovieHub.Data;
+using MovieHub.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<ApplicationDbContext>(options => 
     options.UseNpgsql(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+var userManager = builder.Services.BuildServiceProvider().GetService<UserManager<IdentityUser>>();
+var roleManager = builder.Services.BuildServiceProvider().GetService<RoleManager<IdentityRole>>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -35,6 +42,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+SeedData.Seed(userManager, roleManager);
 
 app.MapControllerRoute(
     name: "default",
