@@ -345,16 +345,20 @@ public class PaymentsController : Controller
             return NotFound();
         } else
         {
-            payment.Status = status switch
+            switch(status)
             {
-                1 => StatusEnum.Pending,
-                2 => StatusEnum.Paid,
-                _ => throw new ArgumentOutOfRangeException(nameof(status))
-            };
+                case 1:
+                    payment.Status = Models.StatusEnum.Pending;
+                    break;
+                case 2:
+                    payment.Status = Models.StatusEnum.Paid;
+                    break;
+                default: throw new ArgumentOutOfRangeException(nameof(status));
+            }
             _context.Update(payment);
             await _context.SaveChangesAsync();
         }
-        return RedirectToAction("GetPayment", orderId);
+        return RedirectToAction("GetPayment", new { orderId = orderId });
     }
 
     public async Task<IActionResult> CreatePayment(int orderId, int paymentMethodId)
