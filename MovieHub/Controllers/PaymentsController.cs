@@ -132,7 +132,7 @@ public class PaymentsController : Controller
                 using var surface = SKSurface.Create(info);
 
                 var canvas = surface.Canvas;
-                canvas.Render(qr, SKRect.Create(512, 512), SKColors.White, SKColors.Black);
+                canvas.Render(qr, SKRect.Create(512, 512), SKColors.WhiteSmoke, SKColors.Black);
 
                 using var image = surface.Snapshot();
                 using var data = image.Encode(SKEncodedImageFormat.Png, 100);
@@ -161,8 +161,9 @@ public class PaymentsController : Controller
                     .Replace("#HallNumber", hall?.Name)
                     .Replace("#Seat", seat?.SeatNumber.ToString())
                     .Replace("#Row", seat?.RowNumber.ToString())
-                    .Replace("#Time", showTime?.StartAt.TimeOfDay.ToString())
-                    .Replace("#Date", showTime?.StartAt.ToShortDateString())
+                    .Replace("#StartTime", showTime?.StartAt.TimeOfDay.ToString(@"hh\:mm"))
+                    .Replace("#EndTime", showTime?.StartAt.AddMinutes(movie!.Duration).TimeOfDay.ToString(@"hh\:mm"))
+                    .Replace("#Date", showTime?.StartAt.Date.ToString("dd MMMM yyyy"))
                     .Replace("QRCODE", base64ImageRepresentation);
 
                 var finishedHtmlTicketFile = Path.Combine(finishedHtmlTicketFolder, ticket.Id + ".html");
@@ -236,8 +237,8 @@ public class PaymentsController : Controller
         var seatsSelected = orderData.Seats;
 
         var seatIds = (from seat in seatsSelected
-            select _context.Seat.Where(s => s.RowNumber.Equals(Int32.Parse(seat[0])))
-                .Where(s => s.SeatNumber.Equals(Int32.Parse(seat[1])))
+            select _context.Seat.Where(s => s.RowNumber.Equals(int.Parse(seat[0])))
+                .Where(s => s.SeatNumber.Equals(int.Parse(seat[1])))
                 .ToList()
                 .FirstOrDefault()
                 ?.Id
