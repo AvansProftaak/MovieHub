@@ -184,7 +184,7 @@ public class PaymentsController : Controller
  
         // Close the instance of PdfDocument
         pdfTicketCombined.Close(true);
-        
+        finishedPdfs.Close();
         // Create byte file from Pdf
         var fileBytes = System.IO.File.ReadAllBytes(FinishedPdfTicketsPath);
         
