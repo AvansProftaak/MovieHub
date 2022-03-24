@@ -148,6 +148,7 @@ public class PaymentsController : Controller
                 );
                 string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 
+                new FileInfo(Path.Combine(subPath, @"qr-" + content + ".png")).Delete();
                 // Get seat && row for current ticket
                 var seat = _context.Seat.FirstOrDefault(s => s.Id == ticket.SeatId);
 
