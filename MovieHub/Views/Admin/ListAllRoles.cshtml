@@ -5,7 +5,7 @@
     ViewData["Title"] = "All roles";
 }
 
-<h2>All roles</h2>
+<h1>All roles</h1>
  
 <a class="btn btn-primary mb-2" asp-action="AddRole"><i class="fa fa-users" aria-hidden="true"></i> Add Role</a>
 @if (Model.Any())
@@ -22,8 +22,8 @@
             <tr>
                 <td> @role.Name</td>
                 <td class="text-center">
-                    <a href="#" class="btn btn-warning btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a href="#" class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a asp-action="EditRole" asp-route-id="@role.Id" class="btn btn-warning btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a asp-action="DeleteRole" asp-route-id="@role.Id" class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
             </tbody>
