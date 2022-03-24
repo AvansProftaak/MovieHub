@@ -1,15 +1,13 @@
-#nullable disable
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
-using MovieHub.ViewModels;
+
 
 namespace MovieHub.Controllers
 {
-    [Authorize(Roles = "Admin, Manager, Back-Office")]
+
     public class MoviesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,7 +22,7 @@ namespace MovieHub.Controllers
         {
            return View(await _context.Movie.ToListAsync());
         }
-
+        
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -34,19 +32,20 @@ namespace MovieHub.Controllers
             }
             
             var movie = await _context.Movie
-                .Include(m => m.MovieGenres)
+                .Include(m => m.MovieGenres)!
                 .ThenInclude(mg => mg.Genre)
-                .Include(m => m.MoviePegis)
+                .Include(m => m.MoviePegis)!
                 .ThenInclude(mg => mg.Pegi)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
             {
                 return NotFound();
-            };
+            }
             return View(movie);
         }
-
+        
         // GET: Movies/Create
+        [Authorize(Roles = "Admin, Manager, Back-Office")]
         public IActionResult Create()
         {
             return View();
@@ -55,7 +54,7 @@ namespace MovieHub.Controllers
         // POST: Movies/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        
+        [Authorize(Roles = "Admin, Manager, Back-Office")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie)
@@ -68,24 +67,9 @@ namespace MovieHub.Controllers
             }
             return View(movie);
         }
-        //
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> Create(MovieViewModel movieViewModel)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         _context.Add(movieViewModel);
-        //         await _context.SaveChangesAsync();
-        //         return RedirectToAction(nameof(Index));
-        //     }
-        //     return View();
-        // }
-        //
-        
-        
 
         // GET: Movies/Edit/5
+        [Authorize(Roles = "Admin, Manager, Back-Office")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -104,6 +88,7 @@ namespace MovieHub.Controllers
         // POST: Movies/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin, Manager, Back-Office")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie)
@@ -137,6 +122,7 @@ namespace MovieHub.Controllers
         }
 
         // GET: Movies/Delete/5
+        [Authorize(Roles = "Admin, Manager, Back-Office")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -155,12 +141,13 @@ namespace MovieHub.Controllers
         }
 
         // POST: Movies/Delete/5
+        [Authorize(Roles = "Admin, Manager, Back-Office")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var movie = await _context.Movie.FindAsync(id);
-            _context.Movie.Remove(movie);
+            _context.Movie.Remove(movie!);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

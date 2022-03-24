@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Globalization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
@@ -23,14 +21,15 @@ public class OrdersController : Controller
     // CHANGED INCOMING SHOWTIME TO MOVIE 
     public Task<ActionResult<OrderViewModel>> Index(int id)
     {
-        var orderViewModel = new OrderViewModel();
-
-        orderViewModel.Movie = GetMovie(id, _context);
-        orderViewModel.Tickettypes = TicketTypes(id, _context);
-        orderViewModel.CateringPackages = GetCateringPackages(_context);
-        orderViewModel.StartDates = GetStartDates(id);
-        orderViewModel.ShowList = new List<SelectListItem>();
-        orderViewModel.MoviePegis = MoviePegis();
+        var orderViewModel = new OrderViewModel
+        {
+            Movie = GetMovie(id, _context),
+            Tickettypes = TicketTypes(id, _context),
+            CateringPackages = GetCateringPackages(_context),
+            StartDates = GetStartDates(id),
+            ShowList = new List<SelectListItem>(),
+            MoviePegis = MoviePegis()
+        };
 
         foreach (var show in GetStartDates(id).Select(item => new SelectListItem()
                  {
@@ -51,29 +50,27 @@ public class OrdersController : Controller
 
         return showtimes!.Where(show => (show.StartAt >= DateTime.Now) && (show.StartAt.Date <= DateTime.Now.Date.AddDays(7))).ToList();
     }
-    
-    
-    
 
-    public static List<Tickettype>? GetAllTicketTypes(ApplicationDbContext context)
+
+    private static List<Tickettype> GetAllTicketTypes(ApplicationDbContext context)
     {
         return context.Tickettype.OrderByDescending(t => t.Price).ToList();
     }
 
-    public static List<CateringPackage>? GetCateringPackages(ApplicationDbContext context)
+    public static List<CateringPackage> GetCateringPackages(ApplicationDbContext context)
     {
         return context.CateringPackage
             .FromSqlRaw("SELECT * FROM public.\"CateringPackage\"").ToList();
     }
- 
-    public static List<Tickettype>? TicketTypes(int movieId, ApplicationDbContext context)
+
+    private static List<Tickettype> TicketTypes(int movieId, ApplicationDbContext context)
     {
-        ApplicationDbContext _context = context; 
-        List<Tickettype>? tickets = GetAllTicketTypes(context);
+        var _context = context; 
+        var tickets = GetAllTicketTypes(context);
 
         // due to the nature of our calculations we need to hold the normal price after we set it
         // to do this we need this bool ( more explanation in pricecalc function)
-        bool normalPriceRaised = false;
+        var normalPriceRaised = false;
         foreach (var ticket in tickets)
         {
             ticket.Price = TicketTypeController.PriceCalculations(ticket, movieId, _context, normalPriceRaised);
@@ -85,8 +82,8 @@ public class OrdersController : Controller
 
         return tickets;
     }
-    
-    public static Movie? GetMovie(int id, ApplicationDbContext context)
+
+    private static Movie? GetMovie(int id, ApplicationDbContext context)
     {
         return context.Movie
             .Where(m => m.Id.Equals(id)).ToList().FirstOrDefault();
@@ -101,12 +98,12 @@ public class OrdersController : Controller
 
     public static Dictionary <int, decimal> CalculationTicketTypes(int movieId, ApplicationDbContext context)
     {
-        ApplicationDbContext _context = context; 
-        List<Tickettype>? tickets = GetAllTicketTypes(context);
+        var _context = context; 
+        var tickets = GetAllTicketTypes(context);
 
         // due to the nature of our calculations we need to hold the normal price after we set it
         // to do this we need this bool ( more explanation in pricecalc function)
-        bool normalPriceRaised = false;
+        var normalPriceRaised = false;
         foreach (var ticket in tickets)
         {
             ticket.Price = TicketTypeController.PriceCalculations(ticket, movieId, _context, normalPriceRaised);
@@ -116,11 +113,7 @@ public class OrdersController : Controller
             }
         }
 
-        Dictionary<int, decimal> prices = new Dictionary<int, decimal>();
-        foreach (var ticket in tickets)
-        {
-            prices.Add(ticket.Id, ticket.Price);
-        }
+        var prices = tickets.ToDictionary(ticket => ticket.Id, ticket => ticket.Price);
 
         foreach (var ticket in tickets)
         {
@@ -132,29 +125,24 @@ public class OrdersController : Controller
     
     public static Dictionary <int, string> ReturnTicketNames(int movieId, ApplicationDbContext context)
     {
-        ApplicationDbContext _context = context; 
-        List<Tickettype>? tickets = GetAllTicketTypes(context);
+        var tickets = GetAllTicketTypes(context);
 
         // due to the nature of our calculations we need to hold the normal price after we set it
         // to do this we need this bool ( more explanation in pricecalc function)
-        bool normalPriceRaised = false;
+        var normalPriceRaised = false;
         foreach (var ticket in tickets)
         {
-            ticket.Price = TicketTypeController.PriceCalculations(ticket, movieId, _context, normalPriceRaised);
+            ticket.Price = TicketTypeController.PriceCalculations(ticket, movieId, context, normalPriceRaised);
             if (ticket.Name == "Normal")
             {
                 normalPriceRaised = true;
             }
         }
 
-        Dictionary<int, string> names = new Dictionary<int, string>();
+        var names = tickets.ToDictionary(ticket => ticket.Id, ticket => ticket.Name);
         foreach (var ticket in tickets)
         {
-            names.Add(ticket.Id, ticket.Name);
-        }
-        foreach (var ticket in tickets)
-        {
-            _context.Entry(ticket).State = EntityState.Unchanged;
+            context.Entry(ticket).State = EntityState.Unchanged;
         }
         
         

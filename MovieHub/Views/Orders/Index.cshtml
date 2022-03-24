@@ -8,80 +8,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script>
-
-let ticketQuantity;
-let ticketTypeId;
-let packageQuantity;
-let CateringPackageId;
-
-function SaveToLocalStorage() {
- 
-    let movieId = @Model.Movie.Id;
-    let ticketTypes = CountTickets(ticketQuantity, ticketTypeId);
-    let cateringPackages = CountTickets(packageQuantity, CateringPackageId);
-    
-    // Show info:
-    let selectedShow = document.getElementById('selectedShow')
-    let showtimeId = parseInt(selectedShow.value)
-    
-    localStorage.setItem('orderData', JSON.stringify({movieId, showtimeId, ticketTypes, cateringPackages})); 
-    
-}
-
-@* JAVASCRIPT CODE: *@
-function BuyTickets()
-{
-    // Show info:
-    let selectedShow = document.getElementById('selectedShow')
-    let showtimeId = parseInt(selectedShow.value)
-   
-    // Ticket info: 
-    ticketQuantity = document.querySelectorAll('.ticketQuantity')
-    ticketTypeId = document.querySelectorAll('.ticketTypeId')
-    let totalTickets = TotalTickets(ticketQuantity)
-    
-    //Package info:
-    packageQuantity = document.querySelectorAll('.packageQuantity')
-    CateringPackageId = document.querySelectorAll('.cateringPackageId')
-    
-    // 
-    if (!showtimeId || totalTickets === 0) {
-        document.getElementById('ErrorNoSelection').style.color = "red";
-        document.getElementById('ErrorNoSelection').innerHTML = "Please fill in all fields";
-        return
-    }
-    SaveToLocalStorage();    
-    location.href='@Url.Action("Index", "Seats")?showtimeId='+JSON.stringify(showtimeId);
-}
-
-function CountTickets (quantity, id) {
-    let ticketTypes = {};
-  
-    for (let i = 0; i < quantity.length; i++)
-    {
-        ticketTypes[parseInt(id[i].innerHTML)] = parseInt(quantity[i].value);
-    }
-    return ticketTypes;
-}
-
-function TotalTickets(ticketQuantity) {
-    let sumTq = 0;
-    
-    ticketQuantity.forEach((tq) => {
-        
-        sumTq = sumTq + parseInt(tq.value)
-    })
-    return sumTq
-}
-</script>
-
-@* HTML CODE: *@
-
-@{
-    var moviePegis = Model.MoviePegis[0].Pegi.Description;
-    Console.WriteLine(moviePegis);
-}
 <div class="container" style="margin-top: 120px">
     <dl class="row">
         <div class="col-4">
@@ -92,9 +18,9 @@ function TotalTickets(ticketQuantity) {
                 <h1 class="order-title-h1">@Html.DisplayFor(model => model.Movie!.Title)</h1>
             </div>
             <div class="row">
-                @foreach (var pegi in Model.MoviePegis.Where(m => m.MovieId == Model.Movie.Id))
+                @foreach (var pegi in Model.MoviePegis!.Where(m => m.MovieId == Model.Movie.Id))
                 {
-                    <img src="@Url.Content(pegi.Pegi.Icon)" style="width:55px; padding-right: 10px"  alt="Pegi Logo">
+                    <img src="@Url.Content(pegi.Pegi!.Icon)" style="width:55px; padding-right: 10px"  alt="Pegi Logo">
                 }
             </div>
             <br/>
@@ -125,36 +51,26 @@ function TotalTickets(ticketQuantity) {
 
                 var dateNow = DateTime.Now;
                 var day = DateTime.Now.DayOfWeek;
-                var kidsBedTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 18, 0, 0);
 
-                // TODO:    working on logic for kids discount add pegi rating
-                //          Problem is.... there are pegi ratings in db yet
                 if (((ticket.Name == "Kids") &
-
-                        @* COMMENTED OUT BECAUSE SHOWTIME LATER ADDED TODO*@
-                     // (Model.Showtime.StartAt > kidsBedTime) |
-
-                     (Model.Movie.Language != "Dutch") | (ticket.Name == "Students") & !(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday) |
+                     (Model.Movie.Language != "Dutch") | (ticket.Name == "Students") & 
+                     !(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday) |
                      (ticket.Name == "65+") & (!(day >= DayOfWeek.Monday & day <= DayOfWeek.Thursday) | DateSystem.IsPublicHoliday(dateNow, CountryCode.NL))))
                 {
-                    Console.WriteLine(ticket.Name + "Should be excluded");
                     continue;
                 }
 
                 if (ticket.Name != "3D")
                 {
-                    {
-
-                        <div class="row">
-                            <div hidden="hidden" class="ticketTypeId">@ticket.Id </div>
-                            <div class="col-4 order-row" style="padding-left: 12px">@ticket.Name</div>
-                            <div class="col-2 order-row">@price.ToString("c", nfi)</div>
-                            <div class="col-1 order-row">
-                                <input id="ticketQuantity" type="number" asp-for=@ticket.Quantity class="form-control ticketQuantity" min="0" max="10" style="padding: 0px"/>
-                            </div>
+                    <div class="row">
+                        <div hidden="hidden" class="ticketTypeId">@ticket.Id </div>
+                        <div class="col-4 order-row" style="padding-left: 12px">@ticket.Name</div>
+                        <div class="col-2 order-row">@price.ToString("c", nfi)</div>
+                        <div class="col-1 order-row">
+                            <input id="ticketQuantity" type="number" asp-for=@ticket.Quantity class="form-control ticketQuantity" min="0" max="10" style="padding: 0"/>
                         </div>
-                        <hr class="order-ticket-hr"/>
-                    }
+                    </div>
+                    <hr class="order-ticket-hr"/>
                 }
             }
             <br/><br/>
@@ -177,7 +93,7 @@ function TotalTickets(ticketQuantity) {
                     <div class="col-4 order-row" style="padding-left: 12px">@package.Name</div>
                     <div class="col-2 order-row">@price.ToString("c", nfi)</div>
                     <div class="col-1 order-row">
-                        <input id="packageQuantity" type="number" asp-for=@package.Quantity class="form-control packageQuantity" min="0" max="10" style="padding: 0px"/>
+                        <input id="packageQuantity" type="number" asp-for=@package.Quantity class="form-control packageQuantity" min="0" max="10" style="padding: 0"/>
                     </div>
                 </div>
                 <hr class="order-ticket-hr"/>
@@ -193,3 +109,71 @@ function TotalTickets(ticketQuantity) {
     </dl>
     <br/>
 </div>
+
+<script>
+
+let ticketQuantity;
+let ticketTypeId;
+let packageQuantity;
+let CateringPackageId;
+
+function SaveToLocalStorage() {
+ 
+    let movieId = @Model.Movie.Id;
+    let ticketTypes = CountTickets(ticketQuantity, ticketTypeId);
+    let cateringPackages = CountTickets(packageQuantity, CateringPackageId);
+    
+    // Show info:
+    let selectedShow = document.getElementById('selectedShow')
+    let showtimeId = parseInt(selectedShow.value)
+    
+    localStorage.setItem('orderData', JSON.stringify({movieId, showtimeId, ticketTypes, cateringPackages})); 
+}
+
+function BuyTickets()
+{
+    // Show info:
+    let selectedShow = document.getElementById('selectedShow')
+    let showtimeId = parseInt(selectedShow.value)
+   
+    // Ticket info: 
+    ticketQuantity = document.querySelectorAll('.ticketQuantity')
+    ticketTypeId = document.querySelectorAll('.ticketTypeId')
+    let totalTickets = TotalTickets(ticketQuantity)
+    
+    //Package info:
+    packageQuantity = document.querySelectorAll('.packageQuantity')
+    CateringPackageId = document.querySelectorAll('.cateringPackageId')
+    
+    // 
+    if (!showtimeId || totalTickets === 0) 
+    {
+        document.getElementById('ErrorNoSelection').style.color = "red";
+        document.getElementById('ErrorNoSelection').innerHTML = "Please fill in all fields";
+        return
+    }
+    SaveToLocalStorage();    
+    location.href='@Url.Action("Index", "Seats")?showtimeId='+JSON.stringify(showtimeId);
+}
+
+function CountTickets (quantity, id) {
+    let ticketTypes = {};
+  
+    for (let i = 0; i < quantity.length; i++)
+    {
+        ticketTypes[parseInt(id[i].innerHTML)] = parseInt(quantity[i].value);
+    }
+    return ticketTypes;
+}
+
+function TotalTickets(ticketQuantity) {
+    let sumTq = 0;
+    
+    ticketQuantity.forEach((tq) => 
+    {
+        sumTq = sumTq + parseInt(tq.value)
+    })
+    return sumTq
+}
+</script>
+

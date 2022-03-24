@@ -1,10 +1,4 @@
-#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
@@ -51,7 +45,7 @@ namespace MovieHub.Controllers
         }
 
         // POST: CateringPackage/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // To protect from over posting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -83,7 +77,7 @@ namespace MovieHub.Controllers
         }
 
         // POST: CateringPackage/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // To protect from over posting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -141,7 +135,7 @@ namespace MovieHub.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var cateringPackage = await _context.CateringPackage.FindAsync(id);
-            _context.CateringPackage.Remove(cateringPackage);
+            _context.CateringPackage.Remove(cateringPackage!);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -1,8 +1,6 @@
 using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Moq;
 using MovieHub.Controllers;
 using MovieHub.Data;
 using MovieHub.Models;
@@ -20,8 +18,7 @@ public class HomeControllerTests
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
             .UseInMemoryDatabase("HomeTestDatabase").Options;
         _context = new ApplicationDbContext(options);   
-        var logger = Mock.Of<ILogger<HomeController>>();
-        _controller = new HomeController(logger, _context);
+        _controller = new HomeController(_context);
     }
     
     [Fact]
@@ -47,12 +44,12 @@ public class HomeControllerTests
     [Fact]
     public void Test_ShowTime_Created()
     {
-        Assert.Equal(1, _context.Showtime.First().Id);
+        Assert.Equal(1, _context.Showtime?.First().Id);
     }
     
     // This test was commented out as it was only relevant in Kiosk mode retrieving today's movies.
     // [Fact] 
-    // public void Test_HomeController_MovieIndex_Should_Return_Todays_Movies()
+    // public void Test_HomeController_MovieIndex_Should_Return_Today's_Movies()
     // {
     //     var result = _controller.MovieIndex();
     //     Assert.Equal(DateTime.Today.Date, result.First().StartAt.Date); 
@@ -65,7 +62,7 @@ public class HomeControllerTests
         Assert.IsType<Movie>(result.First());
     }
     
-    private void InsertTestData(ApplicationDbContext context)
+    private static void InsertTestData(DbContext context)
     {
         context.Add(new Cinema()
         {

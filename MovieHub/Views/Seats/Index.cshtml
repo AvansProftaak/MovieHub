@@ -8,7 +8,7 @@
 <div class="container-fluid" style="margin-top: 120px">
     <h1>Select your seats</h1>
     <span id="chairSelectHelpText">You need to select (<span id="amountOfChairsLeft"></span>) more chairs</span>
-    @foreach (var row in Model.Seats.GroupBy(r => r.RowNumber).OrderByDescending(r => r.Key))
+    @foreach (var row in Model?.Seats?.GroupBy(r => r.RowNumber).OrderByDescending(r => r.Key)!)
     {
         var rowList = row.ToList();
         <h4>Row @row.Key</h4>
@@ -17,7 +17,7 @@
             @if (rowList[i].Available)
             {
                 <a type="button" onclick="toggleSelected(this, @row.Key, @rowList[i].SeatNumber)" class="img-container">
-                    <img src="@Url.Content("~/img/seat-available.png")" width="48">
+                    <img src="@Url.Content("~/img/seat-available.png")" width="48" alt="Available seat">
                     <div class="text-centered">
                         @Html.DisplayFor(s => rowList[i].SeatNumber)
                     </div>
@@ -26,7 +26,7 @@
             else
             {
                 <a type="button" class="img-container">
-                    <img src="@Url.Content("~/img/seat-not-available.png")" width="48">
+                    <img src="@Url.Content("~/img/seat-not-available.png")" width="48" alt="Unavailable seat">
                 </a>
             }
         }
@@ -43,10 +43,10 @@
     let seatsLeft = 0;
     let seats = {};
     let orderData = localStorage.getItem('orderData') ? JSON.parse(localStorage.getItem('orderData')) : '';
-    Object.keys(orderData['ticketTypes']).forEach((value, index, array) => {
+    Object.keys(orderData['ticketTypes']).forEach((value) => {
         seatsLeft += orderData['ticketTypes'][value];
     });
-    document.querySelectorAll('img').forEach((value, index, array) => {
+    document.querySelectorAll('img').forEach((value) => {
         if (seatsLeft > 0 && value.src.includes('/img/seat-available.png')){
             value.click();
         }

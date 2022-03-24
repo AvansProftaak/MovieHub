@@ -44,7 +44,7 @@
                                 <div class="details-container">
                                     <div class="justify-content-between d-flex">
                                         <button onclick="location.href='@Url.Action("Index", "Orders", new {id = item.Id})'"
-                                                class="btn btn-primary btn-sizing me-1" style="font-size: 1.3vh";>Buy Tickets</button>
+                                                class="btn btn-primary btn-sizing me-1" style="font-size: 1.3vh">Buy Tickets</button>
                                         <button onclick="location.href='@Url.Action("Details", "Movies", new {id = item.Id})'"
                                                 class="btn btn-primary btn-sizing ms-1" style="font-size: 1.3vh">Movie Details</button>
                                     </div>
@@ -142,7 +142,7 @@
                  document.getElementById("newsletterDiv").innerHTML = "<h4 class='movie-title'>Thank you for signing up!</h4>";
             },
             error: function(error){
-                if(error.status == 400) {
+                if(error.status === 400) {
                     invalidOrUsedEmail("This email is already signed up!");
                 }
             }

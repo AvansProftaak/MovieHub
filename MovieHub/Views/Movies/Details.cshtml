@@ -1,5 +1,3 @@
-@using MovieHub.Migrations
-@using System.Globalization
 @model MovieHub.Models.Movie
 
 @{
@@ -22,13 +20,13 @@
         <div class="flex-container"> |
            @foreach (var item in Model!.MovieGenres!)
            {
-               var test =  item.Genre.GenreEnum + " | ";
+               var test =  item.Genre?.GenreEnum + " | ";
                @Html.DisplayFor(model => test)
            }
            <br/>
            @foreach (var item in Model!.MoviePegis!)
            {
-              <img src=" @Url.Content(item.Pegi.Icon)" style="width:55px; padding-right: 10px"  alt="Pegi Logo">
+              <img src=" @Url.Content(item.Pegi?.Icon)" style="width:55px; padding-right: 10px"  alt="Pegi Logo">
            }
         
         <div style="display: block; float: right">

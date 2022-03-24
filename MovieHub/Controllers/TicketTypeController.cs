@@ -136,7 +136,7 @@ namespace MovieHub.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var tickettype = await _context.Tickettype.FindAsync(id);
-            _context.Tickettype.Remove(tickettype);
+            _context.Tickettype.Remove(tickettype!);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -146,7 +146,7 @@ namespace MovieHub.Controllers
             return _context.Tickettype.Any(e => e.Id == id);
         }
 
-        public static Tickettype GetNormalTicket(ApplicationDbContext context)
+        private static Tickettype GetNormalTicket(ApplicationDbContext context)
         {
             
             IEnumerable<Tickettype> ticket =  context.Tickettype
@@ -154,26 +154,25 @@ namespace MovieHub.Controllers
 
             return ticket.ToList().FirstOrDefault();
         }
-        
-        public static decimal GetNormalPrice(ApplicationDbContext context)
+
+        private static decimal GetNormalPrice(ApplicationDbContext context)
         {
-            Tickettype normalTicket = new Tickettype();
-            normalTicket = GetNormalTicket(context);
-            
+            var normalTicket = GetNormalTicket(context);
+
             return normalTicket.Price;
         }
-        
-        public static Tickettype Get3DTicket(ApplicationDbContext context)
+
+        private static Tickettype Get3DTicket(ApplicationDbContext context)
         {
             IEnumerable<Tickettype> ticket =  context.Tickettype
                 .Where(t => t.Name.Equals("3D"));
 
             return ticket.ToList().FirstOrDefault();
         }
-        
-        public static decimal Get3DPrice(ApplicationDbContext context)
+
+        private static decimal Get3DPrice(ApplicationDbContext context)
         {
-            Tickettype normalTicket = Get3DTicket(context);
+            var normalTicket = Get3DTicket(context);
             
             return normalTicket.Price;
         }
@@ -181,10 +180,10 @@ namespace MovieHub.Controllers
         public static decimal PriceCalculations(Tickettype ticket, int movieId, ApplicationDbContext context, bool normalPriceRaised)
         {
             /* writing this we had some issues with ticket price of the normal ticket
-             * when the normal ticket passed the = > 120 mins or = 3D the values are raised
+             * when the normal ticket passed the = > 120 minutes or = 3D the values are raised
              * Due to the nature of our calculations it stays raised
              * so we have to figure out if normal ticket already passed the calculations or not
-             * we could simply tell the owner to insert the normal ticketprices first but they might forget.... 
+             * we could simply tell the owner to insert the normal ticket prices first but they might forget.... 
              */
 
             var movie = context.Movie.FirstOrDefault(m => m.Id == movieId);
@@ -192,13 +191,13 @@ namespace MovieHub.Controllers
             var normalPrice = GetNormalPrice(context);
             var price = normalPrice;
             
-            if ((movie.Duration > 120) & (!normalPriceRaised) )
+            if ((movie?.Duration > 120) & (!normalPriceRaised) )
             {
                 price += (decimal).50;
                 
             }
 
-            if (movie.Is3D & !normalPriceRaised)
+            if (movie!.Is3D & !normalPriceRaised)
             {
                 price += Get3DPrice(context);
             }

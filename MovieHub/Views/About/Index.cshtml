@@ -41,9 +41,9 @@
 
                 <div id="map" style="height: 600px; width: 1000px"></div>
                 <script>
-                var map;
-                var directionsService;
-                var directionsRenderer;
+                let map;
+                let directionsService;
+                let directionsRenderer;
                 
                 function initMap(){
                //create autocomplete objects for input
@@ -56,11 +56,11 @@
                       directionsService = new google.maps.DirectionsService();
                       directionsRenderer = new google.maps.DirectionsRenderer();
                       
-                      var moviehub= new google.maps.LatLng(51.583698, 4.797110);
-                      var mapOptions = {
+                      const moviehub= new google.maps.LatLng(51.583698, 4.797110);
+                      const mapOptions = {
                               zoom:14,
                               center: moviehub
-                            }
+                            };
                        map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
                              directionsRenderer.setMap(map);
                        
@@ -68,17 +68,19 @@
                         const marker = new google.maps.Marker({
                                     position: moviehub,
                                     map: map,
-                                    icon: src="@Url.Content("~/img/icon_moviehub.png")",})}
+                                    icon: src="@Url.Content("~/img/icon_moviehub.png")",})
+                
+                }
                            
                            
                            function calcRoute() {
                            
-                            var request = {
+                            const request = {
                                 origin: document.getElementById("from").value,
                                 destination: "Hogeschoollaan 1, 4818 CR Breda",
                                 travelMode: google.maps.TravelMode.DRIVING, //WALKING, BYCYCLING, TRANSIT
                                 unitSystem: google.maps.UnitSystem.METRIC
-                            }
+                            };
                                  //   console.log(request);
                                  // directionsService.route(request, function(result, status) {
                                  //   if (status == 'OK') {
@@ -87,7 +89,7 @@
                                  
                              //pass the request to the route method
                                  directionsService.route(request, function (result, status) {
-                                     if (status == google.maps.DirectionsStatus.OK) {
+                                     if (status === google.maps.DirectionsStatus.OK) {
                              
                                          //Get distance and time
                                          const output = document.querySelector('#output');
