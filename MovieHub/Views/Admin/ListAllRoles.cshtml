@@ -22,8 +22,8 @@
             <tr>
                 <td> @role.Name</td>
                 <td class="text-center">
-                    <a asp-action="EditRole" asp-route-id="@role.Id" class="btn btn-warning btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a asp-action="DeleteRole" asp-route-id="@role.Id" class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a asp-action="EditRole" asp-controller="Admin" asp-route-id="@role.Id" class="btn btn-warning btn-sm"> <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a asp-action="DeleteRole" asp-controller="Admin" asp-route-id="@role.Id" class="btn btn-danger btn-sm"> <i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
             </tbody>

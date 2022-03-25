@@ -1,113 +1,119 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MovieHub.Models;
 using MovieHub.ViewModels;
 
 namespace MovieHub.Controllers;
 
 public class AdminController : Controller
-{
-    private readonly RoleManager<IdentityRole> _roleManager;
-    private readonly UserManager<IdentityUser> _userManager;
- 
-    public AdminController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
     {
-        _roleManager = roleManager;
-    }
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-    // GET
-    [HttpGet]
-    public IActionResult ListAllRoles()
-    {
-        var roles = _roleManager.Roles;
-        return View(roles);
-    } 
-    
-    [HttpGet]
-    public IActionResult AddRole()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> AddRole(AddRoleViewmodel model)
-    {
-        if (ModelState.IsValid)
+        public AdminController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
-            IdentityRole identityRole = new()
+            _roleManager = roleManager;
+            _userManager = userManager;
+        }
+
+        [HttpGet]
+        public IActionResult ListAllRoles()
+        {
+            var roles = _roleManager.Roles;
+            return View(roles);
+        }
+
+        [HttpGet]
+        public IActionResult AddRole()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddRole(AddRoleViewmodel model)
+        {
+            if (ModelState.IsValid)
             {
-                Name = model.RoleName
+                IdentityRole identityRole = new()
+                {
+                    Name = model.RoleName
+                };
+
+                var result = await _roleManager.CreateAsync(identityRole);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ListAllRoles");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditRole(string id)
+        {
+            var role = await _roleManager.FindByIdAsync(id);
+
+            if (role == null)
+            {
+                ViewData["ErrorMessage"] = $"No role with Id '{id}' was found";
+                return View("Errors");
+            }
+
+            EditRoleViewModel model = new()
+            {
+                Id = role.Id,
+                RoleName = role.Name
             };
-            var result = await _roleManager.CreateAsync(identityRole);
 
-            if (result.Succeeded)
+            foreach (var user in _userManager.Users.ToList())
             {
-                return RedirectToAction("ListAllRoles");
+                if (await _userManager.IsInRoleAsync(user, role.Name))
+                {
+                    model.Users.Add(user.UserName);
+                }
             }
 
-            foreach (var error in result.Errors)
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditRole(EditRoleViewModel model)
+        {
+            var role = await _roleManager.FindByIdAsync(model.Id);
+
+            if (role == null)
             {
-                ModelState.AddModelError("", error.Description);
+                ViewData["ErrorMessage"] = $"No role with Id '{model.Id}' was found";
+                return View("Error");
+            }
+            else
+            {
+                role.Name = model.RoleName;
+
+                var result = await _roleManager.UpdateAsync(role);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ListAllRoles");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+
+                return View(model);
             }
         }
 
-        return View(model);
-    }
-
-
-    [HttpGet]
-    public async Task<IActionResult> EditRole(string id)
-    {
-        var role = await _roleManager.FindByIdAsync(id);
-
-        if (role == null)
-        {
-            ViewData["ErrorMessage"] = $"No role with Id {id} was found";
-            return View("Errors");
-        }
-
-        EditRoleViewModel model = new()
-        {
-            Id = role.Id,
-            RoleName = role.Name
-        };
-        foreach (var user in _userManager.Users)
-        {
-            if (await _userManager.IsInRoleAsync(user, role.Name))
-            {
-                model.Users.Add(user.UserName);
-            }
-        }
-
-        return View(model);
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> EditRole(EditRoleViewModel model)
-    {
-        var role = await _roleManager.FindByIdAsync(model.Id);
-        if (role == null)
-        {
-            ViewData["ErrorMessage"] = $"No role with Id {model.Id} was found";
-            return View("Errors");
-        }
-        else
-        {
-            role.Name = model.RoleName;
-
-            var result = await _roleManager.UpdateAsync(role);
-            if (result.Succeeded)
-            {
-                return RedirectToAction("ListAllRoles");
-            }
-
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
-            }
-        }
-        return View(model);
-    }
-     [HttpGet]
+        [HttpGet]
         public async Task<IActionResult> EditUsersInRole(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -118,12 +124,12 @@ public class AdminController : Controller
             if (role == null)
             {
                 ViewData["ErrorMessage"] = $"No role with Id '{id}' was found";
-                return View("Error");
+                return View("Errors");
             }
 
             var model = new List<UserRoleViewModel>();
 
-            foreach (var user in _userManager.Users)
+            foreach (var user in _userManager.Users.ToList())
             {
                 UserRoleViewModel userRoleVM = new()
                 {
@@ -154,7 +160,7 @@ public class AdminController : Controller
             if (role == null)
             {
                 ViewData["ErrorMessage"] = $"No role with Id '{id}' was found";
-                return View("Error");
+                return View("Errors");
             }
 
             for (int i = 0; i < model.Count; i++)
@@ -210,7 +216,8 @@ public class AdminController : Controller
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
 
-                return View(role);
+                // return View(role);
+                return RedirectToAction("ListAllRoles");
             }
         }
-}
+    }

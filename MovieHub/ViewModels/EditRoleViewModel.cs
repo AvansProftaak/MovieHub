@@ -1,12 +1,18 @@
 using System.ComponentModel.DataAnnotations;
+using Spire.Pdf.Exporting.XPS.Schema;
 
 namespace MovieHub.ViewModels;
 
 public class EditRoleViewModel
 {
+    public EditRoleViewModel()
+    {
+        Users = new List<string>();
+    }
     public string Id { get; set; }
-    [Display(Name = "Role")]
-    [Required(ErrorMessage = "Role Name is required" )]
+
+    [Required(ErrorMessage = "Role Name is required")]
     public string RoleName { get; set; }
-    public List<string> Users { get; set; } = new();
+
+    public List<string> Users { get; set; }
 }

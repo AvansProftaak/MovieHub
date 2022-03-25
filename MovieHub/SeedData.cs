@@ -1,21 +1,22 @@
 using Microsoft.AspNetCore.Identity;
+using MovieHub.Models;
 
 namespace MovieHub;
 
 public static class SeedData
 {
-    public static void Seed(UserManager<IdentityUser> userManager,
+    public static void Seed(UserManager<ApplicationUser> userManager,
     RoleManager<IdentityRole> roleManager)
     {
         SeedRoles(roleManager);
         SeedUsers(userManager);
     }
     
-    private static void SeedUsers(UserManager<IdentityUser> userManager)
+    private static void SeedUsers(UserManager<ApplicationUser> userManager)
     {
         if (userManager.FindByEmailAsync("admin@moviehub.com").Result == null)
         {
-            var user = new IdentityUser
+            var user = new ApplicationUser
             { 
                 UserName = "Admin",
                 Email = "admin@moviehub.com"

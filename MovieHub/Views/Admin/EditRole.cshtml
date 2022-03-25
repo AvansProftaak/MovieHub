@@ -29,7 +29,7 @@
     <div class="col-5">
         <h3>Users with @Model.RoleName role</h3>
 
-        <table class="table table-striped col-8">
+        <table class="table col-8">
             <tr></tr>
             @if (Model.Users.Any())
             {
@@ -48,7 +48,7 @@
             }
         </table>
         <div>
-            <a asp-action="EditUsersInRole" asp-route-id="@Model.Id" class="btn btn-primary">Add/Remove users in role</a>
+            <a asp-action="EditUsersInRole" asp-controller="Admin" asp-route-id="@Model.Id" class="btn btn-primary">Add or remove users in role</a>
         </div>
     </div>
 </form>
