@@ -98,6 +98,33 @@ namespace MovieHub.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+            
+            [Required]
+            [Display(Name = "FirstName")]
+            public string FirstName { get; set; }
+            
+            [Required]
+            [Display(Name = "Lastname")]
+            public string LastName { get; set; }
+            
+            [Required]
+            [Display(Name = "Street")]
+            public string Street { get; set; }
+
+            [Required]
+            [Display(Name = "Housenumber")]
+            public int HouseNumber { get; set; }
+            
+            [Required]
+            [Display(Name = "Zipcode")]
+            public string ZipCode { get; set; }
+            
+            [Required]
+            [Display(Name = "City")]
+            public string City { get; set; }
+            
+            [Display(Name = "Accept Newsletter")]
+            public Boolean AcceptedNewsletter { get; set; }
         }
 
 
@@ -115,6 +142,14 @@ namespace MovieHub.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.Street = Input.Street;
+                user.HouseNumber = Input.HouseNumber;
+                user.ZipCode = Input.ZipCode;
+                user.City = Input.City;
+                user.AcceptedNewsletter = Input.AcceptedNewsletter;
+                
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
