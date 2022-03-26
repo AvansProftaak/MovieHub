@@ -252,15 +252,16 @@ public class PaymentsController : Controller
             }
         }
 
-        var user = _context.User.FirstOrDefault(u => (u.Id >= userId))!;
+        // var user = _context.User.FirstOrDefault(u => (u.Id >= userId))!;
 
         var order = new Order
         {
             UserId = userId,
             Showtime = showtime,
-            ShowtimeId = showtimeId,
-            User = user
+            ShowtimeId = showtimeId
+            // User = user
         };
+        
 
         Insert(_context, order);
         /*_context.Order.Add(order);
