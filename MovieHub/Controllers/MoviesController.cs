@@ -69,22 +69,6 @@ namespace MovieHub.Controllers
             }
             return View(movie);
         }
-        //
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> Create(MovieViewModel movieViewModel)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         _context.Add(movieViewModel);
-        //         await _context.SaveChangesAsync();
-        //         return RedirectToAction(nameof(Index));
-        //     }
-        //     return View();
-        // }
-        //
-        
-        
 
         // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
