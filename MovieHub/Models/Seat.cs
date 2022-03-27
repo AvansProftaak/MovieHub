@@ -1,11 +1,12 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MovieHub.Models;
 
 public class Seat
 {
-    public int Id { get; set; }
+    public int? Id { get; set; }
     public int RowNumber { get; set; }
     public int SeatNumber { get; set; }
     public bool Available { get; set; }

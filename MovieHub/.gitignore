@@ -15,6 +15,12 @@ MovieHub/bin/**/*
 *.user
 *.userosscache
 *.sln.docstates
+wwwroot/ticket/FinishedHtmlTickets/*
+wwwroot/ticket/FinishedPdfTickets/*
+wwwroot/ticket/qr/*
+wwwroot/ticket/TicketsPdf.pdf
+
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

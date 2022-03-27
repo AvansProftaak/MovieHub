@@ -19,6 +19,10 @@
         <Content Update="wwwroot\**" ExcludeFromSingleFile="false">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="wwwroot\ticket\ExampleArrangementHtml.html">
+          <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
@@ -33,10 +37,12 @@
         <PackageReference Include="Nager.Date" Version="1.32.0" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
         <PackageReference Include="Select.HtmlToPdf.NetCore" Version="22.1.0-rc1" />
+        <PackageReference Include="SkiaSharp" Version="2.88.0-preview.232" />
+        <PackageReference Include="SkiaSharp.QrCode" Version="0.4.1" />
         <PackageReference Include="Spire.Doc" Version="10.2.11" />
-        <PackageReference Include="Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Linux" Version="19.4.0.54" />
-        <PackageReference Include="Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Mac" Version="19.4.0.54" />
-        <PackageReference Include="Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Windows" Version="19.4.0.54" />
+        <PackageReference Include="Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Linux" Version="19.4.0.56" />
+        <PackageReference Include="Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Mac" Version="19.4.0.56" />
+        <PackageReference Include="Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Windows" Version="19.4.0.56" />
         <PackageReference Include="Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core" Version="19.4.0.54" />
     </ItemGroup>
 
@@ -50,6 +56,8 @@
 
     <ItemGroup>
       <Folder Include="Binaries" />
+      <Folder Include="wwwroot\ticket\FinishedHtmlTickets" />
+      <Folder Include="wwwroot\ticket\FinishedPdfTickets" />
     </ItemGroup>
 
 </Project>

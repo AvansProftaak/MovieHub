@@ -11,7 +11,7 @@ public class OrderData
 
     public Dictionary<string,int> ticketTypes { get; set; }
     public Dictionary<string,int> cateringPackages { get; set; }
-    public Dictionary<string,string> seats { get; set; }
+    public List<List <string>> seats { get; set; }
     
 
     public OrderData()

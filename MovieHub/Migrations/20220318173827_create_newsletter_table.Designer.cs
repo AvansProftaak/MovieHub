@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieHub.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MovieHub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220318173827_create_newsletter_table")]
+    partial class create_newsletter_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,7 +248,7 @@ namespace MovieHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CateringPackage", (string)null);
+                    b.ToTable("CateringPackage");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Cinema", b =>
@@ -297,7 +299,7 @@ namespace MovieHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cinema", (string)null);
+                    b.ToTable("Cinema");
                 });
 
             modelBuilder.Entity("MovieHub.Models.CinemaMovie", b =>
@@ -320,7 +322,7 @@ namespace MovieHub.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("CinemaMovie", (string)null);
+                    b.ToTable("CinemaMovie");
                 });
 
             modelBuilder.Entity("MovieHub.Models.CinemaTickettype", b =>
@@ -343,7 +345,7 @@ namespace MovieHub.Migrations
 
                     b.HasIndex("TickettypeId");
 
-                    b.ToTable("CinemaTicketType", (string)null);
+                    b.ToTable("CinemaTicketType");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Genre", b =>
@@ -359,7 +361,7 @@ namespace MovieHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genre", (string)null);
+                    b.ToTable("Genre");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Hall", b =>
@@ -393,7 +395,7 @@ namespace MovieHub.Migrations
 
                     b.HasIndex("CinemaId");
 
-                    b.ToTable("Hall", (string)null);
+                    b.ToTable("Hall");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Movie", b =>
@@ -444,7 +446,7 @@ namespace MovieHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movie", (string)null);
+                    b.ToTable("Movie");
                 });
 
             modelBuilder.Entity("MovieHub.Models.MovieGenre", b =>
@@ -467,7 +469,7 @@ namespace MovieHub.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("MovieGenre", (string)null);
+                    b.ToTable("MovieGenre");
                 });
 
             modelBuilder.Entity("MovieHub.Models.MoviePegi", b =>
@@ -490,7 +492,7 @@ namespace MovieHub.Migrations
 
                     b.HasIndex("PegiId");
 
-                    b.ToTable("MoviePegi", (string)null);
+                    b.ToTable("MoviePegi");
                 });
 
             modelBuilder.Entity("MovieHub.Models.MovieRuntime", b =>
@@ -522,7 +524,7 @@ namespace MovieHub.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("MovieRuntime", (string)null);
+                    b.ToTable("MovieRuntime");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Newsletter", b =>
@@ -539,7 +541,7 @@ namespace MovieHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Newsletter", (string)null);
+                    b.ToTable("Newsletter");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Order", b =>
@@ -565,7 +567,7 @@ namespace MovieHub.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Order", (string)null);
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Payment", b =>
@@ -595,7 +597,7 @@ namespace MovieHub.Migrations
 
                     b.HasIndex("PaymentMethodId");
 
-                    b.ToTable("Payment", (string)null);
+                    b.ToTable("Payment");
                 });
 
             modelBuilder.Entity("MovieHub.Models.PaymentMethod", b =>
@@ -616,7 +618,7 @@ namespace MovieHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PaymentMethod", (string)null);
+                    b.ToTable("PaymentMethod");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Pegi", b =>
@@ -637,7 +639,7 @@ namespace MovieHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pegi", (string)null);
+                    b.ToTable("Pegi");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Seat", b =>
@@ -664,7 +666,7 @@ namespace MovieHub.Migrations
 
                     b.HasIndex("HallId");
 
-                    b.ToTable("Seat", (string)null);
+                    b.ToTable("Seat");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Showtime", b =>
@@ -690,7 +692,7 @@ namespace MovieHub.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("Showtime", (string)null);
+                    b.ToTable("Showtime");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Ticket", b =>
@@ -723,7 +725,7 @@ namespace MovieHub.Migrations
 
                     b.HasIndex("SeatId");
 
-                    b.ToTable("Ticket", (string)null);
+                    b.ToTable("Ticket");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Tickettype", b =>
@@ -750,7 +752,7 @@ namespace MovieHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tickettype", (string)null);
+                    b.ToTable("Tickettype");
                 });
 
             modelBuilder.Entity("MovieHub.Models.User", b =>
@@ -781,7 +783,7 @@ namespace MovieHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
