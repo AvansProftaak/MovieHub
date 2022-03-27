@@ -59,18 +59,44 @@ namespace MovieHub.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [Required]
+            public string FirstName { get; set; }
+            
+            [Required]
+            public string LastName { get; set; }
+            
+            [Required]
+            public string Street { get; set; }
+            
+            [Required]
+            public int HouseNumber { get; set; }
+            
+            [Required]
+            public string ZipCode { get; set; }
+            
+            [Required]
+            public string City { get; set; }
+            
+            public Boolean AcceptedNewsletter { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
+            
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Street = user.Street,
+                HouseNumber = user.HouseNumber,
+                ZipCode = user.ZipCode,
+                City = user.City,
+                AcceptedNewsletter = user.AcceptedNewsletter
             };
         }
 
@@ -111,6 +137,45 @@ namespace MovieHub.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            if (Input.FirstName != user.FirstName)
+            {
+                user.FirstName = Input.FirstName;
+            }
+
+            if (Input.LastName != user.LastName)
+            {
+                user.LastName = Input.LastName;
+            }
+            
+            if (Input.Street != user.Street)
+            {
+                user.Street = Input.Street;
+            }
+            
+            if (Input.HouseNumber != user.HouseNumber)
+            {
+                user.HouseNumber = Input.HouseNumber;
+            }            
+            
+            if (Input.ZipCode != user.ZipCode)
+            {
+                user.ZipCode = Input.ZipCode;
+            }
+            
+            if (Input.City != user.City)
+            {
+                user.City = Input.City;
+            }
+            
+            if (Input.AcceptedNewsletter != user.AcceptedNewsletter)
+            {
+                user.AcceptedNewsletter = Input.AcceptedNewsletter;
+            }
+
+            await _userManager.UpdateAsync(user);
+            
+            
+            
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
