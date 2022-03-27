@@ -1,17 +1,18 @@
 using Microsoft.AspNetCore.Identity;
+using MovieHub.Models;
 
 namespace MovieHub.Helper;
 
-public class MovieHubSignInManager : SignInManager<IdentityUser>
+public class MovieHubSignInManager : SignInManager<ApplicationUser>
 {
     public MovieHubSignInManager(
-        UserManager<IdentityUser> userManager, 
+        UserManager<ApplicationUser> userManager, 
         IHttpContextAccessor contextAccessor, 
-        IUserClaimsPrincipalFactory<IdentityUser> claimsFactory, 
+        IUserClaimsPrincipalFactory<ApplicationUser> claimsFactory, 
         Microsoft.Extensions.Options.IOptions<IdentityOptions> optionsAccessor, 
-        ILogger<SignInManager<IdentityUser>> logger, 
+        ILogger<SignInManager<ApplicationUser>> logger, 
         Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider schemes,
-        IUserConfirmation<IdentityUser> confirmation
+        IUserConfirmation<ApplicationUser> confirmation
         )
         : base(userManager, contextAccessor, claimsFactory, optionsAccessor, logger, schemes, confirmation)
     {

@@ -4,7 +4,7 @@ using MovieHub.Models;
 
 namespace MovieHub.Data;
 
-public class ApplicationDbContext : IdentityDbContext
+public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -30,5 +30,4 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<PaymentMethod> PaymentMethod { get; set; } = null!;
     public DbSet<MovieRuntime> MovieRuntime { get; set; } = null!;
     public DbSet<Newsletter> Newsletter { get; set; } = null!;
-    public DbSet<User> User { get; set; }
 }

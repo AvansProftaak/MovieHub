@@ -16,8 +16,8 @@ public class PaymentsController : Controller
 {
     private readonly IWebHostEnvironment _hostEnvironment;
     private readonly ApplicationDbContext _context;
-    private readonly UserManager<IdentityUser> _userManager;
-    public PaymentsController(IWebHostEnvironment hostEnvironment, ApplicationDbContext context, UserManager<IdentityUser> userManager)
+    private readonly UserManager<ApplicationUser> _userManager;
+    public PaymentsController(IWebHostEnvironment hostEnvironment, ApplicationDbContext context, UserManager<ApplicationUser> userManager)
     {
         _hostEnvironment= hostEnvironment;
         _context = context;

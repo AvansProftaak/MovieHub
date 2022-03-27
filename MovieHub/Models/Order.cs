@@ -13,7 +13,7 @@ public class Order
     public string? UserId { get; set; }
     
     [ForeignKey("UserId")]
-    public virtual IdentityUser? User { get; set; }
+    public virtual ApplicationUser? User { get; set; }
 
     [DisplayName( "Showtime")] 
     public int ShowtimeId { get; set; }
