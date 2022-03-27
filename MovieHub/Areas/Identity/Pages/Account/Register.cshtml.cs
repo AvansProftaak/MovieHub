@@ -123,7 +123,7 @@ namespace MovieHub.Areas.Identity.Pages.Account
             [Display(Name = "City")]
             public string City { get; set; }
             
-            [Display(Name = "Accept Newsletter")]
+            [Display(Name = "I want to receive the newsletter")]
             public Boolean AcceptedNewsletter { get; set; }
         }
 
