@@ -12,6 +12,7 @@
     <ItemGroup>
         <None Include="wwwroot\img\moviehub_square.jpg" />
         <None Include="wwwroot\img\moviehub_wide.jpg" />
+        <None Remove="qr-295.png" />
     </ItemGroup>
 
     <ItemGroup>
