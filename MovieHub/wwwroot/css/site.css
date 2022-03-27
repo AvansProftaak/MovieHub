@@ -318,3 +318,14 @@ tbody, td, tfoot, th, thead, tr {
 .form-floating>label {
 color: black;
 }
+.nav-link{
+  color: #F8A613;
+}
+
+.nav-link:hover{
+  color: #fff;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: #F8A613;
+}
