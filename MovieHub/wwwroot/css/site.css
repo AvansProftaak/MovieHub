@@ -253,6 +253,11 @@ color: #F8A613;
   transition: 0.5s;
 }
 
+.hover-black:hover {
+  color: #000000 !important;
+  transition: 0.5s;
+}
+
 /*map*/
 #googleMap {
   width: 100%;

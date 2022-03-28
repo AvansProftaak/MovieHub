@@ -42,21 +42,24 @@ namespace MovieHub.DbInitializer;
             {
                 _roleManager.CreateAsync(new IdentityRole("Admin")).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole("Cashier")).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole("Customer")).GetAwaiter().GetResult();
+            }
 
+            if (_userManager.FindByEmailAsync("admin@moviehub.com").Result == null)
+            {
                 //if roles are not created, then we will create admin user as well
 
                 _userManager.CreateAsync(new ApplicationUser
                 {
                     UserName = "admin@moviehub.com",
                     Email = "admin@moviehub.com",
-                    Name = "Joris Jansen",
+                    Name = "Admin",
                     PhoneNumber = "1112223333",
                 }, "Welkom@123").GetAwaiter().GetResult();
 
                 ApplicationUser user = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "admin@moviehub.com");
 
                 _userManager.AddToRoleAsync(user, "Admin").GetAwaiter().GetResult();
-
             }
             return;
         }

@@ -1,0 +1,43 @@
+@model List<MovieHub.ViewModels.EmployeeOverviewViewModel>
+
+
+<div class="container p-3 bg-light">
+    <div class="row pt-4">
+        <div class="col-6"><h1>Employee Overview</h1></div>
+        <div class="col-6 text-end">
+            <li class="nav-item">
+                <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">
+                    <i class="bi bi-plus-circle"></i> &nbsp; Add new Employee
+                </a>
+            </li>
+        </div>
+    </div>
+    <br/>
+    <table id="tblData" class="table table-bordered table-striped" style="width:100%;color:#F8A613">
+        <thead>
+        <tr>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@user.Name</td>
+                <td>@user.PhoneNumber</td>
+                <td>@string.Join(" , ", user.Roles.ToList())</td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a class="btn btn-primary" asp-controller="Employees" asp-action="Manage" asp-route-userId="@user.Id">Manage Roles</a>
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
