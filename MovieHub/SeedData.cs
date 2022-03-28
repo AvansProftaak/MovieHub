@@ -17,9 +17,10 @@ public static class SeedData
         {
             var user = new ApplicationUser
             {
-                UserName = "Admin",
+                UserName = "admin@moviehub.nl",
                 Email = "admin@moviehub.nl",
                 EmailConfirmed = true,
+                FirstName = "Admin"
             };
             var result = userManager.CreateAsync(user, "Welkom@01").Result;
             if (result.Succeeded)

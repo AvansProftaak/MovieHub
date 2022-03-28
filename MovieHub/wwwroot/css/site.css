@@ -280,3 +280,32 @@ color: #F8A613;
 .navbar-light .navbar-nav .nav-link:after {
   color: #F8A613;
 }
+
+.edit-role-btn {
+  border: 1px solid #F8A613;
+}
+.edit-role-btn:hover {
+  background-color: #2C2C2E;
+  transition: 0.5s;
+}
+
+.table-role {
+  font-size: 22px;
+}
+
+.role-hr {
+  border: 1px solid #F8A613;
+  margin: 5px 0 5px 0;
+}
+
+.back-button {
+  color: #FFFFFF;
+  background-color: #2C2C2E;
+  border: 2px solid #F8A613;
+}
+
+.back-button:hover {
+  color: #F8A613;
+  background-color: #2C2C2E;
+}
+

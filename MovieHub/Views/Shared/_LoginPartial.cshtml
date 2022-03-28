@@ -5,6 +5,7 @@
 <ul class="navbar-nav">
     @if (_signInManager.IsSignedIn(User))
     {
+        var firstName = _userManager.GetUserAsync(User).Result.FirstName;
 
         <li class="nav-item dropdown" style="cursor:pointer;">
             <a class="nav-link dropdown-toggle hover-orange" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="False">Movies</a>
@@ -16,35 +17,22 @@
 
             </div>
         </li>
-        
-        if (User.IsInRole("Admin") || User.IsInRole("Manager")) {
-        <li class="nav-item dropdown" style="cursor:pointer">
-            <a class="nav-link dropdown-toggle hover-orange" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="False">Employees</a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item text-dark" asp-controller="Movies" asp-action="Index">Add Manager</a>
-                <a class="dropdown-item text-dark" asp-controller="Movies" asp-action="Index">Add Back-Office</a>
-                <a class="dropdown-item text-dark" asp-controller="Movies" asp-action="Index">Add Front-Office</a>
-            </div>
-        </li>
-        }
 
         if (User.IsInRole("Admin") || User.IsInRole("Manager"))
         {
            
             <li class="nav-item dropdown" style="cursor:pointer">
-                <a class="nav-link dropdown-toggle hover-orange" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="False">@User.Identity?.Name Panel</a>
+                <a class="nav-link dropdown-toggle hover-orange" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="False">@firstName Options<i class="fa fa-"></i></a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account</a>
-                    <a class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Add employee</a>
+                    <a class="dropdown-item text-dark" asp-area="" asp-controller="Admin" asp-action="RoleList">Roles</a>
                 </div>
             </li>
         }
         else
         {
-            var userName = _userManager.GetUserAsync(User).Result.UserName;
-            
             <li class="nav-item dropdown" style="cursor:pointer">
-                <a class="nav-link hover-orange" style="color: #FFFFFF" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @userName</a>
+                <a class="nav-link hover-orange" style="color: #FFFFFF" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @firstName</a>
             </li>
         }
 

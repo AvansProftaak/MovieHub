@@ -17,6 +17,8 @@ namespace MovieHub.Controllers
             _context = context;
         }
         
+        [Authorize(Roles = "Admin, Manager, Back-Office")]
+
         // GET: Movies
         public async Task<IActionResult> Index()
         {
