@@ -329,3 +329,9 @@ color: black;
   color: #fff;
   background-color: #F8A613;
 }
+
+.alert-info {
+  color: #111;
+  background-color: #ffe9c2;
+  border-color: #f8a613;
+}

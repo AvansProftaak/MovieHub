@@ -40,6 +40,11 @@ services.AddAuthentication()
     {
         twitterOptions.ConsumerKey = configuration["Authentication:Twitter:ConsumerAPIKey"];
         twitterOptions.ConsumerSecret = configuration["Authentication:Twitter:ConsumerSecret"];
+    })
+    .AddMicrosoftAccount(microsoftOptions =>
+    {
+        microsoftOptions.ClientId = configuration["Authentication:Microsoft:ClientId"];
+        microsoftOptions.ClientSecret = configuration["Authentication:Microsoft:ClientSecret"];
     });   
 
 
