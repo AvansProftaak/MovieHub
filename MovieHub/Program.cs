@@ -24,11 +24,24 @@ builder.Services.AddRazorPages();
 var services = builder.Services;
 var configuration = builder.Configuration;
 
-services.AddAuthentication().AddGoogle(googleOptions =>
-{
+services.AddAuthentication()
+    
+    .AddGoogle(googleOptions =>
+    {
     googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
     googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-});
+    })
+    .AddFacebook(facebookOptions =>
+    {
+        facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
+        facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
+    })
+    .AddTwitter(twitterOptions =>
+    {
+        twitterOptions.ConsumerKey = configuration["Authentication:Twitter:ConsumerAPIKey"];
+        twitterOptions.ConsumerSecret = configuration["Authentication:Twitter:ConsumerSecret"];
+    });   
+
 
 
 
