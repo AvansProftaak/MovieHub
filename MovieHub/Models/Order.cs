@@ -7,11 +7,9 @@ namespace MovieHub.Models;
 public class Order
 {
     public int Id { get; set; }
-    public decimal TotalPrice { get; set; }
     
     [DisplayName( "User")] 
     public string? UserId { get; set; }
-    
     [ForeignKey("UserId")]
     public virtual ApplicationUser? User { get; set; }
 

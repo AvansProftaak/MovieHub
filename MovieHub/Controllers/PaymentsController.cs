@@ -164,7 +164,8 @@ public class PaymentsController : Controller
                     .Replace("#StartTime", showTime?.StartAt.TimeOfDay.ToString(@"hh\:mm"))
                     .Replace("#EndTime", showTime?.StartAt.AddMinutes(movie!.Duration).TimeOfDay.ToString(@"hh\:mm"))
                     .Replace("#Date", showTime?.StartAt.Date.ToString("dd MMMM yyyy"))
-                    .Replace("QRCODE", base64ImageRepresentation);
+                    .Replace("QRCODE", base64ImageRepresentation)
+                    .Replace("Barcode", ticket.Barcode.ToString());
 
                 var finishedHtmlTicketFile = Path.Combine(finishedHtmlTicketFolder, ticket.Id + ".html");
 
