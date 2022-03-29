@@ -98,8 +98,10 @@ public class EmployeesController : Controller
         if (!result.Succeeded)
         {
             ModelState.AddModelError("", "Cannot add selected roles to user");
+            TempData["error"] = "Unable to update user role";
             return View(model);
         }
+        TempData["success"] = "Role updated successfully ";
         return RedirectToAction("Index");
     }
     
