@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/MovieHub.styles.css" asp-append-version="true"/>
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css"/>
 </head>
 
 <body>
@@ -29,9 +30,9 @@
                     <li class="nav-item">
                         <a class="nav-link hover-white" hidden="hidden" style="color:#F8A613" asp-area="" asp-controller="Movies" asp-action="Index">Movies</a>
                     </li>
-                <li class="nav-item">
-                    <a class="nav-link hover-white" style="color:#F8A613" asp-area="" asp-controller="About" asp-action="Index">About</a>
-                    </li>           
+                    <li class="nav-item">
+                        <a class="nav-link hover-white" style="color:#F8A613" asp-area="" asp-controller="About" asp-action="Index">About</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav flex-grow-1 justify-content-left">
                     <li class="nav-item">
@@ -39,6 +40,24 @@
                             This weeks movies at MovieHub
                         </p>
                     </li>
+                </ul>
+                <ul class="navbar-nav flex-grow-1">
+                @if (User.IsInRole("Cashier") || User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link hover-white" style="color:#F8A613" asp-area="" asp-controller="About" asp-action="Index">My Counter</a>
+                    </li>
+                }
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color:#F8A613" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+                        <div class="dropdown-menu">
+                            <a class="nav-link hover-black" style="color:#F8A613" asp-area="" asp-controller="Employees" asp-action="Index">Manage Employees</a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
+                }
                 </ul>
                 <partial name="_LoginPartial"/>
             </div>
@@ -86,7 +105,10 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/svnuofe6lf09ldv48uee3jv6sfm8ljzd68ykdwi3uv6fxufj/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
 
