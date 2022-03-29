@@ -24,7 +24,7 @@ public static class SeedData
 
             if (result.Succeeded)
             {
-                userManager.AddToRoleAsync(user, RoleEnum.Administrator.ToString()).Wait();
+                userManager.AddToRoleAsync(user, "Administrator").Wait();
             }
         }
         
@@ -39,7 +39,7 @@ public static class SeedData
 
             if (result.Succeeded)
             {
-                userManager.AddToRoleAsync(user, RoleEnum.Employee.ToString()).Wait();
+                userManager.AddToRoleAsync(user, "Employee").Wait();
             }
         }
         
@@ -54,36 +54,36 @@ public static class SeedData
 
             if (result.Succeeded)
             {
-                userManager.AddToRoleAsync(user, RoleEnum.BackOfficeEmployee.ToString()).Wait();
+                userManager.AddToRoleAsync(user, "Backoffice Employee").Wait();
             }
         }
     }
     
     private static void SeedRoles(RoleManager<IdentityRole> roleManager)
     {
-        if (!roleManager.RoleExistsAsync(RoleEnum.Administrator.ToString()).Result)
+        if (!roleManager.RoleExistsAsync("Administrator").Result)
         {
             var role = new IdentityRole
             {
-                Name = RoleEnum.Administrator.ToString()
+                Name = "Administrator"
             };
             var result = roleManager.CreateAsync(role).Result;
         }
         
-        if (!roleManager.RoleExistsAsync(RoleEnum.Employee.ToString()).Result)
+        if (!roleManager.RoleExistsAsync("Employee").Result)
         {
             var role = new IdentityRole
             {
-                Name = RoleEnum.Employee.ToString()
+                Name = "Employee"
             };
             var result = roleManager.CreateAsync(role).Result;
         }
         
-        if (!roleManager.RoleExistsAsync(RoleEnum.BackOfficeEmployee.ToString()).Result)
+        if (!roleManager.RoleExistsAsync("Backoffice Employee").Result)
         {
             var role = new IdentityRole
             {
-                Name = RoleEnum.BackOfficeEmployee.ToString()
+                Name = "Backoffice Employee"
             };
             var result = roleManager.CreateAsync(role).Result;
         }

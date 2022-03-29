@@ -17,8 +17,10 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-var userManager = builder.Configuration.Get<UserManager<IdentityUser>>();
-var roleManager = builder.Configuration.Get<RoleManager<IdentityRole>>();
+// var userManager = builder.Configuration.Get<UserManager<IdentityUser>>();
+// var roleManager = builder.Configuration.Get<RoleManager<IdentityRole>>();
+var userManager = builder.Services.BuildServiceProvider().GetService<UserManager<IdentityUser>>();
+var roleManager = builder.Services.BuildServiceProvider().GetService<RoleManager<IdentityRole>>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
