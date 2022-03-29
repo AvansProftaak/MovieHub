@@ -53,7 +53,7 @@ public class EmployeesController : Controller
         var user = await _userManager.FindByIdAsync(userId);
         if (user == null)
         {
-            TempData["failed"] = "Could not find User";
+            TempData["error"] = "Could not find User";
             return RedirectToAction("Index");
         }
         ViewBag.UserName = user.UserName;
