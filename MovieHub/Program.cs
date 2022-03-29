@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using MovieHub;
 using MovieHub.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+var userManager = builder.Configuration.Get<UserManager<IdentityUser>>();
+var roleManager = builder.Configuration.Get<RoleManager<IdentityRole>>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -35,6 +39,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+SeedData.Seed(userManager, roleManager);
 
 app.MapControllerRoute(
     name: "default",
