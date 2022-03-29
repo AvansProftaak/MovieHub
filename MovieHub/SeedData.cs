@@ -18,7 +18,8 @@ public static class SeedData
             var user = new IdentityUser
             {
                 UserName = "admin",
-                Email = "admin@moviehub.com"
+                Email = "admin@moviehub.com",
+                EmailConfirmed = true
             };
             var result = userManager.CreateAsync(user, "password").Result;
 
@@ -33,7 +34,8 @@ public static class SeedData
             var user = new IdentityUser
             {
                 UserName = "employee",
-                Email = "employee@moviehub.com"
+                Email = "employee@moviehub.com",
+                EmailConfirmed = true
             };
             var result = userManager.CreateAsync(user, "password").Result;
 
@@ -48,7 +50,8 @@ public static class SeedData
             var user = new IdentityUser
             {
                 UserName = "backofficeemployee",
-                Email = "backofficeemployee@moviehub.com"
+                Email = "backofficeemployee@moviehub.com",
+                EmailConfirmed = true
             };
             var result = userManager.CreateAsync(user, "password").Result;
 
