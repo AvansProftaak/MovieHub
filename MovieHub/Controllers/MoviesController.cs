@@ -7,7 +7,7 @@ using MovieHub.Models;
 
 namespace MovieHub.Controllers
 {
-
+    [Authorize(Roles = "Admin, Manager, Back-Office")]
     public class MoviesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -17,14 +17,13 @@ namespace MovieHub.Controllers
             _context = context;
         }
         
-        [Authorize(Roles = "Admin, Manager, Back-Office")]
-
         // GET: Movies
         public async Task<IActionResult> Index()
         {
            return View(await _context.Movie.ToListAsync());
         }
         
+        [AllowAnonymous]
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -47,7 +46,6 @@ namespace MovieHub.Controllers
         }
         
         // GET: Movies/Create
-        [Authorize(Roles = "Admin, Manager, Back-Office")]
         public IActionResult Create()
         {
             return View();
@@ -56,7 +54,6 @@ namespace MovieHub.Controllers
         // POST: Movies/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin, Manager, Back-Office")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie)
@@ -71,7 +68,6 @@ namespace MovieHub.Controllers
         }
 
         // GET: Movies/Edit/5
-        [Authorize(Roles = "Admin, Manager, Back-Office")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,7 +86,6 @@ namespace MovieHub.Controllers
         // POST: Movies/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin, Manager, Back-Office")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie)
@@ -124,7 +119,6 @@ namespace MovieHub.Controllers
         }
 
         // GET: Movies/Delete/5
-        [Authorize(Roles = "Admin, Manager, Back-Office")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -143,7 +137,6 @@ namespace MovieHub.Controllers
         }
 
         // POST: Movies/Delete/5
-        [Authorize(Roles = "Admin, Manager, Back-Office")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

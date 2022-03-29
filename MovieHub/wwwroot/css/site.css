@@ -309,3 +309,15 @@ color: #F8A613;
   background-color: #2C2C2E;
 }
 
+.btn-add-remove {
+  color: #FFFFFF;
+  background-color: #2C2C2E;
+  border: 2px solid #F8A613;
+}
+
+.btn-add-remove:hover {
+  background-color: #F8A613;
+  border-color: #F8A613;
+  color: black;
+}
+

@@ -20,7 +20,8 @@ public static class SeedData
                 UserName = "admin@moviehub.nl",
                 Email = "admin@moviehub.nl",
                 EmailConfirmed = true,
-                FirstName = "Admin"
+                FirstName = "Admin",
+                LastName = "Admin"
             };
             var result = userManager.CreateAsync(user, "Welkom@01").Result;
             if (result.Succeeded)

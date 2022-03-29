@@ -79,7 +79,7 @@ public class AdminController : Controller
         {
             if (await _userManager.IsInRoleAsync(user, role.Name))
             {
-                model.Users.Add(user.UserName);
+                model.Users.Add(user);
             }
         }
 
@@ -138,6 +138,8 @@ public class AdminController : Controller
             var userRoleViewModel = new UserRoleViewModel()
             {
                 Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 Name = user.UserName
             };
 
@@ -157,7 +159,7 @@ public class AdminController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> model, string id)
+    public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> model, string id, string searchUser)
     {
         var role = await _roleManager.FindByIdAsync(id);
         
@@ -167,17 +169,35 @@ public class AdminController : Controller
             return View("Error");
         }
 
-        for (int i = 0; i < model.Count; i++)
-        {
-            var user = await _userManager.FindByIdAsync(model[i].Id);
+        var admins = 0;
 
-            if (model[i].IsSelected && !(await _userManager.IsInRoleAsync(user, role.Name)))
+        if (role.Name == "Admin")
+        {
+            foreach (var usr in model)
+            {
+                if (usr.IsSelected)
+                {
+                    admins =+ 1;
+                }
+            }
+        }
+
+
+        foreach (var usr in model)
+        {
+            var user = await _userManager.FindByIdAsync(usr.Id);
+
+            if (usr.IsSelected && !(await _userManager.IsInRoleAsync(user, role.Name)))
             {
                 await _userManager.AddToRoleAsync(user, role.Name);
             }
-            else if (!model[i].IsSelected && (await _userManager.IsInRoleAsync(user, role.Name)))
+            else if ((role.Name != "Admin" || admins > 0) && !usr.IsSelected && (await _userManager.IsInRoleAsync(user, role.Name)))
             {
                 await _userManager.RemoveFromRoleAsync(user, role.Name);
+            }
+            else if ((role.Name == "Admin" || admins == 0) && !usr.IsSelected && (await _userManager.IsInRoleAsync(user, role.Name)))
+            {
+                return RedirectToAction("EditRole", new {id = role.Id});
             }
             else
             {
@@ -187,4 +207,42 @@ public class AdminController : Controller
 
         return RedirectToAction("EditRole", new {Id = id});
     }
+
+    [HttpGet]
+    public async Task<IActionResult> DeleteRole(string id)
+    {
+        var role = await _roleManager.FindByIdAsync(id);
+
+        return View(role);
+
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ConfirmDelete(string id)
+    {
+        var role = await _roleManager.FindByIdAsync(id);
+
+        if (role == null)
+        {
+            ViewData["ErrorMessage"] = "No role with Id '{id}' was found";
+            return View("Error");
+        }
+        else
+        {
+            var result = await _roleManager.DeleteAsync(role);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("RoleList");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return RedirectToAction("RoleList");
+        }
+    }
+    
 }

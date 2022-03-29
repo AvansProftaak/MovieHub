@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using MovieHub.Models;
 
 namespace MovieHub.ViewModels;
 
@@ -10,5 +11,5 @@ public class EditRoleViewModel
     [Required(ErrorMessage = "Role name is required")]
     public string RoleName { get; set; }
 
-    public List<string> Users { get; set; } = new();
+    public List<ApplicationUser> Users { get; set; } = new();
 }
