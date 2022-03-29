@@ -55,6 +55,7 @@
 
     <ItemGroup>
       <Folder Include="Binaries" />
+      <Folder Include="Migrations" />
       <Folder Include="wwwroot\ticket\FinishedHtmlTickets" />
       <Folder Include="wwwroot\ticket\FinishedPdfTickets" />
     </ItemGroup>
