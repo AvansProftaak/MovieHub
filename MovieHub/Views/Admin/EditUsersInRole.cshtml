@@ -1,0 +1,36 @@
+@using MovieHub.ViewModels
+@model List<UserRoleViewModel>
+
+@{
+    var roleId = ViewData["roleId"];
+    var roleName = ViewData["roleName"];
+}
+<div class="container" style="margin-top: 9.5vh">
+    <form method="post">
+        <div class="mx-auto col-5">
+            <h1>Edit user-roles</h1>
+            <h2 class="mb-2">Add or remove users in @roleName.ToString().ToLower()-role</h2>
+            <br/>
+            <hr class="role-hr"/>
+            <br/>
+            <div>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="form-check my-1">
+                        <input type="hidden" asp-for="@Model[i].Id"/>
+                        <input type="hidden" asp-for="@Model[i].Name"/>
+                        <input asp-for="@Model[i].IsSelected" class="form-check-input"/>
+                        <label class="form-check-label" asp-for="@Model[i].IsSelected">
+                            @Model[i].Name
+                        </label>
+                    </div>
+                }
+            </div>
+            <br/>
+            <div class="my-3">
+                <a asp-action="EditRole" asp-route-id="@roleId" class="btn back-button col-4">Cancel</a>
+                <input type="submit" value="Update" class="btn btn-primary col-7"/>
+            </div>
+        </div>
+    </form>
+</div>
