@@ -53,7 +53,7 @@ public class EmployeesController : Controller
         var user = await _userManager.FindByIdAsync(userId);
         if (user == null)
         {
-            TempData["failed"] = "Could not find User";
+            TempData["error"] = "Could not find User";
             return RedirectToAction("Index");
         }
         ViewBag.UserName = user.UserName;
@@ -98,8 +98,10 @@ public class EmployeesController : Controller
         if (!result.Succeeded)
         {
             ModelState.AddModelError("", "Cannot add selected roles to user");
+            TempData["error"] = "Unable to update user role";
             return View(model);
         }
+        TempData["success"] = "Role updated successfully ";
         return RedirectToAction("Index");
     }
     
