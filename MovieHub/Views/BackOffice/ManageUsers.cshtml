@@ -34,9 +34,12 @@
                     }
                 <tr>
                     <td colspan="2">
-                        <form method="post">
+                        <form asp-action="AddRole" method="post">
+                            @{
+                                Model.SelectedUserId = item.Id;
+                            }
                             @Html.DropDownListFor(m => m.SelectedRole, new SelectList(Model.AvailableRoles))
-                            <a asp-type asp-action="AddRole" asp-route-userId="@item.Id" asp-route-role="@Model.SelectedRole" type="submit">Add Role</a>
+                            <button type="submit">Add Role</button>
                         </form>
                     </td>
                 </tr>
