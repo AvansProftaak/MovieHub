@@ -35,11 +35,9 @@
                 <tr>
                     <td colspan="2">
                         <form asp-action="AddRole" method="post">
-                            @{
-                                Model.SelectedUserId = item.Id;
-                            }
-                            @Html.DropDownListFor(m => m.SelectedRole, new SelectList(Model.AvailableRoles))
-                            <button type="submit">Add Role</button>
+                            <input asp-for="SelectedUserId" type="hidden" value="@item.Id"/>
+                            @Html.DropDownListFor(m => m.SelectedRole, new SelectList(Model.AvailableRoles), new {@class = "form-control, dropdown-selector"})
+                            <button class="btn btn-primary" type="submit">Add Role</button>
                         </form>
                     </td>
                 </tr>

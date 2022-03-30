@@ -297,3 +297,13 @@ color: #F8A613;
   border: 1px solid #F8A613;
   padding: 8px;
 }
+
+.dropdown-selector {
+  color: white;
+  padding-top: 4px;
+  padding-bottom: 9px;
+  background-color: #2C2C2E;
+  border: 2px solid #F8A613;
+  border-radius: 5px;
+  margin-right: 8px;
+}
