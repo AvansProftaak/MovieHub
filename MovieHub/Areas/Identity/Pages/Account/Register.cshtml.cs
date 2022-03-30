@@ -97,6 +97,10 @@ namespace MovieHub.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+            
+            [Required]
+            [Display(Name = "User Role")]
+            public string UserRole { get; set; }
         }
 
 
@@ -121,6 +125,8 @@ namespace MovieHub.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    
+                    _userManager.AddToRoleAsync(user, Input.UserRole).Wait();
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

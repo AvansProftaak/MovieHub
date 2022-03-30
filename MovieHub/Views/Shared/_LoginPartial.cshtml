@@ -6,6 +6,9 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
+            <a class="nav-link" style="color: #F8A613" asp-area="" asp-controller="BackOffice" asp-action="Index" title="BackOffice">Go to Backoffice</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" style="color: #FFFFFF" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
         </li>
         <li class="nav-item">

@@ -57,6 +57,14 @@ color: #F8A613;
   margin-bottom: 5px;
 }
 
+.nav-link-active {
+  background-color: #F8A613 !important;
+}
+
+.label-text-color {
+  color: black;
+}
+
 .form-group {
   margin-bottom: 5px;
 }
@@ -76,6 +84,15 @@ color: #F8A613;
   color: inherit;
   width: 60%;
   margin: auto;
+}
+
+.nav-link-mh {
+  color: #F8A613;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: black;
+  background-color: #F8A613;
 }
 
 .index-hall-title {

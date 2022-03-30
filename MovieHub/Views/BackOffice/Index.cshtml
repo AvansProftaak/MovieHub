@@ -1,7 +1,21 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
     ViewData["Title"] = "MovieHub BackOffice";
 }
 
 <div class="row" style="margin-top: 9.5vh">
-    <p>This is the MovieHub BackOffice.</p>
+    <h1>Welcome to the MovieHub Backoffice.</h1>
+    
+    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
+    {
+        <p>
+            <a asp-area="Identity" asp-page="/Account/Register">Create new employee account</a>
+        </p>
+        <p>
+            <a asp-area="" asp-page="/Account/Register">Manage user roles</a>
+        </p>
+    }
 </div>
