@@ -39,7 +39,7 @@ public class BackOfficeController : Controller
 
         var vm = new AddRoleViewModel
         {
-            Users = _context.Users.ToList(),
+            Users = _context.Users.ToList().OrderBy(u => u.Email),
             AvailableRoles = roles
         };
 

@@ -11,6 +11,8 @@
     
     @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
     {
+        
+        <h2>Manage user settings</h2>
         <p>
             <a asp-area="Identity" asp-page="/Account/Register">Create new employee account</a>
         </p>
@@ -18,4 +20,9 @@
             <a asp-area="" asp-controller="BackOffice" asp-action="ManageUsers">Manage user roles</a>
         </p>
     }
+    
+    <h2 class="pt-4">Hall Occupation</h2>
+    <p>
+        <a asp-area="" asp-controller="Analytics" asp-action="HallAnalytics">View analytics per hall</a>
+    </p>
 </div>
