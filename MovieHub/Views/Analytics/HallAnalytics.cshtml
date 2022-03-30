@@ -6,18 +6,61 @@
 
 <div class="row" style="margin-top: 9.5vh">
     <h1>Hall Analytics</h1>
-    <div class="col-md-2">
+    <div class="col-md-4">
         <hr/>
-        <p>Please select a date:</p>
-        <form>
-            <input class="form-control" type="date" data-val="true" data-val-required="The date field is required." name="Date"
-                   value="@DateTime.Today">
-        </form>
+        <h2>Overview last 30 days</h2>
     </div>
-    
-    @foreach (var item in Model.Statistics)
-    {
-        @Html.DisplayFor(x => item.SeatsFree)
-        <br/>
-    }
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Hall
+                        </th>
+                        <th>
+                            Movie
+                        </th>
+                        <th>
+                            Showtime
+                        </th>
+                        <th>
+                            Hall Capacity
+                        </th>
+                        <th>
+                            Seats Sold
+                        </th>
+                        <th>
+                            Seats Free
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+            @foreach (var item in Model.Statistics)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(vm => item.HallName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(vm => item.MovieTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(vm => item.Showtime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(vm => item.HallCapacity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(vm => item.SeatsTaken)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(vm => item.SeatsFree)
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        </div>
+    </div>
 </div>
