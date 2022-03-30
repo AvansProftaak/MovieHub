@@ -3,7 +3,7 @@
 @inject UserManager<IdentityUser> UserManager
 @inject RoleManager<IdentityRole> RoleManager
 
-@model IEnumerable<IdentityUser>
+@model MovieHub.ViewModels.AddRoleViewModel
 
 @{
     ViewData["Title"] = "Manage User Roles";
@@ -11,17 +11,9 @@
 
 <div class="row" style="margin-top: 9.5vh">
     <h1>Manage User Roles</h1>
-    @{
-        var allRoles = RoleManager.Roles.ToList();
-        var roles = new List<String>();
-        foreach (var role in allRoles)
-        {
-            roles.Add(role.Name);
-        }
-    }
     @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
     {
-        foreach (var item in Model)
+        foreach (var item in Model.Users)
         {
             var userRoles = await UserManager.GetRolesAsync(item);
 
@@ -42,8 +34,8 @@
                     }
                 <tr>
                     <td colspan="2">
-                        @Html.DropDownList("Role", new SelectList(roles))
-                        @* <a asp-action="AddRole">Add Role</a> *@
+                        @Html.DropDownListFor(m => m.SelectedRole, new SelectList(Model.AvailableRoles))
+                        <a asp-action="AddRole" asp-route-userId="@item.Id" asp-route-role="@Model.SelectedRole">Add Role</a>
                     </td>
                 </tr>
             </table>
