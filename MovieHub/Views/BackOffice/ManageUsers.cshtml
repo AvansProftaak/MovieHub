@@ -36,7 +36,7 @@
                             <td><strong>Role</strong></td>
                             <td>
                                 @Html.DisplayFor(modelItem => role)
-                                <a asp-action="RemoveRole" asp-route-userId="@{item.Id}" asp-route-role="@{role}">(Remove)</a>
+                                <a asp-action="RemoveRole" asp-route-userId="@item.Id" asp-route-role="@role">(Remove)</a>
                             </td>
                         </tr>
                     }
