@@ -27,8 +27,11 @@ public class BackOfficeController : Controller
         return View( _context.Users.ToList());
     }
 
-    public void RemoveRole(IdentityUser user, string role)
+    [HttpPost]
+    public async void RemoveRole(string userId, string role)
     {
+        var user = await _userManager.FindByIdAsync(userId);
+        
         _userManager.RemoveFromRoleAsync(user, role).Wait();
         ManageUsers();
     }

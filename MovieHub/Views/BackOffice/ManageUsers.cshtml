@@ -24,7 +24,7 @@
         foreach (var item in Model)
         {
             var userRoles = await UserManager.GetRolesAsync(item);
-            
+
             <table class="user-table">
                 <tr>
                     <td><strong>User</strong></td>
@@ -36,7 +36,7 @@
                             <td><strong>Role</strong></td>
                             <td>
                                 @Html.DisplayFor(modelItem => role)
-                                <a asp-action="RemoveRole">(Remove)</a>
+                                <a asp-action="RemoveRole" asp-route-userId="@{item.Id}" asp-route-role="@{role}">(Remove)</a>
                             </td>
                         </tr>
                     }
