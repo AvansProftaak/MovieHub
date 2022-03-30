@@ -287,3 +287,13 @@ color: #F8A613;
 .route-info{
   color: #F8A613;
 }
+
+.user-table {
+  margin: 16px;
+  width: 50%;
+}
+
+.user-table td, .user-table th {
+  border: 1px solid #F8A613;
+  padding: 8px;
+}
