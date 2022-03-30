@@ -307,3 +307,8 @@ color: #F8A613;
   border-radius: 5px;
   margin-right: 8px;
 }
+
+.width-50 {
+  width: 50%;
+  margin: 16px;
+}

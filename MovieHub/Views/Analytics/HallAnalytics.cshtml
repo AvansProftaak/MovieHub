@@ -5,12 +5,15 @@
 }
 
 <div class="row" style="margin-top: 9.5vh">
-    <p>This is the hall analytics page.</p>
-    <form>
-        <input class="form-control" type="date" data-val="true" data-val-required="The date field is required." name="Date"
-               value="@DateTime.Today">
-    </form>
-    
+    <h1>Hall Analytics</h1>
+    <div class="col-md-2">
+        <hr/>
+        <p>Please select a date:</p>
+        <form>
+            <input class="form-control" type="date" data-val="true" data-val-required="The date field is required." name="Date"
+                   value="@DateTime.Today">
+        </form>
+    </div>
     @foreach (var hall in Model.Halls)
     {
         @Html.DisplayFor(item => hall.Name)

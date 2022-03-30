@@ -231,12 +231,12 @@ public class PaymentsController : Controller
         int movieId = orderData.movieId;
         int showtimeId = orderData.showtimeId;
         int userId = 1;
+        
         Dictionary<string, int> ticketTypesSelected = orderData.ticketTypes;
         Dictionary<string, int> cateringPackagesSelected = orderData.cateringPackages;
 
         Showtime? showtime = _context.Showtime!.FirstOrDefault(s => (s.Id >= showtimeId));
-
-
+        
         List<List<string>> seatsSelected = orderData.seats;
 
         List<int> seatIds = new List<int>();
@@ -245,6 +245,7 @@ public class PaymentsController : Controller
             int? seatId = _context.Seat
                 .Where(s => s.RowNumber.Equals(Int32.Parse(seat[0])))
                 .Where(s => s.SeatNumber.Equals(Int32.Parse(seat[1])))
+                .Where(s => s.HallId.Equals(showtime.HallId))
                 .ToList().FirstOrDefault()?.Id;
             if (seatId.HasValue)
             {
