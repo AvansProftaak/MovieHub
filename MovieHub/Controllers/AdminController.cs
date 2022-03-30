@@ -1,11 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MovieHub.Models;
 using MovieHub.ViewModels;
 
 namespace MovieHub.Controllers;
 
+[Authorize(Roles = "Admin, Manager")]
 public class AdminController : Controller
 {
     private readonly RoleManager<IdentityRole> _roleManager;
@@ -17,11 +18,11 @@ public class AdminController : Controller
         _userManager = userManager;
     }
     
-    
+    [Authorize(Roles = "Admin, Manager")]
     [HttpGet]
     public IActionResult RoleList()
     {
-        var roles = _roleManager.Roles;
+        var roles = _roleManager.Roles.OrderBy(r => r.Name);
         
         return View(roles);
     }

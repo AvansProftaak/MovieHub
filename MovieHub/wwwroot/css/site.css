@@ -321,3 +321,9 @@ color: #F8A613;
   color: black;
 }
 
+.btn-primary:disabled {
+  color: #FFFFFF;
+  background-color: #2C2C2E;
+  border: 2px solid #F8A613;
+}
+
