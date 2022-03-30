@@ -42,7 +42,7 @@
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
                 <div class="form-floating">
-                    @Html.DropDownListFor(r => r.Input.UserRole, new SelectList(roles))
+                    @Html.DropDownListFor(r => r.Input.UserRole, new SelectList(roles), new {@class = "form-control, dropdown-selector"})
                 </div>
                 <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
             </form>
