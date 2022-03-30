@@ -13,31 +13,31 @@ public static class SeedData
 
     private static void SeedUsers(UserManager<IdentityUser> userManager)
     {
-        if (userManager.FindByNameAsync("admin").Result == null)
+        if (userManager.FindByEmailAsync("admin@moviehub.com").Result == null)
         {
             var user = new IdentityUser
             {
-                UserName = "admin",
+                UserName = "admin@moviehub.com",
                 Email = "admin@moviehub.com",
                 EmailConfirmed = true
             };
-            var result = userManager.CreateAsync(user, "password").Result;
+            var result = userManager.CreateAsync(user, "Password1!").Result;
 
             if (result.Succeeded)
             {
                 userManager.AddToRoleAsync(user, "Administrator").Wait();
             }
         }
-        
-        if (userManager.FindByNameAsync("employee").Result == null)
+
+        if (userManager.FindByEmailAsync("employee@moviehub.com").Result == null)
         {
             var user = new IdentityUser
             {
-                UserName = "employee",
+                UserName = "employee@moviehub.com",
                 Email = "employee@moviehub.com",
                 EmailConfirmed = true
             };
-            var result = userManager.CreateAsync(user, "password").Result;
+            var result = userManager.CreateAsync(user, "Password1!").Result;
 
             if (result.Succeeded)
             {
@@ -45,15 +45,15 @@ public static class SeedData
             }
         }
         
-        if (userManager.FindByNameAsync("backofficeemployee").Result == null)
+        if (userManager.FindByEmailAsync("backofficeemployee@moviehub.com").Result == null)
         {
             var user = new IdentityUser
             {
-                UserName = "backofficeemployee",
+                UserName = "backofficeemployee@moviehub.com",
                 Email = "backofficeemployee@moviehub.com",
                 EmailConfirmed = true
             };
-            var result = userManager.CreateAsync(user, "password").Result;
+            var result = userManager.CreateAsync(user, "Password1!").Result;
 
             if (result.Succeeded)
             {
