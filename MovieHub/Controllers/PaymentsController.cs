@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
@@ -15,7 +17,11 @@ public class PaymentsController : Controller
 {
     private readonly IWebHostEnvironment _hostEnvironment;
     private readonly ApplicationDbContext _context;
-    public PaymentsController(IWebHostEnvironment hostEnvironment, ApplicationDbContext context)
+    
+    public PaymentsController(
+        IWebHostEnvironment hostEnvironment, 
+        ApplicationDbContext context
+        )
     {
         _hostEnvironment= hostEnvironment;
         _context = context;
@@ -23,6 +29,21 @@ public class PaymentsController : Controller
 
     public IActionResult ReceiveTicket(int orderId)
     {
+        var claimsIdentity = (ClaimsIdentity)User.Identity;
+        var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+        string name;
+
+        if (claim is not null)
+        {
+            var user = _context.ApplicationUsers.FirstOrDefault(u => u.Id == claim.Value);
+            name = user.Name;
+        }
+        else
+        {
+            name = "-";
+        }
+
         var order = _context.Order.FirstOrDefault(o => o.Id == orderId);
         var showTime = _context.Showtime.FirstOrDefault(s => s.Id == order.ShowtimeId);
         var hall = _context.Hall.FirstOrDefault(h => h.Id == showTime.HallId);
@@ -155,6 +176,7 @@ public class PaymentsController : Controller
                 finishedHtmlTicket = finishedHtmlTicket
                     .Replace("#MovieName", movie.Title)
                     .Replace("#Type", ticket.Name)
+                    .Replace("#Name", name)
                     .Replace("#HallNumber", hall.Name)
                     .Replace("#Seat", seat.SeatNumber.ToString())
                     .Replace("#Row", seat.RowNumber.ToString())
