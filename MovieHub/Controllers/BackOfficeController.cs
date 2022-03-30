@@ -62,6 +62,7 @@ public class BackOfficeController : Controller
         return RedirectToAction("ManageUsers");
     }
 
+    [HttpPost]
     public async Task<IActionResult> AddRole(string userId, string role)
     {
         var user = await _userManager.FindByIdAsync(userId);
