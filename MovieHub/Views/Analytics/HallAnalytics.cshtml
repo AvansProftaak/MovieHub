@@ -14,8 +14,10 @@
                    value="@DateTime.Today">
         </form>
     </div>
-    @foreach (var hall in Model.Halls)
+    
+    @foreach (var item in Model.Statistics)
     {
-        @Html.DisplayFor(item => hall.Name)
+        @Html.DisplayFor(x => item.SeatsFree)
+        <br/>
     }
 </div>

@@ -4,7 +4,5 @@ namespace MovieHub.ViewModels;
 
 public class HallAnalyticsViewModel
 {
-    public IEnumerable<Hall>? Halls { get; set; }
-    public IEnumerable<Showtime>? Showtimes { get; set; }
-    public IEnumerable<Movie>? Movies { get; set; }
+    public IEnumerable<HallAnalytics>? Statistics {get; set; }
 }
