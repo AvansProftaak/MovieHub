@@ -327,3 +327,15 @@ color: #F8A613;
   border: 2px solid #F8A613;
 }
 
+#genreEnumList {
+  background-color: #FFFFFF;
+  border-radius: .25rem;
+  width: 100%;
+  color: #212529;
+  opacity: 1;
+}
+
+.movie-p {
+  color: #F8A613;
+}
+

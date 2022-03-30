@@ -20,7 +20,7 @@ public class HomeController : Controller
     {
         var indexViewModel = new IndexViewModel
         {
-            MovieIndex = MovieIndex(),
+            // MovieIndex = MovieIndex(),
             Halls = GetHalls(),
             Movies = GetMovies(),
             ShowNext = ShowNext(),
@@ -30,28 +30,6 @@ public class HomeController : Controller
 
         return Task.FromResult<ActionResult<IndexViewModel>>(View(indexViewModel));
         }
-
-    public List<Movie?> MovieIndex()
-    {
-
-        var date = DateTime.Today;
-        var firstDay = GetFirstDayOfWeek(date);
-        var lastDay = GetLastDayOfWeek(date);
-
-        // return _context.Showtime
-        var showtime = _context.Showtime?
-
-            .Where(s => (s.StartAt.ToLocalTime() >= firstDay))
-            .Where(s => s.StartAt.ToLocalTime() <= lastDay)
-            .Include(s => s.Hall)
-            .Include(s => s.Movie)
-            .OrderBy(s => s.StartAt);
-
-        var thisWeeksMovieList = showtime?.Select(item => item.Movie).ToList();
-
-        var thisWeeksMovieListDistinct = thisWeeksMovieList?.Distinct();
-            return  thisWeeksMovieListDistinct!.ToList();
-    }
     
     public List<Hall> GetHalls()
     {
