@@ -251,15 +251,16 @@ public class PaymentsController : Controller
                 seatIds.Add((int) seatId);
             }
         }
-
-        var user = _context.User.FirstOrDefault(u => (u.Id >= userId))!;
+        
+        var user = _userManager.GetUserAsync(HttpContext.User);
+        var userId = _userManager.GetUserId(HttpContext.User);
 
         var order = new Order
         {
             UserId = userId,
             Showtime = showtime,
             ShowtimeId = showtimeId,
-            User = user
+            User = await user
         };
 
         Insert(_context, order);
