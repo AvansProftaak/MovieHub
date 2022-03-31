@@ -245,6 +245,7 @@ public class PaymentsController : Controller
             int? seatId = _context.Seat
                 .Where(s => s.RowNumber.Equals(Int32.Parse(seat[0])))
                 .Where(s => s.SeatNumber.Equals(Int32.Parse(seat[1])))
+                .Where(s =>s.HallId.Equals(showtime.HallId))
                 .ToList().FirstOrDefault()?.Id;
             if (seatId.HasValue)
             {

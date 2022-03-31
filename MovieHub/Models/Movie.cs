@@ -34,9 +34,8 @@ public class Movie
     public IList<MoviePegi>? MoviePegis { get; set; }
     public IList<MovieGenre>? MovieGenres { get; set; }
     public IList<CinemaMovie>? CinemaMovies { get; set; }
-
-
-
+    
+    
     public Movie()
     {
 
