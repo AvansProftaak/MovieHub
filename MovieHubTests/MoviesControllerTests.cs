@@ -119,12 +119,12 @@ public class MoviesControllerTests
 
         context.Add(new Genre()
         {
-            GenreEnum = GenreEnum.Action
+            Name = "Action"
         });
         
         context.Add(new Genre()
         {
-            GenreEnum = GenreEnum.Adventure
+            Name = "Adventure"
         });
 
         context.Add(new MovieGenre()

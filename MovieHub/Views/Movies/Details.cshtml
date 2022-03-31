@@ -20,8 +20,8 @@
         <div class="flex-container"> |
            @foreach (var item in Model!.MovieGenres!)
            {
-               var test =  item.Genre?.GenreEnum + " | ";
-               @Html.DisplayFor(model => test)
+               var genre =  item.Genre?.Name + " | ";
+               @Html.DisplayFor(model => genre)
            }
            <br/>
            @foreach (var item in Model!.MoviePegis!)

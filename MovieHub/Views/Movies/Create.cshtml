@@ -66,12 +66,12 @@
                     <input asp-for="ImdbScore" class="form-control"/>
                     <span asp-validation-for="ImdbScore" class="text-danger"></span>
                 </div>
-                <div style="width: 100%">
-                    <label asp-for="MovieGenres" class="control-label movie-p"></label>
-                    <select id="genreEnumList" asp-for="MovieGenres" asp-items="Html.GetEnumSelectList<GenreEnum>()">
-                        <option value="">Choose a genre</option>
-                    </select>
-                </div>
+                @* <div style="width: 100%"> *@
+                @*     <label asp-for="MovieGenres" class="control-label movie-p"></label> *@
+                @*     <select id="genreEnumList" asp-for="MovieGenres" asp-items="Html.GetEnumSelectList<GenreEnum>()"> *@
+                @*         <option value="">Choose a genre</option> *@
+                @*     </select> *@
+                @* </div> *@
                 <div class="row mt-2 form-group">
                     <div class="col-6">
                         <label asp-for="ReleaseDate" class="control-label movie-p"></label>
@@ -102,6 +102,10 @@
             <div class="form-group col">
                 <input type="submit" value="Create" class="btn btn-primary" style="width: 100%"/>
             </div>
+        </div>
+        <div class="row">
+            
+            
         </div>
     </form>
 </div>

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
@@ -238,8 +238,10 @@ public class PaymentsController : Controller
         var seatsSelected = orderData.Seats;
 
         var seatIds = (from seat in seatsSelected
-            select _context.Seat.Where(s => s.RowNumber.Equals(int.Parse(seat[0])))
+            select _context.Seat
+                .Where(s => s.RowNumber.Equals(int.Parse(seat[0])))
                 .Where(s => s.SeatNumber.Equals(int.Parse(seat[1])))
+                .Where(s=> s.HallId.Equals(showtime.HallId))
                 .ToList()
                 .FirstOrDefault()
                 ?.Id

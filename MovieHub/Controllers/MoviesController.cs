@@ -56,12 +56,24 @@ namespace MovieHub.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie, [Bind("MovieGenres")] MovieGenre movieGenre)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(movie);
                 await _context.SaveChangesAsync();
+
+                var movieId = _context.Movie.FirstOrDefault(m => m.Title == movie.Title)!.Id;
+                var genreId = movieGenre.Genre.Id;
+
+                var genre = new MovieGenre
+                {
+                    GenreId = genreId,
+                    MovieId = movieId
+                };
+                _context.MovieGenre.Add(genre);
+                await _context.SaveChangesAsync();
+                
                 return RedirectToAction(nameof(Index));
             }
             return View(movie);
