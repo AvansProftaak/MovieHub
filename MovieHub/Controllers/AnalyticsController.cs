@@ -26,7 +26,7 @@ public class AnalyticsController : Controller
         return View();
     }
 
-    public async Task<IActionResult> HallAnalytics(HallAnalyticsViewModel model)
+    public async Task<IActionResult> HallAnalytics(AnalyticsViewModel model)
     {
         if (model.startDate == DateTime.MinValue && model.endDate == DateTime.MinValue)
         {
@@ -39,7 +39,7 @@ public class AnalyticsController : Controller
         using (var connection = new NpgsqlConnection(CONNECTION_STRING))
         {
             var result = await connection.QueryAsync<HallAnalytics>(sql, new {startDate = model.startDate, endDate = model.endDate});
-            var vm = new HallAnalyticsViewModel
+            var vm = new AnalyticsViewModel
             {
                 startDate = model.startDate,
                 endDate = model.endDate,
