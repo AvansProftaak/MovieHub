@@ -113,13 +113,19 @@ namespace MovieHub.Controllers
             {
                 return NotFound();
             }
-
-            var movie = await _context.Movie.FindAsync(id);
-            if (movie == null)
+            
+            var editMovieViewModel = new EditMovieViewModel
+            {
+                Movie = (await _context.Movie.FindAsync(id)),
+                Pegis = _context.Pegi.ToList(),
+                Genre = _context.Genre.ToList()
+            };
+            
+            if (editMovieViewModel.Movie == null)
             {
                 return NotFound();
             }
-            return View(movie);
+            return View(editMovieViewModel);
         }
 
         // POST: Movies/Edit/5
@@ -127,7 +133,7 @@ namespace MovieHub.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie, int[] pegis, int[] genres)
         {
             if (id != movie.Id)
             {
@@ -140,7 +146,47 @@ namespace MovieHub.Controllers
                 {
                     _context.Update(movie);
                     await _context.SaveChangesAsync();
-                }
+                    
+                    var movieId = _context.Movie.FirstOrDefault(m => m.Title == movie.Title)!.Id;
+
+                    var moviePegiList = _context.MoviePegi.Where(p => p.MovieId == movieId).ToList();
+                    
+                    foreach (var moviePegi in moviePegiList)
+                    {
+                        _context.MoviePegi.Remove(moviePegi);
+                        await _context.SaveChangesAsync();
+                    }
+                    
+                    var movieGenreList = _context.MovieGenre.Where(p => p.MovieId == movieId).ToList();
+                    
+                    foreach (var movieGenre in movieGenreList)
+                    {
+                        _context.MovieGenre.Remove(movieGenre);
+                        await _context.SaveChangesAsync();
+                    }
+                    
+                    foreach (var pegiId in pegis)
+                    {
+                        var pegi = new MoviePegi
+                        {
+                            PegiId = pegiId,
+                            MovieId = movieId
+                        };
+                        _context.MoviePegi.Add(pegi); 
+                        await _context.SaveChangesAsync();       
+                    }
+                    
+                    foreach (var genreId in genres)
+                    {
+                        var genre = new MovieGenre 
+                        {
+                            GenreId = genreId,
+                            MovieId = movieId
+                        };
+                        _context.MovieGenre.Add(genre); 
+                        await _context.SaveChangesAsync();       
+                    }
+ }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!MovieExists(movie.Id))
@@ -154,7 +200,7 @@ namespace MovieHub.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(movie);
+            return View();
         }
 
         // GET: Movies/Delete/5
