@@ -1,0 +1,70 @@
+@model IEnumerable<MovieHub.Models.LostAndFound>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Lost & Found</h1>
+
+<a asp-action="Create" class="btn btn-primary">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    Create new
+</a>
+<br/>
+<br/>
+<table  id="tblMovies" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IssueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Find)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Collected)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IssueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Find)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Collected)
+            </td>
+            <td>    
+                <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a> 
+                <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                </a> 
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts{
+    <script>
+    $(document).ready( function () {
+        $('#tblMovies').DataTable();
+    } );
+    </script>
+}

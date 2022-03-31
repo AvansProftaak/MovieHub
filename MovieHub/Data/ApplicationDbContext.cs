@@ -31,5 +31,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<MovieHub.Models.PaymentMethod> PaymentMethod { get; set; } = null!;
     public DbSet<MovieHub.Models.MovieRuntime> MovieRuntime { get; set; } = null!;
     public DbSet<MovieHub.Models.Newsletter> Newsletter { get; set; } = null!;
+    
+    public DbSet<MovieHub.Models.LostAndFound> LostAndFound { get; set; } = null!;
 
 }

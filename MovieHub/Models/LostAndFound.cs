@@ -6,6 +6,8 @@ namespace MovieHub.Models;
 
 public class LostAndFound
 {
+    public int Id { get; set; }
+    
     [DisplayName("Issue date")]
     [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = true)]
     [DataType(DataType.Date)]
