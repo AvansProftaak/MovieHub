@@ -5,6 +5,6 @@ namespace MovieHub.ViewModels;
 public class CreateMovieViewModel
 {
     public Movie Movie { get; set; }
-    public List<Pegi> Pegi { get; set; }
-    public List<Genre> Type { get; set; }
+    public List<Pegi> Pegis { get; set; }
+    public List<Genre> Genre { get; set; }
 }

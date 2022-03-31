@@ -1,4 +1,4 @@
-@model MovieHub.Models.Movie
+@model MovieHub.ViewModels.CreateMovieViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -12,89 +12,108 @@
     <hr class="role-hr"/>
     <br/>
     
-    <form asp-action="Create">
+    <form asp-action="Create" runat="server">
         <div class="row">
 
-                <div class="col-8">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Title" class="control-label movie-p"></label>
-                        <input asp-for="Title" class="form-control"/>
-                        <span asp-validation-for="Title" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Description" class="control-label movie-p"></label>
-                        <textarea asp-for="Description" class="form-control" style="height: 6.5em"></textarea>
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Cast" class="control-label movie-p"></label>
-                        <input asp-for="Cast" class="form-control"/>
-                        <span asp-validation-for="Cast" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Director" class="control-label movie-p"></label>
-                        <input asp-for="Director" class="form-control"/>
-                        <span asp-validation-for="Director" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ImageUrl" class="control-label movie-p"></label>
-                        <input asp-for="ImageUrl" class="form-control"/>
-                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="TrailerUrl" class="control-label movie-p"></label>
-                        <input asp-for="TrailerUrl" class="form-control"/>
-                        <span asp-validation-for="TrailerUrl" class="text-danger"></span>
-                    </div>
-
-
+            <div class="col-8">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Movie.Title" class="control-label movie-p"></label>
+                    <input asp-for="Movie.Title" class="form-control"/>
+                    <span asp-validation-for="Movie.Title" class="text-danger"></span>
                 </div>
+                <div class="form-group">
+                    <label asp-for="Movie.Description" class="control-label movie-p"></label>
+                    <textarea asp-for="Movie.Description" class="form-control" style="height: 6.5em"></textarea>
+                    <span asp-validation-for="Movie.Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Movie.Cast" class="control-label movie-p"></label>
+                    <input asp-for="Movie.Cast" class="form-control"/>
+                    <span asp-validation-for="Movie.Cast" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Movie.Director" class="control-label movie-p"></label>
+                    <input asp-for="Movie.Director" class="form-control"/>
+                    <span asp-validation-for="Movie.Director" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Movie.ImageUrl" class="control-label movie-p"></label>
+                    <input asp-for="Movie.ImageUrl" class="form-control"/>
+                    <span asp-validation-for="Movie.ImageUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Movie.TrailerUrl" class="control-label movie-p"></label>
+                    <input asp-for="Movie.TrailerUrl" class="form-control"/>
+                    <span asp-validation-for="Movie.TrailerUrl" class="text-danger"></span>
+                </div>
+
+
+            </div>
             <div class="col-4">
                 <div class="form-group">
-                    <label asp-for="Language" class="control-label movie-p"></label>
-                    <input asp-for="Language" class="form-control"/>
-                    <span asp-validation-for="Language" class="text-danger"></span>
+                    <label asp-for="Movie.Language" class="control-label movie-p"></label>
+                    <input asp-for="Movie.Language" class="form-control"/>
+                    <span asp-validation-for="Movie.Language" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Duration" class="control-label movie-p"></label>
-                    <input asp-for="Duration" class="form-control"/>
-                    <span asp-validation-for="Duration" class="text-danger"></span>
+                    <label asp-for="Movie.Duration" class="control-label movie-p"></label>
+                    <input asp-for="Movie.Duration" class="form-control"/>
+                    <span asp-validation-for="Movie.Duration" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="ImdbScore" class="control-label movie-p"></label>
-                    <input asp-for="ImdbScore" class="form-control"/>
-                    <span asp-validation-for="ImdbScore" class="text-danger"></span>
+                    <label asp-for="Movie.ImdbScore" class="control-label movie-p"></label>
+                    <input asp-for="Movie.ImdbScore" class="form-control"/>
+                    <span asp-validation-for="Movie.ImdbScore" class="text-danger"></span>
                 </div>
-                @* <div style="width: 100%"> *@
-                @*     <label asp-for="MovieGenres" class="control-label movie-p"></label> *@
-                @*     <select id="genreEnumList" asp-for="MovieGenres" asp-items="Html.GetEnumSelectList<GenreEnum>()"> *@
-                @*         <option value="">Choose a genre</option> *@
-                @*     </select> *@
-                @* </div> *@
+
                 <div class="row mt-2 form-group">
                     <div class="col-6">
-                        <label asp-for="ReleaseDate" class="control-label movie-p"></label>
-                            <input asp-for="ReleaseDate" class="form-control"/>
-                            <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+                        <label asp-for="Movie.ReleaseDate" class="control-label movie-p"></label>
+                        <input asp-for="Movie.ReleaseDate" class="form-control"/>
+                        <span asp-validation-for="Movie.ReleaseDate" class="text-danger"></span>
                     </div>
                     <div class="col-2 ">
                         <div class="form-group form-check justify-content-center">
                             <label class="form-check-label p-4 movie-p" >
-                                <input class="form-check-input" asp-for="Is3D"/> @Html.DisplayNameFor(model => model.Is3D)
+                                <input class="form-check-input" asp-for="Movie.Is3D"/> @Html.DisplayNameFor(model => model.Movie.Is3D)
                             </label>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="form-group form-check justify-content-start">
                             <label class="form-check-label p-4 movie-p">
-                                <input class="form-check-input" asp-for="IsSecret"/> @Html.DisplayNameFor(model => model.IsSecret)
+                                <input class="form-check-input" asp-for="Movie.IsSecret"/> @Html.DisplayNameFor(model => model.Movie.IsSecret)
                             </label>
                         </div>
+                    </div>
+                    <div class="row">
+                        <p class="form-check-label movie-p">Select Genres</p>
+                        @for (var i = 0; i < Model.Pegis.Count; i++)
+                        {
+                            <div class="col-5">
+                                <input type="checkbox" value="@Model.Genre[i].Id" name="genres"/>
+                                <label>@Html.DisplayFor(m => m.Genre[i].Name)</label>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
+        
+        <div class="row">
+            <p class="form-check-label movie-p">Select Pegi's</p>
+
+            @for (var i = 0; i < Model.Pegis.Count; i++)
+            {
+                <div class="col-1">
+                    <input type="checkbox" value="@Model.Pegis[i].Id" name="pegis"/>
+                    <label><img src=" @Url.Content(Model.Pegis[i].Icon)" style="width:55px; padding-right: 10px" alt="Pegi Logo"></label>
+                </div>
+            }
+        </div>
+        
+        
         <div class="row col-5 mt-3">
             <div class="col-4">
                 <a class="btn back-button" asp-action="Index">Back to List</a>

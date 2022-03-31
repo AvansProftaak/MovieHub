@@ -8,7 +8,6 @@ public class IndexViewModel
     public List<Hall>? Halls { get; set; }
     public Movie? Movie { get; set; }
     public List<Movie>? Movies { get; set; }
-    public List<Movie?>? MovieIndex { get; set; }
     public List<Showtime>? ShowNext { get; set; }
     public List<Showtime>? ShowNow { get; set; }
     public List<MovieRuntime>? MovieRuntimes { get; set; }

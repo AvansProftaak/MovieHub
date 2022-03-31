@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
+using MovieHub.ViewModels;
 
 
 namespace MovieHub.Controllers
@@ -48,35 +49,61 @@ namespace MovieHub.Controllers
         // GET: Movies/Create
         public IActionResult Create()
         {
-            return View();
-        }
 
+            var createMovieViewModel = new CreateMovieViewModel
+            {
+                Movie = new Movie(),
+                Pegis = _context.Pegi.ToList(),
+                Genre = _context.Genre.ToList()
+            };
+            
+            
+            return View(createMovieViewModel);
+        }
+        
+        
+
+        
         // POST: Movies/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie, [Bind("MovieGenres")] MovieGenre movieGenre)
+        public async Task<IActionResult> Create([Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie, int[] pegis, int[] genres)
         {
+            
             if (ModelState.IsValid)
             {
                 _context.Add(movie);
                 await _context.SaveChangesAsync();
 
                 var movieId = _context.Movie.FirstOrDefault(m => m.Title == movie.Title)!.Id;
-                var genreId = movieGenre.Genre.Id;
-
-                var genre = new MovieGenre
+                
+                foreach (var pegiId in pegis)
                 {
-                    GenreId = genreId,
-                    MovieId = movieId
-                };
-                _context.MovieGenre.Add(genre);
-                await _context.SaveChangesAsync();
+                    var pegi = new MoviePegi
+                    {
+                        PegiId = pegiId,
+                        MovieId = movieId
+                    };
+                    _context.MoviePegi.Add(pegi); 
+                    await _context.SaveChangesAsync();       
+                }
+                
+                foreach (var genreId in genres)
+                {
+                    var genre = new MovieGenre
+                    {
+                        GenreId = genreId,
+                        MovieId = movieId
+                    };
+                    _context.MovieGenre.Add(genre); 
+                    await _context.SaveChangesAsync();       
+                }
                 
                 return RedirectToAction(nameof(Index));
             }
-            return View(movie);
+            return View();
         }
 
         // GET: Movies/Edit/5

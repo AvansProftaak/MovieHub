@@ -160,7 +160,7 @@ public class AdminController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> model, string id, string searchUser)
+    public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> model, string id)
     {
         var role = await _roleManager.FindByIdAsync(id);
         

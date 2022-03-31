@@ -20,7 +20,6 @@ public class HomeController : Controller
     {
         var indexViewModel = new IndexViewModel
         {
-            // MovieIndex = MovieIndex(),
             Halls = GetHalls(),
             Movies = GetMovies(),
             ShowNext = ShowNext(),
