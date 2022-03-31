@@ -17,22 +17,23 @@ public class PaymentsController : Controller
     private readonly IWebHostEnvironment _hostEnvironment;
     private readonly ApplicationDbContext _context;
     private readonly UserManager<User> _userManager;
-    public PaymentsController(IWebHostEnvironment hostEnvironment, ApplicationDbContext context)
+    public PaymentsController(IWebHostEnvironment hostEnvironment, ApplicationDbContext context, UserManager<User> userManager)
     {
         _hostEnvironment= hostEnvironment;
         _context = context;
+        _userManager = userManager;
     }
 
     public IActionResult ReceiveTicket(int orderId)
     {
         var order = _context.Order.FirstOrDefault(o => o.Id == orderId);
-        var showTime = _context.Showtime.FirstOrDefault(s => s.Id == order.ShowtimeId);
-        var hall = _context.Hall.FirstOrDefault(h => h.Id == showTime.HallId);
-        var movie = _context.Movie.FirstOrDefault(m => m.Id == showTime.MovieId);
+        var showTime = _context.Showtime?.FirstOrDefault(s => s.Id == order!.ShowtimeId);
+        var hall = _context.Hall.FirstOrDefault(h => h.Id == showTime!.HallId);
+        var movie = _context.Movie.FirstOrDefault(m => m.Id == showTime!.MovieId);
 
         // Initialize HTML to PDF converter with Blink rendering engine
-        HtmlToPdfConverter htmlConverter = new HtmlToPdfConverter(HtmlRenderingEngine.Blink);
-        BlinkConverterSettings blinkConverterSettings = new BlinkConverterSettings();
+        var htmlConverter = new HtmlToPdfConverter(HtmlRenderingEngine.Blink);
+        var blinkConverterSettings = new BlinkConverterSettings();
         
         // Check for current OS and set the BlinkBinaries folder path
         if (OperatingSystem.IsMacOS())
@@ -56,37 +57,37 @@ public class PaymentsController : Controller
         var wwwRootPath = _hostEnvironment.WebRootPath;
 
         // Get paths to PDF and HTML documents
-        var ExampleHtmlTicketPath = Path.Combine(wwwRootPath, @"ticket/ExampleTicketHtml.html");
-        var ExampleHtmlArrangementPath = Path.Combine(wwwRootPath, @"ticket/ExampleArrangementHtml.html");
-        var FinishedPdfTicketsPath = Path.Combine(wwwRootPath, @"ticket/TicketsPdf.pdf");
+        var exampleHtmlTicketPath = Path.Combine(wwwRootPath, @"ticket/ExampleTicketHtml.html");
+        var exampleHtmlArrangementPath = Path.Combine(wwwRootPath, @"ticket/ExampleArrangementHtml.html");
+        var finishedPdfTicketsPath = Path.Combine(wwwRootPath, @"ticket/TicketsPdf.pdf");
         
         // Dirs for storing finished HTML and PDF docs
-        var FinishedPdfTicketFolder = Path.Combine(wwwRootPath, @"ticket/FinishedPdfTickets/");
-        var FinishedHtmlTicketFolder = Path.Combine(wwwRootPath, @"ticket/FinishedHtmlTickets/");
+        var finishedPdfTicketFolder = Path.Combine(wwwRootPath, @"ticket/FinishedPdfTickets/");
+        var finishedHtmlTicketFolder = Path.Combine(wwwRootPath, @"ticket/FinishedHtmlTickets/");
         
         // Delete all finished tickets within the FinishedTickets folder
-        DirectoryInfo di = new DirectoryInfo(FinishedPdfTicketFolder);
-        foreach (FileInfo file in di.GetFiles())
+        DirectoryInfo di = new DirectoryInfo(finishedPdfTicketFolder);
+        foreach (var file in di.GetFiles())
         {
             file.Delete(); 
         }
-        foreach (DirectoryInfo dir in di.GetDirectories())
+        foreach (var dir in di.GetDirectories())
         {
             dir.Delete(true); 
         }
         
         // Delete all finished tickets within the FinishedHtmlTickets folder
-        DirectoryInfo html_di = new DirectoryInfo(FinishedHtmlTicketFolder);
-        foreach (FileInfo file in html_di.GetFiles())
+        var htmlDi = new DirectoryInfo(finishedHtmlTicketFolder);
+        foreach (var file in htmlDi.GetFiles())
         {
             file.Delete(); 
         }
-        foreach (DirectoryInfo dir in html_di.GetDirectories())
+        foreach (DirectoryInfo dir in htmlDi.GetDirectories())
         {
             dir.Delete(true); 
         }
 
-        IEnumerable<string> arrangementNames = _context.CateringPackage.Select(arrangement => arrangement.Name);
+        IEnumerable<string> arrangementNames = _context.CateringPackage.Select(arrangement => arrangement.Name)!;
 
         var tickets = _context.Ticket.Where(t => t.OrderId == orderId).ToList();
         foreach (var ticket in tickets)
@@ -94,23 +95,23 @@ public class PaymentsController : Controller
             if (arrangementNames.Contains(ticket.Name))
             {
                 // Get ExampleTicketHtml
-                var finishedHtmlArrangement = System.IO.File.ReadAllText(ExampleHtmlArrangementPath);
+                var finishedHtmlArrangement = System.IO.File.ReadAllText(exampleHtmlArrangementPath);
 
                 finishedHtmlArrangement = finishedHtmlArrangement
                     .Replace("#Type", ticket.Name);
 
-                var FinishedHtmlArrangementFile = Path.Combine(FinishedHtmlTicketFolder, ticket.Id + ".html");
+                var finishedHtmlArrangementFile = Path.Combine(finishedHtmlTicketFolder, ticket.Id + ".html");
                 
                 // Save finished Html ticket
-                System.IO.File.WriteAllText(FinishedHtmlArrangementFile, finishedHtmlArrangement);
+                System.IO.File.WriteAllText(finishedHtmlArrangementFile, finishedHtmlArrangement);
 
                 // Convert HTML to PDF
-                PdfDocument document = htmlConverter.Convert(FinishedHtmlArrangementFile);
+                PdfDocument document = htmlConverter.Convert(finishedHtmlArrangementFile);
 
                 // Create a filestream for the finished pdf ticket
-                var FinishedPdfTicketPath = Path.Combine(FinishedPdfTicketFolder, ticket.Id + ".pdf");
-                FileStream fileStream = new FileStream(FinishedPdfTicketPath, FileMode.Create, FileAccess.ReadWrite);
-            
+                var finishedPdfTicketPath = Path.Combine(finishedPdfTicketFolder, ticket.Id + ".pdf");
+                FileStream fileStream = new FileStream(finishedPdfTicketPath, FileMode.Create, FileAccess.ReadWrite);
+                
                 // Save and close files/streams
                 document.Save(fileStream);
                 document.Close(true);
@@ -119,92 +120,93 @@ public class PaymentsController : Controller
             else
             {
                 // Get ExampleTicketHtml
-                var finishedHtmlTicket = System.IO.File.ReadAllText(ExampleHtmlTicketPath);
+                var finishedHtmlTicket = System.IO.File.ReadAllText(exampleHtmlTicketPath);
 
                 var content = ticket.Id.ToString();
-                using QRCodeGenerator generator = new QRCodeGenerator();
+                using var generator = new QRCodeGenerator();
 
-                ECCLevel level = ECCLevel.H;
+                var level = ECCLevel.H;
                 var qr = generator.CreateQrCode(content, level);
 
-                SKImageInfo info = new SKImageInfo(512, 512);
-                using SKSurface surface = SKSurface.Create(info);
+                var info = new SKImageInfo(512, 512);
+                using var surface = SKSurface.Create(info);
 
                 var canvas = surface.Canvas;
-                canvas.Render(qr, SKRect.Create(512, 512), SKColors.White, SKColors.Black);
+                canvas.Render(qr, SKRect.Create(512, 512), SKColors.WhiteSmoke, SKColors.Black);
 
-                using SKImage image = surface.Snapshot();
-                using SKData data = image.Encode(SKEncodedImageFormat.Png, 100);
+                using var image = surface.Snapshot();
+                using var data = image.Encode(SKEncodedImageFormat.Png, 100);
 
                 var subPath = Path.Combine(wwwRootPath, @"ticket/qr/");
-                bool exists = System.IO.Directory.Exists(subPath);
+                var exists = Directory.Exists(subPath);
                 if (!exists)
-                    System.IO.Directory.CreateDirectory(subPath);
-                using FileStream stream = System.IO.File.OpenWrite(
+                    Directory.CreateDirectory(subPath);
+                using var stream = System.IO.File.OpenWrite(
                     Path.Combine(subPath, @"qr-" + content + ".png")
                 );
                 data.SaveTo(stream);
                 stream.Close();
-                byte[] imageArray = System.IO.File.ReadAllBytes(
+                var imageArray = System.IO.File.ReadAllBytes(
                     Path.Combine(subPath, @"qr-" + content + ".png")
                 );
-                string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+                var base64ImageRepresentation = Convert.ToBase64String(imageArray);
 
                 new FileInfo(Path.Combine(subPath, @"qr-" + content + ".png")).Delete();
                 // Get seat && row for current ticket
                 var seat = _context.Seat.FirstOrDefault(s => s.Id == ticket.SeatId);
 
                 finishedHtmlTicket = finishedHtmlTicket
-                    .Replace("#MovieName", movie.Title)
+                    .Replace("#MovieName", movie?.Title)
                     .Replace("#Type", ticket.Name)
-                    .Replace("#HallNumber", hall.Name)
-                    .Replace("#Seat", seat.SeatNumber.ToString())
-                    .Replace("#Row", seat.RowNumber.ToString())
-                    .Replace("#Time", showTime.StartAt.TimeOfDay.ToString())
-                    .Replace("#Date", showTime.StartAt.ToShortDateString())
-                    .Replace("QRCODE", base64ImageRepresentation);
+                    .Replace("#HallNumber", hall?.Name)
+                    .Replace("#Seat", seat?.SeatNumber.ToString())
+                    .Replace("#Row", seat?.RowNumber.ToString())
+                    .Replace("#StartTime", showTime?.StartAt.TimeOfDay.ToString(@"hh\:mm"))
+                    .Replace("#EndTime", showTime?.StartAt.AddMinutes(movie!.Duration).TimeOfDay.ToString(@"hh\:mm"))
+                    .Replace("#Date", showTime?.StartAt.Date.ToString("dd MMMM yyyy"))
+                    .Replace("QRCODE", base64ImageRepresentation)
+                    .Replace("Barcode", ticket.Barcode.ToString());
 
-                var FinishedHtmlTicketFile = Path.Combine(FinishedHtmlTicketFolder, ticket.Id + ".html");
-            
+                var finishedHtmlTicketFile = Path.Combine(finishedHtmlTicketFolder, ticket.Id + ".html");
+
                 // Save finished Html ticket
-                System.IO.File.WriteAllText(FinishedHtmlTicketFile, finishedHtmlTicket);
+                System.IO.File.WriteAllText(finishedHtmlTicketFile, finishedHtmlTicket);
 
                 // Convert HTML to PDF
-                PdfDocument document = htmlConverter.Convert(FinishedHtmlTicketFile);
+                var document = htmlConverter.Convert(finishedHtmlTicketFile);
 
                 // Create a filestream for the finished pdf ticket
-                var FinishedPdfTicketPath = Path.Combine(FinishedPdfTicketFolder, ticket.Id + ".pdf");
-                FileStream fileStream = new FileStream(FinishedPdfTicketPath, FileMode.Create, FileAccess.ReadWrite);
+                var finishedPdfTicketPath = Path.Combine(finishedPdfTicketFolder, ticket.Id + ".pdf");
+                var fileStream = new FileStream(finishedPdfTicketPath, FileMode.Create, FileAccess.ReadWrite);
             
                 // Save and close files/streams
                 document.Save(fileStream);
                 document.Close(true);
                 fileStream.Close();
             }
-
         }
         
         // Get the folder path into DirectoryInfo
-        DirectoryInfo directoryInfo = new DirectoryInfo(FinishedPdfTicketFolder);
+        var directoryInfo = new DirectoryInfo(finishedPdfTicketFolder);
  
         // Get the PDF files in folder path into FileInfo
-        FileInfo[] files = directoryInfo.GetFiles("*.pdf");
+        var files = directoryInfo.GetFiles("*.pdf");
  
         // Create a new PDF document 
-        PdfDocument pdfTicketCombined = new PdfDocument();
+        var pdfTicketCombined = new PdfDocument();
  
         // Set enable memory optimization as true 
         pdfTicketCombined.EnableMemoryOptimization = true;
         
         // Open file stream for appending
-        FileStream finishedPdfs = new FileStream(FinishedPdfTicketsPath, FileMode.Create, FileAccess.ReadWrite);
+        var finishedPdfs = new FileStream(finishedPdfTicketsPath, FileMode.Create, FileAccess.ReadWrite);
         
         // Loop over all the files in the FinishedTickets dir
-        foreach (FileInfo file in files)
+        foreach (var file in files)
         {
             // Load the PDF document 
-            FileStream fileStream = new FileStream(file.FullName, FileMode.Open);
-            PdfLoadedDocument loadedDocument = new PdfLoadedDocument(fileStream);
+            var fileStream = new FileStream(file.FullName, FileMode.Open);
+            var loadedDocument = new PdfLoadedDocument(fileStream);
  
             // Merge PDF file
             PdfDocumentBase.Merge(pdfTicketCombined, loadedDocument);
@@ -220,7 +222,7 @@ public class PaymentsController : Controller
         pdfTicketCombined.Close(true);
         finishedPdfs.Close();
         // Create byte file from Pdf
-        var fileBytes = System.IO.File.ReadAllBytes(FinishedPdfTicketsPath);
+        var fileBytes = System.IO.File.ReadAllBytes(finishedPdfTicketsPath);
         
         // Return Pdf for download
         return File(fileBytes, "application/pdf", "ticket.pdf");
@@ -228,33 +230,25 @@ public class PaymentsController : Controller
 
     public async Task<IActionResult> Index( Dictionary<string,string> json)
     {
-        OrderData? orderData = JsonConvert.DeserializeObject<OrderData>(json["orderData"]);
+        var orderData = JsonConvert.DeserializeObject<OrderData>(json["orderData"]);
+        var showtimeId = orderData.ShowtimeId;
+        var ticketTypesSelected = orderData.TicketTypes;
+        var cateringPackagesSelected = orderData.CateringPackages;
+        var showtime = _context.Showtime!.FirstOrDefault(s => (s.Id >= showtimeId));
+        var seatsSelected = orderData.Seats;
 
-        int movieId = orderData.movieId;
-        int showtimeId = orderData.showtimeId;
-        Dictionary<string, int> ticketTypesSelected = orderData.ticketTypes;
-        Dictionary<string, int> cateringPackagesSelected = orderData.cateringPackages;
+        var seatIds = (from seat in seatsSelected
+            select _context.Seat.Where(s => s.RowNumber.Equals(int.Parse(seat[0])))
+                .Where(s => s.SeatNumber.Equals(int.Parse(seat[1])))
+                .ToList()
+                .FirstOrDefault()
+                ?.Id
+            into seatId
+            where seatId.HasValue
+            select (int) seatId).ToList();
 
-        Showtime? showtime = _context.Showtime!.FirstOrDefault(s => (s.Id >= showtimeId));
-
-
-        List<List<string>> seatsSelected = orderData.seats;
-
-        List<int> seatIds = new List<int>();
-        foreach (List<string> seat in seatsSelected)
-        {
-            int? seatId = _context.Seat
-                .Where(s => s.RowNumber.Equals(Int32.Parse(seat[0])))
-                .Where(s => s.SeatNumber.Equals(Int32.Parse(seat[1])))
-                .ToList().FirstOrDefault()?.Id;
-            if (seatId.HasValue)
-            {
-                seatIds.Add((int) seatId);
-            }
-        }
-        
         var user = _userManager.GetUserAsync(HttpContext.User);
-        var userId = _userManager?.GetUserId(HttpContext.User);
+        var userId = _userManager.GetUserId(HttpContext.User);
 
         var order = new Order
         {
@@ -263,26 +257,21 @@ public class PaymentsController : Controller
             ShowtimeId = showtimeId,
             User = await user
         };
-
+        
         Insert(_context, order);
-        _context.Order.Add(order);
-        await _context.SaveChangesAsync();
-
-        var movie = OrdersController.GetMovie(movieId, _context);
-        var ticketTypesPrices = OrdersController.CalculationTicketTypes(showtime.MovieId, _context);
+        
+        var ticketTypesPrices = OrdersController.CalculationTicketTypes(showtime!.MovieId, _context);
         var ticketTypesNames = OrdersController.ReturnTicketNames(showtime.MovieId, _context);
         var cateringPackages = OrdersController.GetCateringPackages(_context);
         var rd = new Random();
-
-
         var counter = 0;
         var seatsCounter = 0;
-        foreach (var key in ticketTypesSelected.Keys)
+        
+        foreach (var key in ticketTypesSelected?.Keys!)
         {
             var ticketId = Convert.ToInt32(key);
             var i = 1;
-
-            var loopCount = (int) ticketTypesSelected[key];
+            var loopCount = ticketTypesSelected[key];
             
             while (i <= loopCount )
             {
@@ -299,16 +288,16 @@ public class PaymentsController : Controller
                 seatsCounter++;
                 i++;
             }
-
+            
             counter += 1;
         }
-
+        
         counter = 0;
         
-        foreach (var key in cateringPackagesSelected.Keys)
+        foreach (var key in cateringPackagesSelected?.Keys!)
         {
             var i = 1;
-            var cateringPackage = cateringPackages[counter];
+            var cateringPackage = cateringPackages?[counter];
 
             while (i <= cateringPackagesSelected[key])
             {
@@ -316,26 +305,15 @@ public class PaymentsController : Controller
                 {
                     Barcode = rd.Next(134909324, 912453657),
                     OrderId = order.Id,
-                    Name = cateringPackage.Name,
+                    Name = cateringPackage!.Name,
                     Price = cateringPackage.Price,
                     SeatId = null
                 };
-
-
                 Insert(_context, ticket);
                 i++;
             }
-            
-            //ticket.Name 
             counter += 1;
         }
-
-
-
-
-
-        var payment = await _context.Payment
-        .FirstOrDefaultAsync(p => p.OrderId == order.Id);
         return View(order.Id);
     }
 
@@ -346,30 +324,27 @@ public class PaymentsController : Controller
         if (payment == null)
         {
             return NotFound();
-        } else
+        } 
+        
+        payment.Status = status switch
         {
-            switch(status)
-            {
-                case 1:
-                    payment.Status = Models.StatusEnum.Pending;
-                    break;
-                case 2:
-                    payment.Status = Models.StatusEnum.Paid;
-                    break;
-                default: throw new ArgumentOutOfRangeException(nameof(status));
-            }
-            _context.Update(payment);
-            await _context.SaveChangesAsync();
-        }
-        return RedirectToAction("GetPayment", new { orderId = orderId });
+            1 => StatusEnum.Pending,
+            2 => StatusEnum.Paid,
+            _ => throw new ArgumentOutOfRangeException(nameof(status))
+        };
+        _context.Update(payment);
+        await _context.SaveChangesAsync();
+        return RedirectToAction("GetPayment", new { orderId });
     }
 
     public async Task<IActionResult> CreatePayment(int orderId, int paymentMethodId)
     {
-        Payment payment = new Payment();
-        payment.Status = StatusEnum.Open;
-        payment.OrderId = orderId;
-        payment.PaymentMethodId = paymentMethodId;
+        var payment = new Payment
+        {
+            Status = StatusEnum.Open,
+            OrderId = orderId,
+            PaymentMethodId = paymentMethodId
+        };
 
         _context.Payment.Add(payment);
         await _context.SaveChangesAsync();
@@ -385,7 +360,7 @@ public class PaymentsController : Controller
         return View(getPayment);
     }
     
-    public static void Insert(DbContext context, object entity)
+    private static void Insert(DbContext context, object entity)
     {
         context.Add(entity);
         context.SaveChanges();
