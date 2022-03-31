@@ -4,7 +4,7 @@
 
 namespace MovieHub.Migrations
 {
-    public partial class DBRESTORE : Migration
+    public partial class Reset : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
