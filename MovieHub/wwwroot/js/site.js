@@ -18,3 +18,8 @@
         }
     }
 }
+
+function toCreateMovie() 
+{
+    location.href = '/Movies/Create';
+}

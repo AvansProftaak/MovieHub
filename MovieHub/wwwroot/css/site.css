@@ -339,3 +339,9 @@ color: #F8A613;
   color: #F8A613;
 }
 
+.overview-thead-hr {
+  border: 2px solid #F8A613;
+  width: 100%;
+  margin: 5px 0 5px 0;
+}
+
