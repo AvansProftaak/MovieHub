@@ -1,0 +1,69 @@
+﻿@model MovieHub.ViewModels.AnalyticsViewModel
+
+@{
+    ViewData["Title"] = "MovieHub Hall Analytics";
+}
+
+<div class="row" style="margin-top: 9.5vh">
+    <h1>Movie Revenue Analytics</h1>
+    <div class="col-md-4">
+        <hr/>
+        <h2>Overview of revenue per movie.</h2>
+        <p>Please select a start and end date to filter analytics over a specified period of time.</p>
+        <form asp-action="MovieRevenue" method="post" class="d-flex justify-content-between">
+            <input class="form-control me-1" type="date" data-val="true" data-val-required="The start date field is required"
+                   id="startDate" name="startDate" value="@Model.startDate.ToString("yyyy-MM-dd")">
+            <input class="form-control mx-1" type="date" data-val="true" data-val-required="The start date field is required"
+                   id="endDate" name="endDate" value="@Model.endDate.ToString("yyyy-MM-dd")">
+            <button class="btn btn-primary ms-1" type="submit">Filter</button>
+        </form>
+        <hr/>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Movie
+                        </th>
+                        <th>
+                            Amount of shows
+                        </th>
+                        <th>
+                            Ticket Revenue
+                        </th>
+                        <th>
+                            Arrangement Revenue
+                        </th>
+                        <th>
+                            Total Revenue
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+            @foreach (var item in Model.MovieStatistics)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(vm => item.MovieTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(vm => item.AmountShows)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(vm => item.TicketRevenue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(vm => item.ArrangementRevenue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(vm => item.TotalRevenue)
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
