@@ -19,7 +19,13 @@ public static class SeedData
             var user = new ApplicationUser
             { 
                 UserName = "Admin",
-                Email = "admin@moviehub.com"
+                Email = "admin@moviehub.com",
+                FirstName = "Daniel",
+                LastName= "Jansen",
+                Street = "Fresiastraat",
+                HouseNumber = 60,
+                ZipCode = "4921HD",	
+                City = "Made"
             };
             var result = userManager.CreateAsync(user, "P@ssword1").Result;
             if (result.Succeeded)
