@@ -1,27 +1,33 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using MovieHub.Models;
+
 namespace MovieHub;
 
 public static class SeedData
 {
-    public static void Seed(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+    public static void Seed(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
     {
         SeedRoles(roleManager);
         SeedUsers(userManager);
     }
 
-    private static void SeedUsers(UserManager<IdentityUser> userManager)
+    private static void SeedUsers(UserManager<User> userManager)
     {
-        if (userManager.FindByEmailAsync("admin@moviehub.nl").Result != null) return;
-        var user = new IdentityUser
+        if (userManager.FindByEmailAsync("admin@moviehub.nl").Result == null)
         {
-            UserName = "Admin",
-            Email = "admin@moviehub.nl",
-            EmailConfirmed = true
-        };
-        var result = userManager.CreateAsync(user, "Admin1!").Result;
-        if (result.Succeeded)
-        {
-            userManager.AddToRoleAsync(user, "Admin").Wait();
+            var user = new User
+            {
+                UserName = "admin@moviehub.nl",
+                Email = "admin@moviehub.nl",
+                EmailConfirmed = true,
+                FirstName = "Admin",
+                LastName = "Admin"
+            };
+            var result = userManager.CreateAsync(user, "Welkom@01").Result;
+            if (result.Succeeded)
+            {
+                userManager.AddToRoleAsync(user, "Admin").Wait();
+            }
         }
     }
 
@@ -62,16 +68,8 @@ public static class SeedData
                 Name = "Front-Office"
             };
             var result  = roleManager.CreateAsync(role).Result;
-        }
+        }   
 
-        if (roleManager.RoleExistsAsync("User").Result) return;
-        {
-            var role = new IdentityRole
-            {
-                Name = "User"
-            };
-            var result  = roleManager.CreateAsync(role).Result;
-        }
     } 
     
 }
