@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
@@ -15,6 +16,7 @@ public class PaymentsController : Controller
 {
     private readonly IWebHostEnvironment _hostEnvironment;
     private readonly ApplicationDbContext _context;
+    private readonly UserManager<User> _userManager;
     public PaymentsController(IWebHostEnvironment hostEnvironment, ApplicationDbContext context)
     {
         _hostEnvironment= hostEnvironment;
@@ -230,7 +232,6 @@ public class PaymentsController : Controller
 
         int movieId = orderData.movieId;
         int showtimeId = orderData.showtimeId;
-        int userId = 1;
         Dictionary<string, int> ticketTypesSelected = orderData.ticketTypes;
         Dictionary<string, int> cateringPackagesSelected = orderData.cateringPackages;
 
@@ -265,7 +266,7 @@ public class PaymentsController : Controller
 
         Insert(_context, order);
         /*_context.Order.Add(order);
-        await _context.SaveChangesAsync();*/
+        await _context.SaveChangesAsync();#1#
 
         var movie = OrdersController.GetMovie(movieId, _context);
         var ticketTypesPrices = OrdersController.CalculationTicketTypes(showtime.MovieId, _context);
@@ -389,4 +390,4 @@ public class PaymentsController : Controller
         context.Add(entity);
         context.SaveChanges();
     }
-}
+}*/
