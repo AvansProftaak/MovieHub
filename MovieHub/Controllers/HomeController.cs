@@ -1,10 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
-using Microsoft.Extensions.Logging;
+
 using MovieHub.Data;
-using MovieHub.Migrations;
 using MovieHub.Models;
 using MovieHub.ViewModels;
 

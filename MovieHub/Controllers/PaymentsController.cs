@@ -1,4 +1,4 @@
-﻿/*using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
@@ -265,8 +265,8 @@ public class PaymentsController : Controller
         };
 
         Insert(_context, order);
-        /*_context.Order.Add(order);
-        await _context.SaveChangesAsync();#1#
+        _context.Order.Add(order);
+        await _context.SaveChangesAsync();
 
         var movie = OrdersController.GetMovie(movieId, _context);
         var ticketTypesPrices = OrdersController.CalculationTicketTypes(showtime.MovieId, _context);
@@ -390,4 +390,4 @@ public class PaymentsController : Controller
         context.Add(entity);
         context.SaveChanges();
     }
-}*/
+}

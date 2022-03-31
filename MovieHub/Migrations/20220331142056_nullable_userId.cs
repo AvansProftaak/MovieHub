@@ -4,7 +4,7 @@
 
 namespace MovieHub.Migrations
 {
-    public partial class Reset : Migration
+    public partial class nullable_userId : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

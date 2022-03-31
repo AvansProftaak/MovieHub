@@ -11,8 +11,8 @@ public class Order
     
     [DisplayName( "User")] 
     public string UserId { get; set; }
-    [ForeignKey("UserId")]
-    public virtual User User { get; set; } = null!;
+
+    [ForeignKey("UserId")] public virtual User? User { get; set; }
 
     [DisplayName( "Showtime")] 
     public int ShowtimeId { get; set; }
