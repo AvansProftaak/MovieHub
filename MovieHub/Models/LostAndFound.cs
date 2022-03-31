@@ -9,7 +9,7 @@ public class LostAndFound
     public int Id { get; set; }
     
     [DisplayName("Issue date")]
-    [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = true)]
+    [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = false)]
     [DataType(DataType.Date)]
     [Column(TypeName="date")]
     public DateTime IssueDate { get; set; } 

@@ -23,11 +23,15 @@ namespace MovieHub.Controllers
         // GET: Show LostAndFound not collected
         public async Task<IActionResult> Index()
         {
-            // return View(await _context.LostAndFound.ToListAsync());
+             return View(await _context.LostAndFound.ToListAsync());
+        }
+        
+        public async Task<IActionResult> NotCollected()
+        {
             var lostAndFoundNotCollected = _context.LostAndFound
-                .Where(m => m.Collected == false);
+                .Where(l => l.Collected == false);
   
-            return View(lostAndFoundNotCollected.ToList());
+            return View("Index",lostAndFoundNotCollected.ToList());
         }
 
         // GET: LostAndFound/Details/5
@@ -154,5 +158,30 @@ namespace MovieHub.Controllers
         {
             return _context.LostAndFound.Any(e => e.Id == id);
         }
+        
+        public async Task<IActionResult> CleanList()
+        {
+            DateTime date = DateTime.Today;
+            DateTime removalDate = date.AddDays(-30);
+
+            var lostAndFoundClean = _context.LostAndFound
+                .Where(l => (l.IssueDate.ToLocalTime() <= removalDate));
+
+            var cleanList = lostAndFoundClean.ToList();
+
+            if (cleanList != null)
+            {
+                foreach (var item in cleanList)
+                {
+                    _context.LostAndFound.Remove(item);
+                    await _context.SaveChangesAsync();
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index));
+
+        }
+        
+        
     }
 }

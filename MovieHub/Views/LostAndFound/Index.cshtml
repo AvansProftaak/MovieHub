@@ -6,13 +6,17 @@
 }
 
 <h1>Lost & Found</h1>
-
+<a style="float: right; margin-right:15px;" asp-controller="LostAndFound" asp-action="CleanList">Remove items that have expired!</a>
+<br/>
+<br/>
 <a asp-action="Create" class="btn btn-primary">
     <i class="fa fa-plus" aria-hidden="true"></i>
     Create new
 </a>
-<br/>
-<br/>
+<br/><br/>
+<a style="float: right;" asp-controller="LostAndFound" asp-action="NotCollected">Show items not collected</a>
+<a style="float: right; margin-right:15px;" asp-controller="LostAndFound" asp-action="Index">Show all items</a>
+<br/><br/>
 <table  id="tblMovies" class="table">
     <thead>
         <tr>

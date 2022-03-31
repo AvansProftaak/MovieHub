@@ -16,7 +16,7 @@ public class Movie
     public double ImdbScore { get; set; } // In stead of Stars
     [DisplayName("Release date")]
     
-    [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = true)]
+    [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = false)]
     [DataType(DataType.Date)]
     [Column(TypeName="date")]
     public DateTime ReleaseDate { get; set; } 
