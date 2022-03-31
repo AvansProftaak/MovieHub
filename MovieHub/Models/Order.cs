@@ -10,7 +10,7 @@ public class Order
     public Decimal TotalPrice { get; set; }
     
     [DisplayName( "User")] 
-    public string UserId { get; set; }
+    public string? UserId { get; set; }
 
     [ForeignKey("UserId")] public virtual User? User { get; set; }
 
