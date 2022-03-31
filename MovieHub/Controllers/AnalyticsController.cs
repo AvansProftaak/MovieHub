@@ -26,15 +26,23 @@ public class AnalyticsController : Controller
         return View();
     }
 
-    public async Task<IActionResult> HallAnalytics()
+    public async Task<IActionResult> HallAnalytics(HallAnalyticsViewModel model)
     {
-       var sql = "SELECT A.\"Name\" AS hallName, A.\"Title\" AS movieTitle, A.showtime, A.hallCapacity, A.seatsTaken, (A.hallCapacity - A.seatsTaken) AS seatsFree FROM (SELECT h.\"Name\", m.\"Title\", s.\"StartAt\" AS showtime, (SELECT COUNT(*) FROM public.\"Seat\" WHERE \"Seat\".\"HallId\" = h.\"Id\") AS hallCapacity, COUNT(t.\"Id\") AS seatsTaken FROM public.\"Ticket\" AS t JOIN public.\"Order\" AS o ON o.\"Id\" = t.\"OrderId\" JOIN public.\"Showtime\" AS s ON s.\"Id\" = o.\"ShowtimeId\" JOIN public.\"Movie\" AS m ON m.\"Id\" = s.\"MovieId\" JOIN public.\"Hall\" AS h ON h.\"Id\" = s.\"HallId\" WHERE DATE(s.\"StartAt\") BETWEEN DATE(CURRENT_DATE) AND DATE(CURRENT_DATE + INTERVAL '1 MONTH') AND t.\"SeatId\" IS NOT NULL GROUP BY h.\"Id\", h.\"Name\", m.\"Title\", s.\"StartAt\") AS A";
+        if (model.startDate == DateTime.MinValue && model.endDate == DateTime.MinValue)
+        {
+            model.startDate = DateTime.Today;
+            model.endDate = DateTime.Today;
+        }
+        
+       var sql = "SELECT A.\"Name\" AS hallName, A.\"Title\" AS movieTitle, A.showtime, A.hallCapacity, A.seatsTaken, (A.hallCapacity - A.seatsTaken) AS seatsFree FROM (SELECT h.\"Name\", m.\"Title\", s.\"StartAt\" AS showtime, (SELECT COUNT(*) FROM public.\"Seat\" WHERE \"Seat\".\"HallId\" = h.\"Id\") AS hallCapacity, COUNT(t.\"Id\") AS seatsTaken FROM public.\"Ticket\" AS t JOIN public.\"Order\" AS o ON o.\"Id\" = t.\"OrderId\" JOIN public.\"Showtime\" AS s ON s.\"Id\" = o.\"ShowtimeId\" JOIN public.\"Movie\" AS m ON m.\"Id\" = s.\"MovieId\" JOIN public.\"Hall\" AS h ON h.\"Id\" = s.\"HallId\" WHERE DATE(s.\"StartAt\") BETWEEN @startDate AND @endDate AND t.\"SeatId\" IS NOT NULL GROUP BY h.\"Id\", h.\"Name\", m.\"Title\", s.\"StartAt\") AS A";
         
         using (var connection = new NpgsqlConnection(CONNECTION_STRING))
         {
-            var result = await connection.QueryAsync<HallAnalytics>(sql, new {selecteddate = "2022-04-01"});
+            var result = await connection.QueryAsync<HallAnalytics>(sql, new {startDate = model.startDate, endDate = model.endDate});
             var vm = new HallAnalyticsViewModel
             {
+                startDate = model.startDate,
+                endDate = model.endDate,
                 Statistics = result
             };
             return View(vm);

@@ -8,7 +8,16 @@
     <h1>Hall Analytics</h1>
     <div class="col-md-4">
         <hr/>
-        <h2>Overview last 30 days</h2>
+        <h2>Overview per hall and movie.</h2>
+        <p>Please select a start and end date to filter analytics over a specified period of time.</p>
+        <form asp-action="HallAnalytics" method="post" class="d-flex justify-content-between">
+            <input class="form-control me-1" type="date" data-val="true" data-val-required="The start date field is required"
+                   id="startDate" name="startDate" value="@Model.startDate.ToString("yyyy-MM-dd")">
+            <input class="form-control mx-1" type="date" data-val="true" data-val-required="The start date field is required"
+                   id="endDate" name="endDate" value="@Model.endDate.ToString("yyyy-MM-dd")">
+            <button class="btn btn-primary ms-1" type="submit">Filter</button>
+        </form>
+        <hr/>
     </div>
     <div class="row">
         <div class="col-md-8">
