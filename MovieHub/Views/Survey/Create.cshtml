@@ -1,0 +1,133 @@
+@model MovieHub.Models.Survey
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+<h4>Survey</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CinemaNumber" class="control-label"></label>
+                <input asp-for="CinemaNumber" class="form-control" />
+                <span asp-validation-for="CinemaNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TicketPrice" class="control-label"></label>
+                <div>
+                    <span class="star-rating">
+                        <input type="radio" name="TicketPrice" value="1"><i></i>
+                        <input type="radio" name="TicketPrice" value="2"><i></i>
+                        <input type="radio" name="TicketPrice" value="3"><i></i>
+                        <input type="radio" name="TicketPrice" value="4"><i></i>
+                        <input type="radio" name="TicketPrice" value="5"><i></i>
+                    </span>
+                </div>
+                <span asp-validation-for="TicketPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScreenQuality" class="control-label"></label>
+                <div>
+                    <span class="star-rating">
+                        <input type="radio" name="ScreenQuality" value="1"><i></i>
+                        <input type="radio" name="ScreenQuality" value="2"><i></i>
+                        <input type="radio" name="ScreenQuality" value="3"><i></i>
+                        <input type="radio" name="ScreenQuality" value="4"><i></i>
+                        <input type="radio" name="ScreenQuality" value="5"><i></i>
+                    </span>
+                </div>
+                <span asp-validation-for="ScreenQuality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoundQuality" class="control-label"></label>
+                <div>
+                    <span class="star-rating">
+                        <input type="radio" name="SoundQuality" value="1"><i></i>
+                        <input type="radio" name="SoundQuality" value="2"><i></i>
+                        <input type="radio" name="SoundQuality" value="3"><i></i>
+                        <input type="radio" name="SoundQuality" value="4"><i></i>
+                        <input type="radio" name="SoundQuality" value="5"><i></i>
+                    </span>
+                </div>
+                <span asp-validation-for="SoundQuality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PopcornQuality" class="control-label"></label>
+                <div>
+                    <span class="star-rating">
+                        <input type="radio" name="PopcornQuality" value="1"><i></i>
+                        <input type="radio" name="PopcornQuality" value="2"><i></i>
+                        <input type="radio" name="PopcornQuality" value="3"><i></i>
+                        <input type="radio" name="PopcornQuality" value="4"><i></i>
+                        <input type="radio" name="PopcornQuality" value="5"><i></i>
+                    </span>
+                </div>
+                <span asp-validation-for="PopcornQuality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nuisance" class="control-label"></label>
+                <div>
+                    <span class="star-rating">
+                        <input type="radio" name="Nuisance" value="1"><i></i>
+                        <input type="radio" name="Nuisance" value="2"><i></i>
+                        <input type="radio" name="Nuisance" value="3"><i></i>
+                        <input type="radio" name="Nuisance" value="4"><i></i>
+                        <input type="radio" name="Nuisance" value="5"><i></i>
+                    </span>
+                </div>
+                <span asp-validation-for="Nuisance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hygiene" class="control-label"></label>
+                <div>
+                    <span class="star-rating">
+                        <input type="radio" name="Hygiene" value="1"><i></i>
+                        <input type="radio" name="Hygiene" value="2"><i></i>
+                        <input type="radio" name="Hygiene" value="3"><i></i>
+                        <input type="radio" name="Hygiene" value="4"><i></i>
+                        <input type="radio" name="Hygiene" value="5"><i></i>
+                    </span>
+                </div>
+                <span asp-validation-for="Hygiene" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToiletHeight" class="control-label"></label>
+                <div>
+                    <span class="star-rating">
+                        <input type="radio" name="ToiletHeight" value="1"><i></i>
+                        <input type="radio" name="ToiletHeight" value="2"><i></i>
+                        <input type="radio" name="ToiletHeight" value="3"><i></i>
+                        <input type="radio" name="ToiletHeight" value="4"><i></i>
+                        <input type="radio" name="ToiletHeight" value="5"><i></i>
+                    </span>
+                </div>
+                <span asp-validation-for="ToiletHeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+

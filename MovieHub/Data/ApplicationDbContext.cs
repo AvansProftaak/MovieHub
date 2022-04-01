@@ -30,4 +30,5 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<PaymentMethod> PaymentMethod { get; set; } = null!;
     public DbSet<MovieRuntime> MovieRuntime { get; set; } = null!;
     public DbSet<Newsletter> Newsletter { get; set; } = null!;
+    public DbSet<Survey> Survey { get; set; } = null!;
 }
