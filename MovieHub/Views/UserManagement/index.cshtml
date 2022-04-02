@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MovieHub.Models.User>
+﻿@using MovieHub.Models
+@model IEnumerable<User>
 
 @{
     ViewData["Title"] = "UserManagement";
@@ -9,7 +10,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Users</h1>
-    if ( @Model != null && @Model.Any())
+    @if ( @Model != null && @Model.Any())
     {
     
     <table class="table table-striped">
@@ -24,7 +25,7 @@
         </tr>
       </thead>
       <tbody>
-      @*@foreach (var user in Model){
+      @foreach (var user in Model){
           <tr>
               <th scope="row">@user.Id</th>
               <td>@user.FirstName</td>
@@ -33,7 +34,7 @@
               <td>to be implemented</td>
               <a asp-controller="UserManagement" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
           </tr>
-      }*@
+      }
       </tbody>
     </table>
     }
