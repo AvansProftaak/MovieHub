@@ -1,8 +1,44 @@
-﻿@model dynamic
+﻿using MovieHub.Models
+@model User
 
 @{
     ViewData["Title"] = "Edit Users";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>title</h2>
+<h1>User Management</h1>
+
+<div class="text-center">
+    <h1 class="display-4">Eddit Role</h1>
+    @if ( @Model != null)
+    {
+    
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">@Model.Id</th>
+                <td>@Model.FirstName</td>
+                <td>@Model.LastName</td>
+                <td>@Model.Email</td>
+                <td>to be implemented</td>
+                <td><a asp-controller="UserManagement" asp-action="Edit" asp-route-id="@Model.Id">Edit</a></td>
+            </tr>
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h1 class="display-4">No user found</h1>
+    }
+    
+</div>

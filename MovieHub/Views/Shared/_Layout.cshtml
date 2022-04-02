@@ -35,16 +35,17 @@
                     <li class="nav-item">
                         <a class="nav-link hover-white" style="color:#F8A613" asp-area="" asp-controller="About" asp-action="Index">About</a>
                     </li>           
-                </ul>
+                
                 @if (_signInManager.IsSignedIn(User))
                 {
                     if (User.IsInRole("Admin"))
                     {
                         <li class="nav-item">
-                            <a class="nav-link hover-white" style="color:#F8A613" asp-area="" asp-controller="About" asp-action="Index">About</a>
+                            <a class="nav-link hover-white" style="color:#F8A613" asp-area="" asp-controller="UserManagement" asp-action="Index">Manage Users</a>
                         </li>
                     }
                 }
+                </ul>
                 <ul class="navbar-nav flex-grow-1 justify-content-left">
                     <li class="nav-item">
                         <p style="font-family: 'Poiret One', cursive; color: #F8A613; font-size: 2vw;">
