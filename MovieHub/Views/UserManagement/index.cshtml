@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MovieHub.Models.User>
+
+@{
+    ViewData["Title"] = "UserManagement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>User Management</h1>
+
+<div class="text-center">
+    <h1 class="display-4">Users</h1>
+    if (@Model.Any())
+    {
+    
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+      @foreach (var user in Model){
+          <tr>
+              <th scope="row">@User.Id</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+          </tr>
+      }
+      </tbody>
+    </table>
+    }
+    
+</div>
