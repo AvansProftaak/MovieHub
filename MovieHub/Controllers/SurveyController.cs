@@ -24,9 +24,16 @@ namespace MovieHub
 
         [Authorize(Roles = "Admin, Manager")]
         // GET: Survey
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Survey.ToListAsync());
+
+            var indexSurveyViewModel = new IndexSurveyViewModel
+            {
+                Halls = _context.Hall.OrderBy(h => h.Name).ToList(),
+                Surveys = _context.Survey.ToList()
+            };
+            
+            return View(indexSurveyViewModel);
         }
 
         [Authorize(Roles = "Admin, Manager")]
@@ -95,5 +102,12 @@ namespace MovieHub
 
             return View();
         }
+
+        public IActionResult SurveysPerHall(int hallId)
+        {
+
+            return View();
+        }
+        
     }
 }

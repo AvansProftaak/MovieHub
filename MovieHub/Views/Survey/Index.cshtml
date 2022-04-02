@@ -1,93 +1,54 @@
-@model IEnumerable<MovieHub.Models.Survey>
+@model MovieHub.ViewModels.IndexSurveyViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
+<div class="container-fluid" style="margin-top: 9.5vh">
 
-<h1>Index</h1>
+    <div class="col-4">
+        <h1>Survey results</h1>
+        <h2>Last 10 survey results per hall</h2> 
+        <hr class="overview-thead-hr mt-3 mb-4"/>
+    </div>
+    
+    <div class="row">
+        @foreach(var hall in Model.Halls)
+        {
+            <div class="col-6 index-hall-title mb-4">
+                @Html.DisplayFor(m => hall.Name)  
+                <hr class="role-hr"/>
+                
+                <div class="row">
+                    <div class="col survey-row" style="padding-left: 12px">Price</div>
+                    <div class="col survey-row">Screen</div>
+                    <div class="col survey-row">Sound</div>
+                    <div class="col survey-row">Popcorn</div>
+                    <div class="col survey-row">Nuisance</div>
+                    <div class="col survey-row">Hygiene</div>
+                    <div class="col survey-row">Toilet</div>
+                    <div class="col survey-row"></div>
+                </div>
+                <hr class="role-hr" style="border: 1px solid #F8A613"/>
+                
+                @foreach (var survey in Model.Surveys.Where(s => s.CinemaNumber == hall.Name).Take(10))
+                {
+                    <div class="row">
+                        <div class="col survey-row-small" style="padding-left: 12px">@survey.TicketPrice/5</div>
+                        <div class="col survey-row-small">@survey.ScreenQuality/5</div>
+                        <div class="col survey-row-small">@survey.SoundQuality/5</div>
+                        <div class="col survey-row-small">@survey.PopcornQuality/5</div>
+                        <div class="col survey-row-small">@survey.Nuisance/5</div>
+                        <div class="col survey-row-small">@survey.Hygiene/5</div>
+                        <div class="col survey-row-small">@survey.ToiletHeight/5</div>
+                        <div class="col survey-row-small"><a class="align-middle" asp-action="Details" asp-route-id="@survey.Id">Details</a></div>
+                    </div>
+                    <hr class="role-hr" style="color: inherit"/>
+                }
+                <div class="col-4 mt-3">
+                    <a asp-action="SurveysPerHall" asp-route-id="@hall.Id" class="btn btn-primary">ALL SURVEYS @hall.Name.ToUpper()</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CinemaNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TicketPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ScreenQuality)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SoundQuality)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PopcornQuality)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nuisance)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Hygiene)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ToiletHeight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TimeStamp)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CinemaNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TicketPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ScreenQuality)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoundQuality)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PopcornQuality)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nuisance)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hygiene)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ToiletHeight)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeStamp)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-            </td>
-        </tr>
-}
-    </tbody>
-</table>

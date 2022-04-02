@@ -150,7 +150,7 @@ color: #F8A613;
   text-align: end;
 }
 
-.btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
+.btn-primary:hover {
   background-color: #F8A613;
   border-color: #F8A613;
   color: black;
@@ -350,6 +350,23 @@ color: #F8A613;
   color: white;
   background-color: #2C2C2E;
   border: 2px solid #F8A613;
+}
+
+.survey-row {
+  align-self: center;
+  margin: 1px;
+  padding: 0;
+  color: #FFFFFF;
+  font-size: 1.6vh;
+}
+
+.survey-row-small {
+  align-self: center;
+  margin: 1px;
+  padding: 0;
+  color: #FFFFFF;
+  font-size: 1.4vh;
+  font-weight: 100;
 }
 
 
