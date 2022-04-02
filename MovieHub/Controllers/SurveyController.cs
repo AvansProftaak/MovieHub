@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
+using MovieHub.ViewModels;
 
 namespace MovieHub
 {
@@ -47,7 +48,34 @@ namespace MovieHub
         // GET: Survey/Create
         public IActionResult Create()
         {
-            return View();
+
+            var createSurveyViewModel = new CreateSurveyViewModel
+            {
+                HallList = new List<SelectListItem>(),
+                Survey = new Survey()
+            };
+            
+            
+            foreach (var hall in GetHalls().Select(item => new SelectListItem()
+                     {
+                         Value = item.Id.ToString(),
+                         Text = item.Name
+                     }))
+            {
+                createSurveyViewModel.HallList.Add(hall);
+            }
+            
+            
+
+            return View(createSurveyViewModel);
+        }
+        
+        public List<Hall> GetHalls()
+        {
+            var halls = _context.Hall?
+                .FromSqlRaw("SELECT * FROM \"Hall\" ORDER BY \"Name\"").ToList();
+
+            return halls;
         }
 
         // POST: Survey/Create
@@ -78,7 +106,7 @@ namespace MovieHub
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(survey);
+            return View();
         }
 
         // GET: Survey/Edit/5

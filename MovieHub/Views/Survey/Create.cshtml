@@ -1,4 +1,4 @@
-@model MovieHub.Models.Survey
+@model MovieHub.ViewModels.CreateSurveyViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -11,111 +11,117 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="form-group">
+                            <label asp-for="Survey.CinemaNumber" class="control-label"></label>
+                            <input asp-for="Survey.CinemaNumber" class="form-control" />
+                            <span asp-validation-for="Survey.CinemaNumber" class="text-danger"></span>
+                        </div>
+            
+            
+            @* <div class="form-group"> *@
+            @*     <label asp-for="Survey.CinemaNumber" class="control-label"></label> *@
+            @*     <select class="form-select" name="CinemaNumber" aria-label="Default select example"> *@
+            @*         <option selected>Open this select menu</option> *@
+            @*         @for (var i = 0; i < Model.HallList.Count; i++) *@
+            @*         { *@
+            @*             <option value="@Model.HallList[i].Text">@Model.HallList[i].Text</option> *@
+            @*         } *@
+            @*     </select> *@
+            @* </div> *@
+            <span asp-validation-for="Survey.CinemaNumber" class="text-danger"></span>
+            
             <div class="form-group">
-                <label asp-for="CinemaNumber" class="control-label"></label>
-                <input asp-for="CinemaNumber" class="form-control" />
-                <span asp-validation-for="CinemaNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TicketPrice" class="control-label"></label>
-                <div>
-                    <span class="star-rating">
-                        <input type="radio" name="TicketPrice" value="1"><i></i>
-                        <input type="radio" name="TicketPrice" value="2"><i></i>
-                        <input type="radio" name="TicketPrice" value="3"><i></i>
-                        <input type="radio" name="TicketPrice" value="4"><i></i>
-                        <input type="radio" name="TicketPrice" value="5"><i></i>
-                    </span>
+                <label asp-for="Survey.TicketPrice" class="control-label"></label>
+                <div class="product-review-stars">
+                    <input type="radio" id="TicketPrice5" name="Survey.TicketPrice" value="5" class="visuallyhidden" /><label for="TicketPrice5" title="Rocks!">★</label>
+                    <input type="radio" id="TicketPrice4" name="Survey.TicketPrice" value="4" class="visuallyhidden" /><label for="TicketPrice4" title="Pretty good">★</label>
+                    <input type="radio" id="TicketPrice3" name="Survey.TicketPrice" value="3" class="visuallyhidden" /><label for="TicketPrice3" title="Meh">★</label>
+                    <input type="radio" id="TicketPrice2" name="Survey.TicketPrice" value="2" class="visuallyhidden" /><label for="TicketPrice2" title="Kinda bad">★</label>
+                    <input type="radio" id="TicketPrice1" name="TSurvey.icketPrice" value="1" class="visuallyhidden" /><label for="TicketPrice1" title="Sucks big time">★</label>
                 </div>
-                <span asp-validation-for="TicketPrice" class="text-danger"></span>
+                <span asp-validation-for="Survey.TicketPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ScreenQuality" class="control-label"></label>
-                <div>
-                    <span class="star-rating">
-                        <input type="radio" name="ScreenQuality" value="1"><i></i>
-                        <input type="radio" name="ScreenQuality" value="2"><i></i>
-                        <input type="radio" name="ScreenQuality" value="3"><i></i>
-                        <input type="radio" name="ScreenQuality" value="4"><i></i>
-                        <input type="radio" name="ScreenQuality" value="5"><i></i>
-                    </span>
+                <label asp-for="Survey.ScreenQuality" class="control-label"></label>
+                <div class="product-review-stars">
+                    <input type="radio" id="ScreenQuality5" name="Survey.ScreenQuality" value="5" class="visuallyhidden" /><label for="ScreenQuality5" title="Rocks!">★</label>
+                    <input type="radio" id="ScreenQuality4" name="Survey.ScreenQuality" value="4" class="visuallyhidden" /><label for="ScreenQuality4" title="Pretty good">★</label>
+                    <input type="radio" id="ScreenQuality3" name="Survey.ScreenQuality" value="3" class="visuallyhidden" /><label for="ScreenQuality3" title="Meh">★</label>
+                    <input type="radio" id="ScreenQuality2" name="Survey.ScreenQuality" value="2" class="visuallyhidden" /><label for="ScreenQuality2" title="Kinda bad">★</label>
+                    <input type="radio" id="ScreenQuality1" name="Survey.ScreenQuality" value="1" class="visuallyhidden" /><label for="ScreenQuality1" title="Sucks big time">★</label>
                 </div>
-                <span asp-validation-for="ScreenQuality" class="text-danger"></span>
+                
+                <span asp-validation-for="Survey.ScreenQuality" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SoundQuality" class="control-label"></label>
-                <div>
-                    <span class="star-rating">
-                        <input type="radio" name="SoundQuality" value="1"><i></i>
-                        <input type="radio" name="SoundQuality" value="2"><i></i>
-                        <input type="radio" name="SoundQuality" value="3"><i></i>
-                        <input type="radio" name="SoundQuality" value="4"><i></i>
-                        <input type="radio" name="SoundQuality" value="5"><i></i>
-                    </span>
+                <label asp-for="Survey.SoundQuality" class="control-label"></label>
+                <div class="product-review-stars">
+                    <input type="radio" id="SoundQuality5" name="Survey.SoundQuality" value="5" class="visuallyhidden" /><label for="SoundQuality5" title="Rocks!">★</label>
+                    <input type="radio" id="SoundQuality4" name="Survey.SoundQuality" value="4" class="visuallyhidden" /><label for="SoundQuality4" title="Pretty good">★</label>
+                    <input type="radio" id="SoundQuality3" name="Survey.SoundQuality" value="3" class="visuallyhidden" /><label for="SoundQuality3" title="Meh">★</label>
+                    <input type="radio" id="SoundQuality2" name="Survey.SoundQuality" value="2" class="visuallyhidden" /><label for="SoundQuality2" title="Kinda bad">★</label>
+                    <input type="radio" id="SoundQuality1" name="Survey.SoundQuality" value="1" class="visuallyhidden" /><label for="SoundQuality1" title="Sucks big time">★</label>
                 </div>
-                <span asp-validation-for="SoundQuality" class="text-danger"></span>
+                
+                <span asp-validation-for="Survey.SoundQuality" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PopcornQuality" class="control-label"></label>
-                <div>
-                    <span class="star-rating">
-                        <input type="radio" name="PopcornQuality" value="1"><i></i>
-                        <input type="radio" name="PopcornQuality" value="2"><i></i>
-                        <input type="radio" name="PopcornQuality" value="3"><i></i>
-                        <input type="radio" name="PopcornQuality" value="4"><i></i>
-                        <input type="radio" name="PopcornQuality" value="5"><i></i>
-                    </span>
+                <label asp-for="Survey.PopcornQuality" class="control-label"></label>
+                <div class="product-review-stars">
+                    <input type="radio" id="PopcornQuality5" name="Survey.PopcornQuality" value="5" class="visuallyhidden" /><label for="PopcornQuality5" title="Rocks!">★</label>
+                    <input type="radio" id="PopcornQuality4" name="Survey.PopcornQuality" value="4" class="visuallyhidden" /><label for="PopcornQuality4" title="Pretty good">★</label>
+                    <input type="radio" id="PopcornQuality3" name="Survey.PopcornQuality" value="3" class="visuallyhidden" /><label for="PopcornQuality3" title="Meh">★</label>
+                    <input type="radio" id="PopcornQuality2" name="Survey.PopcornQuality" value="2" class="visuallyhidden" /><label for="PopcornQuality2" title="Kinda bad">★</label>
+                    <input type="radio" id="PopcornQuality1" name="Survey.PopcornQuality" value="1" class="visuallyhidden" /><label for="PopcornQuality1" title="Sucks big time">★</label>
                 </div>
-                <span asp-validation-for="PopcornQuality" class="text-danger"></span>
+                
+                <span asp-validation-for="Survey.PopcornQuality" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Nuisance" class="control-label"></label>
-                <div>
-                    <span class="star-rating">
-                        <input type="radio" name="Nuisance" value="1"><i></i>
-                        <input type="radio" name="Nuisance" value="2"><i></i>
-                        <input type="radio" name="Nuisance" value="3"><i></i>
-                        <input type="radio" name="Nuisance" value="4"><i></i>
-                        <input type="radio" name="Nuisance" value="5"><i></i>
-                    </span>
+                <label asp-for="Survey.Nuisance" class="control-label"></label>
+                <div class="product-review-stars">
+                    <input type="radio" id="Nuisance5" name="Survey.Nuisance" value="5" class="visuallyhidden" /><label for="Nuisance5" title="Rocks!">★</label>
+                    <input type="radio" id="Nuisance4" name="Survey.Nuisance" value="4" class="visuallyhidden" /><label for="Nuisance4" title="Pretty good">★</label>
+                    <input type="radio" id="Nuisance3" name="Survey.Nuisance" value="3" class="visuallyhidden" /><label for="Nuisance3" title="Meh">★</label>
+                    <input type="radio" id="Nuisance2" name="Survey.Nuisance" value="2" class="visuallyhidden" /><label for="Nuisance2" title="Kinda bad">★</label>
+                    <input type="radio" id="Nuisance1" name="Survey.Nuisance" value="1" class="visuallyhidden" /><label for="Nuisance1" title="Sucks big time">★</label>
                 </div>
-                <span asp-validation-for="Nuisance" class="text-danger"></span>
+                
+                <span asp-validation-for="Survey.Nuisance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Hygiene" class="control-label"></label>
-                <div>
-                    <span class="star-rating">
-                        <input type="radio" name="Hygiene" value="1"><i></i>
-                        <input type="radio" name="Hygiene" value="2"><i></i>
-                        <input type="radio" name="Hygiene" value="3"><i></i>
-                        <input type="radio" name="Hygiene" value="4"><i></i>
-                        <input type="radio" name="Hygiene" value="5"><i></i>
-                    </span>
+                <label asp-for="Survey.Hygiene" class="control-label"></label>
+                <div class="product-review-stars">
+                    <input type="radio" id="Hygiene5" name="Survey.Hygiene" value="5" class="visuallyhidden" /><label for="Hygiene5" title="Rocks!">★</label>
+                    <input type="radio" id="Hygiene4" name="Survey.Hygiene" value="4" class="visuallyhidden" /><label for="Hygiene4" title="Pretty good">★</label>
+                    <input type="radio" id="Hygiene3" name="Survey.Hygiene" value="3" class="visuallyhidden" /><label for="Hygiene3" title="Meh">★</label>
+                    <input type="radio" id="Hygiene2" name="Survey.Hygiene" value="2" class="visuallyhidden" /><label for="Hygiene2" title="Kinda bad">★</label>
+                    <input type="radio" id="Hygiene1" name="Survey.Hygiene" value="1" class="visuallyhidden" /><label for="Hygiene1" title="Sucks big time">★</label>
                 </div>
-                <span asp-validation-for="Hygiene" class="text-danger"></span>
+                
+                <span asp-validation-for="Survey.Hygiene" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ToiletHeight" class="control-label"></label>
-                <div>
-                    <span class="star-rating">
-                        <input type="radio" name="ToiletHeight" value="1"><i></i>
-                        <input type="radio" name="ToiletHeight" value="2"><i></i>
-                        <input type="radio" name="ToiletHeight" value="3"><i></i>
-                        <input type="radio" name="ToiletHeight" value="4"><i></i>
-                        <input type="radio" name="ToiletHeight" value="5"><i></i>
-                    </span>
+                <label asp-for="Survey.ToiletHeight" class="control-label"></label>
+                <div class="product-review-stars">
+                    <input type="radio" id="ToiletHeight5" name="Survey.ToiletHeight" value="5" class="visuallyhidden" /><label for="ToiletHeight5" title="Rocks!">★</label>
+                    <input type="radio" id="ToiletHeight4" name="Survey.ToiletHeight" value="4" class="visuallyhidden" /><label for="ToiletHeight4" title="Pretty good">★</label>
+                    <input type="radio" id="ToiletHeight3" name="Survey.ToiletHeight" value="3" class="visuallyhidden" /><label for="ToiletHeight3" title="Meh">★</label>
+                    <input type="radio" id="ToiletHeight2" name="Survey.ToiletHeight" value="2" class="visuallyhidden" /><label for="ToiletHeight2" title="Kinda bad">★</label>
+                    <input type="radio" id="ToiletHeight1" name="Survey.ToiletHeight" value="1" class="visuallyhidden" /><label for="ToiletHeight1" title="Sucks big time">★</label>
                 </div>
-                <span asp-validation-for="ToiletHeight" class="text-danger"></span>
+                <span asp-validation-for="Survey.ToiletHeight" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Survey.Name" class="control-label"></label>
+                <input asp-for="Survey.Name" class="form-control" />
+                <span asp-validation-for="Survey.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <label asp-for="Survey.Email" class="control-label"></label>
+                <input asp-for="Survey.Email" class="form-control" />
+                <span asp-validation-for="Survey.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -125,9 +131,20 @@
     </div>
 </div>
 
+<div class="col-12">
+    <div class="product-review-stars">
+        <input type="radio" id="star5" name="rating" value="5" class="visuallyhidden" /><label for="star5" title="Rocks!">★</label>
+        <input type="radio" id="star4" name="rating" value="4" class="visuallyhidden" /><label for="star4" title="Pretty good">★</label>
+        <input type="radio" id="star3" name="rating" value="3" class="visuallyhidden" /><label for="star3" title="Meh">★</label>
+        <input type="radio" id="star2" name="rating" value="2" class="visuallyhidden" /><label for="star2" title="Kinda bad">★</label>
+        <input type="radio" id="star1" name="rating" value="1" class="visuallyhidden" /><label for="star1" title="Sucks big time">★</label>
+    </div>
+</div>
+
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
 
 
 

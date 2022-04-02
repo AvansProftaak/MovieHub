@@ -5,7 +5,7 @@ namespace MovieHub.Models;
 public class Survey
 {
     public int Id { get; set; }
-    public int CinemaNumber { get; set; }
+    public string CinemaNumber { get; set; }
     public int TicketPrice { get; set; }
     public int ScreenQuality { get; set; }
     public int SoundQuality { get; set; }
