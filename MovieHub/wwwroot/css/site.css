@@ -345,24 +345,12 @@ color: #F8A613;
   margin: 5px 0 5px 0;
 }
 
-.survey-numberfield
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.survey-numberfield
-  input[type=number] {
-    -moz-appearance: textfield;
-}
-
-#selectedHall {
+.survey-select {
+  font-family: 'Poiret One', cursive;
   color: white;
   background-color: #2C2C2E;
   border: 2px solid #F8A613;
 }
-
 
 
 *{
@@ -373,6 +361,7 @@ color: #F8A613;
 .product-review-stars{
   background: #000000;
   text-align: end;
+  margin-top: -1vh;
 }
 
 .product-review-stars label{

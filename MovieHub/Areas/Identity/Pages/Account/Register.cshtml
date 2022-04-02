@@ -10,8 +10,8 @@
         <div class="col-5 mx-auto">
             <h1>Register</h1>
             <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                <h2>Create a new account.</h2>
-                <hr/>
+                <h2>Create a new account</h2>
+                <hr class="role-hr mt-3 mb-5"/>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <div class="col-12">
@@ -26,15 +26,16 @@
                     <input asp-for="Input.Email" placeholder="Email" id="email" class="form-control" autocomplete="username" aria-required="true" style="margin-bottom: 1vh"/>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
-                <hr/>
+                <hr class="role-hr mt-3 mb-3"/>
                 <div class="col-12">
                     <input asp-for="Input.Password" placeholder="Password" class="form-control" autocomplete="current-password" aria-required="true" style="margin-bottom: 1vh"/>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
                 <div class="col-12">
-                    <input asp-for="Input.ConfirmPassword" placeholder="Confirm Password" class="form-control" autocomplete="current-password" aria-required="true" style="margin-bottom: 2vh"/>
+                    <input asp-for="Input.ConfirmPassword" placeholder="Confirm Password" class="form-control" autocomplete="current-password" aria-required="true"/>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
+                <hr class="role-hr mt-3"/>
                 <br/>
 
                 <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>

@@ -5,7 +5,6 @@ namespace MovieHub.ViewModels;
 
 public class CreateSurveyViewModel
 {
-    public Hall? Hall { get; set; }
-    public List<SelectListItem>? HallList { get; set; }
+    public List<Hall>? HallList { get; set; }
     public Survey Survey { get; set; }
 }
