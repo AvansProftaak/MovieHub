@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
@@ -14,6 +15,7 @@ namespace MovieHub.Controllers;
 
 public class PaymentsController : Controller
 {
+    
     private readonly IWebHostEnvironment _hostEnvironment;
     private readonly ApplicationDbContext _context;
     private readonly UserManager<User> _userManager;

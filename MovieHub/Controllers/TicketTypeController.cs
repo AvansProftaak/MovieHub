@@ -1,4 +1,5 @@
 #nullable disable
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
@@ -6,6 +7,7 @@ using MovieHub.Models;
 
 namespace MovieHub.Controllers
 {
+    
     public class TicketTypeController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -15,6 +17,7 @@ namespace MovieHub.Controllers
             _context = context;
         }
 
+        
         // GET: TicketType
         public async Task<IActionResult> Index()
         {

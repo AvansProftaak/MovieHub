@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Globalization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,8 +12,9 @@ namespace MovieHub.Controllers;
 
 public class OrdersController : Controller
 {
+    
     private readonly ApplicationDbContext _context;
-
+    
     public OrdersController(ApplicationDbContext context)
     {
         _context = context;

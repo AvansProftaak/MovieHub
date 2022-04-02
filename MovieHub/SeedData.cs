@@ -67,6 +67,15 @@ public static class SeedData
             };
             var result  = roleManager.CreateAsync(role).Result;
         }   
+        
+        if (!roleManager.RoleExistsAsync("User").Result)
+        {
+            var role = new IdentityRole
+            {
+                Name = "User"
+            };
+            var result  = roleManager.CreateAsync(role).Result;
+        }   
 
     } 
     
