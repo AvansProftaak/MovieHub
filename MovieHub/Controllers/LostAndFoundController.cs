@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using MovieHub.Models;
 
 namespace MovieHub.Controllers
 {
+    [Authorize(Roles = "FrontOffice")]
     public class LostAndFoundController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -23,15 +25,16 @@ namespace MovieHub.Controllers
         // GET: Show LostAndFound not collected
         public async Task<IActionResult> Index()
         {
-             return View(await _context.LostAndFound.ToListAsync());
+            CleanList();
+            return View(await _context.LostAndFound.ToListAsync());
         }
-        
-        public async Task<IActionResult> NotCollected()
+
+        public Task<IActionResult> NotCollected()
         {
             var lostAndFoundNotCollected = _context.LostAndFound
                 .Where(l => l.Collected == false);
-  
-            return View("Index",lostAndFoundNotCollected.ToList());
+
+            return Task.FromResult<IActionResult>(View("Index", lostAndFoundNotCollected.ToList()));
         }
 
         // GET: LostAndFound/Details/5
@@ -63,7 +66,8 @@ namespace MovieHub.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IssueDate,Find,Description,Collected")] LostAndFound lostAndFound)
+        public async Task<IActionResult> Create(
+            [Bind("Id,IssueDate,Find,Description,Collected")] LostAndFound lostAndFound)
         {
             if (ModelState.IsValid)
             {
@@ -71,6 +75,7 @@ namespace MovieHub.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(lostAndFound);
         }
 
@@ -87,6 +92,7 @@ namespace MovieHub.Controllers
             {
                 return NotFound();
             }
+
             return View(lostAndFound);
         }
 
@@ -95,7 +101,8 @@ namespace MovieHub.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IssueDate,Find,Description,Collected")] LostAndFound lostAndFound)
+        public async Task<IActionResult> Edit(int id,
+            [Bind("Id,IssueDate,Find,Description,Collected")] LostAndFound lostAndFound)
         {
             if (id != lostAndFound.Id)
             {
@@ -120,8 +127,10 @@ namespace MovieHub.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(lostAndFound);
         }
 
@@ -158,30 +167,48 @@ namespace MovieHub.Controllers
         {
             return _context.LostAndFound.Any(e => e.Id == id);
         }
-        
-        public async Task<IActionResult> CleanList()
+
+        // public async Task<IActionResult> CleanList()
+        // {
+        //     DateTime date = DateTime.Today;
+        //     DateTime removalDate = date.AddDays(-30);
+        //
+        //     var lostAndFoundClean = _context.LostAndFound
+        //         .Where(l => (l.IssueDate.ToLocalTime() <= removalDate));
+        //
+        //     var cleanList = lostAndFoundClean.ToList();
+        //
+        //     if (cleanList != null)
+        //     {
+        //         foreach (var item in cleanList)
+        //         {
+        //             _context.LostAndFound.Remove(item);
+        //             await _context.SaveChangesAsync();
+        //         }
+        //         return RedirectToAction(nameof(Index));
+        //     }
+        //     return RedirectToAction(nameof(Index));
+        //
+        // }
+
+        public void CleanList()
         {
             DateTime date = DateTime.Today;
             DateTime removalDate = date.AddDays(-30);
-
+        
             var lostAndFoundClean = _context.LostAndFound
                 .Where(l => (l.IssueDate.ToLocalTime() <= removalDate));
-
+        
             var cleanList = lostAndFoundClean.ToList();
-
-            if (cleanList != null)
+        
+            if (cleanList.Count > 0)
             {
                 foreach (var item in cleanList)
                 {
                     _context.LostAndFound.Remove(item);
-                    await _context.SaveChangesAsync();
+                    _context.SaveChangesAsync();
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return RedirectToAction(nameof(Index));
-
-        }
-        
-        
+        } 
     }
 }

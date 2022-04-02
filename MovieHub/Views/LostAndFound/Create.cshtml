@@ -15,7 +15,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="IssueDate" class="control-label"></label>
-                <input asp-for="IssueDate" class="form-control" />
+                <input asp-for="IssueDate" class="form-control" id="txtdateoffinding" value='@DateTime.Today.ToString("yyyy-MM-dd")'/>
                 <span asp-validation-for="IssueDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -28,11 +28,7 @@
                 <textarea asp-for="Description" class="form-control" rows="4"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            @* <div class="form-group form-check"> *@
-            @*     <label class="form-check-label"> *@
-            @*         <input class="form-check-input" asp-for="Collected" /> @Html.DisplayNameFor(model => model.Collected) *@
-            @*     </label> *@
-            @* </div> *@
+
             <br/>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -44,4 +40,15 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
+@section Scripts{
+   <script type="text/javascript">
+       $(function () {
+           var today = new Date();
+           var month = ('0' + (today.getMonth() + 1)).slice(-2);
+           var day = ('0' + today.getDate()).slice(-2);
+           var year = today.getFullYear();
+           var date = year + '-' + month + '-' + day;
+           $('#txtdateoffinding').attr('min', date);
+       });
+   </script>
+}
