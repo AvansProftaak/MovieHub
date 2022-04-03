@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -97,16 +98,23 @@ namespace MovieHub
 
                 _context.Add(newSurvey);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
 
             return View();
         }
-
-        public IActionResult SurveysPerHall(int hallId)
+        
+        public async Task<IActionResult> SurveysPerHall(int id)
         {
-
-            return View();
+            var hall = _context.Hall.FirstOrDefault(h => h.Id == id)!;
+            
+            var surveysViewModel = new SurveysViewModel
+            {
+                Hall = hall,
+                SurveyList = _context.Survey.Where(s => s.CinemaNumber == hall.Name).ToList()
+            };
+            
+            return View(surveysViewModel);
         }
         
     }

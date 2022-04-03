@@ -15,5 +15,7 @@ public class Survey
     public int ToiletHeight { get; set; } 
     public string Name { get; set; } = null!;
     public string Email{ get; set; } = null!;
+    
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")] 
     public DateTime? TimeStamp { get; set; }
 }

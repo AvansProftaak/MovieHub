@@ -27,7 +27,7 @@
                     <div class="col survey-row">Toilet</div>
                     <div class="col survey-row"></div>
                 </div>
-                <hr class="role-hr" style="border: 1px solid #F8A613"/>
+                <hr class="role-hr"/>
                 
                 @foreach (var survey in Model.Surveys.Where(s => s.CinemaNumber == hall.Name).Take(10))
                 {
@@ -41,7 +41,7 @@
                         <div class="col survey-row-small">@survey.ToiletHeight/5</div>
                         <div class="col survey-row-small"><a class="align-middle" asp-action="Details" asp-route-id="@survey.Id">Details</a></div>
                     </div>
-                    <hr class="role-hr" style="color: inherit"/>
+                    <hr class="role-hr"/>
                 }
                 <div class="col-4 mt-3">
                     <a asp-action="SurveysPerHall" asp-route-id="@hall.Id" class="btn btn-primary">ALL SURVEYS @hall.Name.ToUpper()</a>
