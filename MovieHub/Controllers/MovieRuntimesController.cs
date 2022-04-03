@@ -3,14 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
+using MovieHub.ViewModels;
 
 namespace MovieHub.Controllers
 {
+    [Authorize(Roles = "Admin, Manager, Back-Office")]
     public class MovieRuntimesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -23,8 +26,19 @@ namespace MovieHub.Controllers
         // GET: MovieRuntimes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.MovieRuntime.Include(m => m.Hall).Include(m => m.Movie);
-            return View(await applicationDbContext.ToListAsync());
+
+            var movieRuntimeViewModel = new MovieRuntimeViewModel
+            {
+                RuntimeList = _context.MovieRuntime
+                    .Include(m => m.Hall)
+                    .Include(m => m.Movie)
+                    .OrderBy(m => m.MovieId)
+                    .ThenBy(m => m.Time)
+                    .ToList()
+                    
+            };
+
+            return View(movieRuntimeViewModel);
         }
 
         // GET: MovieRuntimes/Details/5

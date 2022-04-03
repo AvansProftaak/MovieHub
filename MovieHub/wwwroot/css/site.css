@@ -388,6 +388,11 @@ color: #F8A613;
   position: relative;
 }
 
+.survey-td a:hover {
+  color: #FFFFFF;
+  transition: 0.5s;
+}
+
 
 *{
   font-family: "Lato";
