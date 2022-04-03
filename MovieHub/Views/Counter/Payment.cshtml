@@ -1,0 +1,11 @@
+@model MovieHub.Models.Voucher
+
+<div class="container">
+    <div class="row">
+        <div class="col-5 offset-md-4 text-center">
+            <h1>Processing payment...</h1>
+            <img id="loading" src="@Url.Content("~/img/loading-buffering.gif")" width="8%" alt="Loading ..."/>
+            <button onclick="location.href='@Url.Action("UpdateStatus", "Counter", new {id = @Model.Id})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button>
+        </div>
+    </div>
+</div>

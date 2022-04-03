@@ -32,5 +32,5 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<MovieHub.Models.MovieRuntime> MovieRuntime { get; set; } = null!;
     public DbSet<MovieHub.Models.Newsletter> Newsletter { get; set; } = null!;
     public DbSet<MovieHub.Models.ApplicationUser> ApplicationUsers { get; set; } = null!;
-    
+    public DbSet<MovieHub.Models.Voucher> Vouchers { get; set; } = null!;
 }

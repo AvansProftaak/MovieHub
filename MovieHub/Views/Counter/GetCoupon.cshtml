@@ -1,0 +1,18 @@
+@model MovieHub.Models.Voucher
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid" style="margin-top: 120px">
+    @if (@Model.paid)
+    {
+        <div class="row text-center">
+            <div class="col-5 offset-md-4">
+                <h1>Payment successful!</h1>
+                <button onclick="location.href='@Url.Action("PrintCoupon", "Counter", new {uuid = @Model.Barcode})'" style="margin-top: 24px" class="mt-2 btn btn-primary btn-sizing">Receive Ticket</button>
+            </div>
+        </div>
+    }
+</div>

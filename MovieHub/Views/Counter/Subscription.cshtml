@@ -1,0 +1,22 @@
+@model Voucher
+
+<div class="container">
+    <div class="container">
+        <form id="registerForm" method="post" asp-action="Subscription" style="color: gray;">
+            <h2>Create a new subscription.</h2>
+            <hr />
+            <div class="form-floating py-2">
+                <input class="form-control" type="text" id="FirstName" name="FirstName" placeholder="Please enter your First Name" style="font-size: 1.4vh">
+                <label asp-for="FirstName"></label>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating py-2">
+                <input class="form-control" type="text" id="LastName" name="LastName" placeholder="Please enter your Last Name" style="font-size: 1.4vh">
+                <label asp-for="LastName"></label>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <br/>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Create Subscription</button>
+        </form>
+    </div>
+</div>

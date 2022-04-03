@@ -1,5 +1,4 @@
 ﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
@@ -182,7 +181,8 @@ public class PaymentsController : Controller
                     .Replace("#Row", seat.RowNumber.ToString())
                     .Replace("#Time", showTime.StartAt.TimeOfDay.ToString())
                     .Replace("#Date", showTime.StartAt.ToShortDateString())
-                    .Replace("QRCODE", base64ImageRepresentation);
+                    .Replace("QRCODE", base64ImageRepresentation)
+                    .Replace("#UniqueId", content);
 
                 var FinishedHtmlTicketFile = Path.Combine(FinishedHtmlTicketFolder, ticket.Id + ".html");
             
@@ -201,7 +201,6 @@ public class PaymentsController : Controller
                 document.Close(true);
                 fileStream.Close();
             }
-
         }
         
         // Get the folder path into DirectoryInfo
@@ -267,6 +266,7 @@ public class PaymentsController : Controller
             int? seatId = _context.Seat
                 .Where(s => s.RowNumber.Equals(Int32.Parse(seat[0])))
                 .Where(s => s.SeatNumber.Equals(Int32.Parse(seat[1])))
+                .Where(s => s.HallId.Equals(showtime.HallId))
                 .ToList().FirstOrDefault()?.Id;
             if (seatId.HasValue)
             {

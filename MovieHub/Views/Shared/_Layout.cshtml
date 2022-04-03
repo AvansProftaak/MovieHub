@@ -47,7 +47,7 @@
                 @if (User.IsInRole("Cashier") || User.IsInRole("Admin"))
                 {
                     <li class="nav-item">
-                        <a class="nav-link hover-white" style="color:#F8A613" asp-area="" asp-controller="About" asp-action="Index">My Counter</a>
+                        <a class="nav-link hover-white" style="color:#F8A613" asp-area="" asp-controller="Counter" asp-action="Index">My Counter</a>
                     </li>
                 }
                 @if (User.IsInRole("Admin"))

@@ -22,6 +22,14 @@
           <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="wwwroot\ticket\ExampleVoucherHtml.html">
+          <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="wwwroot\ticket\ExampleSubscriptionHtml.html">
+          <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
@@ -61,6 +69,7 @@
     <ItemGroup>
       <Folder Include="Binaries" />
       <Folder Include="wwwroot\ticket\FinishedHtmlTickets" />
+      <Folder Include="wwwroot\ticket\FinishedPdfCoupon" />
       <Folder Include="wwwroot\ticket\FinishedPdfTickets" />
     </ItemGroup>
 
