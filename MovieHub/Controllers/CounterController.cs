@@ -251,9 +251,6 @@ namespace MovieHub.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Subscription(string FirstName, string LastName)
         {
-            Console.WriteLine("CRAETING SUBSCRIPTION");
-            Console.WriteLine(FirstName);
-            Console.WriteLine(LastName);
             if (string.IsNullOrEmpty(FirstName))
             {
                 ModelState.AddModelError("FirstName", "Please enter a valid First Name");
