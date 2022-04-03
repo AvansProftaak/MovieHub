@@ -68,6 +68,11 @@
       <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\MovieRuntime\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\MovieRuntime\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\MovieRuntime\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\MovieRuntime\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\MovieRuntime\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
