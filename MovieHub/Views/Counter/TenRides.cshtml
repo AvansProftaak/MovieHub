@@ -1,13 +1,10 @@
 <div class="container">
-    <div id="newsletterDiv" style="margin-top: 1vh;">
-        <h4 class="row justify-content-center mt-4 pt-4" style="font-size: 2vh">Ten Rides price: &euro; 70</h4>
-        <form method="post" asp-action="TenRides">
-            <div class="row justify-content-center">
-                <div class="col-sm-5" id="inputEmail">
-                </div>
-                <button style="width: 20%; height: 20%; font-size: 1.3vh" class="btn btn-primary ms-1">Submit</button>
-            </div>
-        </form>
+    <div class="container text-center" style="max-width: 50%">
+        <form id="registerForm" method="post" asp-action="TenRides" style="color: gray;">
+            <h2 class="mt-4 pt-4">Ten Rides price: &euro; 70</h2>
 
+            <br/>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Create Ten Rides Coupon</button>
+        </form>
     </div>
 </div>
