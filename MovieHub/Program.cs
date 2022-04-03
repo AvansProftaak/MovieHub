@@ -47,8 +47,13 @@ services.AddAuthentication()
         microsoftOptions.ClientSecret = configuration["Authentication:Microsoft:ClientSecret"];
     });   
 
+builder.Services.Configure<MailSettings>(
+    builder.Configuration.GetSection("MailSettings"));
 
 
+builder.Services.AddTransient<
+    MovieHub.Services.IMailService,
+    MovieHub.Services.MailService>();
 
 var app = builder.Build();
 

@@ -26,6 +26,7 @@
 
     <ItemGroup>
         <PackageReference Include="HtmlAgilityPack" Version="1.11.42" />
+        <PackageReference Include="MailKit" Version="3.2.0" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="6.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="6.0.3" />
@@ -42,6 +43,7 @@
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0-preview.2.22152.2" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.2" />
+        <PackageReference Include="MimeKit" Version="3.2.0" />
         <PackageReference Include="Nager.Date" Version="1.32.0" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
         <PackageReference Include="Select.HtmlToPdf.NetCore" Version="22.1.0-rc1" />

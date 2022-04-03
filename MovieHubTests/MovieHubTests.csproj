@@ -8,10 +8,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="MailKit" Version="3.2.0" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.3" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.0-preview.1.22076.6" />
         <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0-preview.2.22152.2" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+        <PackageReference Include="MimeKit" Version="3.2.0" />
         <PackageReference Include="Moq" Version="4.17.2" />
         <PackageReference Include="SkiaSharp.QrCode" Version="0.4.1" />
         <PackageReference Include="Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Linux" Version="19.4.0.56" />
