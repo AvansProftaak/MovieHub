@@ -104,6 +104,7 @@ namespace MovieHub
             return View();
         }
         
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> SurveysPerHall(int id)
         {
             var hall = _context.Hall.FirstOrDefault(h => h.Id == id)!;
