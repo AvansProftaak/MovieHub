@@ -1,0 +1,17 @@
+@model Voucher
+
+<div class="container">
+    <div id="newsletterDiv" style="margin-top: 1vh;">
+        <h4 class="row justify-content-center mt-4 pt-4" style="font-size: 2vh">Voucher value (minimum of &euro; 5):</h4>
+        <form method="post" asp-action="Voucher">
+            <div class="row justify-content-center">
+                <div class="col-sm-5" id="inputEmail">
+                    <input class="form-control" type="text" id="amount" name="amount" placeholder="Value (in &euro;)" style="font-size: 1.4vh">
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <button style="width: 20%; height: 20%; font-size: 1.3vh" class="btn btn-primary ms-1">Submit</button>
+            </div>
+        </form>
+
+    </div>
+</div>

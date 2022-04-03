@@ -15,4 +15,6 @@
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.HomeControllerTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+&lt;/SessionState&gt;</s:String>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean></wpf:ResourceDictionary>
