@@ -237,6 +237,7 @@ namespace MovieHub.Controllers
                 Name = "TenRides",
                 Price = 70,
                 paid = false,
+                Movies = 10,
                 FirstName = "-",
                 LastName = "-",
                 Barcode = Guid.NewGuid().ToString()

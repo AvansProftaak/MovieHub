@@ -25,6 +25,6 @@
 function goToPayment() {
     let paymentMethod = document.getElementById("paymentMethod")
     let paymentMethodval = paymentMethod.value
-    location.href='@Url.Action("CreatePayment", "Payments")?orderId=' + @Model + '&paymentMethodId=' + paymentMethodval
+    location.href='@Url.Action("ApplyCoupon", "Payments")?orderId=' + @Model + '&paymentMethodId=' + paymentMethodval
 }
 </script>

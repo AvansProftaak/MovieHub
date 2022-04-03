@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
+using MovieHub.ViewModels;
 using Newtonsoft.Json;
 using SkiaSharp;
 using SkiaSharp.QrCode;
@@ -286,8 +287,6 @@ public class PaymentsController : Controller
         
 
         Insert(_context, order);
-        /*_context.Order.Add(order);
-        await _context.SaveChangesAsync();*/
 
         var movie = OrdersController.GetMovie(movieId, _context);
         var ticketTypesPrices = OrdersController.CalculationTicketTypes(showtime.MovieId, _context);
@@ -295,6 +294,7 @@ public class PaymentsController : Controller
         var cateringPackages = OrdersController.GetCateringPackages(_context);
         var rd = new Random();
 
+        decimal totalPrice = 0;
 
         var counter = 0;
         var seatsCounter = 0;
@@ -315,6 +315,7 @@ public class PaymentsController : Controller
                     Price = ticketTypesPrices[ticketId],
                     SeatId = seatIds[seatsCounter]
                 };
+                totalPrice += ticketTypesPrices[ticketId];
 
                 Insert(_context, ticket);
                 seatsCounter++;
@@ -341,6 +342,7 @@ public class PaymentsController : Controller
                     Price = cateringPackage.Price,
                     SeatId = null
                 };
+                totalPrice += cateringPackage.Price;
 
 
                 Insert(_context, ticket);
@@ -351,6 +353,9 @@ public class PaymentsController : Controller
             counter += 1;
         }
 
+        order.TotalPrice = totalPrice;
+        _context.Update(order);
+        await _context.SaveChangesAsync();
 
 
 
@@ -411,4 +416,110 @@ public class PaymentsController : Controller
         context.Add(entity);
         context.SaveChanges();
     }
+    
+    public async Task<IActionResult> ApplyCoupon(int orderId, int paymentMethodId)
+    {
+        var order = _context.Order.FirstOrDefault(o => o.Id == orderId);
+        var paymentViewModel = new PaymentViewModel()
+        {
+            Order = order,
+            PaymentMethodId = paymentMethodId
+        };
+
+        return View("ApplyCoupon", paymentViewModel);
+    }
+    
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult ApplyCoupon(int orderId, int PaymentMethodId, string voucherId)
+    {
+        if (string.IsNullOrEmpty(voucherId))
+        {
+            TempData["error"] = "Please enter a Valid ID";
+            return RedirectToAction("ApplyCoupon", new { orderId, PaymentMethodId });
+        }
+        
+        var voucher = _context.Vouchers.FirstOrDefault(v => v.Barcode == voucherId);
+        if (voucher is null)
+        {
+            TempData["error"] = "Voucher not found";
+            return RedirectToAction("ApplyCoupon", new { orderId, PaymentMethodId });
+        }
+        
+        var order = _context.Order.FirstOrDefault(o => o.Id == orderId);
+
+        if (voucher.Name == "Voucher")
+        {
+            if (voucher.Price == 0)
+            {
+                TempData["error"] = "Voucher is empty";
+                return RedirectToAction("ApplyCoupon", new { orderId, PaymentMethodId });
+            }
+            var leftOver = order.TotalPrice - voucher.Price;
+            if (leftOver < 0)
+            {
+                var newVoucherPrice = voucher.Price - order.TotalPrice;
+                order.TotalPrice = 0;
+                _context.Update(order);
+
+                voucher.Price = newVoucherPrice;
+                _context.Update(voucher);
+                
+                _context.SaveChanges();
+            }
+
+            if (leftOver > 0)
+            {
+                order.TotalPrice = leftOver;
+                _context.Update(order);
+
+                voucher.Price = 0;
+                _context.Update(voucher);
+                
+                _context.SaveChanges();
+            }
+
+            if (leftOver == 0)
+            {
+                order.TotalPrice = 0;
+                _context.Update(order);
+
+                voucher.Price = 0;
+                _context.Update(voucher);
+                
+                _context.SaveChanges();
+            }
+        }
+
+        if (voucher.Name == "TenRides")
+        {
+            if (voucher.Movies <= 0)
+            {
+                TempData["error"] = "Ten Rides voucher is out of Movies";
+                return RedirectToAction("ApplyCoupon", new { orderId, PaymentMethodId });
+            }
+            order.TotalPrice -= (decimal)8.50;
+            _context.Update(order);
+
+            voucher.Movies -= 1;
+            _context.Update(voucher);
+                
+            _context.SaveChanges();
+        }
+
+        if (voucher.Name == "Subscription")
+        {
+            if (!voucher.paid)
+            {
+                TempData["error"] = "Subscription is not paid";
+                return RedirectToAction("ApplyCoupon", new { orderId, PaymentMethodId });
+            }
+            order.TotalPrice -= (decimal)8.50;
+            _context.Update(order);
+            _context.SaveChanges();
+        }
+        TempData["success"] = "Voucher applied successfully";
+        return RedirectToAction("ApplyCoupon", new { orderId, PaymentMethodId });
+    }
+    
 }
