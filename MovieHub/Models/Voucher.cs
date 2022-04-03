@@ -9,6 +9,7 @@ public class Voucher
     public string Name { get; set; }
     [Required]
     public decimal Price { get; set; }
+    public int Movies { get; set; }
     public bool paid { get; set; }
     public string Barcode { get; set; }
     [DisplayName( "First Name")] 
