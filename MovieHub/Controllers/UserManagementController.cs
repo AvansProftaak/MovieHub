@@ -48,7 +48,8 @@ public class UserManagementController : Controller
             user,
             rolesNotAdded,
             rolesAdded,
-            _userManager
+            _userManager,
+            _context
             );
         
         return View(model);
@@ -98,15 +99,32 @@ public class UserManagementController : Controller
         return user;
     }
 
-    public async void RemoveRole(EditRoleViewModel model, UserManager<User> userManager)
+    public static async Task RemoveRole(EditRoleViewModel model, UserManager<User> userManager,ApplicationDbContext context)
     {
-         var result = userManager.RemoveFromRoleAsync(model.User, model.RoleToChange.Name);
+         var result = userManager.RemoveFromRoleAsync(model.User, model.RoleToChange.NormalizedName);
+         await context.SaveChangesAsync();
 
     }
 
-    public static void AddRole(EditRoleViewModel model, UserManager<User> userManager)
+    public static async Task AddRole(EditRoleViewModel model, UserManager<User> userManager,ApplicationDbContext context)
     {
-        var result = userManager.AddToRoleAsync(model.User, model.RoleToChange.Name);
+        var result = userManager.AddToRoleAsync(model.User, model.RoleToChange.NormalizedName);
+        await context.SaveChangesAsync();
         
+    }
+
+    public IActionResult RoleChanged(Task<string> userid)
+    {
+        return View();
+    }
+
+    public IActionResult AddRole(User user, IdentityRole role)
+    {
+        var editRoleViewModel = new EditRoleViewModel(user, role);
+
+
+        var result = _userManager.AddToRoleAsync(user, role.NormalizedName);
+        await _userManager.SaveChangesAsync();
+
     }
 }
