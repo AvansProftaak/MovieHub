@@ -20,9 +20,4 @@ public class LostAndFound
     
     public Boolean Collected { get; set; }
     
-    
-    public LostAndFound()
-    {
-        
-    }
 }
