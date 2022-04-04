@@ -29,11 +29,11 @@ namespace MovieHub.Controllers
 
             var movieRuntimeViewModel = new MovieRuntimeViewModel
             {
+                Halls = _context.Hall.OrderBy(h => h.Id).ToList(),
                 RuntimeList = _context.MovieRuntime
                     .Include(m => m.Hall)
                     .Include(m => m.Movie)
-                    .OrderBy(m => m.MovieId)
-                    .ThenBy(m => m.Time)
+                    .OrderBy(m => m.Time)
                     .ToList()
                     
             };
@@ -64,8 +64,8 @@ namespace MovieHub.Controllers
         // GET: MovieRuntimes/Create
         public IActionResult Create()
         {
-            ViewData["HallId"] = new SelectList(_context.Hall, "Id", "Id");
-            ViewData["MovieId"] = new SelectList(_context.Movie, "Id", "Id");
+            ViewData["HallId"] = new SelectList(_context.Hall.OrderBy(h => h.Id), "Id", "Id");
+            ViewData["MovieId"] = new SelectList(_context.Movie.OrderBy(m => m.Id), "Id", "Title");
             return View();
         }
 
@@ -74,17 +74,44 @@ namespace MovieHub.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,MovieId,HallId,StartAt,EndAt,Time")] MovieRuntime movieRuntime)
+        public async Task<IActionResult> Create([Bind("MovieId,HallId,StartAt,EndAt")] MovieRuntime movieRuntime, TimeSpan time)
         {
-            if (ModelState.IsValid)
+            
+            var newMovieRuntime = new MovieRuntime
             {
-                _context.Add(movieRuntime);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                MovieId = movieRuntime.MovieId,
+                HallId = movieRuntime.HallId,
+                StartAt = movieRuntime.StartAt,
+                EndAt = movieRuntime.EndAt,
+                Time = time
+            };
+            _context.Add(newMovieRuntime);
+            await _context.SaveChangesAsync();
+
+            var dates = new List<DateTime>();
+            
+            for (var dt = movieRuntime.StartAt; dt <= movieRuntime.EndAt; dt = dt.AddDays(1))
+            {
+                dates.Add(dt);
             }
-            ViewData["HallId"] = new SelectList(_context.Hall, "Id", "Id", movieRuntime.HallId);
-            ViewData["MovieId"] = new SelectList(_context.Movie, "Id", "Id", movieRuntime.MovieId);
-            return View(movieRuntime);
+            
+            foreach (var date in dates)
+            {
+                var showtime = new Showtime
+                {
+                    HallId = movieRuntime.HallId,
+                    MovieId = movieRuntime.MovieId,
+                    StartAt = date.Add(time).ToUniversalTime()
+                };
+                Console.WriteLine(showtime.StartAt);
+                
+                _context.Showtime.Add(showtime);
+                await _context.SaveChangesAsync();
+            }
+            
+
+            return RedirectToAction(nameof(Index));
+                
         }
 
         // GET: MovieRuntimes/Edit/5

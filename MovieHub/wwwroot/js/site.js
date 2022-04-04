@@ -23,3 +23,18 @@ function toCreateMovie()
 {
     location.href = '/Movies/Create';
 }
+
+function validateHhMm(inputField) 
+{
+    var isValid = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(inputField.value);
+
+    if (isValid) {
+        inputField.style.backgroundColor = '#bfa';
+        document.getElementById('addButton').disabled = false;
+
+    } else {
+        inputField.style.backgroundColor = '#fba';
+        document.getElementById('addButton').disabled = true;
+    }
+    return isValid;
+}

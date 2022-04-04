@@ -1,4 +1,5 @@
-﻿@model MovieHub.ViewModels.IndexViewModel
+﻿@using Humanizer
+@model MovieHub.ViewModels.IndexViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -43,7 +44,7 @@
 
                                     if (counter == 0)
                                     {
-                                        <span> RELEASED SOON •</span>
+                                        <span> TBA •</span>
                                     }
                                     
                                     
@@ -77,31 +78,56 @@
 
                     foreach (var hall in halls!)
                     {
+
+                        var movieNow =
+                            Model.Showtimes
+                                .Where(m => m.HallId == hall.Id)
+                                .Where(s => s.StartAt.ToLocalTime() < DateTime.Now)
+                                .OrderByDescending(m => m.StartAt.ToLocalTime())
+                                .Take(1).FirstOrDefault();
+                                
+                        var movieNext =
+                            Model.Showtimes
+                                .Where(m => m.HallId == hall.Id)
+                                .Where(s => s.StartAt.ToLocalTime() > DateTime.Now)
+                                .OrderBy(m => m.StartAt.ToLocalTime())
+                                .Take(1).FirstOrDefault();
+
+                        var movieNowTitle = "-";
+                        if (movieNow != null)
+                        {
+                            if (movieNow.StartAt.ToLocalTime().Add(movieNow.Movie.Duration.Minutes()) > DateTime.Now)
+                            {
+                                movieNowTitle = movieNow.Movie.Title;
+                            }
+                        }
+
+                        var movieNextTitle = "-";
+                        var movieNextTime = "-";
+                        if (movieNext != null)
+                        {
+                            movieNextTitle = movieNext.Movie.Title;
+                            movieNextTime = movieNext.StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm") + "h";
+                            if (movieNext.StartAt.Date != DateTime.Today.Date)
+                            {
+                                movieNextTime = "tomorrow, " + movieNextTime;
+                            }
+                            
+                        }
+
                         <div class="row">
                             <p class="index-hall-title">@Html.DisplayFor(m => hall.Name)</p>
-                            @{
-                                var movieIdNow = Model.ShowNow![hall.Id - 1].MovieId;
-                                var movieNowDate = Model.ShowNow[hall.Id - 1].StartAt.Date;
-                                var movieNowTitle = movies![movieIdNow - 1].Title;
-
-                                if (movieNowDate != DateTime.Now.Date)
-                                {
-                                    movieNowTitle = "-";
-                                }
-                            }
-                            <p class="index-hall-sm">Now playing: <span class="index-hall-lg">@Html.DisplayFor(m => movieNowTitle)</span></p>
-                            @{
-                                var movieIdNext = Model.ShowNext![hall.Id - 1].MovieId;
-                                var movieNextTitle = movies[movieIdNext - 1].Title;
-                                var movieNextDateTime = Model.ShowNext[hall.Id - 1].StartAt;
-                                var movieNextTime = movieNextDateTime.ToLocalTime().TimeOfDay.ToString(@"hh\:mm") + "h";
-
-                                if (movieNextDateTime.Date != DateTime.Today)
-                                {
-                                    movieNextTime = "tomorrow, " + movieNextTime;
-                                }
-                            }
-                            <p class="index-hall-sm" style="  margin-bottom: 1vh;">Next (@Html.DisplayFor(m => movieNextTime)): <span onclick="location.href='@Url.Action("Details", "Movies", new {id = movieIdNext})'" class="index-hall-lg hover-orange" style="cursor: pointer">@Html.DisplayFor(m => movieNextTitle)</span></p>
+                            <p class="index-hall-sm">Now playing:
+                                <span class="index-hall-lg">
+                                    @Html.DisplayFor(m => movieNowTitle)
+                                </span>
+                            </p>
+                            <p class="index-hall-sm" style="margin-bottom: 1vh;">
+                                Next (@Html.DisplayFor(m => movieNextTime)):
+                                <span class="index-hall-lg">
+                                    @Html.DisplayFor(m => movieNextTitle)
+                                </span>
+                            </p>
                         </div>
                         <hr class="index-hall-hr"/>
                     }

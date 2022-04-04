@@ -20,26 +20,16 @@ public class HomeController : Controller
     {
         var indexViewModel = new IndexViewModel
         {
-            Halls = GetHalls(),
-            Movies = GetMovies(),
-            ShowNext = ShowNext(),
-            ShowNow = ShowNow(),
-            MovieRuntimes = GetAllMovieRuntimes()!
+            Halls = _context.Hall.OrderBy(h => h.Id).ToList(),
+            Movies = _context.Movie.OrderBy(m => m.Id).ToList(),
+            Showtimes = _context.Showtime.Include(s => s.Hall).Include(s => s.Movie).ToList(),
+            MovieRuntimes = _context.MovieRuntime.ToList()
         };
 
         return Task.FromResult<ActionResult<IndexViewModel>>(View(indexViewModel));
         }
     
-    public List<Hall> GetHalls()
-    {
-        return _context.Hall.OrderBy(h => h.Id).ToList();
-    }
-    
-    public List<Movie> GetMovies()
-    {
-        return _context.Movie.OrderBy(m => m.Id).ToList();
-    }
-    
+
     public List<Showtime> ShowNext()
     {
         return _context.Showtime!
@@ -82,12 +72,7 @@ public class HomeController : Controller
         // Add 6 days to get the last day, but to display all movies from the last day we add 7!
         return start.AddDays(7).Date;
     }
-
-    public List<MovieRuntime?> GetAllMovieRuntimes()
-    {
-        return _context.MovieRuntime.ToList()!;
-    }
-
+    
     public async Task<IActionResult> InsertEmail(string email)
     {
         var result = await _context.Newsletter.FirstOrDefaultAsync(p => p.Email == email);

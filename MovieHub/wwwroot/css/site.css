@@ -393,6 +393,11 @@ color: #F8A613;
   transition: 0.5s;
 }
 
+.survey-row-small a:hover {
+  color: #FFFFFF;
+  transition: 0.5s;
+}
+
 
 *{
   font-family: "Lato";

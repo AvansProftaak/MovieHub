@@ -1,64 +1,53 @@
+@using Humanizer
 @model MovieHub.ViewModels.MovieRuntimeViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
-<div class="container" style="margin-top: 9.5vh">
+<div class="container-fluid" style="margin-top: 9.5vh">
 
     <h1>Movies</h1>
-    <h2>Timetable</h2>
+    <h2 class="mb-5">Timetable</h2>
     
-    <table class="table mb-4">
-        <thead>
-        <tr class="survey-th">
-            <th>
-                @Html.DisplayNameFor(model => model.Movie.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MovieRuntime.StartAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MovieRuntime.EndAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MovieRuntime.Time)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MovieRuntime.Hall)
-            </th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model.RuntimeList)
-        {
-            <tr class="survey-td">
-                <td>
-                    @Html.DisplayFor(modelItem => item.Movie.Title)
-                </td>
-                <td>
-                    @item.StartAt.ToString("dd-MM-yyyy")
-                </td>
-                <td>
-                    @item.EndAt.ToString("dd-MM-yyyy")
-                </td>
-                <td>
-                    @item.Time.ToString(@"hh\:mm")
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Hall.Name)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
     
-    <div>
+    <div class="row mb-1">
+            @foreach(var hall in Model.Halls)
+            {
+                <div class="col-6 index-hall-title mb-4">
+                    @Html.DisplayFor(m => hall.Name)  
+                    <hr class="role-hr"/>
+                    
+                    <div class="row">
+                        <div class="col survey-row" style="padding-left: 12px">Title</div>
+                        <div class="col survey-row">Start Date</div>
+                        <div class="col survey-row">End Date</div>
+                        <div class="col survey-row">Time</div>
+                        <div class="col survey-row"></div>
+                    </div>
+                    <hr class="role-hr"/>
+                    
+                    @foreach (var item in Model.RuntimeList.Where(m => m.HallId == hall.Id))
+                    {
+                        <div class="row">
+                            <div class="col survey-row-small" style="padding-left: 12px">@item.Movie.Title</div>
+                            <div class="col survey-row-small">@item.StartAt.ToString("dd MMMM yyyy")</div>
+                            <div class="col survey-row-small">@item.EndAt.ToString("dd MMMM yyyy")</div>
+                            <div class="col survey-row-small">@item.Time.ToString(@"hh\:mm") - @item.Time.Add(item.Movie.Duration.Minutes()).ToString(@"hh\:mm")</div>
+                            <div class="col survey-row-small">
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> | 
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> | 
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </div>
+
+                        </div>
+                        <hr class="role-hr"/>
+                    }
+                </div>
+                
+            }
+        </div>
+
+    <div class="col-5">
         <a class="btn btn-primary col-3" asp-action="Create">Add Runtime</a>
     </div>
 </div>
