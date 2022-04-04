@@ -5,8 +5,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Build.Framework;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using MovieHub.Data;
 using MovieHub.Models;
+using MovieHub.ViewModels;
 
 namespace MovieHub.Controllers;
 
@@ -34,20 +36,53 @@ public class UserManagementController : Controller
         return View(GetUSers());
     }
     
-    public IActionResult Edit(string userId)
+    public async Task<IActionResult> Edit(string userId)
     {
         var taskUser = GetUSer(userId);
         User user = taskUser.Result;
         List<IdentityRole> allRoles = _roleManager.Roles.ToList();
-        List<IdentityRole> rolesAdded = getAddedRoles(userId);
+        List<IdentityRole> rolesAdded = await getAddedRoles(user, allRoles);
+        List<IdentityRole> rolesNotAdded = await getNotAddedRoles(user, allRoles);
+
+        AddRoleViewModel model = new AddRoleViewModel(
+            user,
+            rolesNotAdded,
+            rolesAdded
+            );
         
-        return View(user);
+        return View(model);
     }
 
-    private List<IdentityRole> getAddedRoles(string userId)
+    private async Task<List<IdentityRole>> getNotAddedRoles(User user, List<IdentityRole> allRoles)
     {
-        var roleIds = _roleManager;
-        return;
+        var notAddedRoles = new List<IdentityRole>();
+        
+        foreach (IdentityRole role in allRoles)
+        {
+            var check = await _userManager.IsInRoleAsync(user, role.Name);
+            if (!check)
+            {
+                notAddedRoles.Add(role);
+            }
+        }
+
+        return notAddedRoles;
+    }
+
+    private async Task<List<IdentityRole>> getAddedRoles(User user, List<IdentityRole> allRoles)
+    {
+        var addedRoles = new List<IdentityRole>();
+        
+        foreach (IdentityRole role in allRoles)
+        {
+            var check = await _userManager.IsInRoleAsync(user, role.Name);
+            if (check)
+            {
+                addedRoles.Add(role);
+            }
+        }
+
+        return addedRoles;
     }
 
     public ICollection<User> GetUSers()
@@ -60,5 +95,16 @@ public class UserManagementController : Controller
         
         var user = _userManager.FindByIdAsync(userId);
         return user;
+    }
+
+    public IActionResult RemoveRole(User user, IdentityRole role)
+    {
+        _userManager.FindByIdAsync(user.Id);
+        _userManager.AddRole(user);
+    }
+
+    public IActionResult AddRole(string userid, IdentityRole role)
+    {
+        throw new NotImplementedException();
     }
 }

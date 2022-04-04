@@ -30,7 +30,6 @@
               <td>@user.LastName</td>
               <td>@user.Email</td>
               <td>to be implemented</td>
-              @*<td><a asp-controller="UserManagement" asp-action="Edit" asp-route="@user.Id">Edit</a></td>*@
               <td><button onclick="location.href='@Url.Action("Edit", "UserManagement", new {userId = @user.Id})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
           </tr>
       }
