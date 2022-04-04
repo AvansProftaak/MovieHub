@@ -63,7 +63,7 @@
             <tr>
                 <td>@role.Name</td>
                 <td>not added</td>
-                <td><button onclick="location.href='@Url.Action("AddRole", "UserManagement", new {user = @Model.User, role})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
+                <td><button onclick="location.href='@Url.Action("AddRole", "UserManagement", new {user = @Model.User, role.NormalizedName})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
 
             </tr>
             </tbody>

@@ -97,14 +97,13 @@ public class UserManagementController : Controller
         return user;
     }
 
-    public IActionResult RemoveRole(User user, IdentityRole role)
+    public async Task<Task<IdentityResult>> RemoveRole(User user, string name)
     {
-        _userManager.FindByIdAsync(user.Id);
-        _userManager.AddRole(user);
+        return _userManager.RemoveFromRoleAsync(user, name);
     }
 
-    public IActionResult AddRole(string userid, IdentityRole role)
+    public async Task<Task<IdentityResult>> AddRole(User user, string name)
     {
-        throw new NotImplementedException();
+        return _userManager.AddToRoleAsync(user, name);
     }
 }
