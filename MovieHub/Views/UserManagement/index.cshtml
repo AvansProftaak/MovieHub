@@ -15,19 +15,17 @@
     
     <table class="table">
       <thead>
-        <tr>
-          <th scope="col">#</th>
+      <tr>
           <th scope="col">First</th>
           <th scope="col">Last</th>
           <th scope="col">Email</th>
           <th scope="col">Role</th>
           <th scope="col">Edit</th>
-        </tr>
+      </tr>
       </thead>
       <tbody>
       @foreach (var user in Model){
           <tr>
-              <th scope="row">@user.Id</th>
               <td>@user.FirstName</td>
               <td>@user.LastName</td>
               <td>@user.Email</td>

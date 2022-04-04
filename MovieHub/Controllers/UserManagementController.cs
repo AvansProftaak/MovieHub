@@ -38,9 +38,16 @@ public class UserManagementController : Controller
     {
         var taskUser = GetUSer(userId);
         User user = taskUser.Result;
-        Console.WriteLine(user);
+        List<IdentityRole> allRoles = _roleManager.Roles.ToList();
+        List<IdentityRole> rolesAdded = getAddedRoles(userId);
         
         return View(user);
+    }
+
+    private List<IdentityRole> getAddedRoles(string userId)
+    {
+        var roleIds = _roleManager;
+        return;
     }
 
     public ICollection<User> GetUSers()
