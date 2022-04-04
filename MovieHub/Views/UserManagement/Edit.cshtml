@@ -1,7 +1,33 @@
 ﻿using MovieHub.Models
 @using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Identity
-@model MovieHub.ViewModels.AddRoleViewModel
+@using MovieHub.Controllers
+@using MovieHub.ViewModels
+@using SQLitePCL
+@model MovieHub.ViewModels.ListRoleViewModel
+
+@{
+    string addUserToRole(User user, IdentityRole roleToChange)
+    {
+        var editRoleViewModel = new EditRoleViewModel(user, roleToChange);
+
+        UserManagementController.AddRole(editRoleViewModel, @Model.UserManager);
+        
+        return @Model.User.Id;
+    }
+    
+    string removeUserFromRole(User user, IdentityRole roleToChange)
+    {
+        var editRoleViewModel = new EditRoleViewModel(user, roleToChange);
+
+        UserManagementController.RemoveRole(editRoleViewModel, @Model.UserManager);
+        
+        return @Model.User.Id;
+    }
+
+}
+
+
 
 @{
     ViewData["Title"] = "Edit Users";
@@ -51,7 +77,7 @@
             <tr>
                 <td>@role.Name</td>
                 <td>added</td>
-                <td><button onclick="location.href='@Url.Action("RemoveRole", "UserManagement", new {userId = @Model.User?.Id, role})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
+                <td><button onclick="location.href='@Url.Action("Edit", "UserManagement", new {userId = removeUserFromRole(@Model.User, role )})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
 
             </tr>
             </tbody>
@@ -63,7 +89,7 @@
             <tr>
                 <td>@role.Name</td>
                 <td>not added</td>
-                <td><button onclick="location.href='@Url.Action("AddRole", "UserManagement", new {user = @Model.User, role.NormalizedName})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
+                <td><button onclick="location.href='@Url.Action("Edit", "UserManagement", new {userId = addUserToRole(@Model.User, role )})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
 
             </tr>
             </tbody>

@@ -16,9 +16,9 @@ namespace MovieHub.Controllers;
 public class UserManagementController : Controller
 {
     
-    private readonly RoleManager<IdentityRole> _roleManager;
-    private readonly UserManager<User> _userManager;
-    private readonly ApplicationDbContext _context;
+    public readonly RoleManager<IdentityRole> _roleManager;
+    public readonly UserManager<User> _userManager;
+    public readonly ApplicationDbContext _context;
     
     
     public UserManagementController(RoleManager<IdentityRole> roleManager, UserManager<User> userManager, ApplicationDbContext context)
@@ -27,8 +27,8 @@ public class UserManagementController : Controller
         _userManager = userManager;
         _context = context;
     }
-    
-    
+
+
     // GET
     public IActionResult Index()
     {
@@ -44,10 +44,11 @@ public class UserManagementController : Controller
         List<IdentityRole> rolesAdded = await getAddedRoles(user, allRoles);
         List<IdentityRole> rolesNotAdded = await getNotAddedRoles(user, allRoles);
 
-        AddRoleViewModel model = new AddRoleViewModel(
+        ListRoleViewModel model = new ListRoleViewModel(
             user,
             rolesNotAdded,
-            rolesAdded
+            rolesAdded,
+            _userManager
             );
         
         return View(model);
@@ -97,13 +98,15 @@ public class UserManagementController : Controller
         return user;
     }
 
-    public async Task<Task<IdentityResult>> RemoveRole(User user, string name)
+    public async void RemoveRole(EditRoleViewModel model, UserManager<User> userManager)
     {
-        return _userManager.RemoveFromRoleAsync(user, name);
+         var result = userManager.RemoveFromRoleAsync(model.User, model.RoleToChange.Name);
+
     }
 
-    public async Task<Task<IdentityResult>> AddRole(User user, string name)
+    public static void AddRole(EditRoleViewModel model, UserManager<User> userManager)
     {
-        return _userManager.AddToRoleAsync(user, name);
+        var result = userManager.AddToRoleAsync(model.User, model.RoleToChange.Name);
+        
     }
 }
