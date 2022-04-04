@@ -37,7 +37,8 @@ public class UserManagementController : Controller
     public IActionResult Edit(string userId)
     {
         var taskUser = GetUSer(userId);
-        User? user = taskUser.Result;
+        User user = taskUser.Result;
+        Console.WriteLine(user);
         
         return View(user);
     }
@@ -47,11 +48,10 @@ public class UserManagementController : Controller
         return _context.Users.ToList();
     }
 
-    public Task<User?> GetUSer(string userId)
+    public Task<User> GetUSer(string userId)
     {
         
-        var user = _context.User
-            .FirstOrDefaultAsync(u => u.Id == userId);
+        var user = _userManager.FindByIdAsync(userId);
         return user;
     }
 }
