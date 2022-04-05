@@ -84,8 +84,8 @@ namespace MovieHub.Controllers
             if (ModelState.IsValid)
             {
                 
-                /*_context.Movie.Remove(movieToSave);*/
-                //_context.Add(movieToSave);
+                _context.Movie.Remove(movie);
+                _context.Add(movieToSave);
                 await _context.SaveChangesAsync();
 
                 foreach (var pegiId in pegis)
