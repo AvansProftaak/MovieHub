@@ -7,10 +7,14 @@ public class Showtime
     public DateTime StartAt { get; set; }
     public int HallId { get; set; }
     public int MovieId { get; set; }
+    public int MovieRuntimeId { get; set; }
     
     [ForeignKey("HallId")]
     public Hall Hall { get; set; } = null!;
     
     [ForeignKey("MovieId")]
     public Movie? Movie { get; set; }
+    
+    [ForeignKey("MovieRuntimeId")]
+    public MovieRuntime? MovieRuntime { get; set; }
 }

@@ -8,10 +8,8 @@
     
     <h1>Create</h1>
     <h2>Movie</h2>
-    
-    <hr class="role-hr"/>
-    <br/>
-    
+    <hr class="role-hr mt-3 mb-5"/>
+
     <form asp-action="Create">
         <div class="row">
             <div class="col-8">
@@ -66,7 +64,7 @@
 
                 <div class="row mt-2 form-group">
                     <div class="col-6">
-                        <label asp-for="Movie.ReleaseDate" class="control-label movie-p"></label>
+                        <label class="control-label movie-p">Release Date</label>
                         <input asp-for="Movie.ReleaseDate" class="form-control"/>
                         <span asp-validation-for="Movie.ReleaseDate" class="text-danger"></span>
                     </div>

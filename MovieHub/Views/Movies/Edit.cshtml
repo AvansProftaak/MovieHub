@@ -21,65 +21,65 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Movie.Id"/>
                 <div class="form-group">
-                    <label asp-for="Movie.Title" class="control-label"></label>
+                    <label asp-for="Movie.Title" class="control-label movie-p"></label>
                     <input asp-for="Movie.Title" class="form-control"/>
                     <span asp-validation-for="Movie.Title" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Movie.Description" class="control-label"></label>
+                    <label asp-for="Movie.Description" class="control-label movie-p"></label>
                     <input asp-for="Movie.Description" class="form-control"/>
                     <span asp-validation-for="Movie.Description" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Movie.Cast" class="control-label"></label>
+                    <label asp-for="Movie.Cast" class="control-label movie-p"></label>
                     <input asp-for="Movie.Cast" class="form-control"/>
                     <span asp-validation-for="Movie.Cast" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Movie.Director" class="control-label"></label>
+                    <label asp-for="Movie.Director" class="control-label movie-p"></label>
                     <input asp-for="Movie.Director" class="form-control"/>
                     <span asp-validation-for="Movie.Director" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Movie.ImageUrl" class="control-label"></label>
+                    <label asp-for="Movie.ImageUrl" class="control-label movie-p"></label>
                     <input asp-for="Movie.ImageUrl" class="form-control"/>
                     <span asp-validation-for="Movie.ImageUrl" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Movie.TrailerUrl" class="control-label"></label>
+                    <label asp-for="Movie.TrailerUrl" class="control-label movie-p"></label>
                     <input asp-for="Movie.TrailerUrl" class="form-control"/>
                     <span asp-validation-for="Movie.TrailerUrl" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
-                    <label asp-for="Movie.Language" class="control-label"></label>
+                    <label asp-for="Movie.Language" class="control-label movie-p"></label>
                     <input asp-for="Movie.Language" class="form-control"/>
                     <span asp-validation-for="Movie.Language" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Movie.Duration" class="control-label"></label>
+                    <label asp-for="Movie.Duration" class="control-label movie-p"></label>
                     <input asp-for="Movie.Duration" class="form-control"/>
                     <span asp-validation-for="Movie.Duration" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Movie.ImdbScore" class="control-label"></label>
+                    <label asp-for="Movie.ImdbScore" class="control-label movie-p"></label>
                     <input asp-for="Movie.ImdbScore" class="form-control"/>
                     <span asp-validation-for="Movie.ImdbScore" class="text-danger"></span>
                 </div>
                 <div class="row mt-2 form-group">
                     <div class="col-6">
-                        <label asp-for="Movie.ReleaseDate" class="control-label"></label>
+                        <label class="control-label movie-p">Release Date</label>
                         <input asp-for="Movie.ReleaseDate" class="form-control"/>
                         <span asp-validation-for="Movie.ReleaseDate" class="text-danger"></span>
                     </div>
                     <div class="col-2 ">
-                        <label class="form-check-label">
+                        <label class="form-check-label movie-p">
                             <input class="form-check-input" asp-for="Movie.Is3D"/> @Html.DisplayNameFor(model => model.Movie.Is3D)
                         </label>
                     </div>
                     <div class="col-4">
-                        <label class="form-check-label">
+                        <label class="form-check-label movie-p">
                             <input class="form-check-input" asp-for="Movie.IsSecret"/> @Html.DisplayNameFor(model => model.Movie.IsSecret)
                         </label>
                     </div>
@@ -112,8 +112,8 @@
         <div class="row">
             <div class="mt-5 col-5">
                 <div class="form-group">
-                    <a asp-action="Index" class="btn back-button col-4">Back</a>
-                    <input id="submitEditMovie" type="submit" value="Save" class="btn btn-primary float-end mr-3 col-7"/>
+                    <a asp-action="Index" class="btn back-button col-4">BACK</a>
+                    <input id="submitEditMovie" type="submit" value="SAVE" class="btn btn-primary float-end mr-3 col-7"/>
                 </div>
             </div>
         </div>

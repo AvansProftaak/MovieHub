@@ -9,43 +9,54 @@
 
     <div class="col-5 mx-auto">
         <h1>Add</h1>
-        <h4>MovieRuntime</h4>
-        <hr />
+        <h4>Daily Runtime</h4>
+        <hr class="role-hr mt-3 mb-5"/>
+        
         <div class="row">
             <div class="col-12">
                 <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="MovieId" class="control-label"></label>
+                        <label class="control-label movie-p">Movie Title</label>
                         <select asp-for="MovieId" class ="form-control" asp-items="ViewBag.MovieId"></select>
                     </div>
                     <div class="form-group">
-                        <label asp-for="HallId" class="control-label"></label>
+                        <label class="control-label movie-p">Select Cinema</label>
                         <select asp-for="HallId" class ="form-control" asp-items="ViewBag.HallId"></select>
                     </div>
                     <div class="form-group">
-                        <label asp-for="StartAt" class="control-label"></label>
+                        <label class="control-label movie-p">First Day</label>
                         <input asp-for="StartAt" type="date" class="form-control" />
                         <span asp-validation-for="StartAt" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="EndAt" class="control-label"></label>
+                        <label class="control-label movie-p">Last Day</label>
                         <input asp-for="EndAt" class="form-control" />
                         <span asp-validation-for="EndAt" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Time" class="control-label"></label><br/>
-                        <input type="text" class="form-control" placeholder="i.e 12:00" name="time" onchange="validateHhMm(this)" required=""/>
-                    </div>
-                    <div class="form-group">
-                        <input id="addButton" type="submit" value="ADD" class="btn btn-primary" />
+                    
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="form-group">
+                            <label class="control-label movie-p">Daily Runtime</label><br/>
+                            <input type="text" class="form-control" placeholder="i.e 12:00" name="time" onchange="validateHhMm(this)" required=""/>
+                        </div>
+                        <p class="mb-4" style="color: red"><b>@TempData["ErrorMessage"]</b></p>
+                    }
+                    else
+                    {
+                        <div class="form-group mb-4">
+                            <label class="control-label movie-p">Daily Runtime</label><br/>
+                            <input type="text" class="form-control" placeholder="i.e 12:00" name="time" onchange="validateHhMm(this)" required=""/>
+                        </div>
+                    }
+
+                    <div class="form-group col-5">
+                        <a asp-action="Index" class="btn back-button col-4">BACK</a>
+                        <input id="addButton" type="submit" value="SAVE" class="btn btn-primary  col-7 float-end"/>
                     </div>
                 </form>
             </div>
-        </div>
-
-        <div>
-            <a asp-action="Index">Back to List</a>
         </div>
     </div>
 </div>

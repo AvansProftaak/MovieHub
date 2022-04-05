@@ -71,20 +71,17 @@ namespace MovieHub.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie, int[] pegis, int[] genres)
         {
-            
             if (ModelState.IsValid)
             {
                 _context.Add(movie);
                 await _context.SaveChangesAsync();
-
-                var movieId = _context.Movie.FirstOrDefault(m => m.Title == movie.Title)!.Id;
                 
                 foreach (var pegiId in pegis)
                 {
                     var pegi = new MoviePegi
                     {
                         PegiId = pegiId,
-                        MovieId = movieId
+                        MovieId = movie.Id
                     };
                     _context.MoviePegi.Add(pegi); 
                     await _context.SaveChangesAsync();       
@@ -95,7 +92,7 @@ namespace MovieHub.Controllers
                     var genre = new MovieGenre
                     {
                         GenreId = genreId,
-                        MovieId = movieId
+                        MovieId = movie.Id
                     };
                     _context.MovieGenre.Add(genre); 
                     await _context.SaveChangesAsync();       

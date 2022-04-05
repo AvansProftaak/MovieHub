@@ -1,8 +1,6 @@
 #nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+using Humanizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -24,7 +22,7 @@ namespace MovieHub.Controllers
         }
 
         // GET: MovieRuntimes
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
 
             var movieRuntimeViewModel = new MovieRuntimeViewModel
@@ -35,7 +33,6 @@ namespace MovieHub.Controllers
                     .Include(m => m.Movie)
                     .OrderBy(m => m.Time)
                     .ToList()
-                    
             };
 
             return View(movieRuntimeViewModel);
@@ -64,10 +61,11 @@ namespace MovieHub.Controllers
         // GET: MovieRuntimes/Create
         public IActionResult Create()
         {
-            ViewData["HallId"] = new SelectList(_context.Hall.OrderBy(h => h.Id), "Id", "Id");
+            ViewData["HallId"] = new SelectList(_context.Hall.OrderBy(h => h.Id), "Id", "Name");
             ViewData["MovieId"] = new SelectList(_context.Movie.OrderBy(m => m.Id), "Id", "Title");
             return View();
         }
+        
 
         // POST: MovieRuntimes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -76,6 +74,35 @@ namespace MovieHub.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MovieId,HallId,StartAt,EndAt")] MovieRuntime movieRuntime, TimeSpan time)
         {
+
+            var runtimeList = _context.MovieRuntime.Where(m => m.HallId == movieRuntime.HallId).Include(m => m.Movie).ToList();
+            var movie = _context.Movie.FirstOrDefault(m => m.Id == movieRuntime.MovieId);
+            var hall = _context.Hall.FirstOrDefault(h => h.Id == movieRuntime.HallId);
+
+            foreach (var runtime in runtimeList)
+            {
+                if (
+                    // if startDate new Runtime between startDate AND endDate of other Runtimes
+                    (movieRuntime.StartAt >= runtime.StartAt && movieRuntime.StartAt <= runtime.EndAt || 
+                    // OR if endDate new Runtime between startDate AND endDate of other Runtimes
+                     movieRuntime.EndAt >= runtime.StartAt && movieRuntime.EndAt <= runtime.EndAt) && 
+                    // AND startTime new Runtime is between startTime AND endTime of other Runtimes
+                    (time >= runtime.Time && time <= runtime.Time.Add(runtime.Movie.Duration.Minutes()) || 
+                    // OR endTime new Runtime is between startTime AND endTime of other Runtime
+                     time.Add(movie.Duration.Minutes()) >= runtime.Time && time.Add(movie.Duration.Minutes()) <= runtime.Time.Add(runtime.Movie.Duration.Minutes())))
+                    
+                {
+                    // Show errormessage in View
+                    TempData["ErrorMessage"] = @hall.Name + " is not available on this time";
+                    
+                    // Fills dropdownbuttons
+                    ViewData["HallId"] = new SelectList(_context.Hall.OrderBy(h => h.Id), "Id", "Name");
+                    ViewData["MovieId"] = new SelectList(_context.Movie.OrderBy(m => m.Id), "Id", "Title");
+                    
+                    return RedirectToAction(nameof(Create));
+                }
+            }
+            
             
             var newMovieRuntime = new MovieRuntime
             {
@@ -89,7 +116,7 @@ namespace MovieHub.Controllers
             await _context.SaveChangesAsync();
 
             var dates = new List<DateTime>();
-            
+                     
             for (var dt = movieRuntime.StartAt; dt <= movieRuntime.EndAt; dt = dt.AddDays(1))
             {
                 dates.Add(dt);
@@ -101,17 +128,13 @@ namespace MovieHub.Controllers
                 {
                     HallId = movieRuntime.HallId,
                     MovieId = movieRuntime.MovieId,
-                    StartAt = date.Add(time).ToUniversalTime()
+                    StartAt = date.Add(time).ToUniversalTime(),
+                    MovieRuntimeId = newMovieRuntime.Id
                 };
-                Console.WriteLine(showtime.StartAt);
-                
-                _context.Showtime.Add(showtime);
+                _context.Showtime?.Add(showtime);
                 await _context.SaveChangesAsync();
             }
-            
-
             return RedirectToAction(nameof(Index));
-                
         }
 
         // GET: MovieRuntimes/Edit/5
@@ -127,8 +150,8 @@ namespace MovieHub.Controllers
             {
                 return NotFound();
             }
-            ViewData["HallId"] = new SelectList(_context.Hall, "Id", "Id", movieRuntime.HallId);
-            ViewData["MovieId"] = new SelectList(_context.Movie, "Id", "Id", movieRuntime.MovieId);
+            ViewData["HallId"] = new SelectList(_context.Hall, "Id", "Name", movieRuntime.HallId);
+            ViewData["MovieId"] = new SelectList(_context.Movie, "Id", "Title", movieRuntime.MovieId);
             return View(movieRuntime);
         }
 
@@ -164,8 +187,8 @@ namespace MovieHub.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HallId"] = new SelectList(_context.Hall, "Id", "Id", movieRuntime.HallId);
-            ViewData["MovieId"] = new SelectList(_context.Movie, "Id", "Id", movieRuntime.MovieId);
+            ViewData["HallId"] = new SelectList(_context.Hall, "Id", "Name", movieRuntime.HallId);
+            ViewData["MovieId"] = new SelectList(_context.Movie, "Id", "Title", movieRuntime.MovieId);
             return View(movieRuntime);
         }
 
@@ -195,7 +218,7 @@ namespace MovieHub.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var movieRuntime = await _context.MovieRuntime.FindAsync(id);
-            _context.MovieRuntime.Remove(movieRuntime);
+            _context.MovieRuntime.Remove(movieRuntime!);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -204,5 +227,7 @@ namespace MovieHub.Controllers
         {
             return _context.MovieRuntime.Any(e => e.Id == id);
         }
+        
+
     }
 }
