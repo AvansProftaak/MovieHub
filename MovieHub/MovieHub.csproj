@@ -54,6 +54,7 @@
       <_ContentIncludedByDefault Remove="Views\Showtime\Details.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Showtime\Edit.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Showtime\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Surveys\CreateSurvey.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
