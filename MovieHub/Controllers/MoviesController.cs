@@ -64,34 +64,36 @@ namespace MovieHub.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie, int[] pegis, int[] genres)
         {
-            Movie movieToSave = new Movie();
-
-            movieToSave.Title = movie.Title;
-            movieToSave.Description = movie.Description;
-            movieToSave.Duration = movie.Duration;
-            movieToSave.Cast = movie.Cast;
-            movieToSave.Director = movie.Director;
-            movieToSave.ImdbScore = movie.ImdbScore;
-            movieToSave.ReleaseDate = movie.ReleaseDate;
-            movieToSave.Is3D = movie.Is3D;
-            movieToSave.IsSecret = movie.IsSecret;
-            movieToSave.Language = movie.Language;
-            movieToSave.ImageUrl = movie.ImageUrl;
-            movieToSave.TrailerUrl = movie.TrailerUrl;
             
+            Movie movieToSave = new Movie
+            {
+                Title = movie.Title,
+                Description = movie.Description,
+                Duration = movie.Duration,
+                Cast = movie.Cast,
+                Director = movie.Director,
+                ImdbScore = movie.ImdbScore,
+                ReleaseDate = movie.ReleaseDate,
+                Is3D = movie.Is3D,
+                IsSecret = movie.IsSecret,
+                Language = movie.Language,
+                ImageUrl = movie.ImageUrl,
+                TrailerUrl = movie.TrailerUrl
+            };
+
             if (ModelState.IsValid)
             {
-                _context.Add(movieToSave);
+                
+                /*_context.Movie.Remove(movieToSave);*/
+                //_context.Add(movieToSave);
                 await _context.SaveChangesAsync();
 
-                var movieId = _context.Movie.FirstOrDefault(m => m.Title == movie.Title)!.Id;
-                
                 foreach (var pegiId in pegis)
                 {
                     var pegi = new MoviePegi
                     {
                         PegiId = pegiId,
-                        MovieId = movieId
+                        MovieId = movieToSave.Id
                     };
                     _context.MoviePegi.Add(pegi); 
                     await _context.SaveChangesAsync();       
@@ -102,7 +104,7 @@ namespace MovieHub.Controllers
                     var genre = new MovieGenre
                     {
                         GenreId = genreId,
-                        MovieId = movieId
+                        MovieId = movieToSave.Id
                     };
                     _context.MovieGenre.Add(genre); 
                     await _context.SaveChangesAsync();       
