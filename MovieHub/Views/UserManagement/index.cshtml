@@ -24,8 +24,8 @@
       @foreach (var role in Model){
           <tr>
               <td>@role.Name</td>
-
               <td><button onclick="location.href='@Url.Action("Edit", "UserManagement", new {roleId = role.Id})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update members</button></td>
+              
           </tr>
       }
       </tbody>
