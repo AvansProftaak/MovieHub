@@ -7,7 +7,7 @@
 <div class="container-fluid" style="margin-top: 9.5vh">
 
     <h1>Movies</h1>
-    <h2 class="mb-5">Timetable</h2>
+    <h2 class="mb-5">Daily Runtimes</h2>
     
     
     <div class="row mb-1">
@@ -34,11 +34,16 @@
                             <div class="col survey-row-small">@item.EndAt.ToString("dd MMMM yyyy")</div>
                             <div class="col survey-row-small">@item.Time.ToString(@"hh\:mm") - @item.Time.Add(item.Movie.Duration.Minutes()).ToString(@"hh\:mm")</div>
                             <div class="col survey-row-small">
-                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> | 
-                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> | 
-                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                <a class="align-middle ms-5" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                <div class="row float-end me-4">
+                                    <div class="col-4">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn edit-role-btn btn-sm"><i class="fa fa-pencil" style="color: #FFFFFF"></i></a>
+                                    </div>
+                                    <div class="col-3" style="margin-left: 4px">
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><i class="fa fa-trash" style="color: #FFFFFF"></i></a>
+                                    </div>
+                                </div>    
                             </div>
-
                         </div>
                         <hr class="role-hr"/>
                     }

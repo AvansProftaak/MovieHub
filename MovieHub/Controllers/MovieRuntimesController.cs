@@ -95,14 +95,13 @@ namespace MovieHub.Controllers
                     // Show errormessage in View
                     TempData["ErrorMessage"] = @hall.Name + " is not available on this time";
                     
-                    // Fills dropdownbuttons
+                    // Fills dropdown buttons
                     ViewData["HallId"] = new SelectList(_context.Hall.OrderBy(h => h.Id), "Id", "Name");
                     ViewData["MovieId"] = new SelectList(_context.Movie.OrderBy(m => m.Id), "Id", "Title");
                     
                     return RedirectToAction(nameof(Create));
                 }
             }
-            
             
             var newMovieRuntime = new MovieRuntime
             {
@@ -156,40 +155,91 @@ namespace MovieHub.Controllers
         }
 
         // POST: MovieRuntimes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,MovieId,HallId,StartAt,EndAt,Time")] MovieRuntime movieRuntime)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,MovieId,HallId,StartAt,EndAt")] MovieRuntime movieRuntime, TimeSpan time)
         {
             if (id != movieRuntime.Id)
             {
                 return NotFound();
             }
+            
+            var runtimeList = _context.MovieRuntime
+                .Where(m => m.HallId == movieRuntime.HallId)
+                .Include(m => m.Movie)
+                .ToList();
+            var showtimeList = _context.Showtime
+                .Where(s => s.MovieRuntimeId == movieRuntime.Id)
+                .Where(s => s.StartAt.ToLocalTime() >= DateTime.Now)
+                .ToList();
+            var movie = _context.Movie
+                .FirstOrDefault(m => m.Id == movieRuntime.MovieId);
+            var hall = _context.Hall
+                .FirstOrDefault(h => h.Id == movieRuntime.HallId);
 
-            if (ModelState.IsValid)
+            foreach (var runtime in runtimeList)
             {
-                try
+                if ( runtime.Id != id &&
+                    // if startDate new Runtime between startDate AND endDate of other Runtimes
+                    (movieRuntime.StartAt >= runtime.StartAt && movieRuntime.StartAt <= runtime.EndAt || 
+                     // OR if endDate new Runtime between startDate AND endDate of other Runtimes
+                     movieRuntime.EndAt >= runtime.StartAt && movieRuntime.EndAt <= runtime.EndAt) && 
+                    // AND startTime new Runtime is between startTime AND endTime of other Runtimes
+                    (time >= runtime.Time && time <= runtime.Time.Add(runtime.Movie.Duration.Minutes()) || 
+                     // OR endTime new Runtime is between startTime AND endTime of other Runtime
+                     time.Add(movie.Duration.Minutes()) >= runtime.Time && time.Add(movie.Duration.Minutes()) <= runtime.Time.Add(runtime.Movie.Duration.Minutes())))                    
                 {
-                    _context.Update(movieRuntime);
-                    await _context.SaveChangesAsync();
+                    // Show errormessage in View
+                    TempData["ErrorMessage"] = @hall.Name + " is not available on this time";
+                    
+                    // Fills dropdown buttons
+                    ViewData["HallId"] = new SelectList(_context.Hall.OrderBy(h => h.Id), "Id", "Name");
+                    ViewData["MovieId"] = new SelectList(_context.Movie.OrderBy(m => m.Id), "Id", "Title");
+                    
+                    return RedirectToAction(nameof(Edit));
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!MovieRuntimeExists(movieRuntime.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["HallId"] = new SelectList(_context.Hall, "Id", "Name", movieRuntime.HallId);
-            ViewData["MovieId"] = new SelectList(_context.Movie, "Id", "Title", movieRuntime.MovieId);
-            return View(movieRuntime);
+            
+            var oldMovieRuntime = _context.MovieRuntime
+                .FirstOrDefault(m => m.Id == id);
+            _context.Remove(oldMovieRuntime!);
+            
+            foreach (var showtime in showtimeList)
+            {
+                _context.Showtime.Remove(showtime);
+            }
+            
+            var newMovieRuntime = new MovieRuntime
+            {
+                MovieId = movieRuntime.MovieId,
+                HallId = movieRuntime.HallId,
+                StartAt = movieRuntime.StartAt,
+                EndAt = movieRuntime.EndAt,
+                Time = time
+            };
+            _context.Add(newMovieRuntime);
+            await _context.SaveChangesAsync();
+            
+            var dates = new List<DateTime>();
+                     
+            for (var dt = movieRuntime.StartAt; dt <= movieRuntime.EndAt; dt = dt.AddDays(1))
+            {
+                dates.Add(dt);
+            }
+            
+            foreach (var date in dates)
+            {
+                var showtime = new Showtime
+                {
+                    HallId = movieRuntime.HallId,
+                    MovieId = movieRuntime.MovieId,
+                    StartAt = date.Add(time).ToUniversalTime(),
+                    MovieRuntimeId = newMovieRuntime.Id
+                };
+                _context.Showtime?.Add(showtime);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: MovieRuntimes/Delete/5
@@ -227,7 +277,5 @@ namespace MovieHub.Controllers
         {
             return _context.MovieRuntime.Any(e => e.Id == id);
         }
-        
-
     }
 }
