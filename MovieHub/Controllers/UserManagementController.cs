@@ -157,7 +157,7 @@ public class UserManagementController : Controller
         return View();
     }
     
-    public async Task ChangeRole( string userId, string roleId, string status)
+    public async Task<RedirectToActionResult> ChangeRole( string userId, string roleId, string status)
     {
         User user = await GetUser(userId);
         IdentityRole role = await GetRole(roleId);
@@ -172,8 +172,7 @@ public class UserManagementController : Controller
 
             var result = await _userManager.AddToRoleAsync(user, role.NormalizedName);
         }
-
-        //await _context.SaveChangesAsync();
+        return RedirectToAction("Edit", new {roleId = roleId});
     }
 
     public async Task<IdentityResult> AddRole(EditRoleViewModel model)

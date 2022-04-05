@@ -16,45 +16,36 @@
 <h1>User Management</h1>
 
 <div class="text-center">
-    <h1 class="display-4">Eddit Role</h1>
+    
     @if ( @Model != null)
     {
+        <h1 class="display-4">Eddit Role @Model.Role.Name</h1>
+        
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">Role</th>
+                <th scope="col">User</th>
+                <th scope="col">Status</th>
                 <th scope="col">Edit</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>@Model.Role.Name</td>
-                <th scope="row">@Model.Role.Name</th>
-            </tr>
-            </tbody>
+            @foreach (EditRoleViewModel viewModel in @Model.EditRoleViewModel)
+            {
+                <tbody>
+                <tr>
+                    <td>@viewModel.User</td>
+                    <td>@viewModel.Status</td>
+                    <td><button onclick="location.href='@Url.Action("ChangeRole", "UserManagement", new {roleId = @viewModel.RoleToChange.Id, userId= @viewModel.User.Id, status = viewModel.Status })'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
+                </tr>
+                </tbody>
+            }
+        
         </table>
+                                                         
     }
     else
     {
-        <h1 class="display-4">No user found</h1>
+        <h1 class="display-4">No role found</h1>
     }
-    <table class="table">
-        <thead>
-                        <tr>
-                            <th scope="col">User</th>
-                            <th scope="col">Status</th>
-                        </tr>
-                        </thead>
-        @foreach (EditRoleViewModel viewModel in @Model.EditRoleViewModel)
-        {
-            <tbody>
-            <tr>
-                <td>@viewModel.User</td>
-                <td>@viewModel.Status</td>
-                <td><button onclick="location.href='@Url.Action("ChangeRole", "UserManagement", new {roleId = @viewModel.RoleToChange.Id, userId= @viewModel.User.Id, status = viewModel.Status })'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
-            </tr>
-            </tbody>
-        }
-        
-    </table>
+    
 </div>
