@@ -25,23 +25,6 @@ public class EditRoleViewModel
         _RoleManager = roleManager;
     }
 
-    public async Task<bool> EditRole()
-    {
-        if (Status == "added")
-        {
-            var result = await _UserManager.RemoveFromRoleAsync(User, RoleToChange.NormalizedName);
-        }
-        
-        if (Status == "not added")
-        {
-
-            var result = await _UserManager.AddToRoleAsync(User, RoleToChange.NormalizedName);
-        }
-
-        await _Context.SaveChangesAsync();
-        return true;
-    }
-    
 }
     
     

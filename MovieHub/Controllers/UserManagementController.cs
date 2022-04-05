@@ -157,9 +157,20 @@ public class UserManagementController : Controller
         return View();
     }
     
-    public void ChangeRole( EditRoleViewModel viewModel)
+    public async Task ChangeRole( EditRoleViewModel viewModel)
     {
-        viewModel.EditRole();
+        if (viewModel.Status == "added")
+        {
+            var result = await _userManager.RemoveFromRoleAsync(viewModel.User, viewModel.RoleToChange.NormalizedName);
+        }
+        
+        if (viewModel.Status == "not added")
+        {
+
+            var result = await _userManager.AddToRoleAsync(viewModel.User, viewModel.RoleToChange.NormalizedName);
+        }
+
+        await _context.SaveChangesAsync();
     }
 
     public async Task<IdentityResult> AddRole(EditRoleViewModel model)
