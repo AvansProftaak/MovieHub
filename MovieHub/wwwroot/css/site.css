@@ -312,3 +312,7 @@ color: #F8A613;
   width: 50%;
   margin: 16px;
 }
+
+.text-yellow {
+  color: #F8A613 !important;
+}
