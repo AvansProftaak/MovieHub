@@ -33,5 +33,5 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<MovieHub.Models.Newsletter> Newsletter { get; set; } = null!;
     
     public DbSet<MovieHub.Models.LostAndFound> LostAndFound { get; set; } = null!;
-
+    public DbSet<MovieHub.Models.MailRequest> MailRequest { get; set; } = null!;
 }
