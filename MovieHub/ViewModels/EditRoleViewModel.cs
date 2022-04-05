@@ -5,7 +5,7 @@ namespace MovieHub.ViewModels;
 
 public class EditRoleViewModel
 {
-    public EditRoleViewModel(User user, IdentityRole roleToChange)
+    public EditRoleViewModel(User? user, IdentityRole roleToChange)
     {
         User = user;
         RoleToChange = roleToChange;

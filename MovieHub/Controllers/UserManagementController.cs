@@ -17,11 +17,11 @@ public class UserManagementController : Controller
 {
     
     public readonly RoleManager<IdentityRole> _roleManager;
-    public readonly UserManager<User> _userManager;
+    public readonly UserManager<User?> _userManager;
     public readonly ApplicationDbContext _context;
     
     
-    public UserManagementController(RoleManager<IdentityRole> roleManager, UserManager<User> userManager, ApplicationDbContext context)
+    public UserManagementController(RoleManager<IdentityRole> roleManager, UserManager<User?> userManager, ApplicationDbContext context)
     {
         _roleManager = roleManager;
         _userManager = userManager;
@@ -39,7 +39,7 @@ public class UserManagementController : Controller
     public async Task<IActionResult> Edit(string userId)
     {
         var taskUser = GetUser(userId);
-        User user = taskUser.Result;
+        User? user = taskUser.Result;
         List<IdentityRole> allRoles = _roleManager.Roles.ToList();
         List<IdentityRole> rolesAdded = await getAddedRoles(user, allRoles);
         List<IdentityRole> rolesNotAdded = await getNotAddedRoles(user, allRoles);
@@ -55,7 +55,7 @@ public class UserManagementController : Controller
         return View(model);
     }
 
-    private async Task<List<IdentityRole>> getNotAddedRoles(User user, List<IdentityRole> allRoles)
+    private async Task<List<IdentityRole>> getNotAddedRoles(User? user, List<IdentityRole> allRoles)
     {
         var notAddedRoles = new List<IdentityRole>();
         
@@ -71,7 +71,7 @@ public class UserManagementController : Controller
         return notAddedRoles;
     }
 
-    private async Task<List<IdentityRole>> getAddedRoles(User user, List<IdentityRole> allRoles)
+    private async Task<List<IdentityRole>> getAddedRoles(User? user, List<IdentityRole> allRoles)
     {
         var addedRoles = new List<IdentityRole>();
         
@@ -92,7 +92,7 @@ public class UserManagementController : Controller
         return _context.Users.ToList();
     }
 
-    public Task<User> GetUser(string userId)
+    public Task<User?> GetUser(string userId)
     {
         
         var user = _userManager.FindByIdAsync(userId);
@@ -118,12 +118,10 @@ public class UserManagementController : Controller
         return View();
     }
 
-    public async Task<IdentityResult> AddRole(User user, IdentityRole role)
+    public async Task<IdentityResult> AddRole(EditRoleViewModel model)
     {
-        var userToChange = await GetUser(user.Id);
-        var roleToChange = await GetRole(role.Id);
-        
-        var editRoleViewModel = new EditRoleViewModel(userToChange, role);
+       var userToChange = await GetUser(model.User.Id);
+        var roleToChange = await GetRole(model.RoleToChange.Id);
 
 
         return await _userManager.AddToRoleAsync(userToChange, roleToChange.NormalizedName);

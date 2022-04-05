@@ -6,7 +6,7 @@ namespace MovieHub.ViewModels;
 
 public class ListRoleViewModel
 {
-    public ListRoleViewModel(User user, List<IdentityRole> rolesNotAdded, List<IdentityRole> rolesAdded, UserManager<User> userManager, ApplicationDbContext context)
+    public ListRoleViewModel(User? user, List<IdentityRole> rolesNotAdded, List<IdentityRole> rolesAdded, UserManager<User?> userManager, ApplicationDbContext context)
     {
         User = user;
         RolesNotAdded = rolesNotAdded;
