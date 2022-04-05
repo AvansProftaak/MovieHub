@@ -56,39 +56,62 @@ namespace MovieHub.Controllers
                 Genres = _context.Genre.ToList()
             });
         }
-
+      
         // POST: Movies/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie, int[] pegis, int[] genres)
         {
+            Movie movieToSave = new Movie();
+
+            movieToSave.Title = movie.Title;
+            movieToSave.Description = movie.Description;
+            movieToSave.Duration = movie.Duration;
+            movieToSave.Cast = movie.Cast;
+            movieToSave.Director = movie.Director;
+            movieToSave.ImdbScore = movie.ImdbScore;
+            movieToSave.ReleaseDate = movie.ReleaseDate;
+            movieToSave.Is3D = movie.Is3D;
+            movieToSave.IsSecret = movie.IsSecret;
+            movieToSave.Language = movie.Language;
+            movieToSave.ImageUrl = movie.ImageUrl;
+            movieToSave.TrailerUrl = movie.TrailerUrl;
+            
             if (ModelState.IsValid)
             {
-                _context.Add(movie);
+                _context.Add(movieToSave);
                 await _context.SaveChangesAsync();
+
+                var movieId = _context.Movie.FirstOrDefault(m => m.Title == movie.Title)!.Id;
+                
+                foreach (var pegiId in pegis)
+                {
+                    var pegi = new MoviePegi
+                    {
+                        PegiId = pegiId,
+                        MovieId = movieId
+                    };
+                    _context.MoviePegi.Add(pegi); 
+                    await _context.SaveChangesAsync();       
+                }
+                
+                foreach (var genreId in genres)
+                {
+                    var genre = new MovieGenre
+                    {
+                        GenreId = genreId,
+                        MovieId = movieId
+                    };
+                    _context.MovieGenre.Add(genre); 
+                    await _context.SaveChangesAsync();       
+                }
+                
                 return RedirectToAction(nameof(Index));
             }
-            return View(movie);
+            return View();
         }
-        //
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> Create(MovieViewModel movieViewModel)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         _context.Add(movieViewModel);
-        //         await _context.SaveChangesAsync();
-        //         return RedirectToAction(nameof(Index));
-        //     }
-        //     return View();
-        // }
-        //
-        
-        
 
         // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
