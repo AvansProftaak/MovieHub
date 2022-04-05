@@ -8,31 +8,22 @@
   &lt;Assembly Path="/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/6.0.0/ref/net6.0/Microsoft.AspNetCore.Mvc.RazorPages.dll" /&gt;
   &lt;Assembly Path="/Users/robvdhorst/.nuget/packages/microsoft.extensions.identity.core/6.0.1/lib/net6.0/Microsoft.Extensions.Identity.Core.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=19faec7c_002D5b2d_002D490b_002D9a40_002D67d3db2790d0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="HomeControllerTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6e1a1ca9_002D851f_002D4033_002Da0ed_002D20c2b0eaa253/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AddMovieRuntimeShouldAddMultipleShowtimes" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.HomeControllerTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.MovieRuntimeControllerTests.AddMovieRuntimeShouldAddMultipleShowtimes&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1b4311d9_002D0f93_002D43e2_002D8dd5_002D22d02707270e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="MovieIndex_Should_Return_Todays_Movies" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=da892326_002D6735_002D48b2_002D9200_002D7869a930fc72/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AddMovieRuntimeShouldAddMultipleShowtimes #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.HomeControllerTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.MovieRuntimeControllerTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=89a24025_002D4886_002D4cff_002D8af1_002D22f175e33085/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="HomeControllerTests #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.HomeControllerTests&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e3486152_002D296c_002D4b6a_002D8e99_002D6f9fc734e8d8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="HomeControllerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.HomeControllerTests.Test_HomeController_GetMovies_Should_Return_Movies&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fc2fb09c_002Da644_002D43fd_002D99de_002D98d70af3a1a4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_HomeController_GetHalls_Should_Return_Halls" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.HomeControllerTests&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String>
+	
+	
+	
+	
+	
+	
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Blacklight/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Chasseveld/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Moviehub/@EntryIndexedValue">True</s:Boolean>
