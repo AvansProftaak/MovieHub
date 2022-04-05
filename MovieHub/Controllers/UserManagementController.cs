@@ -33,24 +33,58 @@ public class UserManagementController : Controller
     public IActionResult Index()
     {
         
-        return View(GetUsers());
+        return View(GetRoles());
     }
     
-    public async Task<IActionResult> Edit(string userId)
+    public async Task<IActionResult> Edit(string roleId)
     {
-        var taskUser = GetUser(userId);
-        User? user = taskUser.Result;
-        List<IdentityRole> allRoles = _roleManager.Roles.ToList();
-        List<IdentityRole> rolesAdded = await getAddedRoles(user, allRoles);
-        List<IdentityRole> rolesNotAdded = await getNotAddedRoles(user, allRoles);
+        var taskRole = GetRole(roleId);
+        var role = taskRole.Result;
+        var users = GetUsers();
+        
+        List<User> usersAdded = new List<User>();
+        List<User> usersNotAdded = new List<User>();
+        
+        foreach (User user in users)
+        {
+            if (await _userManager.IsInRoleAsync(user, role.Name))
+            {
+                usersAdded.Add(user);
+            }
+            else
+            {
+                usersNotAdded.Add(user);
+            }
+        }
 
-        ListRoleViewModel model = new ListRoleViewModel(
-            user,
-            rolesNotAdded,
-            rolesAdded,
-            _userManager,
-            _context
-            );
+        List<EditRoleViewModel> editModel = new List<EditRoleViewModel>();
+        foreach (User user in usersAdded)
+        {
+            string status = "added;";
+            EditRoleViewModel viewModel= new EditRoleViewModel(
+                user,
+                role,
+                status,
+                _userManager,
+                _context,
+                _roleManager);
+            editModel.Add(viewModel);
+        }
+        
+        foreach (User user in usersNotAdded)
+        {
+            string status = "not added";
+            EditRoleViewModel viewModel= new EditRoleViewModel(
+                user,
+                role,
+                status,
+                _userManager,
+                _context,
+                _roleManager);
+            editModel.Add(viewModel);
+        }
+        
+        ListRoleViewModel model = new ListRoleViewModel(role, editModel);
         
         return View(model);
     }
@@ -91,6 +125,11 @@ public class UserManagementController : Controller
     {
         return _context.Users.ToList();
     }
+    
+    public ICollection<IdentityRole> GetRoles()
+    {
+        return _context.Roles.ToList();
+    }
 
     public Task<User?> GetUser(string userId)
     {
@@ -116,6 +155,13 @@ public class UserManagementController : Controller
     public IActionResult RoleChanged(Task<string> userid)
     {
         return View();
+    }
+    
+    public void ChangeRole()
+    {
+        _context.SaveChangesAsync();
+        Index();
+        Console.Write("End of Change role");
     }
 
     public async Task<IdentityResult> AddRole(EditRoleViewModel model)

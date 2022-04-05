@@ -1,8 +1,8 @@
 ﻿@using MovieHub.Models
-@model IEnumerable<User>
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
 
 @{
-    ViewData["Title"] = "UserManagement";
+    ViewData["Title"] = "RoleManagement";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,21 +16,16 @@
     <table class="table">
       <thead>
       <tr>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Email</th>
           <th scope="col">Role</th>
           <th scope="col">Edit</th>
       </tr>
       </thead>
       <tbody>
-      @foreach (var user in Model){
+      @foreach (var role in Model){
           <tr>
-              <td>@user.FirstName</td>
-              <td>@user.LastName</td>
-              <td>@user.Email</td>
-              <td>to be implemented</td>
-              <td><button onclick="location.href='@Url.Action("Edit", "UserManagement", new {userId = @user.Id})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
+              <td>@role.Name</td>
+
+              <td><button onclick="location.href='@Url.Action("Edit", "UserManagement", new {roleId = role.Id})'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update members</button></td>
           </tr>
       }
       </tbody>

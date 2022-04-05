@@ -5,7 +5,7 @@
 @using MovieHub.Controllers
 @using MovieHub.ViewModels
 @using SQLitePCL
-@model MovieHub.ViewModels.ListRoleViewModel
+@model ListRoleViewModel
 
 
 @{
@@ -22,18 +22,14 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Email</th>
-                <th scope="col">ID</th>
+                <th scope="col">Role</th>
+                <th scope="col">Edit</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>@Model.User.FirstName</td>
-                <td>@Model.User.LastName</td>
-                <td>@Model.User.Email</td>
-                <th scope="row">@Model.User.Id</th>
+                <td>@Model.Role.Name</td>
+                <th scope="row">@Model.Role.Name</th>
             </tr>
             </tbody>
         </table>
@@ -45,40 +41,20 @@
     <table class="table">
         <thead>
                         <tr>
-                            <th scope="col">Role</th>
-                            <th scope="col">Added</th>
-                            <th scope="col">Add or Remove</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Status</th>
                         </tr>
                         </thead>
-        @foreach (IdentityRole role in @Model.RolesAdded)
+        @foreach (EditRoleViewModel viewModel in @Model.EditRoleViewModel)
         {
             <tbody>
             <tr>
-                <td>@role.Name</td>
-                <td>added</td>
-                @{
-                    EditRoleViewModel editRoleViewModel = new EditRoleViewModel(@Model.User, role);
-                }
-                <td><button onclick="location.href='@Url.Action("AddRole", "UserManagement", new {model = editRoleViewModel })'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
-
+                <td>@viewModel.User</td>
+                <td>@viewModel.Status</td>
+                <td><button onclick="location.href='@Url.Action("ChangeRole", "UserManagement", new {context = await viewModel.EditRole() })'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
             </tr>
             </tbody>
-
         }
-        @foreach (IdentityRole role in @Model.RolesNotAdded)
-        {
-            <tbody>
-            <tr>
-                <td>@role.Name</td>
-                <td>not added</td>
- @{
-                     EditRoleViewModel editRoleViewModel = new EditRoleViewModel(@Model.User, role);
-                 }
-                 <td><button onclick="location.href='@Url.Action("AddRole", "UserManagement", new {model = editRoleViewModel })'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
-
-            </tr>
-            </tbody>
-
-        }
+        
     </table>
 </div>

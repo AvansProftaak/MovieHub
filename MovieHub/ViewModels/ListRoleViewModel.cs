@@ -6,19 +6,13 @@ namespace MovieHub.ViewModels;
 
 public class ListRoleViewModel
 {
-    public ListRoleViewModel(User? user, List<IdentityRole> rolesNotAdded, List<IdentityRole> rolesAdded, UserManager<User?> userManager, ApplicationDbContext context)
+    public ListRoleViewModel(IdentityRole role, List<EditRoleViewModel> editRoleViewModel)
     {
-        User = user;
-        RolesNotAdded = rolesNotAdded;
-        RolesAdded = rolesAdded;
-        UserManager = userManager;
-        Context = context;
+        Role = role;
+        EditRoleViewModel = editRoleViewModel;
     }
-
-    public User? User { get;set; }
-    public List<IdentityRole>? RolesNotAdded { get; set; }
-    public List<IdentityRole>? RolesAdded { get; set; } 
-    public UserManager<User>? UserManager { get; set; }
-    public ApplicationDbContext? Context { get; set; }
+    
+    public IdentityRole Role { get; set; }
+    public List<EditRoleViewModel>? EditRoleViewModel { get; set; } 
 
 }
