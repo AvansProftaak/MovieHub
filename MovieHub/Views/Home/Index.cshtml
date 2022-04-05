@@ -82,14 +82,14 @@
                         var movieNow =
                             Model.Showtimes
                                 .Where(m => m.HallId == hall.Id)
-                                .Where(s => s.StartAt.ToLocalTime() < DateTime.Now)
+                                .Where(s => s.StartAt.ToLocalTime() <= DateTime.Now)
                                 .OrderByDescending(m => m.StartAt.ToLocalTime())
                                 .Take(1).FirstOrDefault();
                                 
                         var movieNext =
                             Model.Showtimes
                                 .Where(m => m.HallId == hall.Id)
-                                .Where(s => s.StartAt.ToLocalTime() > DateTime.Now)
+                                .Where(s => s.StartAt.ToLocalTime() >= DateTime.Now)
                                 .OrderBy(m => m.StartAt.ToLocalTime())
                                 .Take(1).FirstOrDefault();
 
