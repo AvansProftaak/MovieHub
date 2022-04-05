@@ -161,8 +161,8 @@ public class PaymentsController : Controller
                     .Replace("#HallNumber", hall?.Name)
                     .Replace("#Seat", seat?.SeatNumber.ToString())
                     .Replace("#Row", seat?.RowNumber.ToString())
-                    .Replace("#StartTime", showTime?.StartAt.TimeOfDay.ToString(@"hh\:mm"))
-                    .Replace("#EndTime", showTime?.StartAt.AddMinutes(movie!.Duration).TimeOfDay.ToString(@"hh\:mm"))
+                    .Replace("#StartTime", showTime?.StartAt.ToLocalTime().TimeOfDay.ToString(@"hh\:mm"))
+                    .Replace("#EndTime", showTime?.StartAt.ToLocalTime().AddMinutes(movie!.Duration).TimeOfDay.ToString(@"hh\:mm"))
                     .Replace("#Date", showTime?.StartAt.Date.ToString("dd MMMM yyyy"))
                     .Replace("QRCODE", base64ImageRepresentation)
                     .Replace("Barcode", ticket.Barcode.ToString());
@@ -234,7 +234,7 @@ public class PaymentsController : Controller
         var showtimeId = orderData!.ShowtimeId;
         var ticketTypesSelected = orderData.TicketTypes;
         var cateringPackagesSelected = orderData.CateringPackages;
-        var showtime = _context.Showtime!.FirstOrDefault(s => (s.Id >= showtimeId));
+        var showtime = _context.Showtime!.FirstOrDefault(s => (s.Id == showtimeId));
         var seatsSelected = orderData.Seats;
 
         var seatIds = (from seat in seatsSelected
@@ -259,9 +259,9 @@ public class PaymentsController : Controller
             ShowtimeId = showtimeId,
             User = await user
         };
-        
+       
         Insert(_context, order);
-        
+
         var ticketTypesPrices = OrdersController.CalculationTicketTypes(showtime!.MovieId, _context);
         var ticketTypesNames = OrdersController.ReturnTicketNames(showtime.MovieId, _context);
         var cateringPackages = OrdersController.GetCateringPackages(_context);
@@ -293,7 +293,7 @@ public class PaymentsController : Controller
             
             counter += 1;
         }
-        
+
         counter = 0;
         
         foreach (var key in cateringPackagesSelected?.Keys!)
