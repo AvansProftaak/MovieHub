@@ -59,6 +59,7 @@ namespace MovieHub.Controllers
         {
             if (ModelState.IsValid)
             {
+                survey.SurveyFilledIn = DateTime.Now;
                 _context.Add(survey);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

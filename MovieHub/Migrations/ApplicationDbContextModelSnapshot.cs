@@ -717,15 +717,13 @@ namespace MovieHub.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("integer");
 
-                    b.Property<int>("HallId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("Hygiene")
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(60)
+                        .HasColumnType("character varying(60)");
 
                     b.Property<int>("Price")
                         .HasColumnType("integer");
@@ -746,8 +744,6 @@ namespace MovieHub.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("HallId");
 
                     b.ToTable("Survey");
                 });
@@ -1066,17 +1062,6 @@ namespace MovieHub.Migrations
                     b.Navigation("Hall");
 
                     b.Navigation("Movie");
-                });
-
-            modelBuilder.Entity("MovieHub.Models.Survey", b =>
-                {
-                    b.HasOne("MovieHub.Models.Hall", "Hall")
-                        .WithMany()
-                        .HasForeignKey("HallId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Hall");
                 });
 
             modelBuilder.Entity("MovieHub.Models.Ticket", b =>
