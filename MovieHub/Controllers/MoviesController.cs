@@ -9,7 +9,7 @@ using MovieHub.ViewModels;
 
 namespace MovieHub.Controllers
 {
-
+    [Authorize(Roles = "Admin, Manager, Back-Office")]
     public class MoviesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -25,7 +25,7 @@ namespace MovieHub.Controllers
            return View(await _context.Movie.ToListAsync());
         }
 
-        // GET: Movies/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
