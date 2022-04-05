@@ -6,5 +6,5 @@ public class CreateMovieViewModel
 {
     public Movie Movie { get; set; }
     public List<Pegi> Pegis { get; set; }
-    public List<Genre> Genre { get; set; }
+    public List<Genre> Genres { get; set; }
 }

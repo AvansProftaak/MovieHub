@@ -40,16 +40,21 @@ namespace MovieHub.Controllers
                 .ThenInclude(mg => mg.Pegi)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
-                {
+            {
                 return NotFound();
-                };
+            };
             return View(movie);
         }
 
         // GET: Movies/Create
         public IActionResult Create()
         {
-            return View();
+            return View(new CreateMovieViewModel
+            {
+                Movie = new Movie(),
+                Pegis = _context.Pegi.ToList(),
+                Genres = _context.Genre.ToList()
+            });
         }
 
         // POST: Movies/Create
