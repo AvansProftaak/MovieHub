@@ -33,12 +33,12 @@ public class UserManagementController : Controller
     public IActionResult Index()
     {
         
-        return View(GetUSers());
+        return View(GetUsers());
     }
     
     public async Task<IActionResult> Edit(string userId)
     {
-        var taskUser = GetUSer(userId);
+        var taskUser = GetUser(userId);
         User user = taskUser.Result;
         List<IdentityRole> allRoles = _roleManager.Roles.ToList();
         List<IdentityRole> rolesAdded = await getAddedRoles(user, allRoles);
@@ -87,12 +87,12 @@ public class UserManagementController : Controller
         return addedRoles;
     }
 
-    public ICollection<User> GetUSers()
+    public ICollection<User> GetUsers()
     {
         return _context.Users.ToList();
     }
 
-    public Task<User> GetUSer(string userId)
+    public Task<User> GetUser(string userId)
     {
         
         var user = _userManager.FindByIdAsync(userId);
@@ -118,13 +118,22 @@ public class UserManagementController : Controller
         return View();
     }
 
-    public IActionResult AddRole(User user, IdentityRole role)
+    public async Task<IdentityResult> AddRole(User user, IdentityRole role)
     {
-        var editRoleViewModel = new EditRoleViewModel(user, role);
+        var userToChange = await GetUser(user.Id);
+        var roleToChange = await GetRole(role.Id);
+        
+        var editRoleViewModel = new EditRoleViewModel(userToChange, role);
 
 
-        var result = _userManager.AddToRoleAsync(user, role.NormalizedName);
-        await _userManager.SaveChangesAsync();
+        return await _userManager.AddToRoleAsync(userToChange, roleToChange.NormalizedName);
+        //await _userManager.SaveChangesAsync();
 
+    }
+
+    private async Task<IdentityRole> GetRole(string roleId)
+    {
+        return  await _roleManager.FindByIdAsync(roleId);
+        
     }
 }
