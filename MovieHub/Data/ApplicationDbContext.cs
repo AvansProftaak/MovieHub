@@ -11,26 +11,26 @@ public class ApplicationDbContext : IdentityDbContext
     {
     }
     
-    public DbSet<MovieHub.Models.Movie> Movie { get; set; } = null!;
-    public DbSet<MovieHub.Models.Pegi> Pegi { get; set; } = null!;
-    public DbSet<MovieHub.Models.Genre> Genre { get; set; } = null!;
-    public DbSet<MovieHub.Models.Cinema> Cinema { get; set; } = null!;
-    public DbSet<MovieHub.Models.MoviePegi> MoviePegi { get; set; } = null!;
-    public DbSet<MovieHub.Models.Hall> Hall { get; set; } = null!;
-    public DbSet<MovieHub.Models.MovieGenre> MovieGenre { get; set; } = null!;
-    public DbSet<MovieHub.Models.Tickettype> Tickettype { get; set; } = null!;
-    public DbSet<MovieHub.Models.CinemaTickettype> CinemaTicketType { get; set; } = null!;
-    public DbSet<MovieHub.Models.CinemaMovie> CinemaMovie { get; set; } = null!;
-    public DbSet<MovieHub.Models.Seat> Seat { get; set; } = null!;
-    public DbSet<MovieHub.Models.Showtime>? Showtime { get; set; } = null!;
-    public DbSet<MovieHub.Models.CateringPackage> CateringPackage { get; set; } = null!;
-    public DbSet<MovieHub.Models.Order> Order { get; set; } = null!;
-    public DbSet<MovieHub.Models.Ticket> Ticket { get; set; } = null!;
-    public DbSet<MovieHub.Models.User> User { get; set; } = null!;
-    public DbSet<MovieHub.Models.Payment> Payment { get; set; } = null!;
-    public DbSet<MovieHub.Models.PaymentMethod> PaymentMethod { get; set; } = null!;
-    public DbSet<MovieHub.Models.MovieRuntime> MovieRuntime { get; set; } = null!;
-    public DbSet<MovieHub.Models.Newsletter> Newsletter { get; set; } = null!;
+    public DbSet<Movie> Movie { get; set; } = null!;
+    public DbSet<Pegi> Pegi { get; set; } = null!;
+    public DbSet<Genre> Genre { get; set; } = null!;
+    public DbSet<Cinema> Cinema { get; set; } = null!;
+    public DbSet<MoviePegi> MoviePegi { get; set; } = null!;
+    public DbSet<Hall> Hall { get; set; } = null!;
+    public DbSet<MovieGenre> MovieGenre { get; set; } = null!;
+    public DbSet<Tickettype> Tickettype { get; set; } = null!;
+    public DbSet<CinemaTickettype> CinemaTicketType { get; set; } = null!;
+    public DbSet<CinemaMovie> CinemaMovie { get; set; } = null!;
+    public DbSet<Seat> Seat { get; set; } = null!;
+    public DbSet<Showtime>? Showtime { get; set; } = null!;
+    public DbSet<CateringPackage> CateringPackage { get; set; } = null!;
+    public DbSet<Order> Order { get; set; } = null!;
+    public DbSet<Ticket> Ticket { get; set; } = null!;
+    public DbSet<User> User { get; set; } = null!;
+    public DbSet<Payment> Payment { get; set; } = null!;
+    public DbSet<PaymentMethod> PaymentMethod { get; set; } = null!;
+    public DbSet<MovieRuntime> MovieRuntime { get; set; } = null!;
+    public DbSet<Newsletter> Newsletter { get; set; } = null!;
     public DbSet<Survey> Survey { get; set; } = null!;
     public DbSet<SurveyQuestion> SurveyQuestion { get; set; } = null!;
     public DbSet<SurveyAnswer> SurveyAnswer { get; set; } = null!;
