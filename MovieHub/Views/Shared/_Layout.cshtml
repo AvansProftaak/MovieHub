@@ -38,12 +38,19 @@
                 
                 @if (_signInManager.IsSignedIn(User))
                 {
+                    if ((User.IsInRole("Admin")) || (User.IsInRole("Back-Office")) || (User.IsInRole("Manager"))  )
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link hover-white" style="color:#F8A613" asp-area="" asp-controller="Movies" asp-action="Index">Manage Movies</a>
+                        </li>
+                    }
                     if (User.IsInRole("Admin"))
                     {
                         <li class="nav-item">
                             <a class="nav-link hover-white" style="color:#F8A613" asp-area="" asp-controller="UserManagement" asp-action="Index">Manage Users</a>
                         </li>
                     }
+                    
                 }
                 </ul>
                 <ul class="navbar-nav flex-grow-1 justify-content-left">
