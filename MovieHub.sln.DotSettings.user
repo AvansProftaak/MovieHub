@@ -18,6 +18,14 @@
     &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.MovieRuntimeControllerTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f4906d63_002D8e40_002D491b_002D9fdc_002D297746538e75/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AdminTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.AdminTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.HomeTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.SurveyTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.TestTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	
 	
 	

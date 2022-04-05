@@ -73,15 +73,15 @@
     <dd class="col-sm-10">
         @Html.DisplayFor(model => model.Language)
     </dd>
-         <div>
-             <hr/>
-             <div class="justify-content-between d-flex">
+        <div>
+            <hr/>
+            <div class="justify-content-between d-flex">
                 <button onclick="location.href='@Url.Action("Index", "Home")'" 
                         class="btn btn-primary btn-sizing ms-1">Back to home</button> 
-                 <button onclick="location.href='@Url.Action("Index", "Orders", new {id = Model.Id})'"
-                         class="btn btn-primary btn-sizing ms-1">Buy Tickets</button>
-
-             </div> </div>
+                <button onclick="location.href='@Url.Action("Index", "Orders", new {id = Model.Id})'"
+                        class="btn btn-primary btn-sizing ms-1">Buy Tickets</button>
+            </div> 
+        </div>
     </dl>
 </div>
 

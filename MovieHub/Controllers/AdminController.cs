@@ -22,11 +22,11 @@ public class AdminController : Controller
     [HttpGet]
     public IActionResult RoleList()
     {
-        var roles = _roleManager.Roles.OrderBy(r => r.Name);
+        var roles = _roleManager.Roles.OrderBy(r => r.Name).ToList();
         
         return View(roles);
     }
-
+    
     [HttpGet]
     public IActionResult AddRole()
     {

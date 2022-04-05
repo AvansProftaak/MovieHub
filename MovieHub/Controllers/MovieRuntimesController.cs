@@ -102,40 +102,13 @@ namespace MovieHub.Controllers
                     return RedirectToAction(nameof(Create));
                 }
             }
-            
-            var newMovieRuntime = new MovieRuntime
-            {
-                MovieId = movieRuntime.MovieId,
-                HallId = movieRuntime.HallId,
-                StartAt = movieRuntime.StartAt,
-                EndAt = movieRuntime.EndAt,
-                Time = time
-            };
-            _context.Add(newMovieRuntime);
-            await _context.SaveChangesAsync();
 
-            var dates = new List<DateTime>();
-                     
-            for (var dt = movieRuntime.StartAt; dt <= movieRuntime.EndAt; dt = dt.AddDays(1))
-            {
-                dates.Add(dt);
-            }
+            var movieRuntimeId = await CreateMovieRuntime(movieRuntime.MovieId, movieRuntime.HallId, movieRuntime.StartAt, movieRuntime.EndAt, time);
+            await CreateShowtime(movieRuntimeId, movieRuntime.MovieId, movieRuntime.HallId, movieRuntime.StartAt, movieRuntime.EndAt, time);
             
-            foreach (var date in dates)
-            {
-                var showtime = new Showtime
-                {
-                    HallId = movieRuntime.HallId,
-                    MovieId = movieRuntime.MovieId,
-                    StartAt = date.Add(time).ToUniversalTime(),
-                    MovieRuntimeId = newMovieRuntime.Id
-                };
-                _context.Showtime?.Add(showtime);
-                await _context.SaveChangesAsync();
-            }
             return RedirectToAction(nameof(Index));
         }
-
+        
         // GET: MovieRuntimes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -277,9 +250,48 @@ namespace MovieHub.Controllers
         {
             return _context.MovieRuntime.Any(e => e.Id == id);
         }
+        
+        public async Task<int> CreateMovieRuntime(int movieId, int hallId, DateTime startDate, DateTime endDate, TimeSpan time)
+        {
+            var movieRuntime = new MovieRuntime
+            {
+                MovieId = movieId,
+                HallId = hallId,
+                StartAt = startDate,
+                EndAt = endDate,
+                Time = time
+            };            
+            await _context.AddAsync(movieRuntime);
+            await _context.SaveChangesAsync();
+
+            return movieRuntime.Id;
+        }
+        
+        public async Task CreateShowtime(int movieRuntimeId, int movieId, int hallId, DateTime startDate, DateTime endDate, TimeSpan time)
+        {
+            
+            var dates = new List<DateTime>();
+                     
+            for (var dt = startDate; dt <= endDate; dt = dt.AddDays(1))
+            {
+                dates.Add(dt);
+            }
+
+            foreach (var date in dates)
+            {
+                var showtime = new Showtime
+                {
+                    HallId = hallId,
+                    MovieId = movieId,
+                    StartAt = date.Add(time).ToUniversalTime(),
+                    MovieRuntimeId = movieRuntimeId
+                };
+                await _context.Showtime.AddAsync(showtime);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+
+
     }
-    
-    
-    
-    
 }

@@ -4,80 +4,82 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="container col-3 mx-auto" style="margin-top: 9.5vh">
 
-<div>
-    <h4>Survey</h4>
-    <hr />
+    <h1>Details</h1>
+    <h2>Survey</h2>
+    <hr class="role-hr mt-3 mb-5" />
+    
+    
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CinemaNumber)
+        <dt class="col-sm-4">
+            CinemaName
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.CinemaNumber)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TicketPrice)
+        <dt class="col-sm-4">
+            Ticket Price
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TicketPrice)
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.TicketPrice)/5
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ScreenQuality)
+        <dt class="col-sm-4">
+            Screen Quality
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ScreenQuality)
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.ScreenQuality)/5
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SoundQuality)
+        <dt class="col-sm-4">
+            Sound Quality
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SoundQuality)
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.SoundQuality)/5
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PopcornQuality)
+        <dt class="col-sm-4">
+            Popcorn Quality
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PopcornQuality)
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.PopcornQuality)/5
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Nuisance)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nuisance)
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Nuisance)/5
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Hygiene)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Hygiene)
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Hygiene)/5
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ToiletHeight)
+        <dt class="col-sm-4">
+            Toilet Height
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ToiletHeight)
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.ToiletHeight)/5
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Name) customer
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Email) customer
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Email)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TimeStamp)
+        <dt class="col-sm-4">
+            Date / Time
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TimeStamp)
+        <dd class="col-sm-8">
+            @Model.TimeStamp.Value.ToString("dd MMMM yyyy")
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div>
+        <a asp-action="Index" class="btn btn-primary">BACK TO OVERVIEW</a>
+    </div>
 </div>

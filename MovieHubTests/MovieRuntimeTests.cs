@@ -20,28 +20,21 @@ public class MovieRuntimeTests
         _context = new ApplicationDbContext(options);
         _controller = new MovieRuntimesController(_context);
     }
+    
+    
+    
+    
 
-    [Fact]
-    public void Test_MovieRuntime_DB_Ok()
+    private static MovieRuntime GetMovieRuntime()
     {
-        _context.Database.EnsureCreated();
-        InsertTestData(_context);
-        Assert.Equal(2, _context.MovieRuntime.First().MovieId);
-    }
-
-
-
-    private void InsertTestData(ApplicationDbContext context)
-    {
-        context.Add(new MovieRuntime()
+        return new MovieRuntime
         {
-            Id = 1,
-            HallId = 1,
-            MovieId = 2,
-            StartAt = new DateTime().Date.AddDays(22).AddMonths(03).AddYears(2022),
-            EndAt = new DateTime().Date.AddDays(12).AddMonths(04).AddYears(2022),
+            Id = Guid.NewGuid().GetHashCode(), 
+            HallId = 1, 
+            MovieId = 2, 
+            StartAt = new DateTime().Date.AddDays(22).AddMonths(03).AddYears(2022), 
+            EndAt = new DateTime().Date.AddDays(12).AddMonths(04).AddYears(2022), 
             Time = TimeSpan.FromHours(12)
-        });
-        context.SaveChanges();
+        };
     }
 }

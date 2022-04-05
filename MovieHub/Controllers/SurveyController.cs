@@ -1,16 +1,12 @@
 #nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
 using MovieHub.ViewModels;
+using NUnit.Framework;
 
 namespace MovieHub
 {
@@ -27,7 +23,6 @@ namespace MovieHub
         // GET: Survey
         public IActionResult Index()
         {
-
             var indexSurveyViewModel = new IndexSurveyViewModel
             {
                 Halls = _context.Hall.OrderBy(h => h.Name).ToList(),
@@ -39,22 +34,25 @@ namespace MovieHub
 
         [Authorize(Roles = "Admin, Manager")]
         // GET: Survey/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var survey = await _context.Survey
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (survey == null)
-            {
-                return NotFound();
-            }
-
-            return View(survey);
+            var survey = GetSurveyAsync(id);
+            
+            return View(await survey);
         }
+
+        [HttpGet]
+        public async Task<Survey> GetSurveyAsync(int id)
+        {
+            return await _context.Survey.FirstAsync(m => m.Id == id);
+        }
+
+        [HttpGet]
+        public async Task<IList<Survey>> GetSurveysAsync()
+        {
+            return await _context.Survey.ToListAsync();
+        }
+        
 
         // GET: Survey/Create
         public IActionResult Create()
@@ -78,7 +76,6 @@ namespace MovieHub
                 "CinemaNumber,TicketPrice,ScreenQuality,SoundQuality,PopcornQuality,Nuisance,Hygiene,ToiletHeight,Name,Email")]
             Survey survey)
         {
-
             if (ModelState.IsValid)
             {
                 var newSurvey = new Survey
@@ -96,13 +93,19 @@ namespace MovieHub
                     TimeStamp = DateTime.UtcNow.AddHours(2)
                 };
 
-                _context.Add(newSurvey);
-                await _context.SaveChangesAsync();
+                await CreateSurveyAsync(newSurvey);
                 return RedirectToAction("Index", "Home");
             }
-
             return View();
         }
+        
+        public async Task CreateSurveyAsync(Survey survey)
+        {
+            await _context.AddAsync(survey);
+            await _context.SaveChangesAsync();
+        }
+        
+        
         
         [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> SurveysPerHall(int id)
@@ -117,6 +120,5 @@ namespace MovieHub
             
             return View(surveysViewModel);
         }
-        
     }
 }
