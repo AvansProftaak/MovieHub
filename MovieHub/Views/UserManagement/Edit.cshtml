@@ -51,7 +51,7 @@
             <tr>
                 <td>@viewModel.User</td>
                 <td>@viewModel.Status</td>
-                <td><button onclick="location.href='@Url.Action("ChangeRole", "UserManagement", new {context = await viewModel.EditRole() })'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
+                <td><button onclick="location.href='@Url.Action("ChangeRole", "UserManagement", new {viewModel = viewModel })'" style="margin-top: 24px" class="btn btn-primary btn-sizing">Update status</button></td>
             </tr>
             </tbody>
         }

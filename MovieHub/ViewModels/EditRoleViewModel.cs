@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 using MovieHub.Data;
 using MovieHub.Models;
 
@@ -29,13 +30,15 @@ public class EditRoleViewModel
         if (Status == "added")
         {
             var result = await _UserManager.RemoveFromRoleAsync(User, RoleToChange.NormalizedName);
-            
         }
         
         if (Status == "not added")
         {
+
             var result = await _UserManager.AddToRoleAsync(User, RoleToChange.NormalizedName);
         }
+
+        await _Context.SaveChangesAsync();
         return true;
     }
     

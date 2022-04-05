@@ -60,7 +60,7 @@ public class UserManagementController : Controller
         List<EditRoleViewModel> editModel = new List<EditRoleViewModel>();
         foreach (User user in usersAdded)
         {
-            string status = "added;";
+            string status = "added";
             EditRoleViewModel viewModel= new EditRoleViewModel(
                 user,
                 role,
@@ -157,11 +157,9 @@ public class UserManagementController : Controller
         return View();
     }
     
-    public void ChangeRole()
+    public void ChangeRole( EditRoleViewModel viewModel)
     {
-        _context.SaveChangesAsync();
-        Index();
-        Console.Write("End of Change role");
+        viewModel.EditRole();
     }
 
     public async Task<IdentityResult> AddRole(EditRoleViewModel model)
