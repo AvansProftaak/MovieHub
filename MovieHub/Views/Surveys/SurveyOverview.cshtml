@@ -1,0 +1,108 @@
+﻿@model IEnumerable<MovieHub.Models.Survey>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="margin-top: 9.5vh">
+    <h1>Survey Responses</h1>
+    <div class="col-md-4">
+        <hr/>
+        <h2>Overview of all responses to the survey.</h2>
+        <hr/>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Age)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Facilities)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Hygiene)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FoodDrinks)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Staff)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ScreenQuality)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SoundQuality)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Remark)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SurveyFilledIn)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Facilities)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hygiene)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FoodDrinks)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Staff)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ScreenQuality)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoundQuality)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remark)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SurveyFilledIn)
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+</div>

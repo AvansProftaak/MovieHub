@@ -8,4 +8,5 @@ public class AnalyticsViewModel
     public DateTime endDate { get; set; }
     public IEnumerable<HallAnalytics>? Statistics { get; set; }
     public IEnumerable<MovieRevenue>? MovieStatistics { get; set; }
+    public IEnumerable<SurveyResults>? SurveyResults { get; set; }
 }

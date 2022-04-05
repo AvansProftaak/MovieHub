@@ -32,7 +32,7 @@ public class Survey
     public string? Remark { get; set; }
     public DateTime SurveyFilledIn { get; set; }
 
-    Survey()
+    public Survey()
     {
         
     }

@@ -71,4 +71,19 @@ public class AnalyticsController : Controller
             return View(vm);
         }
     }
+        public async Task<IActionResult> SurveyScores(AnalyticsViewModel model)
+    {
+        
+        var sql = "SELECT ROUND(AVG(\"Facilities\"),2) AS Facilities, ROUND(AVG(\"Hygiene\"),2) AS Hygiene, ROUND(AVG(\"FoodDrinks\"),2) AS FoodDrinks, ROUND(AVG(\"Staff\"),2) AS Staff, ROUND(AVG(\"ScreenQuality\"),2) AS ScreenQuality, ROUND(AVG(\"SoundQuality\"),2) AS SoundQuality, ROUND(AVG(\"Price\"),2) AS Price FROM public.\"Survey\"";
+        
+        using (var connection = new NpgsqlConnection(CONNECTION_STRING))
+        {
+            var result = await connection.QueryAsync<SurveyResults>(sql);
+            var vm = new AnalyticsViewModel
+            {
+                SurveyResults = result
+            };
+            return View(vm);
+        }
+    }
 }
