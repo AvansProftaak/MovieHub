@@ -64,8 +64,14 @@
                 <span asp-validation-for="SoundQuality" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
+                <label class="control-label movie-p">How did you feel about the prices at MovieHub?</label>
+                <div class="product-review-stars">
+                    <input type="radio" id="price1" name="Price" value="1" class="radio-button-survey"/><label for="price1" class="p-2" title="Horrible">Horrible</label>
+                    <input type="radio" id="price2" name="Price" value="2" class="radio-button-survey"/><label for="price2" class="p-2" title="Bad">Bad</label>
+                    <input type="radio" id="price3" name="Price" value="3" class="radio-button-survey"/><label for="price3" class="p-2" title="Average">Average</label>
+                    <input type="radio" id="price4" name="Price" value="4" class="radio-button-survey"/><label for="price4" class="p-2" title="Good">Good</label>
+                    <input type="radio" id="price5" name="Price" value="5" class="radio-button-survey" required="required"/><label for="price5" class="p-2" title="Amazing">Amazing</label>
+                </div>
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
