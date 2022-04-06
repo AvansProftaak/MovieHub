@@ -11,22 +11,22 @@ using MovieHub.Models;
 
 namespace MovieHub.Controllers
 {
-    public class NewsletterController : Controller
+    public class EmailController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public NewsletterController(ApplicationDbContext context)
+        public EmailController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Newsletter
+        // GET: Email
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Newsletter.ToListAsync());
+            return View(await _context.Email.ToListAsync());
         }
 
-        // GET: Newsletter/Details/5
+        // GET: Email/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +34,39 @@ namespace MovieHub.Controllers
                 return NotFound();
             }
 
-            var newsletter = await _context.Newsletter
+            var email = await _context.Email
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (newsletter == null)
+            if (email == null)
             {
                 return NotFound();
             }
 
-            return View(newsletter);
+            return View(email);
         }
 
-        // GET: Newsletter/Create
+        // GET: Email/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Newsletter/Create
+        // POST: Email/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email")] Newsletter newsletter)
+        public async Task<IActionResult> Create([Bind("Id,Content")] Email email)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(newsletter);
+                _context.Add(email);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(newsletter);
+            return View(email);
         }
 
-        // GET: Newsletter/Edit/5
+        // GET: Email/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +74,22 @@ namespace MovieHub.Controllers
                 return NotFound();
             }
 
-            var newsletter = await _context.Newsletter.FindAsync(id);
-            if (newsletter == null)
+            var email = await _context.Email.FindAsync(id);
+            if (email == null)
             {
                 return NotFound();
             }
-            return View(newsletter);
+            return View(email);
         }
 
-        // POST: Newsletter/Edit/5
+        // POST: Email/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email")] Newsletter newsletter)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Content")] Email email)
         {
-            if (id != newsletter.Id)
+            if (id != email.Id)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace MovieHub.Controllers
             {
                 try
                 {
-                    _context.Update(newsletter);
+                    _context.Update(email);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!NewsletterExists(newsletter.Id))
+                    if (!EmailExists(email.Id))
                     {
                         return NotFound();
                     }
@@ -114,10 +114,10 @@ namespace MovieHub.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(newsletter);
+            return View(email);
         }
 
-        // GET: Newsletter/Delete/5
+        // GET: Email/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,30 +125,30 @@ namespace MovieHub.Controllers
                 return NotFound();
             }
 
-            var newsletter = await _context.Newsletter
+            var email = await _context.Email
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (newsletter == null)
+            if (email == null)
             {
                 return NotFound();
             }
 
-            return View(newsletter);
+            return View(email);
         }
 
-        // POST: Newsletter/Delete/5
+        // POST: Email/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var newsletter = await _context.Newsletter.FindAsync(id);
-            _context.Newsletter.Remove(newsletter);
+            var email = await _context.Email.FindAsync(id);
+            _context.Email.Remove(email);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool NewsletterExists(int id)
+        private bool EmailExists(int id)
         {
-            return _context.Newsletter.Any(e => e.Id == id);
+            return _context.Email.Any(e => e.Id == id);
         }
     }
 }
