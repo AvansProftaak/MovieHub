@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Controllers;
@@ -15,23 +16,26 @@ namespace MovieHubTests;
 public class MoviesControllerTest
 {
     private readonly MoviesController _controller;
+    private readonly ApplicationDbContext _context;
 
     public MoviesControllerTest()
     {
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseInMemoryDatabase("MoviesDatabase")
+            .UseInMemoryDatabase("MoviesTestDatabase")
             .Options;
-        var context = new ApplicationDbContext(options);
-        _controller = new MoviesController(context);
+        _context = new ApplicationDbContext(options);
+        _controller = new MoviesController(_context);
     }
 
     [Fact]
-    public void Test_Should_Return_Details_View()
+    public async void Test_Should_Return_Details_View()
     {
         var movie = GetMovie();
         var result = _controller.Details(movie.Id);
-        Assert.IsType<Task<IActionResult>>(result);
+        await Assert.IsType<Task<IActionResult>>(result);
+        await _context.Database.EnsureDeletedAsync();
     }
+
     
     [Fact]
     public async void Test_Should_Create_And_Delete_Movie_From_Db()
@@ -61,7 +65,11 @@ public class MoviesControllerTest
         // Now there must be one movie in the list
         movies.Count.Should().Be(0);
         
+        //empty database
+        await _context.Database.EnsureDeletedAsync();
+        
         //If all above Controller-functions work, test passes
+
     }
     
     

@@ -16,17 +16,17 @@ public class HomeController : Controller
         _context = context;
     }
 
-    public Task<ActionResult<IndexViewModel>> Index()
+    public async Task<ActionResult<IndexViewModel>> Index()
     {
         var indexViewModel = new IndexViewModel
         {
             Halls = _context.Hall.OrderBy(h => h.Id).ToList(),
-            Movies = _context.Movie.OrderBy(m => m.Id).ToList(),
-            Showtimes = _context.Showtime.Include(s => s.Hall).Include(s => s.Movie).ToList(),
+            Movies = await GetMoviesAsync(),
+            Showtimes = _context.Showtime?.Include(s => s.Hall).Include(s => s.Movie).ToList(),
             MovieRuntimes = _context.MovieRuntime.ToList()
         };
 
-        return Task.FromResult<ActionResult<IndexViewModel>>(View(indexViewModel));
+        return View(indexViewModel);
         }
     
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -34,7 +34,6 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
     }
-    
     
     public async Task<IActionResult> InsertEmail(string email)
     {
@@ -55,8 +54,8 @@ public class HomeController : Controller
         return Ok();
     }
 
-    public List<Movie> GetMovies()
+    public async Task<IList<Movie>> GetMoviesAsync()
     {
-        return _context.Movie.ToList();
+        return await _context.Movie.OrderBy(m => m.Id).ToListAsync();
     }
 }

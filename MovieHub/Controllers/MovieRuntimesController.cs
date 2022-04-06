@@ -258,5 +258,15 @@ namespace MovieHub.Controllers
                 .OrderBy(m => m.Time)
                 .FirstAsync();
         }
+        
+        public async Task<MovieRuntime> GetOneMovieRuntimeTestAsync(int id)
+        {
+            return await _context.MovieRuntime
+                .Where(m => m.Id == id)
+                .OrderBy(m => m.Time)
+                .FirstAsync();
+        }
+        
+        
     }
 }

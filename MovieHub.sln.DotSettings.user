@@ -8,9 +8,14 @@
   &lt;Assembly Path="/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/6.0.0/ref/net6.0/Microsoft.AspNetCore.Mvc.RazorPages.dll" /&gt;
   &lt;Assembly Path="/Users/robvdhorst/.nuget/packages/microsoft.extensions.identity.core/6.0.1/lib/net6.0/Microsoft.Extensions.Identity.Core.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2d86c0aa_002Db676_002D4d0b_002Db2a2_002D4ea6f3bd467e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;Solution /&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4c8fff16_002D531d_002D466b_002D9379_002D724595dd64fd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="MovieRuntimeControllerTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.MovieRuntimeControllerTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	
+	
+	
 	
 	
 	

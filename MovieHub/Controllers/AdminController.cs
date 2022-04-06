@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MovieHub.Models;
 using MovieHub.ViewModels;
 
@@ -20,13 +21,19 @@ public class AdminController : Controller
     
     [Authorize(Roles = "Admin, Manager")]
     [HttpGet]
-    public IActionResult RoleList()
+    public async Task<IActionResult> RoleList()
     {
-        var roles = _roleManager.Roles.OrderBy(r => r.Name).ToList();
+        var roles = await GetRoles();
         
         return View(roles);
     }
-    
+
+    [HttpGet]
+    public async Task<List<IdentityRole>> GetRoles()
+    {
+        return await _roleManager.Roles.OrderBy(r => r.Name).ToListAsync();
+    }
+
     [HttpGet]
     public IActionResult AddRole()
     {
@@ -38,12 +45,13 @@ public class AdminController : Controller
     {
         if (ModelState.IsValid)
         {
+
             var identityRole = new IdentityRole
             {
                 Name = model.RoleName
             };
 
-            var result = await _roleManager.CreateAsync(identityRole);
+            var result =  await _roleManager.CreateAsync(identityRole);
 
             if (result.Succeeded)
             {
@@ -54,11 +62,10 @@ public class AdminController : Controller
             {
                 ModelState.AddModelError("", error.Description);
             }
-
         }
         return View(model);
     }
-
+    
     [HttpGet]
     public async Task<IActionResult> EditRole(string id)
     {
