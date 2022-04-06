@@ -49,11 +49,17 @@ namespace MovieHub.Controllers
             return View(review);
         }
 
-
         // GET: Review/Create
         public IActionResult Create()
         {
-            return View();
+            var reviewViewModel = new ReviewViewModel
+            {
+                Review = new Review(),
+                Halls = _context.Hall.OrderBy(h => h.Name).ToList(),
+                Cinemas = _context.Cinema.OrderBy(c => c.Name).ToList()
+            };
+            
+            return View(reviewViewModel);
         }
 
         // POST: Review/Create
@@ -73,7 +79,7 @@ namespace MovieHub.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(review);
+            return RedirectToAction(nameof(Create));
         }
 
         [Authorize(Roles = "Admin, Manager, Back-Office")]

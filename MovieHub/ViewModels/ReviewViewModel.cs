@@ -5,6 +5,6 @@ namespace MovieHub.ViewModels;
 public class ReviewViewModel
 {
     public Review Review { get; set; }
-    public List<Cinema> Cinema { get; set; }
-    public List<Hall> Hall { get; set; }
+    public List<Cinema> Cinemas { get; set; }
+    public List<Hall> Halls { get; set; }
 }
