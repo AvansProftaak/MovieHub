@@ -122,13 +122,20 @@ namespace MovieHub.Controllers
             {
                 return NotFound();
             }
-
+            
             var movie = await _context.Movie.FindAsync(id);
+            
             if (movie == null)
             {
                 return NotFound();
             }
-            return View(movie);
+            
+            return View(new CreateMovieViewModel
+            {
+                Movie = movie,
+                Pegis = _context.Pegi.ToList(),
+                Genres = _context.Genre.ToList()
+            });
         }
 
         // POST: Movies/Edit/5
@@ -136,34 +143,55 @@ namespace MovieHub.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie)
+        public async Task<IActionResult> Edit([Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie, int[] pegis, int[] genres)
         {
-            if (id != movie.Id)
+            
+            Movie movieToSave = new Movie
             {
-                return NotFound();
-            }
+                Title = movie.Title,
+                Description = movie.Description,
+                Duration = movie.Duration,
+                Cast = movie.Cast,
+                Director = movie.Director,
+                ImdbScore = movie.ImdbScore,
+                ReleaseDate = movie.ReleaseDate,
+                Is3D = movie.Is3D,
+                IsSecret = movie.IsSecret,
+                Language = movie.Language,
+                ImageUrl = movie.ImageUrl,
+                TrailerUrl = movie.TrailerUrl
+            };
 
             if (ModelState.IsValid)
             {
-                try
+                _context.Add(movieToSave);
+                await _context.SaveChangesAsync();
+
+                foreach (var pegiId in pegis)
                 {
-                    _context.Update(movie);
-                    await _context.SaveChangesAsync();
+                    var pegi = new MoviePegi
+                    {
+                        PegiId = pegiId,
+                        MovieId = movieToSave.Id
+                    };
+                    _context.MoviePegi.Add(pegi); 
+                    await _context.SaveChangesAsync();       
                 }
-                catch (DbUpdateConcurrencyException)
+                
+                foreach (var genreId in genres)
                 {
-                    if (!MovieExists(movie.Id))
+                    var genre = new MovieGenre
                     {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                        GenreId = genreId,
+                        MovieId = movieToSave.Id
+                    };
+                    _context.MovieGenre.Add(genre); 
+                    await _context.SaveChangesAsync();       
                 }
+                
                 return RedirectToAction(nameof(Index));
             }
-            return View(movie);
+            return View();
         }
 
         // GET: Movies/Delete/5
