@@ -70,7 +70,7 @@ namespace MovieHub.Controllers
         public async Task<IActionResult> Create([Bind("CinemaId,HallId,Id,DisplayQuality,SoundQuality,FoodQuality,Disturbance,Hygiene,Name,Email")] Review review )
         {
             // get hall and cinema
-            review.TimeCreated = DateTime.Now;
+            review.TimeCreated = DateTime.UtcNow.AddHours(2);
             Console.WriteLine(review);
             
             if (ModelState.IsValid)
