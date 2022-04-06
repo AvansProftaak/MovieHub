@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Models;
 
@@ -31,5 +31,6 @@ public class ApplicationDbContext : IdentityDbContext<User>
     public DbSet<MovieHub.Models.PaymentMethod> PaymentMethod { get; set; } = null!;
     public DbSet<MovieHub.Models.MovieRuntime> MovieRuntime { get; set; } = null!;
     public DbSet<MovieHub.Models.Newsletter> Newsletter { get; set; } = null!;
+    public DbSet<MovieHub.Models.Review> Review { get; set; }
 
 }

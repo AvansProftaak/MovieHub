@@ -1,0 +1,66 @@
+@model MovieHub.Models.Review
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Review</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DisplayQuality" class="control-label"></label>
+                <input asp-for="DisplayQuality" class="form-control" />
+                <span asp-validation-for="DisplayQuality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoundQuality" class="control-label"></label>
+                <input asp-for="SoundQuality" class="form-control" />
+                <span asp-validation-for="SoundQuality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FoodQuality" class="control-label"></label>
+                <input asp-for="FoodQuality" class="form-control" />
+                <span asp-validation-for="FoodQuality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Disturbance" class="control-label"></label>
+                <input asp-for="Disturbance" class="form-control" />
+                <span asp-validation-for="Disturbance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hygiene" class="control-label"></label>
+                <input asp-for="Hygiene" class="form-control" />
+                <span asp-validation-for="Hygiene" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeCreated" class="control-label"></label>
+                <input asp-for="TimeCreated" class="form-control" />
+                <span asp-validation-for="TimeCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
