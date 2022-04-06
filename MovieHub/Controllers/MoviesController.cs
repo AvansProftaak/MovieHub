@@ -143,52 +143,66 @@ namespace MovieHub.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie, int[] pegis, int[] genres)
+        public async Task<IActionResult> Edit(int id, [Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie, int[] pegis, int[] genres)
         {
-            
-            Movie movieToSave = new Movie
-            {
-                Title = movie.Title,
-                Description = movie.Description,
-                Duration = movie.Duration,
-                Cast = movie.Cast,
-                Director = movie.Director,
-                ImdbScore = movie.ImdbScore,
-                ReleaseDate = movie.ReleaseDate,
-                Is3D = movie.Is3D,
-                IsSecret = movie.IsSecret,
-                Language = movie.Language,
-                ImageUrl = movie.ImageUrl,
-                TrailerUrl = movie.TrailerUrl
-            };
+            if (id != movie.Id) { return NotFound(); }
 
             if (ModelState.IsValid)
             {
-                _context.Add(movieToSave);
-                await _context.SaveChangesAsync();
-
-                foreach (var pegiId in pegis)
+                try
                 {
-                    var pegi = new MoviePegi
+                    _context.Update(movie);
+                    await _context.SaveChangesAsync();
+                    
+                    var pegiList = _context.MoviePegi.Where(p => p.MovieId == movie.Id).ToList();
+                    
+                    foreach (var pegi in pegiList)
                     {
-                        PegiId = pegiId,
-                        MovieId = movieToSave.Id
-                    };
-                    _context.MoviePegi.Add(pegi); 
-                    await _context.SaveChangesAsync();       
-                }
-                
-                foreach (var genreId in genres)
+                        _context.MoviePegi.Remove(pegi);
+                        await _context.SaveChangesAsync();
+                    }
+                    
+                    var genreList = _context.MovieGenre.Where(p => p.MovieId == movie.Id).ToList();
+                    
+                    foreach (var genre in genreList)
+                    {
+                        _context.MovieGenre.Remove(genre);
+                        await _context.SaveChangesAsync();
+                    }
+                    
+                    foreach (var pegiId in pegis)
+                    {
+                        var pegi = new MoviePegi
+                        {
+                            PegiId = pegiId,
+                            MovieId = movie.Id
+                        };
+                        _context.MoviePegi.Add(pegi); 
+                        await _context.SaveChangesAsync();       
+                    }
+                    
+                    foreach (var genreId in genres)
+                    {
+                        var genre = new MovieGenre 
+                        {
+                            GenreId = genreId,
+                            MovieId = movie.Id
+                        };
+                        _context.MovieGenre.Add(genre); 
+                        await _context.SaveChangesAsync();       
+                    }
+ }
+                catch (DbUpdateConcurrencyException)
                 {
-                    var genre = new MovieGenre
+                    if (!MovieExists(movie.Id))
                     {
-                        GenreId = genreId,
-                        MovieId = movieToSave.Id
-                    };
-                    _context.MovieGenre.Add(genre); 
-                    await _context.SaveChangesAsync();       
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
-                
                 return RedirectToAction(nameof(Index));
             }
             return View();
