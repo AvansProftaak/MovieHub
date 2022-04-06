@@ -2,12 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using EASendMail;
+using SmtpClient = EASendMail.SmtpClient; //add EASendMail namespace
 
 namespace MovieHub.Controllers
 {
@@ -53,7 +61,7 @@ namespace MovieHub.Controllers
         // POST: Email/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Content")] Email email)
         {
@@ -115,7 +123,7 @@ namespace MovieHub.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(email);
-        }
+        }*/
 
         // GET: Email/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -150,5 +158,82 @@ namespace MovieHub.Controllers
         {
             return _context.Email.Any(e => e.Id == id);
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        [HttpPost]  
+        public ActionResult Create(string receiver, string subject, string message) {  
+            /*try {  
+                //if (ModelState.IsValid) {  
+                    var senderEmail = new MailAddress("bgrootoonk@pepisandbox.com", "Bart");  
+                    var receiverEmail = new MailAddress("bart-grootoonk@hotmail.com", "bart");  
+                    var password = "P@ssword123!";  
+                    var sub = "test";  
+                    var body = "test";  
+                    var smtp = new SmtpClient {  
+                        Host = "smtp.netcorecloud.net",  
+                        Port = 587,  
+                        EnableSsl = true,  
+                        DeliveryMethod = SmtpDeliveryMethod.Network,  
+                        UseDefaultCredentials = false,  
+                        Credentials = new NetworkCredential("bgrootoonk@pepisandbox.com", password)  
+                    };  
+                    using(var mess = new MailMessage(senderEmail, receiverEmail) {  
+                              Subject = "test",  
+                              Body = "test"  
+                          }) {  
+                        smtp.Send(mess);  
+                    }
+
+                    return View();
+                //}  
+            } catch (Exception) {  
+                ViewBag.Error = "Some Error";  
+            }  
+            return View();*/
+            
+            try
+            {
+                SmtpMail oMail = new SmtpMail("TryIt");
+
+                // Set sender email address, please change it to yours
+                oMail.From = "test@emailarchitect.net";
+                // Set recipient email address, please change it to yours
+                oMail.To = "bart-grootoonk@hotmail.com";
+
+                // Set email subject
+                oMail.Subject = "direct email sent from c# project";
+                // Set email body
+                oMail.TextBody = "this is a test email sent from c# project directly";
+
+                // Set SMTP server address to "".
+                SmtpServer oServer = new SmtpServer("");
+
+                // Do not set user authentication
+                // Do not set SSL connection
+
+                Console.WriteLine("start to send email directly ...");
+
+                SmtpClient oSmtp = new SmtpClient();
+                oSmtp.SendMail(oServer, oMail);
+
+                Console.WriteLine("email was sent successfully!");
+            }
+            catch (Exception ep)
+            {
+                Console.WriteLine("failed to send email with the following error:");
+                Console.WriteLine(ep.Message);
+            }
+            return View();
+        }
+
+        }  
     }
-}
+
