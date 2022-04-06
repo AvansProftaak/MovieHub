@@ -20,7 +20,7 @@
             </div>
             <div class="form-group py-2">
                 <label asp-for="Gender" class="control-label"><strong>What is your gender?</strong></label>
-                <select asp-for="Gender" class="form-control dropdown-selector" asp-items="Html.GetEnumSelectList<GenderEnum>()">
+                <select asp-for="Gender" class="dropdown-selector display-dropdown" asp-items="Html.GetEnumSelectList<GenderEnum>()">
                     <option selected="selected" value="">Please select</option>
                 </select>
                 <span asp-validation-for="Gender" class="text-danger"></span>

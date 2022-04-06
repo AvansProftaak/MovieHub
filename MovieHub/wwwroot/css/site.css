@@ -316,3 +316,8 @@ color: #F8A613;
 .radio-button-survey {
   padding: 4px;
 }
+
+.display-dropdown {
+  display: block;
+  width: 100%;
+}
