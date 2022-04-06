@@ -26,7 +26,7 @@ public class MoviesControllerTest
     }
 
     [Fact]
-    public void Details_Returns_Details_View()
+    public void Test_Should_Return_Details_View()
     {
         var movie = GetMovie();
         var result = _controller.Details(movie.Id);
@@ -34,7 +34,7 @@ public class MoviesControllerTest
     }
     
     [Fact]
-    public async void Test_Create_And_Delete_Movie()
+    public async void Test_Should_Create_And_Delete_Movie_From_Db()
     {
         var movie = GetMovie();
         await _controller.CreateMovieAsync(movie);

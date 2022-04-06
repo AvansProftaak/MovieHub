@@ -24,7 +24,7 @@ public class SurveyControllerTest
     
     
     [Fact]
-    public async Task CreateShouldAddSurveyToDb()
+    public async Task Test_Should_Create_And_Add_Survey_To_Db()
     {
         var survey = GetSurvey();
         
