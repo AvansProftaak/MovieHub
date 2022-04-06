@@ -26,7 +26,7 @@
                     </div>
                     <hr class="role-hr"/>
                     
-                    @foreach (var item in Model.RuntimeList.Where(m => m.HallId == hall.Id))
+                    @foreach (var item in Model.MovieRuntimes.Where(m => m.HallId == hall.Id))
                     {
                         <div class="row">
                             <div class="col survey-row-small" style="padding-left: 12px">@item.Movie.Title</div>

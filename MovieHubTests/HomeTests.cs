@@ -38,7 +38,7 @@ public class HomeTests
     [Fact]
     public void Test_Movie_Runtime_Created()
     {
-        Assert.Equal(1, _context.MovieRuntime.First().Id);
+        Assert.Equal(2, _context.MovieRuntime.First().HallId);
     }
     
     [Fact]
@@ -112,7 +112,7 @@ public class HomeTests
         {
             Id = 1,
             MovieId = 1,
-            HallId = 1,
+            HallId = 2,
             StartAt = DateTime.Today.Date,
             EndAt = DateTime.Today.AddDays(1).Date,
             Time = TimeSpan.FromHours(23)

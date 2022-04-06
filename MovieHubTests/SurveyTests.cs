@@ -17,24 +17,26 @@ public class SurveyTests
     public SurveyTests()
     {
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseInMemoryDatabase("TestDatabase").Options;
+            .UseInMemoryDatabase("MovieRuntimeTestDatabase").Options;
         var context = new ApplicationDbContext(options);   
         _controller = new SurveyController(context);
     }
+    
     
     [Fact]
     public async Task CreateShouldAddSurveyToDb()
     {
         var survey = GetSurvey();
+        
         await _controller.CreateSurveyAsync(survey);
-
+        
         var surveys = await _controller.GetSurveysAsync();
-
+        
         surveys.Single().CinemaNumber.Should().Be(survey.CinemaNumber);
         surveys.Single().Email.Should().Be(survey.Email);
         surveys.Single().Id.Should().Be(survey.Id);
         surveys.Single().Hygiene.Should().Be(survey.Hygiene);
-
+        
         var createdSurvey = await _controller.GetSurveyAsync(survey.Id);
         
         createdSurvey.CinemaNumber.Should().Be(survey.CinemaNumber);
@@ -42,7 +44,6 @@ public class SurveyTests
         createdSurvey.Id.Should().Be(survey.Id);
         createdSurvey.Hygiene.Should().Be(survey.Hygiene);
     }
-    
     
     private static Survey GetSurvey()
     {

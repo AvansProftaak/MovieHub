@@ -20,45 +20,30 @@ namespace MovieHub.Controllers
         {
             _context = context;
         }
-
-        // GET: MovieRuntimes
-        public IActionResult Index()
+        
+        public async Task<IActionResult> Index()
         {
 
+            // Gives back a list with all Halls and all MovieRuntimes
             var movieRuntimeViewModel = new MovieRuntimeViewModel
             {
                 Halls = _context.Hall.OrderBy(h => h.Id).ToList(),
-                RuntimeList = _context.MovieRuntime
+                MovieRuntimes = await _context.MovieRuntime
                     .Include(m => m.Hall)
                     .Include(m => m.Movie)
                     .OrderBy(m => m.Time)
-                    .ToList()
+                    .ToListAsync()
             };
 
             return View(movieRuntimeViewModel);
         }
 
-        // GET: MovieRuntimes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var movieRuntime = await _context.MovieRuntime
-                .Include(m => m.Hall)
-                .Include(m => m.Movie)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (movieRuntime == null)
-            {
-                return NotFound();
-            }
-
-            return View(movieRuntime);
+            return View(await GetOneMovieRuntimeAsync(id));
         }
-
-        // GET: MovieRuntimes/Create
+        
         public IActionResult Create()
         {
             ViewData["HallId"] = new SelectList(_context.Hall.OrderBy(h => h.Id), "Id", "Name");
@@ -66,50 +51,36 @@ namespace MovieHub.Controllers
             return View();
         }
         
-
-        // POST: MovieRuntimes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MovieId,HallId,StartAt,EndAt")] MovieRuntime movieRuntime, TimeSpan time)
         {
+            var hallName = _context.Hall.FirstOrDefault(h => h.Id == movieRuntime.HallId)?.Name;
 
-            var runtimeList = _context.MovieRuntime.Where(m => m.HallId == movieRuntime.HallId).Include(m => m.Movie).ToList();
-            var movie = _context.Movie.FirstOrDefault(m => m.Id == movieRuntime.MovieId);
-            var hall = _context.Hall.FirstOrDefault(h => h.Id == movieRuntime.HallId);
-
-            foreach (var runtime in runtimeList)
+            // Checks if Runtime is available in schedule
+            if (await CheckAvailableRuntime(movieRuntime, time))
             {
-                if (
-                    // if startDate new Runtime between startDate AND endDate of other Runtimes
-                    (movieRuntime.StartAt >= runtime.StartAt && movieRuntime.StartAt <= runtime.EndAt || 
-                    // OR if endDate new Runtime between startDate AND endDate of other Runtimes
-                     movieRuntime.EndAt >= runtime.StartAt && movieRuntime.EndAt <= runtime.EndAt) && 
-                    // AND startTime new Runtime is between startTime AND endTime of other Runtimes
-                    (time >= runtime.Time && time <= runtime.Time.Add(runtime.Movie.Duration.Minutes()) || 
-                    // OR endTime new Runtime is between startTime AND endTime of other Runtime
-                     time.Add(movie.Duration.Minutes()) >= runtime.Time && time.Add(movie.Duration.Minutes()) <= runtime.Time.Add(runtime.Movie.Duration.Minutes())))
+                // Show errormessage in View
+                TempData["ErrorMessage"] = hallName + " is not available on this time";
                     
-                {
-                    // Show errormessage in View
-                    TempData["ErrorMessage"] = @hall.Name + " is not available on this time";
-                    
-                    // Fills dropdown buttons
-                    ViewData["HallId"] = new SelectList(_context.Hall.OrderBy(h => h.Id), "Id", "Name");
-                    ViewData["MovieId"] = new SelectList(_context.Movie.OrderBy(m => m.Id), "Id", "Title");
-                    
-                    return RedirectToAction(nameof(Create));
-                }
+                // Fills dropdown buttons
+                ViewData["HallId"] = new SelectList(_context.Hall.OrderBy(h => h.Id), "Id", "Name");
+                ViewData["MovieId"] = new SelectList(_context.Movie.OrderBy(m => m.Id), "Id", "Title");
+                
+                // Back to the Create View and show an error
+                return RedirectToAction(nameof(Create));
             }
-
-            var movieRuntimeId = await CreateMovieRuntime(movieRuntime.MovieId, movieRuntime.HallId, movieRuntime.StartAt, movieRuntime.EndAt, time);
-            await CreateShowtime(movieRuntimeId, movieRuntime.MovieId, movieRuntime.HallId, movieRuntime.StartAt, movieRuntime.EndAt, time);
             
+            // Creates a MovieRuntime 
+            var newMovieRuntime = await CreateMovieRuntimeAsync(movieRuntime, time);
+            
+            // Creates new Showtimes with the new MovieRuntime
+            await CreateShowtimesAsync(newMovieRuntime, time);
+            
+            // Back to index-page
             return RedirectToAction(nameof(Index));
         }
         
-        // GET: MovieRuntimes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -127,95 +98,40 @@ namespace MovieHub.Controllers
             return View(movieRuntime);
         }
 
-        // POST: MovieRuntimes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,MovieId,HallId,StartAt,EndAt")] MovieRuntime movieRuntime, TimeSpan time)
         {
-            if (id != movieRuntime.Id)
-            {
-                return NotFound();
-            }
-            
-            var runtimeList = _context.MovieRuntime
-                .Where(m => m.HallId == movieRuntime.HallId)
-                .Include(m => m.Movie)
-                .ToList();
-            var showtimeList = _context.Showtime
-                .Where(s => s.MovieRuntimeId == movieRuntime.Id)
-                .Where(s => s.StartAt.ToLocalTime() >= DateTime.Now)
-                .ToList();
-            var movie = _context.Movie
-                .FirstOrDefault(m => m.Id == movieRuntime.MovieId);
-            var hall = _context.Hall
-                .FirstOrDefault(h => h.Id == movieRuntime.HallId);
+            var hallName = _context.Hall.FirstOrDefault(h => h.Id == movieRuntime.HallId)?.Name;
 
-            foreach (var runtime in runtimeList)
+            // Checks if edited Runtime is available in schedule
+            if (await CheckAvailableRuntime(movieRuntime, time))
             {
-                if ( runtime.Id != id &&
-                    // if startDate new Runtime between startDate AND endDate of other Runtimes
-                    (movieRuntime.StartAt >= runtime.StartAt && movieRuntime.StartAt <= runtime.EndAt || 
-                     // OR if endDate new Runtime between startDate AND endDate of other Runtimes
-                     movieRuntime.EndAt >= runtime.StartAt && movieRuntime.EndAt <= runtime.EndAt) && 
-                    // AND startTime new Runtime is between startTime AND endTime of other Runtimes
-                    (time >= runtime.Time && time <= runtime.Time.Add(runtime.Movie.Duration.Minutes()) || 
-                     // OR endTime new Runtime is between startTime AND endTime of other Runtime
-                     time.Add(movie.Duration.Minutes()) >= runtime.Time && time.Add(movie.Duration.Minutes()) <= runtime.Time.Add(runtime.Movie.Duration.Minutes())))                    
-                {
-                    // Show errormessage in View
-                    TempData["ErrorMessage"] = @hall.Name + " is not available on this time";
+                // Show errormessage in View
+                TempData["ErrorMessage"] = hallName + " is not available on this time";
                     
-                    // Fills dropdown buttons
-                    ViewData["HallId"] = new SelectList(_context.Hall.OrderBy(h => h.Id), "Id", "Name");
-                    ViewData["MovieId"] = new SelectList(_context.Movie.OrderBy(m => m.Id), "Id", "Title");
-                    
-                    return RedirectToAction(nameof(Edit));
-                }
+                // Fills dropdown buttons
+                ViewData["HallId"] = new SelectList(_context.Hall.OrderBy(h => h.Id), "Id", "Name");
+                ViewData["MovieId"] = new SelectList(_context.Movie.OrderBy(m => m.Id), "Id", "Title");
+                
+                // Back to the Create View and show an error
+                return RedirectToAction(nameof(Edit));
             }
             
-            var oldMovieRuntime = _context.MovieRuntime
-                .FirstOrDefault(m => m.Id == id);
-            _context.Remove(oldMovieRuntime!);
+            // Deletes old MovieRuntime and Showtimes before adding new one
+            await DeleteConfirmed(id);
+            await DeleteShowTimes(id);
+
+            // Creates a MovieRuntime 
+            var newMovieRuntime = await CreateMovieRuntimeAsync(movieRuntime, time);
             
-            foreach (var showtime in showtimeList)
-            {
-                _context.Showtime.Remove(showtime);
-            }
-            
-            var newMovieRuntime = new MovieRuntime
-            {
-                MovieId = movieRuntime.MovieId,
-                HallId = movieRuntime.HallId,
-                StartAt = movieRuntime.StartAt,
-                EndAt = movieRuntime.EndAt,
-                Time = time
-            };
-            _context.Add(newMovieRuntime);
-            await _context.SaveChangesAsync();
-            
-            var dates = new List<DateTime>();
-                     
-            for (var dt = movieRuntime.StartAt; dt <= movieRuntime.EndAt; dt = dt.AddDays(1))
-            {
-                dates.Add(dt);
-            }
-            
-            foreach (var date in dates)
-            {
-                var showtime = new Showtime
-                {
-                    HallId = movieRuntime.HallId,
-                    MovieId = movieRuntime.MovieId,
-                    StartAt = date.Add(time).ToUniversalTime(),
-                    MovieRuntimeId = newMovieRuntime.Id
-                };
-                _context.Showtime?.Add(showtime);
-                await _context.SaveChangesAsync();
-            }
+            // Creates new Showtimes with the new MovieRuntime
+            await CreateShowtimesAsync(newMovieRuntime, time);
+         
+            // Back to index-page
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: MovieRuntimes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -235,7 +151,7 @@ namespace MovieHub.Controllers
             return View(movieRuntime);
         }
 
-        // POST: MovieRuntimes/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -246,52 +162,101 @@ namespace MovieHub.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MovieRuntimeExists(int id)
+        //Checks if the given Movie Runtime is available in the movie schedule
+        public Task<bool> CheckAvailableRuntime(MovieRuntime movieRuntime, TimeSpan time)
         {
-            return _context.MovieRuntime.Any(e => e.Id == id);
+            var runtimeList = _context.MovieRuntime
+                .Where(m => m.HallId == movieRuntime.HallId)
+                .Include(m => m.Movie)
+                .Include(m => m.Hall)
+                .ToList();
+
+            return Task.FromResult(runtimeList.Any(runtime => (runtime.Id != movieRuntime.Id || movieRuntime.Id == 0) &&
+                                                              // if startDate new Runtime between startDate AND endDate of other Runtimes
+                                                              (movieRuntime.StartAt >= runtime.StartAt && movieRuntime.StartAt <= runtime.EndAt ||
+                                                               // OR if endDate new Runtime between startDate AND endDate of other Runtimes
+                                                               movieRuntime.EndAt >= runtime.StartAt && movieRuntime.EndAt <= runtime.EndAt) &&
+                                                              // AND startTime new Runtime is between startTime AND endTime of other Runtimes
+                                                              (time >= runtime.Time && time <= runtime.Time.Add(runtime.Movie.Duration.Minutes()) ||
+                                                               // OR endTime new Runtime is between startTime AND endTime of other Runtime
+                                                               time.Add(runtime.Movie.Duration.Minutes()) >= runtime.Time && time.Add(runtime.Movie.Duration.Minutes()) <= runtime.Time.Add(runtime.Movie.Duration.Minutes()))));
         }
         
-        public async Task<int> CreateMovieRuntime(int movieId, int hallId, DateTime startDate, DateTime endDate, TimeSpan time)
+        //Saves the MovieRuntime to the Database
+        public async Task<MovieRuntime> CreateMovieRuntimeAsync(MovieRuntime movieRuntime, TimeSpan time)
         {
-            var movieRuntime = new MovieRuntime
+            var result = new MovieRuntime
             {
-                MovieId = movieId,
-                HallId = hallId,
-                StartAt = startDate,
-                EndAt = endDate,
+                MovieId = movieRuntime.MovieId,
+                HallId = movieRuntime.HallId,
+                StartAt = movieRuntime.StartAt,
+                EndAt = movieRuntime.EndAt,
                 Time = time
             };            
-            await _context.AddAsync(movieRuntime);
+            await _context.AddAsync(result);
             await _context.SaveChangesAsync();
 
-            return movieRuntime.Id;
+            return result;
         }
         
-        public async Task CreateShowtime(int movieRuntimeId, int movieId, int hallId, DateTime startDate, DateTime endDate, TimeSpan time)
+        //Creates a showtime for each MovieRuntime in selected period
+        public async Task CreateShowtimesAsync(MovieRuntime movieRuntime, TimeSpan time)
         {
-            
             var dates = new List<DateTime>();
-                     
-            for (var dt = startDate; dt <= endDate; dt = dt.AddDays(1))
+                  
+            // Foreach date in selected dates, add it to the dateList
+            for (var dt = movieRuntime.StartAt; dt <= movieRuntime.EndAt; dt = dt.AddDays(1))
             {
                 dates.Add(dt);
             }
 
+            // Foreach date from above list, add a Showtime to the Showtime table
             foreach (var date in dates)
             {
                 var showtime = new Showtime
                 {
-                    HallId = hallId,
-                    MovieId = movieId,
+                    HallId = movieRuntime.HallId,
+                    MovieId = movieRuntime.MovieId,
                     StartAt = date.Add(time).ToUniversalTime(),
-                    MovieRuntimeId = movieRuntimeId
+                    MovieRuntimeId = movieRuntime.Id
                 };
-                await _context.Showtime.AddAsync(showtime);
+                await _context.Showtime!.AddAsync(showtime);
                 await _context.SaveChangesAsync();
             }
         }
+        
+        //Deletes the showtimes when MovieRuntime is edited or removed
+        public Task DeleteShowTimes(int id)
+        {
+            var showtimeList = _context.Showtime?
+                .Where(s => s.MovieRuntimeId == id)
+                .Where(s => s.StartAt.ToLocalTime() >= DateTime.Now)
+                .ToList();
+            
+            foreach (var showtime in showtimeList!)
+            {
+                _context.Showtime?.Remove(showtime);
+            }
 
+            return Task.CompletedTask;
+        }
 
-
+        // Gets all 
+        public async Task<IList<MovieRuntime>> GetMovieRuntimesAsync()
+        {
+            return await _context.MovieRuntime
+                .OrderBy(m => m.Time)
+                .ToListAsync();
+        }
+        
+        public async Task<MovieRuntime> GetOneMovieRuntimeAsync(int id)
+        {
+            return await _context.MovieRuntime
+                .Where(m => m.Id == id)
+                .Include(m => m.Hall)
+                .Include(m => m.Movie)
+                .OrderBy(m => m.Time)
+                .FirstAsync();
+        }
     }
 }

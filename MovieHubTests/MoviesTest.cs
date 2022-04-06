@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Moq;
@@ -25,32 +27,48 @@ public class MoviesTests
     }
 
     [Fact]
-    public void Test_Movies_Database_Ok()
-    {
-        _context.Database.EnsureCreated();
-        InsertTestData(_context);
-        Assert.Equal("Blacklight", _context.Movie.First().Title);
-    }
-
-    [Fact]
     public void Test_Details_Returns_Details_View()
     {
-        var result = _controller.Details(1);
+        var movie = GetMovie();
+        var result = _controller.Details(movie.Id);
         Assert.IsType<Task<IActionResult>>(result);
     }
-
+    
     [Fact]
-    public void Test_Delete_Should_Delete_Movie()
+    public async void Test_Create_And_Delete_Movie()
     {
-        var movie = _context.Movie.First();
-        _controller.DeleteConfirmed(movie.Id);
+        var movie = GetMovie();
+        await _controller.CreateMovieAsync(movie);
+        
+        //Test if Title, Director and Id from List equals object 
+        var movies = await _controller.GetMoviesAsync();
+        movies.First().Title.Should().Be(movie.Title);
+        movies.First().Director.Should().Be(movie.Director);
+        movies.First().Id.Should().Be(movie.Id);
 
-        Assert.Null(_context.Movie.Find(movie.Id));
+        //Get created Movie and compare with input
+        var createdMovie = await _controller.GetMovieAsync(movie.Id);
+        createdMovie.Title.Should().Be(movie.Title);
+        createdMovie.Director.Should().Be(movie.Director);
+        createdMovie.Id.Should().Be(movie.Id);
+        
+        // Now there must be one movie in the list
+        movies.Count.Should().Be(1);
+        
+        // Delete the movie and return the movieList again
+        await _controller.DeleteConfirmed(movie.Id);
+        movies = await _controller.GetMoviesAsync();
+        
+        // Now there must be one movie in the list
+        movies.Count.Should().Be(0);
+        
+        //If all above Controller-functions work, test passes
     }
-
-    private void InsertTestData(ApplicationDbContext context)
+    
+    //OBJECTS:
+    private static Movie GetMovie()
     {
-        context.Add(new Movie()
+        return new Movie
         {
             Id = 1,
             Title = "Blacklight",
@@ -65,9 +83,11 @@ public class MoviesTests
             Language = "English",
             ImageUrl = "https://i.ibb.co/YyqyK3S/blacklight.jpg",
             TrailerUrl = "https://www.youtube.com/watch?v=PE04ESdgnHI"
-        });
-
-        context.Add(new MovieRuntime()
+        };
+    }
+    private static MovieRuntime GetMovieRuntime()
+    {
+        return new MovieRuntime
         {
             Id = 1,
             MovieId = 1,
@@ -75,70 +95,93 @@ public class MoviesTests
             StartAt = DateTime.Today.Date,
             EndAt = DateTime.Today.AddDays(1).Date,
             Time = TimeSpan.FromHours(23)
-        });
-
-        context.Add(new Showtime()
-        {
-            HallId = 1,
-            MovieId = 1,
-            StartAt = DateTime.Today.AddHours(23)
-        });
-
-        context.Add(new Showtime()
-        {
-            HallId = 1,
-            MovieId = 1,
-            StartAt = DateTime.Today.AddDays(1).AddHours(23)
-        });
-
-        context.Add(new Pegi()
-        {
-            Id = 1,
-            Description = "Gambling",
-            Icon = "https://static.wikia.nocookie.net/rating-system/images/4/40/PEGI6.jpg"
-        });
-
-        context.Add(new Pegi()
-        {
-            Id = 2,
-            Description = "Violence",
-            Icon = "https://static.wikia.nocookie.net/rating-system/images/e/e8/PEGI3.jpg"
-        });
-
-        context.Add(new MoviePegi()
-        {
-            MovieId = 1,
-            PegiId = 1
-        });
-
-        context.Add(new MoviePegi()
-        {
-            MovieId = 1,
-            PegiId = 2
-        });
-
-        context.Add(new Genre()
-        {
-            Name = "Action"
-        });
-
-        context.Add(new Genre()
-        {
-            Name = "Adventure"
-        });
-
-        context.Add(new MovieGenre()
-        {
-            MovieId = 1,
-            GenreId = 1
-        });
-
-        context.Add(new MovieGenre()
-        {
-            MovieId = 1,
-            GenreId = 2
-        });
-
-        context.SaveChanges();
+        };
     }
+
+    private static List<Showtime> GetShowTimes()
+    {
+        return new List<Showtime>
+        {
+            new()
+            {
+                HallId = 1,
+                MovieId = 1,
+                StartAt = DateTime.Today.AddHours(23)
+            },
+            new()
+            {
+                HallId = 1,
+                MovieId = 1,
+                StartAt = DateTime.Today.AddHours(23)
+            }
+        };
+    }
+
+    private static List<Pegi> GetPegis()
+    {
+        return new List<Pegi>
+        {
+            new()
+            {
+                Id = 1,
+                Description = "Gambling",
+                Icon = "https://static.wikia.nocookie.net/rating-system/images/4/40/PEGI6.jpg"
+            },
+            new()
+            {
+                Id = 2,
+                Description = "Violence",
+                Icon = "https://static.wikia.nocookie.net/rating-system/images/e/e8/PEGI3.jpg"
+            }
+        };
+    }
+
+    private static List<MoviePegi> GetMoviePegis()
+    {
+        return new List<MoviePegi>
+        {
+            new()
+            {
+                MovieId = 1,
+                PegiId = 1
+            },
+            new()
+            {
+                MovieId = 1,
+                PegiId = 2
+            }
+        };
+    }
+
+    private static List<Genre> GetGenres()
+    {
+        return new List<Genre>
+        {
+            new()
+            {
+                Name = "Action"
+            },
+            new()
+            {
+                Name = "Adventure"
+            }
+        };
+    }
+
+    private static List<MovieGenre> GetMovieGenres()
+    {
+        return new List<MovieGenre>
+        {
+            new()
+            {
+                MovieId = 1,
+                GenreId = 1
+            },
+            new()
+            {
+                MovieId = 1,
+                GenreId = 2            }
+        };
+    }
+
 }

@@ -4,6 +4,6 @@ namespace MovieHub.ViewModels;
 
 public class MovieRuntimeViewModel
 {
-    public List<MovieRuntime>? RuntimeList { get; set; }
+    public IList<MovieRuntime> MovieRuntimes { get; set; }
     public List<Hall>? Halls { get; set; }
 }
