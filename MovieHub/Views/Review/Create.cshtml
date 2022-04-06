@@ -15,22 +15,22 @@
         <form asp-action="Create">
             <div class="form-group">
                 <label class="control-label movie-p mb-2" style="font-size: 1.3vh">In which cinema did you watch a movie?</label>
-                <select class="form-select cinema-select" name="CinemaID">
+                <select class="form-select cinema-select" name="Review.CinemaId">
                     <option value="none" selected disabled hidden>SELECT CINEMA</option>
                     @foreach (var cinema in Model.Cinemas)
                     {
-                        <option name="Model.Review.CinemaId" value="@cinema.Id">@cinema.Name</option>
+                        <option name="@Model.Review.CinemaId" value="@cinema.Id">@cinema.Name</option>
                     }
                 </select>
                 <span asp-validation-for="@Model.Review.CinemaId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label movie-p mb-2" style="font-size: 1.3vh">In which hall did you watch a movie?</label>
-                <select class="form-select hall-select" name="HallId">
+                <select class="form-select hall-select" name="Review.HallId">
                     <option value="none" selected disabled hidden>SELECT Hall</option>
                     @foreach (var hall in Model.Halls)
                     {
-                        <option name="Review.HallId" value="@hall.Id">@hall.Name</option>
+                        <option name="@Model.Review.HallId" value="@hall.Id">@hall.Name</option>
                     }
                 </select>
                 <span asp-validation-for="@Model.Review.HallId" class="text-danger"></span>
