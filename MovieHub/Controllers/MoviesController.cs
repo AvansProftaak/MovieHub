@@ -84,7 +84,7 @@ namespace MovieHub.Controllers
             if (ModelState.IsValid)
             {
                 
-                _context.Movie.Remove(movie);
+                //_context.Movie.Remove(movie);
                 _context.Add(movieToSave);
                 await _context.SaveChangesAsync();
 

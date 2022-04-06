@@ -74,11 +74,26 @@
                 <input asp-for="TrailerUrl" class="form-control" />
                 <span asp-validation-for="TrailerUrl" class="text-danger"></span>
             </div>
-            <div class="dropdown">
-                <select asp-for="MovieGenres" asp-items="Html.GetEnumSelectList<GenreEnum>()">
-                    <option value="">Choose a genre</option>
-                </select>
-            </div>            
+            <div class="row">
+                            <p class="form-check-label mt-2 movie-p">Select Pegis</p>
+                            @for (var i = 0; i < Model.Pegis.Count; i++)
+                            {
+                                <div class="col-5">
+                                    <input type="checkbox" value="@Model.Pegis[i].Id" name="Pegis"/>
+                                    <label>@Html.DisplayFor(m => m.Pegis[i].Description)</label>
+                                </div>
+                            }
+                        </div>   
+                        <div class="row">
+                            <p class="form-check-label mt-2 movie-p">Select Genres</p>
+                            @for (var i = 0; i < Model.Genres.Count; i++)
+                            {
+                                <div class="col-5">
+                                    <input type="checkbox" value="@Model.Genres[i].Id" name="Genres"/>
+                                    <label>@Html.DisplayFor(m => m.Genres[i].GenreEnum)</label>
+                                </div>
+                            }
+                        </div>            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
