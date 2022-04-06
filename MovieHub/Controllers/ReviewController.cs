@@ -67,7 +67,7 @@ namespace MovieHub.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DisplayQuality,SoundQuality,FoodQuality,Disturbance,Hygiene,Name,Email")] Review review)
+        public async Task<IActionResult> Create([Bind("CinemaId,HallId,Id,DisplayQuality,SoundQuality,FoodQuality,Disturbance,Hygiene,Name,Email")] Review review )
         {
             // get hall and cinema
             review.TimeCreated = DateTime.Now;

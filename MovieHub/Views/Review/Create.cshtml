@@ -12,44 +12,63 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
+            <div class="form-group col-10 mb-3">
+                <label class="control-label movie-p mb-2" style="font-size: 1.3vh">In which cinema did you watch a movie?</label>
+                <select class="form-select survey-select" name="CinemaID">
+                    <option value="none" selected disabled hidden>SELECT CINEMA</option>
+                    @foreach (var cinema in Model.Cinemas)
+                    {
+                        <option name="Survey.CinemaNumber" value="@cinema.Id">@cinema.Name</option>
+                    }
+                </select>
+                <label class="control-label movie-p mb-2" style="font-size: 1.3vh">In which hall did you watch a movie?</label>
+                <select class="form-select survey-select" name="HallId">
+                    <option value="none" selected disabled hidden>SELECT Hall</option>
+                    @foreach (var hall in Model.Halls)
+                    {
+                        <option name="Survey.CinemaNumber" value="@hall.Id">@hall.Name</option>
+                    }
+                </select>
+            </div>
+            
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="@Model.Review.DisplayQuality" class="control-label"></label>
-                <input asp-for="@Model.Review.DisplayQuality" class="form-control" />
+                <input asp-for="@Model.Review.DisplayQuality" class="form-control"/>
                 <span asp-validation-for="@Model.Review.DisplayQuality" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Review.SoundQuality" class="control-label"></label>
-                <input asp-for="@Model.Review.SoundQuality" class="form-control" />
+                <input asp-for="@Model.Review.SoundQuality" class="form-control"/>
                 <span asp-validation-for="@Model.Review.SoundQuality" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Review.FoodQuality" class="control-label"></label>
-                <input asp-for="@Model.Review.FoodQuality" class="form-control" />
+                <input asp-for="@Model.Review.FoodQuality" class="form-control"/>
                 <span asp-validation-for="@Model.Review.FoodQuality" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Review.Disturbance" class="control-label"></label>
-                <input asp-for="@Model.Review.Disturbance" class="form-control" />
+                <input asp-for="@Model.Review.Disturbance" class="form-control"/>
                 <span asp-validation-for="@Model.Review.Disturbance" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Review.Hygiene" class="control-label"></label>
-                <input asp-for="@Model.Review.Hygiene" class="form-control" />
+                <input asp-for="@Model.Review.Hygiene" class="form-control"/>
                 <span asp-validation-for="@Model.Review.Hygiene" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Review.Name" class="control-label"></label>
-                <input asp-for="@Model.Review.Name" class="form-control" />
+                <input asp-for="@Model.Review.Name" class="form-control"/>
                 <span asp-validation-for="@Model.Review.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Review.Email" class="control-label"></label>
-                <input asp-for="@Model.Review.Email" class="form-control" />
+                <input asp-for="@Model.Review.Email" class="form-control"/>
                 <span asp-validation-for="@Model.Review.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary"/>
             </div>
         </form>
     </div>

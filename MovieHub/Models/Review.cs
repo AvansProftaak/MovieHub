@@ -6,6 +6,9 @@ namespace MovieHub.Models;
 public class Review
 {
     public int Id { get; set; }
+    public int CinemaId { get; set; }
+    public int HallId { get; set; }
+    
     public int DisplayQuality { get; set; }
     public int SoundQuality { get; set; }
     public int FoodQuality { get; set; }
@@ -13,11 +16,6 @@ public class Review
     public int Hygiene { get; set; }
     public string Name { get; set; } = null!;
     public string Email{ get; set; } = null!;
-
-    [ForeignKey("CinemaId")]
-    public virtual Cinema Cinema { get; set; } = null!;
-    [ForeignKey("HallId")] 
-    public virtual Hall Hall { get; set; } = null!;
     
     [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")] 
     public DateTime? TimeCreated { get; set; }
