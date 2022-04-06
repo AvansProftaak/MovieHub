@@ -10,11 +10,11 @@ using Xunit;
 
 namespace MovieHubTests;
 
-public class SurveyTests
+public class SurveyControllerTest
 {
     private readonly SurveyController _controller;
 
-    public SurveyTests()
+    public SurveyControllerTest()
     {
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
             .UseInMemoryDatabase("MovieRuntimeTestDatabase").Options;

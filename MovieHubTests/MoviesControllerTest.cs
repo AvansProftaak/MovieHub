@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Moq;
 using MovieHub.Controllers;
 using MovieHub.Data;
 using MovieHub.Models;
@@ -13,21 +12,21 @@ using Xunit;
 
 namespace MovieHubTests;
 
-public class MoviesTests
+public class MoviesControllerTest
 {
     private readonly MoviesController _controller;
-    private readonly ApplicationDbContext _context;
 
-    public MoviesTests()
+    public MoviesControllerTest()
     {
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseInMemoryDatabase("MovieTestDatabase").Options;
-        _context = new ApplicationDbContext(options);
-        _controller = new MoviesController(_context);
+            .UseInMemoryDatabase("MoviesDatabase")
+            .Options;
+        var context = new ApplicationDbContext(options);
+        _controller = new MoviesController(context);
     }
 
     [Fact]
-    public void Test_Details_Returns_Details_View()
+    public void Details_Returns_Details_View()
     {
         var movie = GetMovie();
         var result = _controller.Details(movie.Id);
@@ -65,6 +64,8 @@ public class MoviesTests
         //If all above Controller-functions work, test passes
     }
     
+    
+    
     //OBJECTS:
     private static Movie GetMovie()
     {
@@ -85,6 +86,7 @@ public class MoviesTests
             TrailerUrl = "https://www.youtube.com/watch?v=PE04ESdgnHI"
         };
     }
+    
     private static MovieRuntime GetMovieRuntime()
     {
         return new MovieRuntime
@@ -180,8 +182,8 @@ public class MoviesTests
             new()
             {
                 MovieId = 1,
-                GenreId = 2            }
+                GenreId = 2            
+            }
         };
     }
-
 }

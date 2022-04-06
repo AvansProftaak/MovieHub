@@ -11,12 +11,12 @@ using Xunit.Abstractions;
 
 namespace MovieHubTests;
 
-public class MovieRuntimeTests
+public class MovieRuntimeControllerTest
 {
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly MovieRuntimesController _controller;
 
-    public MovieRuntimeTests(ITestOutputHelper testOutputHelper)
+    public MovieRuntimeControllerTest(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
