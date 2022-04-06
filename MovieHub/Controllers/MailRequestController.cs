@@ -180,10 +180,10 @@ namespace MovieHub.Controllers
                 newsletterSubscriptionsList.Add(applicationUser.Email);
             }
 
-            newsletterSubscriptionsList.Distinct();
+            var discriptionsDistinct = newsletterSubscriptionsList.Distinct();
                         
 
-            foreach (var email in newsletterSubscriptionsList)
+            foreach (var email in discriptionsDistinct)
             {
                 MailRequest mailRequest = new()
                 {
@@ -191,12 +191,11 @@ namespace MovieHub.Controllers
                     Subject = mailRequestSaved.Subject,
                     Body = mailRequestSaved.Body,
                 };
-
-                // var mailRequest = await _context.MailRequest.FindAsync(id);
+                
                 await mailService.SendEmailAsync(mailRequest);
-                // return Ok();
-                // return RedirectToAction(nameof(Index));
-            } return RedirectToAction(nameof(Index));
+
+            } TempData["message"] = "Newsletter has been send!";
+                return RedirectToAction(nameof(Index));
         }
     }
 }
