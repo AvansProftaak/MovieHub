@@ -9,10 +9,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
+using MovieHub.ViewModels;
 
 namespace MovieHub.Controllers
 {
-    [Authorize(Roles = "Admin, Manager, Back-Office")]
+
     public class ReviewController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,13 +23,14 @@ namespace MovieHub.Controllers
             _context = context;
         }
 
+
         // GET: Review
         public async Task<IActionResult> Index()
         {
             return View(await _context.Review.ToListAsync());
         }
 
-        [AllowAnonymous]
+
         // GET: Review/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -47,7 +49,7 @@ namespace MovieHub.Controllers
             return View(review);
         }
 
-        [AllowAnonymous]
+
         // GET: Review/Create
         public IActionResult Create()
         {
@@ -59,8 +61,12 @@ namespace MovieHub.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DisplayQuality,SoundQuality,FoodQuality,Disturbance,Hygiene,Name,Email,TimeCreated")] Review review)
+        public async Task<IActionResult> Create([Bind("Id,DisplayQuality,SoundQuality,FoodQuality,Disturbance,Hygiene,Name,Email")] Review review)
         {
+            // get hall and cinema
+            review.TimeCreated = DateTime.Now;
+            Console.WriteLine(review);
+            
             if (ModelState.IsValid)
             {
                 _context.Add(review);
@@ -70,6 +76,7 @@ namespace MovieHub.Controllers
             return View(review);
         }
 
+        [Authorize(Roles = "Admin, Manager, Back-Office")]
         // GET: Review/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -89,6 +96,7 @@ namespace MovieHub.Controllers
         // POST: Review/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin, Manager, Back-Office")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,DisplayQuality,SoundQuality,FoodQuality,Disturbance,Hygiene,Name,Email,TimeCreated")] Review review)
@@ -121,6 +129,7 @@ namespace MovieHub.Controllers
             return View(review);
         }
 
+        [Authorize(Roles = "Admin, Manager, Back-Office")]
         // GET: Review/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -139,6 +148,7 @@ namespace MovieHub.Controllers
             return View(review);
         }
 
+        [Authorize(Roles = "Admin, Manager, Back-Office")]
         // POST: Review/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

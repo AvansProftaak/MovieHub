@@ -1,4 +1,4 @@
-@model MovieHub.Models.Review
+@model MovieHub.ViewModels.ReviewViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -14,44 +14,39 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="DisplayQuality" class="control-label"></label>
-                <input asp-for="DisplayQuality" class="form-control" />
-                <span asp-validation-for="DisplayQuality" class="text-danger"></span>
+                <label asp-for="@Model.Review.DisplayQuality" class="control-label"></label>
+                <input asp-for="@Model.Review.DisplayQuality" class="form-control" />
+                <span asp-validation-for="@Model.Review.DisplayQuality" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SoundQuality" class="control-label"></label>
-                <input asp-for="SoundQuality" class="form-control" />
-                <span asp-validation-for="SoundQuality" class="text-danger"></span>
+                <label asp-for="@Model.Review.SoundQuality" class="control-label"></label>
+                <input asp-for="@Model.Review.SoundQuality" class="form-control" />
+                <span asp-validation-for="@Model.Review.SoundQuality" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FoodQuality" class="control-label"></label>
-                <input asp-for="FoodQuality" class="form-control" />
-                <span asp-validation-for="FoodQuality" class="text-danger"></span>
+                <label asp-for="@Model.Review.FoodQuality" class="control-label"></label>
+                <input asp-for="@Model.Review.FoodQuality" class="form-control" />
+                <span asp-validation-for="@Model.Review.FoodQuality" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Disturbance" class="control-label"></label>
-                <input asp-for="Disturbance" class="form-control" />
-                <span asp-validation-for="Disturbance" class="text-danger"></span>
+                <label asp-for="@Model.Review.Disturbance" class="control-label"></label>
+                <input asp-for="@Model.Review.Disturbance" class="form-control" />
+                <span asp-validation-for="@Model.Review.Disturbance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Hygiene" class="control-label"></label>
-                <input asp-for="Hygiene" class="form-control" />
-                <span asp-validation-for="Hygiene" class="text-danger"></span>
+                <label asp-for="@Model.Review.Hygiene" class="control-label"></label>
+                <input asp-for="@Model.Review.Hygiene" class="form-control" />
+                <span asp-validation-for="@Model.Review.Hygiene" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="@Model.Review.Name" class="control-label"></label>
+                <input asp-for="@Model.Review.Name" class="form-control" />
+                <span asp-validation-for="@Model.Review.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TimeCreated" class="control-label"></label>
-                <input asp-for="TimeCreated" class="form-control" />
-                <span asp-validation-for="TimeCreated" class="text-danger"></span>
+                <label asp-for="@Model.Review.Email" class="control-label"></label>
+                <input asp-for="@Model.Review.Email" class="form-control" />
+                <span asp-validation-for="@Model.Review.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
