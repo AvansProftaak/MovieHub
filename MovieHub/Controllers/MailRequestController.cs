@@ -192,7 +192,7 @@ namespace MovieHub.Controllers
                     Body = mailRequestSaved.Body,
                 };
                 
-                await mailService.SendEmailAsync(mailRequest);
+                await mailService.SendNewsletterAsync(mailRequest);
 
             } TempData["message"] = "Newsletter has been send!";
                 return RedirectToAction(nameof(Index));

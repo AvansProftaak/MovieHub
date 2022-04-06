@@ -22,22 +22,6 @@ namespace MovieHub.Services;
                 email.To.Add(MailboxAddress.Parse(mailRequest.ToEmail));
                 email.Subject = mailRequest.Subject;
                 var builder = new BodyBuilder();
-                // if (mailRequest.Attachments != null)
-                // {
-                //     byte[] fileBytes;
-                //     foreach (var file in mailRequest.Attachments)
-                //     {
-                //         if (file.Length > 0)
-                //         {
-                //             using (var ms = new MemoryStream())
-                //             {
-                //                 file.CopyTo(ms);
-                //                 fileBytes = ms.ToArray();
-                //             }
-                //             builder.Attachments.Add(file.FileName, fileBytes, ContentType.Parse(file.ContentType));
-                //         }
-                //     }
-                // }
                 builder.HtmlBody = mailRequest.Body;
                 email.Body = builder.ToMessageBody();
                 using var smtp = new SmtpClient();
@@ -47,4 +31,25 @@ namespace MovieHub.Services;
                 smtp.Disconnect(true);
             }
 
+            
+            public async Task SendNewsletterAsync(MailRequest mailRequest)
+            {
+                string FilePath = Directory.GetCurrentDirectory() + "//wwwroot//templates//Moviehub_Newsletter_Template.html";
+                StreamReader str = new StreamReader(FilePath);
+                string MailText = str.ReadToEnd();
+                str.Close();
+                MailText = MailText.Replace("[subject]", mailRequest.Subject).Replace("[body]", mailRequest.Body);
+                var email = new MimeMessage();
+                email.Sender = MailboxAddress.Parse(_mailSettings.Mail);
+                email.To.Add(MailboxAddress.Parse(mailRequest.ToEmail));
+                email.Subject = mailRequest.Subject;//$"Welcome {request.UserName}";
+                var builder = new BodyBuilder();
+                builder.HtmlBody = MailText;
+                email.Body = builder.ToMessageBody();
+                using var smtp = new SmtpClient();
+                smtp.Connect(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
+                smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
+                await smtp.SendAsync(email);
+                smtp.Disconnect(true);
+            }
     }
