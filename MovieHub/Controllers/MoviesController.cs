@@ -145,7 +145,7 @@ namespace MovieHub.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Title,Description,Duration,Cast,Director,ImdbScore,ReleaseDate,Is3D,IsSecret,Language,ImageUrl,TrailerUrl")] Movie movie, int[] pegis, int[] genres)
         {
-            if (id != movie.Id) { return NotFound(); }
+            movie.Id = id;
 
             if (ModelState.IsValid)
             {
@@ -191,7 +191,9 @@ namespace MovieHub.Controllers
                         _context.MovieGenre.Add(genre); 
                         await _context.SaveChangesAsync();       
                     }
- }
+                    
+                }
+                
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!MovieExists(movie.Id))
