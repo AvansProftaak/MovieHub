@@ -15,16 +15,16 @@ public class HomeControllerTest
 {
     private readonly HomeController _controller;
 
-    public HomeControllerTest(ITestOutputHelper testOutputHelper)
+    public HomeControllerTest()
     {
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseInMemoryDatabase("SurveyTestDatabase").Options;
+            .UseInMemoryDatabase("HomeTestDatabase").Options;
         var context = new ApplicationDbContext(options);   
         _controller = new HomeController(context);
     }
 
     [Fact]
-    public void Test_Should_Return_Index_View()
+    public void Test_Index()
     {
         var result = _controller.Index();
         Assert.NotNull(result);
@@ -32,7 +32,7 @@ public class HomeControllerTest
     }
 
     [Fact]
-    public void Test_Return_Ok_On_Email_Input()
+    public void Test_Email()
     {
         const string email = "test@testemail.com";
         var result = _controller.InsertEmail(email);

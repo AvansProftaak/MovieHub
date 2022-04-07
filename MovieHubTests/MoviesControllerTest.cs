@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Controllers;
@@ -22,66 +21,145 @@ public class MoviesControllerTest
     {
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
             .UseInMemoryDatabase("MoviesTestDatabase")
+            .EnableSensitiveDataLogging()
             .Options;
         _context = new ApplicationDbContext(options);
         _controller = new MoviesController(_context);
     }
-
+    
+    // Tests if index-page is loaded and shows all Movies 
     [Fact]
-    public async void Test_Should_Return_Details_View()
+    public async void Test_Index()
     {
-        var movie = GetMovie();
+        var result = _controller.Index();
+        await Assert.IsType<Task<IActionResult>>(result);
+
+    }
+    
+    // Test the Details function
+    [Fact]
+    public async void Test_Details()
+    {
+        // Delete the database for a fresh start
+        await _context.Database.EnsureDeletedAsync();
+        
+        var movie = SetMovie();
         var result = _controller.Details(movie.Id);
         await Assert.IsType<Task<IActionResult>>(result);
         await _context.Database.EnsureDeletedAsync();
     }
 
-    
-    [Fact]
-    public async void Test_Should_Create_And_Delete_Movie_From_Db()
-    {
-        var movie = GetMovie();
-        await _controller.CreateMovieAsync(movie);
-        
-        //Test if Title, Director and Id from List equals object 
-        var movies = await _controller.GetMoviesAsync();
-        movies.First().Title.Should().Be(movie.Title);
-        movies.First().Director.Should().Be(movie.Director);
-        movies.First().Id.Should().Be(movie.Id);
 
-        //Get created Movie and compare with input
-        var createdMovie = await _controller.GetMovieAsync(movie.Id);
-        createdMovie.Title.Should().Be(movie.Title);
-        createdMovie.Director.Should().Be(movie.Director);
-        createdMovie.Id.Should().Be(movie.Id);
+    [Fact]
+    public async void Test_Create()
+    {
+        // Delete the database for a fresh start
+        await _context.Database.EnsureDeletedAsync();
+
+        // Fill pegi and genres tables (2 of both)
+        await SetPegis();
+        await SetGenres();
+
+        var movie = SetMovie();
         
-        // Now there must be one movie in the list
-        movies.Count.Should().Be(1);
-        
-        // Delete the movie and return the movieList again
-        await _controller.DeleteConfirmed(movie.Id);
-        movies = await _controller.GetMoviesAsync();
-        
-        // Now there must be one movie in the list
-        movies.Count.Should().Be(0);
-        
+        var pegis = PegiIdList();
+        var genres = GenreIdList();
+
+        // This creates a new Movie, including all Genres and Pegis 
+        await _controller.Create(movie, pegis, genres);
+
+        // Gets a list of Movies, Pegis and Genres
+        var movieList = await _controller.GetMoviesAsync();
+        var moviePegiList = await GetMoviePegis();
+        var movieGenreList = await GetMovieGenres();
+
+        // Test passes if movieList has 1 item, moviePegiList 2 and movieGenreList 2
+        movieList.Count.Should().Be(1);
+        moviePegiList.Count.Should().Be(2);
+        movieGenreList.Count.Should().Be(2);
+
+    }
+    
+
+    [Fact]
+    public async void Test_Delete()
+    {
         //empty database
         await _context.Database.EnsureDeletedAsync();
         
-        //If all above Controller-functions work, test passes
+        //Add 2 movies to the database
+        await SetPegis();
+        await SetGenres();
+        
+        await _controller.Create(SetMovie(), PegiIdList(), GenreIdList());
+        await _controller.Create(SetMovie2(), PegiIdList2(), GenreIdList2());
+        
+        //Test if there are 2 movies in database
+        var movies = await _controller.GetMoviesAsync();
+        movies.Count.Should().Be(2);
+        
+        //Test if there are 4 moviePegis and 4 movieGenres in database (2 per movie)
+        var moviePegis = GetMoviePegis();
+        var movieGenres = GetMovieGenres();
+        moviePegis.Result.Count.Should().Be(4);
+        movieGenres.Result.Count.Should().Be(4);
+        
+        // Delete Movie with id=1 and return the movieList again
+        await _controller.DeleteConfirmed(1);
+        movies = await _controller.GetMoviesAsync();
+        
+        // Now there must be one movie in the list and it has id=2
+        movies.Count.Should().Be(1);
+        movies.First().Id.Should().Be(2);
 
+        // And also check if 2 moviePegis and 2 movieGenres were deleted (we have 2 left of both)
+        moviePegis = GetMoviePegis();
+        movieGenres = GetMovieGenres();
+        moviePegis.Result.Count.Should().Be(2);
+        movieGenres.Result.Count.Should().Be(2);
     }
     
     
     
+    //TEST Functions
+    [HttpGet]
+    private async Task<List<MoviePegi>> GetMoviePegis()
+    {
+        return await _context.MoviePegi.ToListAsync();
+    }
+    
+    [HttpGet]
+    private async Task<List<MovieGenre>> GetMovieGenres()
+    {
+        return await _context.MovieGenre.ToListAsync();
+    }
+    
+    [HttpPost]
+    private async Task SetPegis()
+    {
+        await _context.AddAsync(Pegis()[0]);
+        await _context.AddAsync(Pegis()[1]);
+        await _context.SaveChangesAsync();
+    }
+    
+    [HttpPost]
+    private async Task SetGenres()
+    {
+        await _context.AddAsync(Genres()[0]);
+        await _context.AddAsync(Genres()[1]);
+        await _context.SaveChangesAsync();
+    }
+
+
+
     //OBJECTS:
-    private static Movie GetMovie()
+    private static Movie SetMovie()
     {
         return new Movie
         {
             Id = 1,
             Title = "Blacklight",
-            Description = "This is the description for Blacklight",
+            Description = "Blacklight Description",
             Duration = 120,
             Cast = "Brad Pitt",
             Director = "Steven Spielberg",
@@ -95,39 +173,64 @@ public class MoviesControllerTest
         };
     }
     
-    private static MovieRuntime GetMovieRuntime()
+    private static Movie SetMovie2()
     {
-        return new MovieRuntime
+        return new Movie
         {
-            Id = 1,
-            MovieId = 1,
-            HallId = 1,
-            StartAt = DateTime.Today.Date,
-            EndAt = DateTime.Today.AddDays(1).Date,
-            Time = TimeSpan.FromHours(23)
+            Id = 2,
+            Title = "Encanto (NL)",
+            Description = "Encanto (NL) Description",
+            Duration = 100,
+            Cast = "Stephanie Beatriz",
+            Director = "Jared Bush",
+            ImdbScore = 7.3,
+            ReleaseDate = DateTime.Now.AddDays(-2),
+            Is3D = true,
+            IsSecret = false,
+            Language = "Dutch",
+            ImageUrl = "https://i.ibb.co/TPRKy0G/encanto.jpg",
+            TrailerUrl = "https://www.youtube.com/watch?v=CaimKeDcudo"
         };
     }
 
-    private static List<Showtime> GetShowTimes()
+    private static int[] PegiIdList()
     {
-        return new List<Showtime>
+        return new[]
         {
-            new()
-            {
-                HallId = 1,
-                MovieId = 1,
-                StartAt = DateTime.Today.AddHours(23)
-            },
-            new()
-            {
-                HallId = 1,
-                MovieId = 1,
-                StartAt = DateTime.Today.AddHours(23)
-            }
+            1,
+            2
         };
     }
 
-    private static List<Pegi> GetPegis()
+    private static int[] GenreIdList()
+    {
+        return new[]
+        {
+            1,
+            2
+        };
+    }
+    
+    private static int[] PegiIdList2()
+    {
+        return new[]
+        {
+            3,
+            4
+        };
+    }
+
+    private static int[] GenreIdList2()
+    {
+        return new[]
+        {
+            3,
+            4
+        };
+    }
+    
+
+    private static List<Pegi> Pegis()
     {
         return new List<Pegi>
         {
@@ -145,52 +248,20 @@ public class MoviesControllerTest
             }
         };
     }
-
-    private static List<MoviePegi> GetMoviePegis()
-    {
-        return new List<MoviePegi>
-        {
-            new()
-            {
-                MovieId = 1,
-                PegiId = 1
-            },
-            new()
-            {
-                MovieId = 1,
-                PegiId = 2
-            }
-        };
-    }
-
-    private static List<Genre> GetGenres()
+    
+    private static List<Genre> Genres()
     {
         return new List<Genre>
         {
             new()
             {
+                Id = 1,
                 Name = "Action"
             },
             new()
             {
+                Id = 2,
                 Name = "Adventure"
-            }
-        };
-    }
-
-    private static List<MovieGenre> GetMovieGenres()
-    {
-        return new List<MovieGenre>
-        {
-            new()
-            {
-                MovieId = 1,
-                GenreId = 1
-            },
-            new()
-            {
-                MovieId = 1,
-                GenreId = 2            
             }
         };
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -25,26 +26,52 @@ public class SurveyControllerTest
         _controller = new SurveyController(_context);
     }
     
+    // Tests if index-page is loaded
     [Fact]
-    public async Task Test_Should_Add_Survey_To_Db()
+    public void Test_Index()
     {
-        // Creates a new survey
+        var result = _controller.Index();
+        
+        // Checks if it returns Index page
+        Assert.IsAssignableFrom<IActionResult>(result);
+    }
+    
+    
+    [Fact]
+    public async void Test_Index_GetAllSurveys()
+    {
+        // delete database for a fresh start
+        await _context.Database.EnsureDeletedAsync();
+        
+        // Creates 2 new Surveys
         var survey = GetSurvey();
+        var survey2 = GetSurvey2();
         
-        // added Survey to Database
-        await _controller.CreateSurveyAsync(survey);
+        // added Surveys to Database
+        await _controller.Create(survey);
+        await _controller.Create(survey2);
         
-        // returns List from Database
-        var surveys = await _controller.GetSurveysAsync();
+        // returns List with all surveys from database
+        var surveys = await GetSurveysTestAsync();
         
-        // Tests if the first survey from List is same as the added survey
-        surveys.First().CinemaNumber.Should().Be(survey.CinemaNumber);
-        surveys.First().Email.Should().Be(survey.Email);
-        surveys.First().Id.Should().Be(survey.Id);
-        surveys.First().Hygiene.Should().Be(survey.Hygiene);
+        // Tests if the list contains 2 Surveys
+        surveys.Count.Should().Be(2);
+        Assert.IsType<Survey>(surveys[0]);
+        Assert.IsType<Survey>(surveys[1]);
+    }
+    
+    [Fact]
+    public async Task Test_Create()
+    {
+        // delete database for a fresh start
+        await _context.Database.EnsureDeletedAsync();
+        
+        // Creates a new survey and adds to the database
+        var survey = GetSurvey();
+        await _controller.Create(survey);
         
         // Gets single survey from Database
-        var createdSurvey = await _controller.GetSurveyAsync(survey.Id);
+        var createdSurvey = await _controller.GetSurvey(survey.Id);
         
         // Checks if the survey is same as the added survey
         createdSurvey.CinemaNumber.Should().Be(survey.CinemaNumber);
@@ -55,27 +82,34 @@ public class SurveyControllerTest
         await _context.Database.EnsureDeletedAsync();
     }
     
-    [Fact]
-    public async void Test_Should_Return_Details_View()
-    {
-        // Creates a new survey
-        var survey = GetSurvey();
-        
-        // added Survey to Database
-        await _controller.CreateSurveyAsync(survey);
-        
-        var result = _controller.Details(survey.Id);
-        await Assert.IsType<Task<IActionResult>>(result);
-        await _context.Database.EnsureDeletedAsync();
-    }
     
+    // TEST Functions
+    [HttpGet]
+    private async Task<List<Survey>> GetSurveysTestAsync()
+    {
+        return await _context.Survey.ToListAsync();
+    }
+
+    [HttpGet]
     private static Survey GetSurvey()
     {
         return new Survey
         {
-            Id = Guid.NewGuid().GetHashCode(), CinemaNumber = "CINEMA 1", Email = "test@test.nl", Hygiene = 5, Name = "Test Rob",
+            Id = 1, CinemaNumber = "CINEMA 1", Email = "test@test.nl", Hygiene = 5, Name = "Test Rob",
             Nuisance = 5, PopcornQuality = 4, ScreenQuality = 4, SoundQuality = 4, TicketPrice = 3,
             TimeStamp = DateTime.Now, ToiletHeight = 2
         };
     }
+    
+    [HttpGet]
+    private static Survey GetSurvey2()
+    {
+        return new Survey
+        {
+            Id = 2, CinemaNumber = "CINEMA 2", Email = "test2@test.nl", Hygiene = 2, Name = "Test Rob2",
+            Nuisance = 4, PopcornQuality = 2, ScreenQuality = 1, SoundQuality = 5, TicketPrice = 3,
+            TimeStamp = DateTime.Now.AddDays(-3), ToiletHeight = 2
+        };
+    }
+    
 }

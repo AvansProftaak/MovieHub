@@ -34,7 +34,15 @@ namespace MovieHub.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            return View(await GetOneMovieRuntimeAsync(id));
+            
+            var movieRuntime = _context.MovieRuntime
+                .Where(m => m.Id == id)
+                .Include(m => m.Hall)
+                .Include(m => m.Movie)
+                .OrderBy(m => m.Time)
+                .FirstAsync();
+            
+            return View(await movieRuntime);
         }
         
         public IActionResult Create()
@@ -244,15 +252,7 @@ namespace MovieHub.Controllers
                 .ToListAsync();
         }
         
-        public async Task<MovieRuntime> GetOneMovieRuntimeAsync(int id)
-        {
-            return await _context.MovieRuntime
-                .Where(m => m.Id == id)
-                .Include(m => m.Hall)
-                .Include(m => m.Movie)
-                .OrderBy(m => m.Time)
-                .FirstAsync();
-        }
+
         
         public async Task<IList<Hall>> GetAllHallsAsync()
         {

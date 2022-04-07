@@ -20,7 +20,7 @@ namespace MovieHub
         }
 
         [Authorize(Roles = "Admin, Manager")]
-        // GET: Survey
+        [HttpGet]
         public IActionResult Index()
         {
             var indexSurveyViewModel = new IndexSurveyViewModel
@@ -33,28 +33,22 @@ namespace MovieHub
         }
 
         [Authorize(Roles = "Admin, Manager")]
-        // GET: Survey/Details/5
+        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var survey = GetSurveyAsync(id);
+            var survey = GetSurvey(id);
             
             return View(await survey);
         }
 
         [HttpGet]
-        public async Task<Survey> GetSurveyAsync(int id)
+        public async Task<Survey> GetSurvey(int id)
         {
             return await _context.Survey.FirstAsync(m => m.Id == id);
         }
-
-        [HttpGet]
-        public async Task<IList<Survey>> GetSurveysAsync()
-        {
-            return await _context.Survey.ToListAsync();
-        }
         
-
-        // GET: Survey/Create
+        
+        [HttpPost]
         public IActionResult Create()
         {
 
@@ -66,9 +60,7 @@ namespace MovieHub
             
             return View(createSurveyViewModel);
         }
-
         
-        // POST: Survey/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
@@ -93,19 +85,13 @@ namespace MovieHub
                     TimeStamp = DateTime.UtcNow.AddHours(2)
                 };
 
-                await CreateSurveyAsync(newSurvey);
+                await _context.AddAsync(survey);
+                await _context.SaveChangesAsync();
+                
                 return RedirectToAction("Index", "Home");
             }
             return View();
         }
-        
-        public async Task CreateSurveyAsync(Survey survey)
-        {
-            await _context.AddAsync(survey);
-            await _context.SaveChangesAsync();
-        }
-        
-        
         
         [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> SurveysPerHall(int id)

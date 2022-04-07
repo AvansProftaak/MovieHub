@@ -137,6 +137,7 @@ public class MovieRuntimeControllerTest
     
     
     // TEST Functions
+    [HttpGet]
     private async Task<MovieRuntime> GetOneMovieRuntimeTestAsync(int id)
     {
         return await _context.MovieRuntime
@@ -144,13 +145,15 @@ public class MovieRuntimeControllerTest
             .OrderBy(m => m.Time)
             .FirstAsync();
     }
-    
-    public async Task<List<Showtime>> GetShowtimesTestAsync()
+
+    [HttpGet]
+    private async Task<List<Showtime>> GetShowtimesTestAsync()
     {
         return await _context.Showtime.ToListAsync();
     }
-    
-    public async Task<IList<MovieRuntime>> GetAllMovieRuntimesTestAsync()
+
+    [HttpGet]
+    private async Task<IList<MovieRuntime>> GetAllMovieRuntimesTestAsync()
     {
         return await _context.MovieRuntime
             .OrderBy(m => m.Time)
