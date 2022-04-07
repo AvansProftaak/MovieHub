@@ -1,11 +1,14 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
 using MovieHub.Controllers;
 using MovieHub.Data;
 using MovieHub.Models;
+using MovieHub.ViewModels;
 using Xunit;
 
 namespace MovieHubTests;
@@ -22,6 +25,13 @@ public class HomeControllerTests
         _context = new ApplicationDbContext(options);   
         var logger = Mock.Of<ILogger<HomeController>>();
         _controller = new HomeController(logger, _context);
+    }
+    [Fact]
+    public void Test_Index()
+    {
+        var result = _controller.Index();
+        Assert.NotNull(result);
+        Assert.IsType<Task<ActionResult<IndexViewModel>>>(result);
     }
     
     [Fact]
@@ -49,20 +59,19 @@ public class HomeControllerTests
     {
         Assert.Equal(1, _context.Showtime.First().Id);
     }
-    
-    // This test was commented out as it was only relevant in Kiosk mode retrieving today's movies.
-    // [Fact] 
-    // public void Test_HomeController_MovieIndex_Should_Return_Todays_Movies()
-    // {
-    //     var result = _controller.MovieIndex();
-    //     Assert.Equal(DateTime.Today.Date, result.First().StartAt.Date); 
-    // }
 
     [Fact]
     public void Test_HomeController_GetMovies_Should_Return_Movies()
     {
         var result = _controller.GetMovies();
         Assert.IsType<Movie>(result.First());
+    }
+    [Fact]
+    public void Test_Email()
+    {
+        const string email = "test@test.com";
+        var result = _controller.InsertEmail(email);
+        Assert.NotNull(result);
     }
     
     private void InsertTestData(ApplicationDbContext context)
