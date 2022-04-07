@@ -71,7 +71,6 @@
                 
                 @if ((User.IsInRole("Admin")) || (User.IsInRole("Back-Office")) || (User.IsInRole("Manager")))
                 {
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
                     <li class="nav-item">
                         <a asp-action="Details" asp-route-id="@item.Id">Details</a>                     </li>
                     <li class="nav-item">
