@@ -2,20 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using EASendMail;
-using SmtpClient = EASendMail.SmtpClient; //add EASendMail namespace
 
 namespace MovieHub.Controllers
 {
@@ -158,82 +154,68 @@ namespace MovieHub.Controllers
         {
             return _context.Email.Any(e => e.Id == id);
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        [HttpPost]  
-        public ActionResult Create(string receiver, string subject, string message) {  
-            /*try {  
-                //if (ModelState.IsValid) {  
-                    var senderEmail = new MailAddress("bgrootoonk@pepisandbox.com", "Bart");  
-                    var receiverEmail = new MailAddress("bart-grootoonk@hotmail.com", "bart");  
-                    var password = "P@ssword123!";  
-                    var sub = "test";  
-                    var body = "test";  
-                    var smtp = new SmtpClient {  
-                        Host = "smtp.netcorecloud.net",  
-                        Port = 587,  
-                        EnableSsl = true,  
-                        DeliveryMethod = SmtpDeliveryMethod.Network,  
-                        UseDefaultCredentials = false,  
-                        Credentials = new NetworkCredential("bgrootoonk@pepisandbox.com", password)  
-                    };  
-                    using(var mess = new MailMessage(senderEmail, receiverEmail) {  
-                              Subject = "test",  
-                              Body = "test"  
-                          }) {  
-                        smtp.Send(mess);  
-                    }
 
-                    return View();
-                //}  
-            } catch (Exception) {  
-                ViewBag.Error = "Some Error";  
-            }  
-            return View();*/
+
+
+
+
+
+
+
+
+
+        [HttpPost]
+        public ActionResult Create([Bind("Subject,Content")] Email email)
+        {
+            var emailAddress = "newsletter.moviehub@gmail.com";
+            var password = "P@ssword123!";
+
+            // create mime object of message to fill
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Bart", emailAddress));
             
+            List<MailboxAddress> mailList = new List<MailboxAddress>();
+
+            List<Newsletter> allNewsletterSubscribers = _context.Newsletter.ToList();
+            foreach (Newsletter subscribed in allNewsletterSubscribers)
+            {
+                var mailAddress = subscribed.Email;
+                mailList.Add(new MailboxAddress("Subscriber", mailAddress));
+            }
+            message.To.AddRange(mailList);
+
+            message.Subject = email.Subject;
+            message.Body = new TextPart("html")
+            {
+                Text = @email.Content
+            };
+
+            // user mailkit smtp client
+            var client = new SmtpClient();
+
             try
             {
-                SmtpMail oMail = new SmtpMail("TryIt");
+                // connect to gmail
+                client.Connect("smtp.gmail.com", 465, true);
+                client.Authenticate(emailAddress, password);
+                client.Send(message);
 
-                // Set sender email address, please change it to yours
-                oMail.From = "test@emailarchitect.net";
-                // Set recipient email address, please change it to yours
-                oMail.To = "bart-grootoonk@hotmail.com";
-
-                // Set email subject
-                oMail.Subject = "direct email sent from c# project";
-                // Set email body
-                oMail.TextBody = "this is a test email sent from c# project directly";
-
-                // Set SMTP server address to "".
-                SmtpServer oServer = new SmtpServer("");
-
-                // Do not set user authentication
-                // Do not set SSL connection
-
-                Console.WriteLine("start to send email directly ...");
-
-                SmtpClient oSmtp = new SmtpClient();
-                oSmtp.SendMail(oServer, oMail);
-
-                Console.WriteLine("email was sent successfully!");
+                Console.WriteLine("email send");
             }
-            catch (Exception ep)
+            catch (Exception ex)
             {
-                Console.WriteLine("failed to send email with the following error:");
-                Console.WriteLine(ep.Message);
+                Console.WriteLine(ex.Message);
+                throw;
             }
-            return View();
-        }
+            finally
+            {
+                client.Disconnect(true);
+                client.Dispose();
+            }
 
-        }  
+            return View();
+
+        }
     }
+}
 
