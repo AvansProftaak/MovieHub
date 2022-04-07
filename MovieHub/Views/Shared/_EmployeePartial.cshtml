@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MovieHub.ViewModels
+@using Npgsql
+@using Dapper
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User) && User.IsInRole("Employee"))
+{
+    var sql = "SELECT A.showtime, A.movieTitle, A.hall , (A.hallCapacity - A.seatsTaken) AS seatsFree FROM (SELECT s.\"StartAt\" AS showtime, m.\"Title\" AS movieTitle, h.\"Name\" AS hall, (SELECT COUNT(*) FROM public.\"Seat\" WHERE \"Seat\".\"HallId\" = h.\"Id\") AS hallCapacity, (SELECT COUNT(t.\"Id\") FROM public.\"Ticket\" AS t JOIN public.\"Order\" AS o ON o.\"Id\" = t.\"OrderId\" WHERE o.\"ShowtimeId\" = s.\"Id\" AND t.\"SeatId\" IS NOT NULL) AS seatsTaken FROM public.\"Showtime\" AS s JOIN public.\"Hall\" AS h ON h.\"Id\" = s.\"HallId\" JOIN public.\"Movie\" AS m ON m.\"Id\" = s.\"MovieId\" WHERE DATE(s.\"StartAt\") = Date(NOW()) AND s.\"StartAt\" > NOW() GROUP BY s.\"StartAt\", m.\"Title\", h.\"Name\", h.\"Id\", s.\"Id\" ORDER BY s.\"StartAt\" LIMIT 5) AS A;";
+
+    using (var connection = new NpgsqlConnection("host=db-postgresql-ams3-54359-do-user-9452846-0.b.db.ondigitalocean.com;port=25060;username=doadmin;password=l22MGuwQCl314eL7;database=lars;IncludeErrorDetail=true"))
+    {
+        var result = await connection.QueryAsync<ShowStats>(sql);
+        var vm = new AnalyticsViewModel
+        {
+            ShowStats = result
+        };
+
+        <div class="seat-availability-window">
+            <div class="p-4">
+                <h1>Hall Overview</h1>
+                <h2>Available seats for today's shows:</h2>
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>
+                                Show Time
+                            </th>
+                            <th>
+                                Movie Title
+                            </th>
+                            <th>
+                                Hall
+                            </th>
+                            <th>
+                                Seats Free
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in vm.ShowStats)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => item.Showtime.ToLocalTime().TimeOfDay)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.MovieTitle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Hall)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.SeatsFree)
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+}

@@ -9,4 +9,5 @@ public class AnalyticsViewModel
     public IEnumerable<HallAnalytics>? Statistics { get; set; }
     public IEnumerable<MovieRevenue>? MovieStatistics { get; set; }
     public IEnumerable<SurveyResults>? SurveyResults { get; set; }
+    public IEnumerable<ShowStats>? ShowStats { get; set; }
 }

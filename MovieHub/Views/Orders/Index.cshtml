@@ -150,7 +150,7 @@ function TotalTickets(ticketQuantity) {
                             <div class="col-4 order-row" style="padding-left: 12px">@ticket.Name</div>
                             <div class="col-2 order-row">@price.ToString("c", nfi)</div>
                             <div class="col-1 order-row">
-                                <input id="ticketQuantity" type="number" asp-for=@ticket.Quantity class="form-control ticketQuantity" min="0" max="10" style="padding: 0px"/>
+                                <input id="ticketQuantity" type="number" asp-for=@ticket.Quantity class="form-control ticketQuantity" min="0" max="1000" style="padding: 0px"/>
                             </div>
                         </div>
                         <hr class="order-ticket-hr"/>

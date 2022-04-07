@@ -321,3 +321,15 @@ color: #F8A613;
   display: block;
   width: 100%;
 }
+
+.seat-availability-window {
+  width: 400px;
+  height: 600px;
+  border: 2px solid #F8A613;
+  background-color: #2C2C2E;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 2030;
+  scroll-behavior: auto;
+}
