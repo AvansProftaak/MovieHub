@@ -38,7 +38,8 @@ public class ReviewControllerTests
         var result = _controller.Details(1);
         Assert.IsType<Task<IActionResult>>(result);
     }
-
+    
+    
     private void InsertTestData(ApplicationDbContext context)
     {
         context.Add(new Review()
