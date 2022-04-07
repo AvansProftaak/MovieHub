@@ -6,9 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using MovieHub.Data;
 using MovieHub.Models;
 using MovieHub.ViewModels;
-using NUnit.Framework;
 
-namespace MovieHub
+namespace MovieHub.Controllers
 {
     public class SurveyController : Controller
     {
@@ -48,7 +47,6 @@ namespace MovieHub
         }
         
         
-        [HttpPost]
         public IActionResult Create()
         {
 
@@ -85,7 +83,7 @@ namespace MovieHub
                     TimeStamp = DateTime.UtcNow.AddHours(2)
                 };
 
-                await _context.AddAsync(survey);
+                await _context.AddAsync(newSurvey);
                 await _context.SaveChangesAsync();
                 
                 return RedirectToAction("Index", "Home");

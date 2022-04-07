@@ -6,6 +6,7 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieHub;
+using MovieHub.Controllers;
 using MovieHub.Data;
 using MovieHub.Models;
 using MovieHub.ViewModels;
@@ -36,6 +37,15 @@ public class SurveyControllerTest
         Assert.IsAssignableFrom<IActionResult>(result);
     }
     
+    // Tests if index-page is loaded
+    [Fact]
+    public void Test_Create_View()
+    {
+        var result = _controller.Create();
+        
+        // Checks if it returns Index page
+        Assert.IsAssignableFrom<IActionResult>(result);
+    }
     
     [Fact]
     public async void Test_Index_GetAllSurveys()

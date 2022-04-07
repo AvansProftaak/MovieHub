@@ -8,14 +8,11 @@
   &lt;Assembly Path="/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/6.0.0/ref/net6.0/Microsoft.AspNetCore.Mvc.RazorPages.dll" /&gt;
   &lt;Assembly Path="/Users/robvdhorst/.nuget/packages/microsoft.extensions.identity.core/6.0.1/lib/net6.0/Microsoft.Extensions.Identity.Core.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a8e3ba96_002D2396_002D4f41_002Db76a_002D5098ea216de4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ffbcb9eb_002D2297_002D44e8_002Db071_002D5f0f9c6841c0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="HomeControllerTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=feb77b37_002D6501_002D4beb_002Dadb9_002D3da3dfcb11d2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_Create" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.SurveyControllerTest.Test_Create&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String>
+	
+	
 	
 	
 	
