@@ -22,7 +22,12 @@ namespace MovieHub.Controllers
         
         public async Task<IActionResult> SurveyOverview()
         {
-            return View(await _context.Survey.ToListAsync());
+            return View(await GetSurveyResponses());
+        }
+
+        public async Task<IEnumerable<Survey>> GetSurveyResponses()
+        {
+            return await _context.Survey.ToListAsync();
         }
 
         // GET: Surveys/Create
