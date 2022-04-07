@@ -186,7 +186,7 @@ public class UserManagementController : Controller
 
     }
 
-    private async Task<IdentityRole> GetRole(string roleId)
+    public async Task<IdentityRole> GetRole(string roleId)
     {
         return  await _roleManager.FindByIdAsync(roleId);
         

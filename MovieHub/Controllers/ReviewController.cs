@@ -166,7 +166,7 @@ namespace MovieHub.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ReviewExists(int id)
+        public bool ReviewExists(int id)
         {
             return _context.Review.Any(e => e.Id == id);
         }

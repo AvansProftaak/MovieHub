@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -11,29 +12,30 @@ using Xunit;
 
 namespace MovieHubTests;
 
-public class ReviewControllerTests
+public class TicketTypeControllerTests
 {
-    private readonly ReviewController _controller;
+    private readonly TicketTypeController _controller;
     private readonly ApplicationDbContext _context;
 
-    public ReviewControllerTests()
+    public TicketTypeControllerTests()
     {
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
             .UseInMemoryDatabase("MovieTestDatabase").Options;
         _context = new ApplicationDbContext(options);
-        _controller = new ReviewController(_context);
-    }
-    
-    [Fact]
-    public void Test_Review_Database_Ok()
-    {
-        _context.Database.EnsureCreated();
-        InsertTestData(_context);
-        Assert.True(_controller.ReviewExists(1));
+        _controller = new TicketTypeController(_context);
     }
 
     [Fact]
-    public void Test_Details_Returns_Details_View()
+    public void Test_TicketType_Database_Ok()
+    {
+        _context.Database.EnsureCreated();
+        InsertTestData(_context);
+        
+        Assert.IsType<Task<IActionResult>>(_controller.Index());
+    }
+
+    [Fact]
+    public void Test_Details_Returns_TicketType_View()
     {
         var result = _controller.Details(1);
         Assert.IsType<Task<IActionResult>>(result);
@@ -41,22 +43,15 @@ public class ReviewControllerTests
 
     private void InsertTestData(ApplicationDbContext context)
     {
-        context.Add(new Review()
+        context.Add(new Tickettype()
         {
             Id = 1,
-            CinemaId = 1,
-            HallId = 2,
-            DisplayQuality = 4,
-            SoundQuality = 4,
-            Disturbance = 2,
-            FoodQuality = 4,
-            Hygiene = 5,
-            Email = "bart-grootoonk@hotmail.com",
-            Name = "Bart"
-
+            Name = "TestType",
+            Description = "For testing purposes",
+            Price = 10,
+            Quantity = 0,
         });
 
         context.SaveChanges();
     }
 }
-    
