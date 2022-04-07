@@ -23,22 +23,15 @@ namespace MovieHub.Controllers
         
         public async Task<IActionResult> Index()
         {
-
             // Gives back a list with all Halls and all MovieRuntimes
             var movieRuntimeViewModel = new MovieRuntimeViewModel
             {
-                Halls = _context.Hall.OrderBy(h => h.Id).ToList(),
-                MovieRuntimes = await _context.MovieRuntime
-                    .Include(m => m.Hall)
-                    .Include(m => m.Movie)
-                    .OrderBy(m => m.Time)
-                    .ToListAsync()
+                Halls = await GetAllHallsAsync(),
+                MovieRuntimes = await GetAllMovieRuntimesAsync()
             };
-
             return View(movieRuntimeViewModel);
         }
 
-        
         public async Task<IActionResult> Details(int id)
         {
             return View(await GetOneMovieRuntimeAsync(id));
@@ -242,9 +235,11 @@ namespace MovieHub.Controllers
         }
 
         // Gets all 
-        public async Task<IList<MovieRuntime>> GetMovieRuntimesAsync()
+        public async Task<IList<MovieRuntime>> GetAllMovieRuntimesAsync()
         {
             return await _context.MovieRuntime
+                .Include(m => m.Hall)
+                .Include(m => m.Movie)
                 .OrderBy(m => m.Time)
                 .ToListAsync();
         }
@@ -259,14 +254,10 @@ namespace MovieHub.Controllers
                 .FirstAsync();
         }
         
-        public async Task<MovieRuntime> GetOneMovieRuntimeTestAsync(int id)
+        public async Task<IList<Hall>> GetAllHallsAsync()
         {
-            return await _context.MovieRuntime
-                .Where(m => m.Id == id)
-                .OrderBy(m => m.Time)
-                .FirstAsync();
+            return await _context.Hall.OrderBy(h => h.Id).ToListAsync();
         }
-        
         
     }
 }

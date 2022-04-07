@@ -19,15 +19,13 @@ namespace MovieHubTests;
 
 public class AdminTests
 {
-    private readonly ITestOutputHelper _testOutputHelper;
     private readonly AdminController _controller;
     private readonly ApplicationDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
 
-    public AdminTests(ITestOutputHelper testOutputHelper)
+    public AdminTests()
     {
-        _testOutputHelper = testOutputHelper;
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
             .UseInMemoryDatabase("AdminTestDatabase").Options;
         _context = new ApplicationDbContext(options);
