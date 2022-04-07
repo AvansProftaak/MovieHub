@@ -92,12 +92,16 @@ public class LostAndFoundControllerTest
         // added lostAndFound to Database
         await _controller.Create(lostAndFound);
         
+        //Assert 1 item in list
+        var lostAndFoundsBefore = await _controller.GetLostAndFoundAsync();
+        lostAndFoundsBefore.Count.Should().Be(1);
+        
         //act // removes LostAndFounds older then 30 days from Database
         _controller.CleanList();
 
         //assert// List count should be 0 because LostAndFoundOldDate is older then 30 days
         var lostAndFounds = await _controller.GetLostAndFoundAsync();
-        Assert.Empty(lostAndFounds);
+        lostAndFounds.Count.Should().Be(0);
         
         await _context.Database.EnsureDeletedAsync();
     }
