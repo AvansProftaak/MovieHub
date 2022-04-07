@@ -54,6 +54,7 @@ namespace MovieHub.Controllers
             return View();
         }
         
+        // this bit of code will be used to send emails from the create page
         [HttpPost]
         public ActionResult Create([Bind("Subject,Content")] Email email)
         {
@@ -106,7 +107,7 @@ namespace MovieHub.Controllers
             return View();
 
         }
-        
+
         // GET: Email/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -140,6 +141,7 @@ namespace MovieHub.Controllers
         {
             return _context.Email.Any(e => e.Id == id);
         }
+        
 
     }
 }
