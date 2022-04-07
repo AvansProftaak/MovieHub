@@ -70,8 +70,7 @@ public class LostAndFoundControllerTest
         
         //act // returns notCollected LostAndFounds from Database to indexView
         IActionResult actionResult = await _controller.NotCollected();
-        // var result = await _controller.Index();
-        
+
         //assert
         var viewResult = Assert.IsType<ViewResult>(actionResult);
         var model = Assert.IsAssignableFrom<IEnumerable<LostAndFound>>(
@@ -103,7 +102,48 @@ public class LostAndFoundControllerTest
         await _context.Database.EnsureDeletedAsync();
     }
     
-    
+    [Fact]
+    public async Task Test_Delete()
+    {
+        // clear database
+        await _context.Database.EnsureDeletedAsync();
+
+        //arrange // Creates a new lostAndFound
+        var lostAndFound = GetLostAndFound();
+        
+        // added lostAndFound to Database
+        await _controller.Create(lostAndFound);
+        var lostAndFounds = await _controller.GetLostAndFoundAsync();
+        
+        //assert// Check if data is same as the added lostAndFound
+        lostAndFounds.First().Id.Should().Be(lostAndFound.Id);
+        lostAndFounds.First().IssueDate.Should().Be(lostAndFound.IssueDate);
+        lostAndFounds.First().Find.Should().Be(lostAndFound.Find);
+        lostAndFounds.First().Description.Should().Be(lostAndFound.Description);
+        lostAndFounds.First().Collected.Should().Be(lostAndFound.Collected);
+        
+        //Assert 1 item in list
+        lostAndFounds.Count.Should().Be(1);
+        
+        //act // returns LostAndFound from Database with id
+        var createdlostAndFound = await _controller.GetLostAndFoundAsync(lostAndFound.Id);
+        
+        //assert// Check if data is same as the added lostAndFound with id
+        createdlostAndFound.Id.Should().Be(lostAndFound.Id);
+        createdlostAndFound.IssueDate.Should().Be(lostAndFound.IssueDate);
+        createdlostAndFound.Find.Should().Be(lostAndFound.Find);
+        createdlostAndFound.Description.Should().Be(lostAndFound.Description);
+        createdlostAndFound.Collected.Should().Be(lostAndFound.Collected);
+
+        //delete and return list
+        await _controller.DeleteConfirmed(lostAndFound.Id);
+        lostAndFounds = await _controller.GetLostAndFoundAsync();
+        
+        //Now list is empty
+        lostAndFounds.Count.Should().Be(0);
+        
+        await _context.Database.EnsureDeletedAsync();
+    }
     
     private static LostAndFound GetLostAndFound()
     {
