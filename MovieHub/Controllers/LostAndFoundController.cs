@@ -167,30 +167,20 @@ namespace MovieHub.Controllers
         {
             return _context.LostAndFound.Any(e => e.Id == id);
         }
-
-        // public async Task<IActionResult> CleanList()
-        // {
-        //     DateTime date = DateTime.Today;
-        //     DateTime removalDate = date.AddDays(-30);
-        //
-        //     var lostAndFoundClean = _context.LostAndFound
-        //         .Where(l => (l.IssueDate.ToLocalTime() <= removalDate));
-        //
-        //     var cleanList = lostAndFoundClean.ToList();
-        //
-        //     if (cleanList != null)
-        //     {
-        //         foreach (var item in cleanList)
-        //         {
-        //             _context.LostAndFound.Remove(item);
-        //             await _context.SaveChangesAsync();
-        //         }
-        //         return RedirectToAction(nameof(Index));
-        //     }
-        //     return RedirectToAction(nameof(Index));
-        //
-        // }
-
+        
+        [HttpGet]
+        public async Task<LostAndFound> GetLostAndFoundAsync(int id)
+        {
+            return await _context.LostAndFound.FirstAsync(l => l.Id == id);
+        }
+        
+        
+        [HttpGet]
+        public async Task<IList<LostAndFound>> GetLostAndFoundAsync()
+        {
+            return await _context.LostAndFound.ToListAsync();
+        }
+        
         public void CleanList()
         {
             DateTime date = DateTime.Today;
