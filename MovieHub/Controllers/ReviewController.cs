@@ -67,11 +67,11 @@ namespace MovieHub.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CinemaId,HallId,DisplayQuality,SoundQuality,FoodQuality,Disturbance,Hygiene,Name,Email")] Review review )
+        public async Task<IActionResult> Create([Bind("Id,CinemaId,HallId,DisplayQuality,SoundQuality,FoodQuality,Disturbance,Hygiene,Details,Name,Email")] Review review )
         {
             // get hall and cinema
             review.TimeCreated = DateTime.UtcNow.AddHours(2);
-            Console.WriteLine(review);
+
             
             if (ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace MovieHub.Controllers
         [Authorize(Roles = "Admin, Manager, Back-Office")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,DisplayQuality,SoundQuality,FoodQuality,Disturbance,Hygiene,Name,Email,TimeCreated")] Review review)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DisplayQuality,SoundQuality,FoodQuality,Disturbance,Hygiene,Name,Details,Email,TimeCreated")] Review review)
         {
             if (id != review.Id)
             {
