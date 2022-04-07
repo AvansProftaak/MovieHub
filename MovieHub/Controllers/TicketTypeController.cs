@@ -143,7 +143,7 @@ namespace MovieHub.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TickettypeExists(int id)
+        public bool TickettypeExists(int id)
         {
             return _context.Tickettype.Any(e => e.Id == id);
         }
@@ -212,6 +212,19 @@ namespace MovieHub.Controllers
 
             Console.Write("name = " + ticket.Name + " price = " + ticket.Price);
             return price - ticket.Price;
+        }
+        
+        [HttpGet]
+        public async Task<Tickettype> GetTicketTypeAsync(int id)
+        {
+            return await _context.Tickettype.FirstAsync(l => l.Id == id);
+        }
+        
+        
+        [HttpGet]
+        public async Task<IList<Tickettype>> GetTicketTypeAsync()
+        {
+            return await _context.Tickettype.ToListAsync();
         }
     } 
 }
