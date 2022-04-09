@@ -10,99 +10,44 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Duration)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cast)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Director) 
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImdbScore)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReleaseDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Is3D)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsSecret)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Language)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TrailerUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MovieGenres)
-            </th>            
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model!) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duration) mins
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cast)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Director)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImdbScore)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Is3D)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsSecret)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Language)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TrailerUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MovieGenres)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+<div class="details-container">
+    <div class="justify-content-between d-flex">
+        <button onclick="location.href='@Url.Action("Create", "Movies")'"
+                class="btn btn-primary btn-sizing me-1" style="font-size: 1.3vh";>Create Movie</button>
+    </div>
+</div>
+<br/>
+<br/>
+<div class="row">
+    <div class="col-9 hide-scrollbar">
+        <div class="row text-center">
+@foreach (var item in Model!)
+                {
+                    <div class="col-3" style="padding-bottom: 25px">
+                        <div class="movieborder">
+                            <h4 class="movie-title">@Html.DisplayFor(model => item.Title)</h4>
+                            <a href="@Url.Action("Details", "Movies", new {id = item.Id})">
+                                <img width="80%" src="@Url.Content(item.ImageUrl)" alt="MoviePoster"/>
+                            </a>
+                            
+                            @if (item.Is3D)
+                            {
+                                <img class="details-3D" src="@Url.Content("~/img/button-3d-movie-white.png")" alt="3D Logo">
+                            }
+                            <div class="details-container">
+                                    <div class="justify-content-between d-flex">
+                                        <button onclick="location.href='@Url.Action("Edit", "Movies", new {id = item.Id})'"
+                                                class="btn btn-primary btn-sizing me-1" style="font-size: 1.3vh";>Edit Movie</button>
+                                        <button onclick="location.href='@Url.Action("Delete", "Movies", new {id = item.Id})'"
+                                                class="btn btn-primary btn-sizing ms-1" style="font-size: 1.3vh">Remove Movie</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                }
+
 }
-    </tbody>
-</table>
+            </div>
+        </div>
+        </div>
+
