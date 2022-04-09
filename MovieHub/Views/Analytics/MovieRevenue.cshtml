@@ -1,4 +1,8 @@
-﻿@model MovieHub.ViewModels.AnalyticsViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@model MovieHub.ViewModels.AnalyticsViewModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
 
 @{
     ViewData["Title"] = "MovieHub Hall Analytics";
@@ -8,6 +12,7 @@
     <h1>Movie Revenue Analytics</h1>
     <div class="col-md-4">
         <hr/>
+        
         <h2>Overview of revenue per movie.</h2>
         <p>Please select a start and end date to filter analytics over a specified period of time.</p>
         <form asp-action="MovieRevenue" method="post" class="d-flex justify-content-between">
@@ -19,51 +24,58 @@
         </form>
         <hr/>
     </div>
-    <div class="row">
-        <div class="col-md-8">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            Movie
-                        </th>
-                        <th>
-                            Amount of shows
-                        </th>
-                        <th>
-                            Ticket Revenue
-                        </th>
-                        <th>
-                            Arrangement Revenue
-                        </th>
-                        <th>
-                            Total Revenue
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-            @foreach (var item in Model.MovieStatistics)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(vm => item.MovieTitle)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(vm => item.AmountShows)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(vm => item.TicketRevenue)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(vm => item.ArrangementRevenue)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(vm => item.TotalRevenue)
-                    </td>
-                </tr>
-            }
-            </tbody>
-        </table>
-        </div>
-    </div>
+        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
+        {
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>
+                                Movie
+                            </th>
+                            <th>
+                                Amount of shows
+                            </th>
+                            <th>
+                                Ticket Revenue
+                            </th>
+                            <th>
+                                Arrangement Revenue
+                            </th>
+                            <th>
+                                Total Revenue
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.MovieStatistics)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(vm => item.MovieTitle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(vm => item.AmountShows)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(vm => item.TicketRevenue)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(vm => item.ArrangementRevenue)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(vm => item.TotalRevenue)
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+        else
+         {
+             <p><strong>Only administators can view movie revenue.</strong></p>
+         }
 </div>

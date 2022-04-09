@@ -1,4 +1,8 @@
-﻿@model MovieHub.ViewModels.AnalyticsViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@model MovieHub.ViewModels.AnalyticsViewModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
 
 @{
     ViewData["Title"] = "MovieHub Hall Analytics";
@@ -6,70 +10,77 @@
 
 <div class="row" style="margin-top: 9.5vh">
     <h1>Hall Analytics</h1>
-    <div class="col-md-4">
-        <hr/>
-        <h2>Overview per hall and movie.</h2>
-        <p>Please select a start and end date to filter analytics over a specified period of time.</p>
-        <form asp-action="HallAnalytics" method="post" class="d-flex justify-content-between">
-            <input class="form-control me-1" type="date" data-val="true" data-val-required="The start date field is required"
-                   id="startDate" name="startDate" value="@Model.startDate.ToString("yyyy-MM-dd")">
-            <input class="form-control mx-1" type="date" data-val="true" data-val-required="The start date field is required"
-                   id="endDate" name="endDate" value="@Model.endDate.ToString("yyyy-MM-dd")">
-            <button class="btn btn-primary ms-1" type="submit">Filter</button>
-        </form>
-        <hr/>
-    </div>
-    <div class="row">
-        <div class="col-md-8">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            Hall
-                        </th>
-                        <th>
-                            Movie
-                        </th>
-                        <th>
-                            Showtime
-                        </th>
-                        <th>
-                            Hall Capacity
-                        </th>
-                        <th>
-                            Seats Sold
-                        </th>
-                        <th>
-                            Seats Free
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-            @foreach (var item in Model.Statistics)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(vm => item.HallName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(vm => item.MovieTitle)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(vm => item.Showtime)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(vm => item.HallCapacity)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(vm => item.SeatsTaken)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(vm => item.SeatsFree)
-                    </td>
-                </tr>
-            }
-            </tbody>
-        </table>
-        </div>
-    </div>
+        @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Administrator") || User.IsInRole("Backoffice Employee")))
+        {
+            <div class="col-md-4">
+                <hr/>
+                <h2>Overview per hall and movie.</h2>
+                <p>Please select a start and end date to filter analytics over a specified period of time.</p>
+                <form asp-action="HallAnalytics" method="post" class="d-flex justify-content-between">
+                    <input class="form-control me-1" type="date" data-val="true" data-val-required="The start date field is required"
+                           id="startDate" name="startDate" value="@Model.startDate.ToString("yyyy-MM-dd")">
+                    <input class="form-control mx-1" type="date" data-val="true" data-val-required="The start date field is required"
+                           id="endDate" name="endDate" value="@Model.endDate.ToString("yyyy-MM-dd")">
+                    <button class="btn btn-primary ms-1" type="submit">Filter</button>
+                </form>
+                <hr/>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>
+                                Hall
+                            </th>
+                            <th>
+                                Movie
+                            </th>
+                            <th>
+                                Showtime
+                            </th>
+                            <th>
+                                Hall Capacity
+                            </th>
+                            <th>
+                                Seats Sold
+                            </th>
+                            <th>
+                                Seats Free
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.Statistics)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(vm => item.HallName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(vm => item.MovieTitle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(vm => item.Showtime)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(vm => item.HallCapacity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(vm => item.SeatsTaken)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(vm => item.SeatsFree)
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }    
+        else
+         {
+             <p><strong>Only administators and backoffice employees can view analytics.</strong></p>
+         }
 </div>
