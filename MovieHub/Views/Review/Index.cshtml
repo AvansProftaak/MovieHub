@@ -21,8 +21,8 @@
                 @foreach (var item in Model)
                 {
                     <div class="col-3" style="padding-bottom: 25px">
-                        <div class="Reviewborder">
-                            <h4 class="Review">@Html.DisplayFor(model => item.Details)</h4>
+                        <div class="movieborder">
+                            <h4 class="ReviewHall">Hall: @Html.DisplayFor(model => item.HallId)</h4>
                             @*<a href="@Url.Action("Details", "Review", new {id = item.Id})">
                                 <img width="80%" src="@Url.Content(item.ImageUrl)" alt="MoviePoster"/>
                             </a>*@
@@ -30,14 +30,36 @@
                             <div class="details-container-time">
                                 <hr/>
 
-                                <p style="font-size: 1.9vh">Rating:</p>
-                                <span  style="font-size: 1.7vh">•
+                                <p style="font-size: 1.9vh">Review:</p>
+                                <span  style="font-size: 1.7vh">
                                     @{
-                                        <h4 class="Review">@Html.DisplayFor(model => item.Details)</h4>
-                                        <h4 class="Review">@Html.DisplayFor(model => item.Details)</h4>
-                                        <h4 class="Review">@Html.DisplayFor(model => item.Details)</h4>
+                                        <button onclick="location.href='@Url.Action("Details", "Review", new {id = item.Id})'"
+                                                class="btn btn-primary btn-sizing ms-1" style="font-size: 1.3vh">Review Details</button>
                                     }
                                 </span>
+                                
+                                <p style="font-size: 1.9vh">Score:</p>
+                                    <span  style="font-size: 1.7vh">
+                                        @{
+                                            <h4 class="Review.Disp">DisplayQuality: @Html.DisplayFor(model => item.DisplayQuality)</h4>
+                                            <h4 class="Review.SoundQuality">SoundQuality: @Html.DisplayFor(model => item.SoundQuality)</h4>
+                                            <h4 class="Review.FoodQuality">FoodQuality: @Html.DisplayFor(model => item.FoodQuality)</h4>
+                                            <h4 class="Review.FoodQuality">FoodQuality: @Html.DisplayFor(model => item.FoodQuality)</h4>
+                                            <h4 class="Review.Disturbance">Disturbance: @Html.DisplayFor(model => item.Disturbance)</h4>
+                                            <h4 class="Review.FoodQuality">Hygiene: @Html.DisplayFor(model => item.Hygiene)</h4>
+                                        }
+                                    </span>
+                                
+                                <p style="font-size: 1.9vh">Submitter:</p>
+                                    <span  style="font-size: 1.7vh">
+                                        @{
+                                            <h4 class="Review.Name">Name: @Html.DisplayFor(model => item.Name)</h4>
+                                            <h4 class="Review.TimeCreated">Date: @Html.DisplayFor(model => item.TimeCreated)</h4>
+                                            
+                                        }
+                                    </span>
+                                
+                                
                                 <hr/>    
 
                             </div>
