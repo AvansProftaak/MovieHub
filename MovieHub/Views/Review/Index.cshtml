@@ -5,11 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Reviews</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<span  style="font-size: 1.7vh">
+    @{
+        <button onclick="location.href='@Url.Action("Create", "Review")'"
+                class="btn btn-primary btn-sizing flex-lg-wrap" style="font-size: 1.3vh">Write a review</button>
+    }
+</span>
+<br/>
+<br/>
 
 
 
