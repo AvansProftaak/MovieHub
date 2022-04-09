@@ -12,7 +12,7 @@ using MovieHub.Models;
 
 namespace MovieHub.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator, Manager, BackOffice")]
     public class CateringPackageController : Controller
     {
         private readonly ApplicationDbContext _context;
