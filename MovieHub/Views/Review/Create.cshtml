@@ -35,30 +35,66 @@
                 </select>
                 <span asp-validation-for="@Model.Review.HallId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="@Model.Review.DisplayQuality" class="control-label"></label>
                 <input asp-for="@Model.Review.DisplayQuality" class="form-control"/>
+                <span asp-validation-for="@Model.Review.DisplayQuality" class="text-danger"></span>*@
+            <div class="form-group">
+                <label class="control-label movie-p" style="font-size: 1.3vh">How is the quality of the screen?</label>
+                <div class="rating">
+                    <input type="radio" id="DisplayQuality1" name="Review.DisplayQuality" value="1" class="visuallyhidden" required="required" /><label for="ScreenQuality1" title="Bad">1</label>
+                    <input type="radio" id="DisplayQuality2" name="Review.DisplayQuality" value="2" class="visuallyhidden"/><label for="ScreenQuality2" title="Not satisfying">2</label>
+                    <input type="radio" id="DisplayQuality3" name="Review.DisplayQuality" value="3" class="visuallyhidden"/><label for="ScreenQuality3" title="Could be better">2</label>
+                    <input type="radio" id="DisplayQuality4" name="Review.DisplayQuality" value="4" class="visuallyhidden"/><label for="ScreenQuality4" title="Good">3</label>
+                    <input type="radio" id="DisplayQuality5" name="Review.DisplayQuality" value="5" class="visuallyhidden" /><label for="ScreenQuality5" title="Awesome!">5</label>
+
+                </div>
                 <span asp-validation-for="@Model.Review.DisplayQuality" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Review.SoundQuality" class="control-label"></label>
-                <input asp-for="@Model.Review.SoundQuality" class="form-control"/>
+                <label class="control-label movie-p" style="font-size: 1.3vh">How is the quality of the sound?</label>
+                <div class="rating">
+                    <input type="radio" id="SoundQuality1" name="Review.SoundQuality" value="1" class="visuallyhidden" required="required" /><label for="SoundQuality1" title="Bad">1</label>
+                    <input type="radio" id="SoundQuality2" name="Review.SoundQuality" value="2" class="visuallyhidden"/><label for="SoundQuality2" title="Not satisfying">2</label>
+                    <input type="radio" id="SoundQuality3" name="Review.SoundQuality" value="3" class="visuallyhidden"/><label for="SoundQuality3" title="Could be better">2</label>
+                    <input type="radio" id="SoundQuality4" name="Review.SoundQuality" value="4" class="visuallyhidden"/><label for="SoundQuality4" title="Good">3</label>
+                    <input type="radio" id="SoundQuality5" name="Review.SoundQuality" value="5" class="visuallyhidden" /><label for="SoundQuality5" title="Awesome!">5</label>
+
+                </div>
                 <span asp-validation-for="@Model.Review.SoundQuality" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Review.FoodQuality" class="control-label"></label>
-                <input asp-for="@Model.Review.FoodQuality" class="form-control"/>
+                <label class="control-label movie-p" style="font-size: 1.3vh">How is the quality of the sound?</label>
+                <div class="rating">
+                    <input type="radio" id="FoodQuality1" name="Review.FoodQuality" value="1" class="visuallyhidden" required="required" /><label for="SoundQuality1" title="Bad">1</label>
+                    <input type="radio" id="FoodQuality2" name="Review.FoodQuality" value="2" class="visuallyhidden"/><label for="FoodQuality2" title="Not satisfying">2</label>
+                    <input type="radio" id="FoodQuality3" name="Review.FoodQuality" value="3" class="visuallyhidden"/><label for="FoodQuality3" title="Could be better">2</label>
+                    <input type="radio" id="FoodQuality4" name="Review.FoodQuality" value="4" class="visuallyhidden"/><label for="FoodQuality4" title="Good">3</label>
+                    <input type="radio" id="FoodQuality5" name="Review.FoodQuality" value="5" class="visuallyhidden" /><label for="FoodQuality5" title="Awesome!">5</label>
+                </div>
                 <span asp-validation-for="@Model.Review.FoodQuality" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Review.Disturbance" class="control-label"></label>
-                <input asp-for="@Model.Review.Disturbance" class="form-control"/>
+                <label class="control-label movie-p" style="font-size: 1.3vh">Was there any disturbance?</label>
+                <div class="rating">
+                    <input type="radio" id="Disturbance1" name="Review.Disturbance" value="1" class="visuallyhidden" required="required" /><label for="Disturbance1" title="Bad">1</label>
+                    <input type="radio" id="Disturbance2" name="Review.Disturbance" value="2" class="visuallyhidden"/><label for="Disturbance2" title="Not satisfying">2</label>
+                    <input type="radio" id="Disturbance3" name="Review.Disturbance" value="3" class="visuallyhidden"/><label for="Disturbance3" title="Could be better">2</label>
+                    <input type="radio" id="Disturbance4" name="Review.Disturbance" value="4" class="visuallyhidden"/><label for="Disturbance4" title="Good">3</label>
+                    <input type="radio" id="Disturbance5" name="Review.Disturbance" value="5" class="visuallyhidden" /><label for="Disturbance5" title="Awesome!">5</label>
+                </div>
                 <span asp-validation-for="@Model.Review.Disturbance" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="@Model.Review.Hygiene" class="control-label"></label>
-                <input asp-for="@Model.Review.Hygiene" class="form-control"/>
-                <span asp-validation-for="@Model.Review.Hygiene" class="text-danger"></span>
+             <div class="form-group">
+                <label class="control-label movie-p" style="font-size: 1.3vh">How was the Hygiene?</label>
+                <div class="rating">
+                    <input type="radio" id="Hygiene1" name="Review.Hygiene" value="1" class="visuallyhidden" required="required" /><label for="Hygiene1" title="Bad">1</label>
+                    <input type="radio" id="Hygiene2" name="Review.Hygiene" value="2" class="visuallyhidden"/><label for="Hygiene2" title="Not satisfying">2</label>
+                    <input type="radio" id="Hygiene3" name="Review.Hygiene" value="3" class="visuallyhidden"/><label for="Hygiene3" title="Could be better">2</label>
+                    <input type="radio" id="Hygiene4" name="Review.Hygiene" value="4" class="visuallyhidden"/><label for="Hygiene4" title="Good">3</label>
+                    <input type="radio" id="Hygiene5" name="Review.Hygiene" value="5" class="visuallyhidden" /><label for="Hygiene5" title="Awesome!">5</label>
+                </div>
+                <span assp-validation-for="@Model.Review.Hygiene" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Review.Details" class="control-label"></label>
