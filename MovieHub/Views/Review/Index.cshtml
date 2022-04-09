@@ -57,6 +57,13 @@
                                             <h4 class="Review.TimeCreated">Date: @Html.DisplayFor(model => item.TimeCreated)</h4>
                                             
                                         }
+                                        @if ((User.IsInRole("Admin")) || (User.IsInRole("Manager")))
+                                            {
+                                                <button onclick="location.href='@Url.Action("Edit", "Review", new {id = item.Id})'"
+                                                        class="btn btn-primary btn-sizing ms-1" style="font-size: 1.3vh">Edit Review</button>
+                                                <button onclick="location.href='@Url.Action("Delete", "Review", new {id = item.Id})'"
+                                                        class="btn btn-primary btn-sizing ms-1" style="font-size: 1.3vh">Delete</button>
+                                            }
                                     </span>
                                 
                                 
@@ -65,17 +72,7 @@
                             </div>
                         </div>
                     </div>
-                    @if ((User.IsInRole("Admin")) || (User.IsInRole("Back-Office")) || (User.IsInRole("Manager")))
-                    {
-                        <li class="nav-item">
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> </li>
-                        <li class="nav-item">
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        </li>
-                    }
+                    
                 }
                 
             </div>
