@@ -4,7 +4,7 @@
   &lt;Assembly Path="/home/joris/.nuget/packages/select.htmltopdf.netcore/21.2.0/lib/netstandard2.0/Select.HtmlToPdf.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=61d5e909_002D0400_002D4dda_002D93d9_002D55b94a80c5cd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Throws_Error_When_Edit_Not_Right_Id #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=61d5e909_002D0400_002D4dda_002D93d9_002D55b94a80c5cd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Throws_Error_When_Edit_Not_Right_Id #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855::net6.0::MovieHubTests.TicketTypeControllerTests.Throws_Error_When_Edit_Not_Right_Id&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
@@ -20,7 +20,7 @@
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e3486152_002D296c_002D4b6a_002D8e99_002D6f9fc734e8d8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="HomeControllerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e3486152_002D296c_002D4b6a_002D8e99_002D6f9fc734e8d8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="HomeControllerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Project Location="D:\Studie\MovieHub\MovieHubTests" Presentation="&amp;lt;MovieHubTests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>
