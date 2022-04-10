@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -56,7 +57,7 @@ namespace MovieHub.Controllers
         
         // this bit of code will be used to send emails from the create page
         [HttpPost]
-        public ActionResult Create([Bind("Subject,Content")] Email email)
+        public async Task<ActionResult> Create([Bind("Subject,Content")] Email email)
         {
             var emailAddress = "newsletter.moviehub@gmail.com";
             var password = "P@ssword123!";
@@ -86,6 +87,11 @@ namespace MovieHub.Controllers
 
             try
             {
+                //due to ssl not trustig gmail anymore ( on sunday 4/10/22) quick fix
+                ServicePointManager.ServerCertificateValidationCallback +=
+                    (sender, cert, chain, sslPolicyErrors) => { return true; };
+                
+                
                 // connect to gmail
                 client.Connect("smtp.gmail.com", 465, true);
                 client.Authenticate(emailAddress, password);
@@ -103,8 +109,10 @@ namespace MovieHub.Controllers
                 client.Disconnect(true);
                 client.Dispose();
             }
-
-            return View();
+            
+            _context.Email.Add(email); 
+            await _context.SaveChangesAsync();  
+            return RedirectToAction(nameof(Index));
 
         }
 

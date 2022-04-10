@@ -5,31 +5,42 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Reviews</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<span  style="font-size: 1.7vh">
+    @{
+        <button onclick="location.href='@Url.Action("Create", "Email")'"
+                class="btn btn-primary btn-sizing flex-lg-wrap" style="font-size: 1.3vh">Send newsletter</button>
+    }
+</span>
+<br/>
+<br/>
+
+<div class="row">
+        <div class="col-9 hide-scrollbar">
+            <div class="row text-center">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-3" style="padding-bottom: 25px">
+                        <div class="emailborder"  >
+                            <h4 class="Subject">Subject: @Html.DisplayFor(model => item.Subject)</h4>
+
+                            <div class="no-border" >
+                                <hr/>
+                                <span  style="font-size: 1.7vh">
+                                    @{
+                                        <button onclick="location.href='@Url.Action("Details", "Email",new {id = item.Id})'"
+                                            class="btn btn-primary btn-sizing flex-lg-wrap" style="font-size: 1.3vh">Read</button>
+                                    }
+                                </span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                }
+                
+            </div>
+        </div>
+</div>

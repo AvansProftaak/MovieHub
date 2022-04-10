@@ -5,86 +5,89 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Reviews</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DisplayQuality)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SoundQuality)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FoodQuality)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Disturbance)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hygiene)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Details)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TimeCreated)
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DisplayQuality)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoundQuality)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FoodQuality)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Disturbance)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hygiene)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Details)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeCreated)
-            </td>
-            <td>
-
-                @if ((User.IsInRole("Admin")) || (User.IsInRole("Back-Office")) || (User.IsInRole("Manager")))
-                {
-                    <li class="nav-item">
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> </li>
-                    <li class="nav-item">
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </li>
-                }
-
-
-            </td>
-        </tr>
+<span  style="font-size: 1.7vh">
+    @{
+        <button onclick="location.href='@Url.Action("Create", "Review")'"
+                class="btn btn-primary btn-sizing flex-lg-wrap" style="font-size: 1.3vh">Write a review</button>
     }
-    </tbody>
-</table>*@
+</span>
+<br/>
+<br/>
+
+<div class="row">
+        <div class="col-9 hide-scrollbar">
+            <div class="row text-center">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-3" style="padding-bottom: 25px">
+                        <div class="movieborder">
+                            <h4 class="ReviewHall">Hall: @Html.DisplayFor(model => item.HallId)</h4>
+                            @*<a href="@Url.Action("Details", "Review", new {id = item.Id})">
+                                <img width="80%" src="@Url.Content(item.ImageUrl)" alt="MoviePoster"/>
+                            </a>*@
+                            
+                            <div class="details-container-time">
+                                <hr/>
+
+                                <p style="font-size: 1.9vh">Review:</p>
+                                <span  style="font-size: 1.7vh">
+                                    @{
+                                        <button onclick="location.href='@Url.Action("Details", "Review", new {id = item.Id})'"
+                                                class="btn btn-primary btn-sizing ms-1" style="font-size: 1.3vh">Review Details</button>
+                                    }
+                                </span>
+                                
+                                <p style="font-size: 1.9vh">Score:</p>
+                                    <span  style="font-size: 1.7vh">
+                                        @{
+                                            <h4 class="Review.Disp">DisplayQuality: @Html.DisplayFor(model => item.DisplayQuality)</h4>
+                                            <h4 class="Review.SoundQuality">SoundQuality: @Html.DisplayFor(model => item.SoundQuality)</h4>
+                                            <h4 class="Review.FoodQuality">FoodQuality: @Html.DisplayFor(model => item.FoodQuality)</h4>
+                                            <h4 class="Review.FoodQuality">FoodQuality: @Html.DisplayFor(model => item.FoodQuality)</h4>
+                                            <h4 class="Review.Disturbance">Disturbance: @Html.DisplayFor(model => item.Disturbance)</h4>
+                                            <h4 class="Review.FoodQuality">Hygiene: @Html.DisplayFor(model => item.Hygiene)</h4>
+                                        }
+                                    </span>
+                                
+                                <p style="font-size: 1.9vh">Submitter:</p>
+                                    <span  style="font-size: 1.7vh">
+                                        @{
+                                            <h4 class="Review.Name">Name: @Html.DisplayFor(model => item.Name)</h4>
+                                            <h4 class="Review.TimeCreated">Date: @Html.DisplayFor(model => item.TimeCreated)</h4>
+                                            
+                                        }
+                                        @if ((User.IsInRole("Admin")) || (User.IsInRole("Manager")))
+                                            {
+                                                <button onclick="location.href='@Url.Action("Delete", "Review", new {id = item.Id})'"
+                                                        class="btn btn-primary btn-sizing ms-1" style="font-size: 1.3vh">Delete</button>
+                                            }
+                                    </span>
+                                
+                                
+                                <hr/>    
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                }
+                
+            </div>
+        </div>
+        <div class="col-3">
+            
+            
+            <div id="newsletterDiv" style="margin-top: 1vh;">
+                <h4 class="movie-title" style="font-size: 2vh">Sign up for the newsletter</h4>
+                <div class="row justify-content-center">
+                    <div class="col-sm-5" id="inputEmail">
+                        <input class="form-control" type="text" id="email" name="newsletter" placeholder="Enter Email" style="font-size: 1.4vh">
+                    </div>
+                    <button style="width: 20%; height: 20%; font-size: 1.3vh" onclick="checkEmail()" class="btn btn-primary ms-1">Sign up</button>
+                </div>
+            </div>
+        </div>
+    </div>
