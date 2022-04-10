@@ -62,9 +62,17 @@ namespace MovieHub.Controllers
             var emailAddress = "newsletter.moviehub@gmail.com";
             var password = "P@ssword123!";
 
+            string FilePath = Directory.GetCurrentDirectory() + "//wwwroot//Templates//mail//Newsletter.html";
+            StreamReader str = new StreamReader(FilePath);
+            string MailText = str.ReadToEnd();
+            str.Close();
+            
+            MailText = MailText.Replace("[SUBJECT]", email.Subject).Replace("[CONTENT]", email.Content);
+
+            
             // create mime object of message to fill
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Bart", emailAddress));
+            message.From.Add(new MailboxAddress("MovieHub", emailAddress));
             
             List<MailboxAddress> mailList = new List<MailboxAddress>();
 
@@ -76,12 +84,12 @@ namespace MovieHub.Controllers
             }
             message.To.AddRange(mailList);
 
-            message.Subject = email.Subject;
-            message.Body = new TextPart("html")
-            {
-                Text = @email.Content
-            };
+            var styledContent = new BodyBuilder();
+            styledContent.HtmlBody = MailText;
 
+            message.Subject = email.Subject;
+            message.Body = styledContent.ToMessageBody();
+            
             // user mailkit smtp client
             var client = new SmtpClient();
 
@@ -90,8 +98,6 @@ namespace MovieHub.Controllers
                 //due to ssl not trustig gmail anymore ( on sunday 4/10/22) quick fix
                 ServicePointManager.ServerCertificateValidationCallback +=
                     (sender, cert, chain, sslPolicyErrors) => { return true; };
-                
-                
                 // connect to gmail
                 client.Connect("smtp.gmail.com", 465, true);
                 client.Authenticate(emailAddress, password);
