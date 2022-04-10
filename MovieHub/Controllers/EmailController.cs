@@ -62,6 +62,14 @@ namespace MovieHub.Controllers
             var emailAddress = "newsletter.moviehub@gmail.com";
             var password = "P@ssword123!";
 
+            string FilePath = Directory.GetCurrentDirectory() + "//wwwroot//templates//Moviehub_Newsletter_Template.html";
+            StreamReader str = new StreamReader(FilePath);
+            string MailText = str.ReadToEnd();
+            str.Close();
+            
+            MailText = MailText.Replace("[SUBJECT]", email.Subject).Replace("[CONTENT]", email.Content);
+
+            
             // create mime object of message to fill
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("Bart", emailAddress));
@@ -76,11 +84,14 @@ namespace MovieHub.Controllers
             }
             message.To.AddRange(mailList);
 
+            var styledContent = new BodyBuilder();
+            styledContent.HtmlBody = MailText;
+
             message.Subject = email.Subject;
-            message.Body = new TextPart("html")
-            {
-                Text = @email.Content
-            };
+            message.Body = styledContent.ToMessageBody();
+            
+            
+
 
             // user mailkit smtp client
             var client = new SmtpClient();
