@@ -9,7 +9,7 @@ public class RoleTest
 {
 
     [Fact]
-    public void RoleFieldCannotBeBlank()
+    public void AddRoleFieldCannotBeBlank()
     {
         // Arrange
         var validationResults = new List<ValidationResult>();
@@ -31,7 +31,7 @@ public class RoleTest
     }
 
     [Fact]
-    public void RoleNameFieldCannotBeBlank()
+    public void EditRoleNameFieldCannotBeBlank()
     {
         // Arrange
         var validationResults = new List<ValidationResult>();
