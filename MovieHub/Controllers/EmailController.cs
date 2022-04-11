@@ -62,21 +62,25 @@ namespace MovieHub.Controllers
         [HttpPost]
         public async Task<ActionResult> Create([Bind("Subject,Content")] Email email)
         {
+            // in this function we get the settings from our appsettings
             var emailAddress = _mailsettings.Mail;
             var password = _mailsettings.Password;
 
+            //read the template to send as body for mail
             string FilePath = Directory.GetCurrentDirectory() + "//wwwroot//Templates//mail//Newsletter.html";
             StreamReader str = new StreamReader(FilePath);
-            string MailText = str.ReadToEnd();
+            string content = str.ReadToEnd();
             str.Close();
             
-            MailText = MailText.Replace("[SUBJECT]", email.Subject).Replace("[CONTENT]", email.Content);
+            //
+            content = content.Replace("[SUBJECT]", email.Subject).Replace("[CONTENT]", email.Content);
 
             
             // create mime object of message to fill
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("MovieHub", emailAddress));
             
+            //create a list to use to send to
             List<MailboxAddress> mailList = new List<MailboxAddress>();
 
             List<Newsletter> allNewsletterSubscribers = _context.Newsletter.ToList();
@@ -88,7 +92,7 @@ namespace MovieHub.Controllers
             message.To.AddRange(mailList);
 
             var styledContent = new BodyBuilder();
-            styledContent.HtmlBody = MailText;
+            styledContent.HtmlBody = content;
 
             message.Subject = email.Subject;
             message.Body = styledContent.ToMessageBody();
