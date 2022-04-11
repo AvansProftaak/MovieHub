@@ -4,16 +4,14 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<h1>Movies</h1>
+<br/>
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <div class="details-container">
+    
     <div class="justify-content-between d-flex">
         <button onclick="location.href='@Url.Action("Create", "Movies")'"
-                class="btn btn-primary btn-sizing me-1" style="font-size: 1.3vh";>Create Movie</button>
+                class="btn btn-primary btn-sizing me-1" style="font-size: 1.3vh" ;>Create Movie</button>
     </div>
 </div>
 <br/>
