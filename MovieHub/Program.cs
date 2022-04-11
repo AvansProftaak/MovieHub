@@ -21,11 +21,12 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddControllersWithViews();
 
-
 var app = builder.Build();
 
 var userManager = builder.Services.BuildServiceProvider().GetService<UserManager<User>>();
 var roleManager = builder.Services.BuildServiceProvider().GetService<RoleManager<IdentityRole>>();
+
+builder.Services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
