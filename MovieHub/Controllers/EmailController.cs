@@ -11,6 +11,7 @@ using MovieHub.Data;
 using MovieHub.Models;
 using MailKit.Net.Smtp;
 using MailKit;
+using Microsoft.Extensions.Options;
 using MimeKit;
 
 
@@ -19,10 +20,12 @@ namespace MovieHub.Controllers
     public class EmailController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly MailSettings _mailsettings;
 
-        public EmailController(ApplicationDbContext context)
+        public EmailController(ApplicationDbContext context, IOptions<MailSettings> mailsettings)
         {
             _context = context;
+            _mailsettings = mailsettings.Value;
         }
 
         // GET: Email
@@ -59,8 +62,8 @@ namespace MovieHub.Controllers
         [HttpPost]
         public async Task<ActionResult> Create([Bind("Subject,Content")] Email email)
         {
-            var emailAddress = "newsletter.moviehub@gmail.com";
-            var password = "P@ssword123!";
+            var emailAddress = _mailsettings.Mail;
+            var password = _mailsettings.Password;
 
             string FilePath = Directory.GetCurrentDirectory() + "//wwwroot//Templates//mail//Newsletter.html";
             StreamReader str = new StreamReader(FilePath);
@@ -99,7 +102,7 @@ namespace MovieHub.Controllers
                 ServicePointManager.ServerCertificateValidationCallback +=
                     (sender, cert, chain, sslPolicyErrors) => { return true; };
                 // connect to gmail
-                client.Connect("smtp.gmail.com", 465, true);
+                client.Connect(_mailsettings.Host, _mailsettings.Port, true);
                 client.Authenticate(emailAddress, password);
                 client.Send(message);
 
