@@ -1,8 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieHub", "MovieHub\MovieHub.csproj", "{A46EA35A-8D6A-4890-80D5-B99FB1E7895E}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieHub", "MovieHub\MovieHub.csproj", "{A46EA35A-8D6A-4890-80D5-B99FB1E7895E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieHubTests", "MovieHubTests\MovieHubTests.csproj", "{E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieHubTests", "MovieHubTests\MovieHubTests.csproj", "{E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +21,11 @@ Global
 		{E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E113B5CF-AD1F-466F-A1EE-AC8E9DBAC855}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C59CF30-1A9B-4AAA-8AB4-CC11A2220149}
 	EndGlobalSection
 EndGlobal

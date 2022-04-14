@@ -1,0 +1,16 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="container-fluid" style="margin-top: 120px">
+    <div class="row">
+        <h3 class="movie-title">Send Newsletter</h3>
+        <form action="@Url.Action("SendNewsLetter", "BackOfficeDashboard")" method="post">
+            <textarea style="width: 50%;" class="form-control" id="newsLetterText" name="text" rows="20" cols="44">
+            </textarea>
+            <br><br>
+            <input style="font-size: 1.3vh" class="btn btn-primary ms-1" type="submit" value="Send">
+        </form>
+    </div>
+</div>

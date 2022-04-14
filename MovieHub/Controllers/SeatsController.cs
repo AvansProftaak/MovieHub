@@ -16,7 +16,7 @@ namespace MovieHub.Controllers
         }
 
         // GET: Seats
-        public async Task<IActionResult> Index(int showtimeId)
+        public async Task<IActionResult> Index(int showtimeId, bool changeSeat, int seatToChange, int ticketId)
         {
             var show = _context.Showtime.First(s => s.Id == showtimeId);
             var hallId = show.HallId;
@@ -24,8 +24,15 @@ namespace MovieHub.Controllers
             
             var seatsPerHall = _context.Seat.Where(s => s.HallId == hallId).Include(s => s.Hall);
             seatViewModel.Seats = await seatsPerHall.ToListAsync();
+            seatViewModel.changeSeat = changeSeat;
+            seatViewModel.seatToChange = seatToChange;
+            if (changeSeat)
+            {
+                seatViewModel.ticketId = ticketId;
+            }
+            seatViewModel.showTimeId = showtimeId;
 
-            
+
             return View(seatViewModel);
         }
     }

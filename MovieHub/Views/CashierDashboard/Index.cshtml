@@ -1,0 +1,59 @@
+﻿@model MovieHub.ViewModels.CashierViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="container-fluid" style="margin-top: 120px">
+    <div class="row">
+        <table>
+            @foreach(var orderId in Model.tickets.Select(x => x.OrderId).Distinct())
+            {
+                <tr>
+                    <th>Order ID: @orderId</th>
+                    <th><button onclick="deleteOrder(@orderId)" style="width:30%;" class="btn btn-primary btn-sizing ms-1">Delete Order</button></th>
+                </tr>
+                @foreach(var singleTicket in Model.tickets.Where(x => x.OrderId == orderId))
+                {
+                    <tr>
+                        <td>Ticket ID: @singleTicket.Id</td>
+                        <td>Ticket Type: @singleTicket.Name</td>
+                        @{
+                            var seat = Model.seats.Where(x => x.Id == singleTicket.SeatId).FirstOrDefault();
+                        }
+                        @if(seat != null)
+                        {
+                            <td>Row: @seat.RowNumber Seat: @seat.SeatNumber</td>
+
+                        }
+                        else
+                        {
+                            <td></td>
+
+                        }
+                        @if(singleTicket.SeatId != null) {
+                            <td><button onclick="changeSeat(@singleTicket.SeatId, @Model.orders.Where(x => x.Id == orderId).FirstOrDefault().ShowtimeId, @singleTicket.Id)" style="width:50%;" class="btn btn-primary btn-sizing ms-1">Change Seat</button></td>
+                        } else
+                        {
+                            <td><button hidden style="width:50%;" class="btn btn-primary btn-sizing ms-1">Change Seat</button></td>
+                        }
+                        <td><button onclick="deleteTicket(@singleTicket.Id)" style="width:50%;" class="btn btn-primary btn-sizing ms-1">Delete Ticket</button></td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>
+<script>
+    function deleteOrder(orderId) {
+        location.href='@Url.Action("DeleteOrder", "CashierDashboard")?orderId=' + orderId
+    }
+    
+    function deleteTicket(ticketId){
+        location.href='@Url.Action("DeleteTicket", "CashierDashboard")?ticketId=' + ticketId
+    }
+
+    function changeSeat(seatId, showTimeId, ticketId) {
+        location.href='@Url.Action("Index", "Seats")?showTimeId=' + showTimeId + '&changeSeat=true&seatTochange=' + seatId + '&ticketId=' + ticketId;
+    }
+</script>

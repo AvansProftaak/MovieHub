@@ -1,0 +1,53 @@
+﻿@model MovieHub.ViewModels.AdminViewModel
+<div class="container-fluid" style="margin-top: 9.5vh">
+    <div class="row" style="margin-top: 24px;">
+        <div class="col-3">
+            <h3 class="movie-title">Create user</h3>
+            <form id="registerForm" action="@Url.Action("InsertUser", "Dashboard")" method="post">
+              <label for="fname">Email:</label><br>
+              <input type="email" id="username" name="username"><br>
+              <label for="lname">Password:</label><br>
+              <input type="password" id="password" name="password"><br><br>
+              <input  style="font-size: 1.3vh" class="btn btn-primary ms-1" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 24px;">
+        <div class="col-3">
+            <h3 class="movie-title">Create role</h3>
+            <form id="roleForm" action="@Url.Action("InsertRole", "Dashboard")" method="post">
+                <label for="role">Role name:</label><br>
+                <input type="text" id="roleName" name="roleName"><br><br>
+                <input  style="font-size: 1.3vh" class="btn btn-primary ms-1" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 24px;">
+        <div class="col-12">
+            <form id="addRoleToUserForm" action="@Url.Action("AddRoleToUser", "Dashboard")" method="post">
+                <h3 class="movie-title">Give role to user</h3>
+                @foreach(var user in Model.users)
+                {
+                    <div class="row">
+                        <div class="col-2">
+                            <label>User: @user</label>
+                            <input type="hidden" id="user" name="user" value=@user/>
+                        </div>
+                        <div class="col-5">
+                            <label>Give role: </label>
+                            <select name="rolesWithUsers" id="rolesWithUsers">
+                                <option disabled selected> -- Select a Role -- </option>
+                                @foreach(var role in Model.roles)
+                                {
+                                    <option value="@role-@user">@role</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                }
+                <br>
+                <input  style="font-size: 1.3vh" class="btn btn-primary ms-1" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>

@@ -52,7 +52,7 @@ function BuyTickets()
         return
     }
     SaveToLocalStorage();    
-    location.href='@Url.Action("Index", "Seats")?showtimeId='+JSON.stringify(showtimeId);
+    location.href='@Url.Action("Index", "Seats")?showtimeId='+JSON.stringify(showtimeId) + '&changeSeat=false&seatTochange=0';
 }
 
 function CountTickets (quantity, id) {

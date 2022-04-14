@@ -33,10 +33,20 @@
     }
     <br/>
     <br/>
-    <button onclick="getPaymentUrl()"
+    @if(Model.changeSeat)
+    {
+        <button onclick="changeSeat()"
             class="btn btn-primary">
-        Continue to payment
-    </button>
+                Change seat
+        </button>
+    } else
+    {
+        <button onclick="getPaymentUrl()"
+            class="btn btn-primary">
+                Continue to payment
+        </button>
+    }
+
 </div>
 
 <script >
@@ -46,11 +56,16 @@
     Object.keys(orderData['ticketTypes']).forEach((value, index, array) => {
         seatsLeft += orderData['ticketTypes'][value];
     });
-    document.querySelectorAll('img').forEach((value, index, array) => {
-        if (seatsLeft > 0 && value.src.includes('/img/seat-available.png')){
-            value.click();
-        }
-    })
+    if(@Model.changeSeat.ToString().ToLower()) {
+        let seatsLeft = 1;
+    } else {
+        document.querySelectorAll('img').forEach((value, index, array) => {
+            if (seatsLeft > 0 && value.src.includes('/img/seat-available.png')){
+                value.click();
+            }
+        })
+    }
+
     updateHelperText();
     
     //seats is an object to prevent looping
@@ -105,5 +120,11 @@ function getSelectedSeatsArray(){
         }
         orderData['seats'] = getSelectedSeatsArray();
         location.href='@Url.Action("Index", "Payments")?orderData='+JSON.stringify(orderData);
+    }
+
+    function changeSeat(){
+        let row = getSelectedSeatsArray()[0][0]
+        let seat = getSelectedSeatsArray()[0][1]
+        location.href='@Url.Action("ChangeSeat", "CashierDashboard")?row='+ row + '&seat=' + seat + '&ticketId=' + @Model.ticketId + '&showTimeId=' + @Model.showTimeId 
     }
 </script>

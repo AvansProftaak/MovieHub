@@ -1,0 +1,21 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="container-fluid" style="margin-top: 9.5vh">
+    <div class="row">
+        <div class="col-3 offset-1">
+            <button onclick="location.href='@Url.Action("AdminDashboard", "Dashboard")'"
+                class="btn btn-primary btn-sizing me-1" style="font-size: 1.3vh";>Admin Dashboard</button>
+        </div>
+        <div class="col-3">
+            <button onclick="location.href='@Url.Action("Index", "CashierDashboard")'"
+                class="btn btn-primary btn-sizing me-1" style="font-size: 1.3vh";>Cashier Dashboard</button>
+        </div>
+        <div class="col-3">
+            <button onclick="location.href='@Url.Action("Index", "BackOfficeDashboard")'"
+                class="btn btn-primary btn-sizing me-1" style="font-size: 1.3vh";>Back Office Dashboard</button>
+        </div>
+    </div>
+</div>
